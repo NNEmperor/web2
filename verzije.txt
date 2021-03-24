@@ -1,0 +1,9 @@
+tamara 	npm 7.5.3
+	node 15.10.0
+
+nikola   npm: '7.6.0',
+  node: '12.19.0',
+
+vesna
+	npm: '7.6.0',
+  node: '15.11.0',
