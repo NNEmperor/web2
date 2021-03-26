@@ -8,21 +8,19 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class StartScreenComponent implements OnInit {
 
-  //trazi mi definite assignment ????
-  loginForm!: FormGroup;
+  loginForm: FormGroup = new FormGroup({
+      'userName' : new FormControl('', [Validators.required, Validators.email]),
+      'password': new FormControl('', Validators.required)
+  });
 
   constructor() { }
-
+  
   ngOnInit(): void {
-    this.initForm();
+    
   }
 
-  private initForm(){
-    this.loginForm = new FormGroup({
-      'userName' : new FormControl(),
-      'password': new FormControl(Validators.required)
-    });
-  }
+  //get userName() {return this.loginForm.get('userName');}
+  //get password() {return this.loginForm.get('password');}
 
   onSubmit(){
     //provera jel postoji u nekoj bazi podataka

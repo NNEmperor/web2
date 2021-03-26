@@ -17,22 +17,22 @@
 
         <div id="right_side">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit">
-                <div class="row" style="margin:0.7cm; margin-bottom: 1cm;">
-                    <div class="col-sm-6 form-group">
-                        <label for="userName" style="font-family:'Times New Roman', Times, serif; font-size: larger;">Email Address:<br></label>
-                        <input placeholder="example@email.com" style="width: 8cm; height: 1cm; font-size: 0.5cm;" type="text" id="userName" class="form-control" formControlName="userName">
-                        <div *ngIf="loginForm.controls.userName.invalid">
-                            Please enter email
-                        </div>
+                <div class="row" style="margin:0.7cm;">
+                    <label for="userName" style="font-family:'Times New Roman', Times, serif; font-size: larger;">Email Address:
+                        <input placeholder="example@email.com" style="width: 8cm; height: 1cm; font-size: 0.5cm;" type="text" id="userName" class="form-control" formControlName="userName" required>
+                    </label>
+                    <!--Opcioni div ne mora-->
+                    <div *ngIf="loginForm.controls.userName.invalid">
+                        Email is required.
                     </div>
                 </div>
-                <div class="row" style="margin:0.7cm">
-                    <div class="col-sm-6 form-group">
-                        <label for="password" style="font-family:'Times New Roman', Times, serif; font-size: larger;">Password:<br></label>
-                        <input placeholder="Password" style="width: 8cm; height: 1cm; font-size: 0.5cm;" type="password" id="password" class="form-control" formControlName="userName">
-                        <div *ngIf="loginForm.controls.password.invalid">
-                            Please enter valid Password
-                        </div>
+                <div class="row" style="margin-left: 0.7cm;">
+                    <label for="password" style="font-family:'Times New Roman', Times, serif; font-size: larger;">Password:
+                        <input placeholder="Password" style="width: 8cm; height: 1cm; font-size: 0.5cm;" type="password" id="password" class="form-control" formControlName="password" required>
+                    </label>
+                    <!--Opcioni div ne mora-->
+                    <div *ngIf="loginForm.controls.password.invalid">
+                        Password is required.
                     </div>
                 </div>
                 <div class="row">
@@ -40,10 +40,10 @@
                         <!--link za zaboravljanje lozinke-->
                         <button id="button_login" [disabled]="!loginForm.valid" class="btn btn-success" type="submit">LOGIN</button>
                         <!--link za registraciju-->
+                        <!--Ostali linkovi-->
                     </div>
                 </div>
             </form>
         </div>
-
     </div>
 </div>
