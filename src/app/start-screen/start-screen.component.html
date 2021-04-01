@@ -5,7 +5,7 @@
     <div id="block">
         <div id="left_side">
             <a>
-                <img style="width: 10cm; height: 8cm;" src="assets/images/tesla.jpg">
+                <img style="width: 10cm; height: 8cm;" src="assets/images/teslanikola.jpg">
             </a>
             <p style="margin-left: 0.5cm; color: lightslategray;"><i>"The present is theirs; the future, for which i really<br>worked, is mine"</i></p>
 
@@ -40,13 +40,14 @@
                         <!--link za zaboravljanje lozinke-->
                         <button id="button_login" [disabled]="!loginForm.valid" class="btn btn-success" type="submit">LOGIN</button>
                         <!--link za registraciju-->
+                        <a [routerLink]='["/registration"]'>Create an account</a><br>
                         <!--Ostali linkovi-->
                         <button class="loginBtn loginBtn--facebook">
-                            Continue with Facebook
+                            Log in with Facebook
                           </button><br/>
                           
                           <button class="loginBtn loginBtn--google">
-                            Continue with Google
+                            Log in with Google
                           </button>
                         
                     </div>

@@ -93,3 +93,6 @@
 .loginBtn--google:focus {
   background: #E74B37;
 }
+a{
+  font-size: 14px;
+}
