@@ -1,0 +1,24 @@
+.main {
+    margin-left: 160px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+  }
+
+.column {
+float:left;
+width: 50%;
+}
+
+tr{
+    height: 40px;
+}
+
+button{
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 12px 2px;
+    cursor: hand;
+    height: 35;
+  }

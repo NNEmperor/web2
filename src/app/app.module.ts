@@ -21,6 +21,11 @@ import { NewIncidentDevicesComponent } from './new-incident-devices/new-incident
 import { NewIncidentResolutionComponent } from './new-incident-resolution/new-incident-resolution.component';
 import { NewIncidentCallsComponent } from './new-incident-calls/new-incident-calls.component';
 import { NewIncidentNewCallsComponent } from './new-incident-new-calls/new-incident-new-calls.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { SettingsComponent } from './settings/settings.component';
+import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +41,11 @@ import { NewIncidentNewCallsComponent } from './new-incident-new-calls/new-incid
     NewIncidentResolutionComponent,
     NewIncidentCallsComponent,
     NewIncidentNewCallsComponent,
+    MyProfileComponent,
+    NotificationMenuComponent,
+    NotificationsComponent,
+    SettingsComponent,
+    TopNavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +58,10 @@ import { NewIncidentNewCallsComponent } from './new-incident-new-calls/new-incid
     ModalModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: StartScreenComponent },
-      { path: 'registration', component: RegistrationComponent }
+      { path: 'registration', component: RegistrationComponent },
+      { path: 'myprofile', component: MyProfileComponent },
+      { path: 'notifications', component: NotificationsComponent },
+      { path: 'settings', component: SettingsComponent }
     ])
     
   ],
