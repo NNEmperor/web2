@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p>Incident ID:</p>
+            <p>Type:</p>
+            <p>Priority:</p>
+            <p>Confirmed:</p>
+            <p>Status:</p>
+            <p>Description:</p>
+            <p>ETA:</p>
+            <p>ATA:</p>
+        </div>
+        <div class="col-md-3">
+            <p><!--ovde se generise neki ID-->?</p>
+            <select style="height: 1cm;" name="type-incident" id="type-incident">
+                <option value="Unplaned">Unplaned</option>
+                <option value="Planed">Planed</option>
+            </select>
+            <p style="margin-top: 1mm;"><!--ovde ide naspram lokacije-->?</p>
+            <input type="checkbox" style="width: 0.5cm; height: 0.5cm;">
+            <p><!--generise se koji je status-->?</p>
+            <input type="text" />
+            <div style="display: flex; margin-top: 3mm;">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                        name="dp-eta" [(ngModel)]="model1" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+            </div>
+            <div style="display: flex; margin-top: 3mm;">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                        name="dp-ata" [(ngModel)]="model2" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <p>Affected customers:</p>
+            <p>Outage time:</p>
+            <br>
+            <p>ETR:</p>
+            <br>
+            <p>Calls:</p>
+            <br>
+            <p>Voltage:</p>
+            <br>
+            <p>Scheduled time:</p>
+        </div>
+        <div class="col-md-3">
+            <p><!--generise se automatski-->?</p>
+            <div style="display: flex;">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                        name="dp-outage" [(ngModel)]="model3" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+            </div>
+            <div style="display: flex; margin-top: 5mm; margin-bottom: 8mm;">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                        name="dp-etr" [(ngModel)]="model4" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+            </div>
+            <p><!--generise se automatski na osnovu broja prijava-->?</p>
+            <br>
+            <p><!--generise se automatski na osnovu neceg-->?</p>
+            <div style="display: flex; margin-top: 8mm;">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                        name="dp-scheduled" [(ngModel)]="model5" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

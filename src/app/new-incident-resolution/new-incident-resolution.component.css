@@ -1,0 +1,17 @@
+.p-cls{
+    width: 5cm;
+    height: 1cm;
+    font-size: larger;
+}
+
+.div-cls{
+    margin-top: 1cm;
+}
+
+.select-cls{
+    width: 4cm;
+    height: 1cm;
+    font-size: large;
+    background-color: blanchedalmond;
+    text-align: right;
+}

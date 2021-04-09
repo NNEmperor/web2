@@ -1,0 +1,57 @@
+<div class="continer">
+    <div class="row">
+        <div class="col-md-3 container" style="background-color: lightgrey;">
+            <button (click)="basicInfoClick()" id="btn-basic-info" class="btn btn-cls" routerLink="/new-incident-basic-info-screen">
+                Basic information
+            </button>
+            <button (click)="devicesClick()" id="btn-devices" class="btn btn-cls">
+                Devices    
+            </button>
+            <button (click)="resolutionClick()" id="btn-resolution" class="btn btn-cls">
+                Resolution
+            </button>
+            <button (click)="callsClick()" id="btn-calls" class="btn btn-cls">
+                Calls
+            </button>
+            <button class="btn btn-cls">
+                Crew
+            </button>
+            <button class="btn btn-cls">
+                Multimedia attachments
+            </button>
+            <button class="btn btn-cls">
+                Equipment
+            </button>
+        </div>
+        <div class="col-md-9">
+            <ng-container *ngIf="showBasicInfo">
+                <app-new-incident-basic-info id="basic-info-screen"></app-new-incident-basic-info>
+            </ng-container>
+            <ng-container *ngIf="showDevices">
+                <app-new-incident-devices id="devides-screen"></app-new-incident-devices>
+            </ng-container>
+            <ng-container *ngIf="showResolution">
+                <app-new-incident-resolution id="resolution-screen"></app-new-incident-resolution>
+            </ng-container>
+            <ng-container *ngIf="showCalls">
+                <app-new-incident-calls id="calls-screen"></app-new-incident-calls>
+            </ng-container>
+            <ng-container *ngIf="showNewCalls">
+                <app-new-incident-new-calls id="new-calls-screen"></app-new-incident-new-calls>
+            </ng-container>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+        </div>
+        <div class="col-md-3">
+            <button>
+                <img src="assets/images/x.png" style="height: 1cm; width: 1cm;">
+            </button>
+            <button>
+                <img src="assets/images/save.png" style="height: 1cm; width: 1cm;">
+            </button>
+        </div>
+    </div>
+</div>
+

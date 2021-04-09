@@ -1,0 +1,20 @@
+.btn-cls{
+    width: 100%;
+    text-align: left;
+    font-size: 120%;
+    margin: 1mm;
+    border-width: 0.5mm;
+    border-color: blanchedalmond;
+}
+
+.btn-cls:hover{
+    background-color: blanchedalmond;
+}
+
+.btn-cls:active{
+    background-color: burlywood;
+}
+
+.btn-cls:focus{
+    background-color: chocolate;
+}
