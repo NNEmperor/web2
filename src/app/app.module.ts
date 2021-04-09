@@ -12,6 +12,15 @@ import { StartScreenComponent } from './start-screen/start-screen.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MyIncidentsComponent } from './my-incidents/my-incidents.component';
+import { NewIncidentComponent } from './new-incident/new-incident.component';
+import { NewIncidentBasicInfoComponent } from './new-incident-basic-info/new-incident-basic-info.component';
+import { NewIncidentDevicesComponent } from './new-incident-devices/new-incident-devices.component';
+import { NewIncidentResolutionComponent } from './new-incident-resolution/new-incident-resolution.component';
+import { NewIncidentCallsComponent } from './new-incident-calls/new-incident-calls.component';
+import { NewIncidentNewCallsComponent } from './new-incident-new-calls/new-incident-new-calls.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +28,21 @@ import { RouterModule } from '@angular/router';
     StartScreenComponent,
     NavBarComponent,
     RegistrationComponent,
+    DashboardComponent,
+    MyIncidentsComponent,
+    NewIncidentComponent,
+    NewIncidentBasicInfoComponent,
+    NewIncidentDevicesComponent,
+    NewIncidentResolutionComponent,
+    NewIncidentCallsComponent,
+    NewIncidentNewCallsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
