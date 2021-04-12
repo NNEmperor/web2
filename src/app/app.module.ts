@@ -22,7 +22,6 @@ import { NewIncidentResolutionComponent } from './new-incident-resolution/new-in
 import { NewIncidentCallsComponent } from './new-incident-calls/new-incident-calls.component';
 import { NewIncidentNewCallsComponent } from './new-incident-new-calls/new-incident-new-calls.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
-import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TopNavbarComponent } from './top-navbar/top-navbar.component';
@@ -37,6 +36,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { WorkreqNewComponent } from './workreq-new/workreq-new.component';
 import { WorkreqBasicinfoComponent } from './workreq-basicinfo/workreq-basicinfo.component';
+import { UsersComponent } from './users/users.component';
 //import {MatFormFieldModule} from '@angular/material/form-field';
 //import { MatInputModule } from '@angular/material/input';
 //import { MatFormFieldModule } from "@angular/material/form-field";
@@ -56,7 +56,6 @@ import { WorkreqBasicinfoComponent } from './workreq-basicinfo/workreq-basicinfo
     NewIncidentCallsComponent,
     NewIncidentNewCallsComponent,
     MyProfileComponent,
-    NotificationMenuComponent,
     NotificationsComponent,
     SettingsComponent,
     TopNavbarComponent,
@@ -64,6 +63,7 @@ import { WorkreqBasicinfoComponent } from './workreq-basicinfo/workreq-basicinfo
     MapComponent,
     WorkreqNewComponent,
     WorkreqBasicinfoComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,9 +80,10 @@ import { WorkreqBasicinfoComponent } from './workreq-basicinfo/workreq-basicinfo
       { path: 'myprofile', component: MyProfileComponent },
       { path: 'notifications', component: NotificationsComponent },
       { path: 'settings', component: SettingsComponent },
-      { path: 'work-requests',component:WorkRequestsComponent},
-      {path: 'mapa',component: MapComponent},
-      { path: 'workreq-new',component:WorkreqNewComponent}
+      { path: 'work-requests', component: WorkRequestsComponent},
+      { path: 'mapa',component: MapComponent},
+      { path: 'workreq-new', component: WorkreqNewComponent},
+      { path: 'users', component: UsersComponent }
     ]),
     BrowserAnimationsModule,
     MatSliderModule,

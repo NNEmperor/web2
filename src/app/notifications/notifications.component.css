@@ -1,0 +1,106 @@
+.vertical-menu {
+    /* width: 200px; */
+     margin-left: 100px;
+     margin-top: 30px;
+     width: 180px;
+     border-style: ridge;
+     float: left;
+   }
+   
+ /*  .vertical-menu a {
+     background-color: rgb(255, 255, 255); 
+     color: black; 
+     display: block; 
+     padding: 12px; 
+     text-decoration: none; 
+   }
+   
+   .vertical-menu a:hover {
+     background-color: rgb(226, 226, 226); 
+   }
+   */
+   .vertical-menu span {
+    background-color: rgb(255, 255, 255); 
+    color: black; 
+    display: block; 
+    padding: 12px; 
+    text-decoration: none; 
+    cursor:alias;
+  }
+  
+  .vertical-menu span:hover {
+    background-color: rgb(226, 226, 226); 
+  } 
+  .display-wrapper {
+    max-width: 50%;
+    margin-left: 200px; /* Same as the width of the sidebar */
+    margin-top: 15px;
+    padding: 0px 10px;
+    border: 1px solid #fefefe;
+    border-radius: 5px;
+    background: #FFF;
+    
+  }
+
+  .notification {
+    align-items: left;
+    width: 700px;
+    padding: 15px;
+    border-radius: 5px;
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    height: 60px;
+  }
+
+
+    .notification--information {
+        background: #a6deff;
+        border-color: #4a5f6d;
+        color: #4a5f6d;
+      }
+    
+      .notification--warning {
+    background: #FFF5AE;
+    border-color: #654a1c;
+    color: #654a1c;
+    }
+      
+    .notification--error {
+        background: #FFC0C0;
+        border-color: #8c1a1a;
+        color: #8c1a1a;
+      }
+      
+      
+      .notification--success {
+        background: #e1ffdf;
+        border-color: #2c4a2c;
+        color: #2c4a2c;
+      }
+      
+      .notification--new {
+        background: #CCFBFB;
+        border-color: #3f6565;
+        color: #3f6565;
+      }
+
+
+  
+
+      .notification__icon-block {
+        margin-right: 15px;
+      }
+
+      .notification__icon-block {
+        margin-right: 15px;
+      }
+      
+
+      
+      .notification__content-block {
+        margin-right: 50px;  
+      }
+      
+ .datum{
+     float: right;
+ }

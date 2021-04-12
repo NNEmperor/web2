@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyProfileComponent implements OnInit {
 
-  constructor() { }
+  user: UserElement;
+  parentMessage = "My profile";
+
+  constructor() {
+    this.user = { username: 'lana', email: 'lana@gmail.com', name: 'Lana', lastname: 'Nm', role: 'dispatcher'};
+  }
 
   ngOnInit(): void {
   }
@@ -16,4 +21,12 @@ export class MyProfileComponent implements OnInit {
     console.log("you're logged out")
     
   }
+}
+
+export interface UserElement {
+  username: string;
+  email: string;
+  name: string;
+  lastname:string;
+  role:string;
 }

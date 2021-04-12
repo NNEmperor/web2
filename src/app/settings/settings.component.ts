@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
+  parentMessage = "Settings";
+
   constructor() { }
 
   ngOnInit(): void {

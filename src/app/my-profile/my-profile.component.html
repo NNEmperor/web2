@@ -1,32 +1,30 @@
-<app-top-navbar></app-top-navbar>
+<app-top-navbar  [childMessage]="parentMessage"></app-top-navbar>
 
 <app-nav-bar></app-nav-bar>
 
 <div class="main">
-    <h2>
-        My profile
-    </h2> <br/>
+
     <div class="column">
         <table class="table ">
             <tr>
                 <td>Username</td>
-                <td></td>
+                <td> {{user.username}} </td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td></td>
+                <td> {{user.email}} </td>
             </tr>
             <tr>
                 <td>First Name</td>
-                <td></td>
+                <td> {{user.name}} </td>
             </tr>
             <tr>
                 <td>Last name</td>
-                <td></td>
+                <td> {{user.lastname}} </td>
             </tr>
             <tr>
                 <td>Role</td>
-                <td></td>
+                <td> {{user.role}} </td>
             </tr>
             <tr>
                 <td>
