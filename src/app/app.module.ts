@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -26,6 +26,20 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
 import { NotificationsComponent } from './notifications/notifications.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TopNavbarComponent } from './top-navbar/top-navbar.component';
+import { WorkRequestsComponent } from './work-requests/work-requests.component';
+import { MapComponent } from './map/map.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { NgMaterialModule } from './ng-material.module';  //za tabelu ubaceno
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { WorkreqNewComponent } from './workreq-new/workreq-new.component';
+import { WorkreqBasicinfoComponent } from './workreq-basicinfo/workreq-basicinfo.component';
+//import {MatFormFieldModule} from '@angular/material/form-field';
+//import { MatInputModule } from '@angular/material/input';
+//import { MatFormFieldModule } from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
@@ -46,6 +60,10 @@ import { TopNavbarComponent } from './top-navbar/top-navbar.component';
     NotificationsComponent,
     SettingsComponent,
     TopNavbarComponent,
+    WorkRequestsComponent,
+    MapComponent,
+    WorkreqNewComponent,
+    WorkreqBasicinfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,13 +79,25 @@ import { TopNavbarComponent } from './top-navbar/top-navbar.component';
       { path: 'registration', component: RegistrationComponent },
       { path: 'myprofile', component: MyProfileComponent },
       { path: 'notifications', component: NotificationsComponent },
-      { path: 'settings', component: SettingsComponent }
-    ])
+      { path: 'settings', component: SettingsComponent },
+      { path: 'work-requests',component:WorkRequestsComponent},
+      {path: 'mapa',component: MapComponent},
+      { path: 'workreq-new',component:WorkreqNewComponent}
+    ]),
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatSlideToggleModule,//ovo za cek i uncek
+
+   NgMaterialModule,
+   MatTableModule,
+   MatPaginatorModule,
+   MatSortModule,
     
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
 

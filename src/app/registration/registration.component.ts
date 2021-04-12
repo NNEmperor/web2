@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class RegistrationComponent implements OnInit {
 
+  parentMessage = "Registration"
   regiForm!: FormGroup;
   uloge = this.getRoles();
   selectedRole: string = '';

@@ -1,0 +1,22 @@
+.save_remove{
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 10px 14px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    width: 10%;
+    text-align: center;
+  }
+  .save_remove:hover {
+    background-color:#4CAF50;
+  }
+  .top_el{
+    float: left;
+    width: 50%;
+  }
+  input[type="text"],[type="time"],[type="date"],[type="tel"]{
+    width: 40%;
+  }

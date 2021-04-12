@@ -1,0 +1,7 @@
+#hotel_map {
+    height: 600px;
+    width: 50%;
+    margin: auto;
+    border: 2px solid green;
+    padding: 10px;
+  }

@@ -1,0 +1,47 @@
+.labelBeforeSlide {
+    vertical-align: top;
+    line-height: 24px; 
+    margin-right:0.5rem;
+    margin-bottom:0.5rem;
+  }
+
+   /* Style page content */
+   .main {
+    margin-left: 160px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+  }
+
+  button{
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 10px 14px;
+    text-decoration: none;
+    margin: 12px 2px;
+    cursor: pointer;
+    width: 20%;
+    text-align: left;
+  }
+  button:hover {
+    background-color:#4CAF50;
+  }
+
+h1{
+    text-align: center;
+    margin: 12px 2px;
+    padding: 16px 32px;
+    background-color: #c1c1c8;
+    color: white;
+}
+
+table {
+  width: 100%;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+.top_el{
+  float: left;
+  width: 32%;
+}
+

@@ -1,0 +1,54 @@
+<app-top-navbar  [childMessage]="parentMessage"></app-top-navbar>
+  <app-nav-bar></app-nav-bar>
+  
+ 
+  
+  <div class="main">
+    
+      <div class="top_el">
+        <button class="glyphicon glyphicon-plus"  [routerLink]='["/workreq-new"]'>  New</button>
+      </div>
+      
+      <div class="top_el">
+        <br>
+        <div class="slider">
+          <mat-label ngClass="labelBeforeSlide"><b>All</b></mat-label>
+          <mat-slide-toggle [formControl]="allMineEnable" (change)="onDragChange()" color="primary">Mine</mat-slide-toggle>
+        </div>
+      </div>
+
+      <div class="top_el">
+        <br>
+        <mat-form-field> 
+          <i class="glyphicon glyphicon-filter"></i>
+          <input #filtertext placeholder="Filter here..." (keydown.enter)="applyFilter(filtertext.value)" style="color: white; background-color: #333;" />
+        </mat-form-field>
+      </div>
+      
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">  
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+        
+        
+</div>
+
+
+ 
