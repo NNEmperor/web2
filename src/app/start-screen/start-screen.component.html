@@ -1,58 +1,50 @@
-<div class="container">
-    <h1 style="text-align: center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: gray;">tESLA Distribution</h1>
-    <h3 style="color: lightslategray; margin-top: 2cm; text-align: center;">Electricity for the future</h3>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
-    <div id="block">
-        <div id="left_side">
-            <a>
-                <img style="width: 10cm; height: 8cm;" src="assets/images/teslanikola.jpg">
-            </a>
-            <p style="margin-left: 0.5cm; color: lightslategray;"><i>"The present is theirs; the future, for which i really<br>worked, is mine"</i></p>
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+    <div class="content">
+        <h1 style="text-align: center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: black;">tESLA Distribution</h1>
+        <h3 style="color: black; margin-top: 2cm; text-align: center;">Electricity for the future</h3>
 
-            <button style="font-size: larger; margin-top: 1cm; color: lightslategray;">
-                <!--Slicica za telefon-->
-                <i>Report outrage</i>
-            </button>
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+              <!-- Tabs Titles -->
+              <h2 class="active"> Sign In </h2>
+          
+              <!-- Login Form -->
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit">
+                <input required type="text" id="userName" class="fadeIn second" name="userName" formControlName="userName" placeholder="example@email.com">
+                <input required type="password" id="password" class="fadeIn third" name="password" formControlName="password" placeholder="Password">
+                <input [routerLink]='["/dashboard"]' [disabled]="!loginForm.valid" type="submit" class="fadeIn fourth" value="Log In">
+              </form>
+          
+              <!-- Remind Passowrd -->
+              <div id="formFooter">
+                <a [routerLink]='["/registration"]' class="underlineHover">Dont have an account?</a>
+              </div>
+
+              <div>
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-twitter"></a>
+                <a href="#" class="fa fa-google"></a>
+              </div>
+          
+            </div>
+          </div>
+        <div class="fadeIn fourth">
+
+          <a href="#" class="animated-button1">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Report a problem
+          </a>
         </div>
 
-        <div id="right_side">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit">
-                <div class="row" style="margin:0.7cm;">
-                    <label for="userName" style="font-family:'Times New Roman', Times, serif; font-size: larger;">Email Address:
-                        <input placeholder="example@email.com" style="width: 8cm; height: 1cm; font-size: 0.5cm;" type="text" id="userName" class="form-control" formControlName="userName" required>
-                    </label>
-                    <!--Opcioni div ne mora-->
-                    <div *ngIf="loginForm.controls.userName.invalid">
-                        Email is required.
-                    </div>
-                </div>
-                <div class="row" style="margin-left: 0.7cm;">
-                    <label for="password" style="font-family:'Times New Roman', Times, serif; font-size: larger;">Password:
-                        <input placeholder="Password" style="width: 8cm; height: 1cm; font-size: 0.5cm;" type="password" id="password" class="form-control" formControlName="password" required>
-                    </label>
-                    <!--Opcioni div ne mora-->
-                    <div *ngIf="loginForm.controls.password.invalid">
-                        Password is required.
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-1" style="margin: 0.7cm;">
-                        <!--link za zaboravljanje lozinke-->
-                        <button id="button_login" [disabled]="!loginForm.valid" class="btn btn-success" type="submit">LOGIN</button>
-                        <!--link za registraciju-->
-                        <a [routerLink]='["/registration"]'>Create an account</a><br>
-                        <!--Ostali linkovi-->
-                        <button class="loginBtn loginBtn--facebook">
-                            Log in with Facebook
-                          </button><br/>
-                          
-                          <button class="loginBtn loginBtn--google">
-                            Log in with Google
-                          </button>
-                        
-                    </div>
-                </div>
-            </form>
-        </div>
     </div>
-</div>
+

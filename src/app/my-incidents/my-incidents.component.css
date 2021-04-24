@@ -1,45 +1,125 @@
 .new_button{
-    display: flex;
-    width:3cm;
-    height: 1.1cm;
+  display: flex;
+  width:3cm;
+  height: 1.1cm;
 }
 
-#radios{
-  position:relative;
-  width:50%;
-  margin:0 auto;
+html {
+height:100%;
 }
-input[type="radio"]{
-  position:absolute;
-  right:1000%;
-}
-label{
-  float:left;
-  width:15%; padding-bottom:15%;
-  margin:0 2.5%;
-  font-size: 0.5cm;
-  background:rgba(255,255,255,.2);
-  border-radius:50%;
-  cursor:pointer;
-}
-#slider{
-  position:absolute;
-  left:0%; top:0;
-  width:5%; padding-bottom:5%;
-  margin:2.5% 0 0 5%;
-  background:rgb(0, 0, 0);
-  transition:transform 1s;
-  border-radius:50%;
-  animation-timing-function: ease-in-out;
-  animation-duration:.3s;
-  animation-fill-mode: forwards;
-  transition: 0.2s left .05s ease-in-out;
-}
-#input1:checked  ~ #slider{ animation-name: input1; left:0; }
-#input2:checked  ~ #slider{ animation-name: input2; left:20%; }
 
-@keyframes input1{ 30%, 70% { transform:scale(0.5); } }
-@keyframes input2{ 30%, 70% { transform:scale(0.5); } }
+body {
+margin:0;
+}
 
+.bg {
+animation:slide 3s ease-in-out infinite alternate;
+background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+bottom:0;
+left:-50%;
+opacity:.5;
+position:fixed;
+right:-50%;
+top:0;
+z-index:-1;
+}
+
+.bg2 {
+animation-direction:alternate-reverse;
+animation-duration:4s;
+}
+
+.bg3 {
+animation-duration:5s;
+}
+
+.content {
+background-color:rgba(255,255,255,.8);
+border-radius:.25em;
+width: 80%;
+height: max-content;
+padding: 5%;
+box-shadow:0 0 .25em rgba(0,0,0,.25);
+box-sizing:border-box;
+left:50%;
+position:fixed;
+text-align:center;
+top:50%;
+transform:translate(-50%, -50%);
+}
+
+@keyframes slide {
+0% {
+  transform:translateX(-25%);
+}
+100% {
+  transform:translateX(25%);
+}
+}
+
+.wrapper_left{
+position: fixed;
+top: 10%;
+left: 15%;
+transform: translate(-50%, -50%);
+}
+
+.wrapper_right{
+position: fixed;
+top: 10%;
+left: 85%;
+transform: translate(-50%, -50%);
+}
+
+a{
+display: block;
+width: 100px;
+height: 40px;
+line-height: 40px;
+font-size: 18px;
+font-family: sans-serif;
+text-decoration: none;
+color: #333;
+border: 2px solid #333;
+letter-spacing: 2px;
+text-align: center;
+transition: all .35s;
+}
+
+a span{
+position: relative;
+z-index: 2;
+}
+
+a:after{
+position: absolute;
+content: "";
+top: 0;
+left: 0;
+width: 0;
+height: 100%;
+background: #3619db;
+transition: all .35s;
+}
+
+a:hover{
+color: #fff;
+}
+
+a:hover:after{
+width: 100%;
+}
+
+.labelBeforeSlide {
+  vertical-align: top;
+  line-height: 24px; 
+  margin-right:0.5rem;
+  margin-bottom:0.5rem;
+}
+
+
+table {
+width: 80%;
+}
 
 

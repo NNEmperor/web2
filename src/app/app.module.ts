@@ -37,6 +37,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { WorkreqNewComponent } from './workreq-new/workreq-new.component';
 import { WorkreqBasicinfoComponent } from './workreq-basicinfo/workreq-basicinfo.component';
 import { UsersComponent } from './users/users.component';
+import { NewIncidentCrewComponent } from './new-incident-crew/new-incident-crew.component';
+import { NewIncidentMultimediaComponent } from './new-incident-multimedia/new-incident-multimedia.component';
+import { NewIncidentEquipmentComponent } from './new-incident-equipment/new-incident-equipment.component';
 //import {MatFormFieldModule} from '@angular/material/form-field';
 //import { MatInputModule } from '@angular/material/input';
 //import { MatFormFieldModule } from "@angular/material/form-field";
@@ -64,6 +67,9 @@ import { UsersComponent } from './users/users.component';
     WorkreqNewComponent,
     WorkreqBasicinfoComponent,
     UsersComponent,
+    NewIncidentCrewComponent,
+    NewIncidentMultimediaComponent,
+    NewIncidentEquipmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +89,29 @@ import { UsersComponent } from './users/users.component';
       { path: 'work-requests', component: WorkRequestsComponent},
       { path: 'mapa',component: MapComponent},
       { path: 'workreq-new', component: WorkreqNewComponent},
-      { path: 'users', component: UsersComponent }
+      { path: 'users', component: UsersComponent },
+      { path: 'dashboard', 
+        children: [
+        { path: "", component: DashboardComponent },
+        { path: "incidents", component: MyIncidentsComponent }
+        ]
+      },
+      {
+        path: 'incident-new', children: [
+          { path: "", component: NewIncidentBasicInfoComponent },
+          { path: "devices", component: NewIncidentDevicesComponent },
+          { path: "resolution", component: NewIncidentResolutionComponent },
+          { path: "calls",
+          children: [
+            { path: "", component: NewIncidentCallsComponent },
+            { path: "add", component: NewIncidentNewCallsComponent }
+          ]
+        },
+          { path: "crew", component: NewIncidentCrewComponent },
+          { path: "multimedia", component: NewIncidentMultimediaComponent },
+          { path: "equipment", component: NewIncidentEquipmentComponent },
+        ]
+      }
     ]),
     BrowserAnimationsModule,
     MatSliderModule,

@@ -5,7 +5,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort} from '@angular/material/sort';
 import { Router } from '@angular/router';
-import { TopNavbarComponent } from '../top-navbar/top-navbar.component';
 
 @Component({
   selector: 'app-work-requests',

@@ -1,20 +1,38 @@
-.btn-cls{
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:transparent;
     width: 100%;
-    text-align: left;
-    font-size: 120%;
-    margin: 1mm;
-    border-width: 0.5mm;
-    border-color: blanchedalmond;
-}
+  }
+  
+  li {
+    width: 12%;
+    float: left;
+    display: inline;
 
-.btn-cls:hover{
-    background-color: blanchedalmond;
-}
+  }
+  
+  li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: large;
+    border-radius: 0.9em;
+  }
+  
+  li a:hover {
+    background-color: transparent;
+    border-color: white;
+    font-size: larger;
+    background-color: rgb(107, 231, 231);
+  }
 
-.btn-cls:active{
-    background-color: burlywood;
-}
-
-.btn-cls:focus{
-    background-color: chocolate;
-}
+  .naslov{
+    color: white;
+    text-align: center;
+    padding: 8px;
+  }

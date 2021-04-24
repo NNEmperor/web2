@@ -1,4 +1,10 @@
-<div class="container">
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+<app-nav-bar></app-nav-bar>
+<app-top-navbar></app-top-navbar>
+<app-new-incident></app-new-incident>
+<div class="content">
     <div class="row">
         <div class="col-md-3">
             <p class="p-cls">Reason:</p>
@@ -23,16 +29,16 @@
             <input type="text" class="text-cls" />
         </div>
     </div>
-    <div class="container" style="background: lightgray;">
+    <div class="container" style="background: lightgray; width: 100%">
         <div class="row">
             <div class="col-md-3">
                 <p><b>Customer info</b></p>
             </div>
-            <div class="col-md-6"></div>
+            <div class="col-md-5"></div>
             <div class="col-md-3">
                 <button style="display: flex; background-color: transparent; height: 1cm; width: 5cm; border: hidden;">
                     <img style="margin-right: 3mm; width: 6mm; height: 6mm;" src="assets/images/add-people.png" />
-                    <p><b>Select customer</b></p>
+                    <p><b style="font-size: large;" >Select customer</b></p>
                 </button>
             </div>
         </div>
@@ -40,13 +46,13 @@
             <div class="col-md-2">
                 <p>Name:</p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <input type="text" id="name" />
             </div>
             <div class="col-md-2">
-                <p>Account:</p>
+                <p style="margin-left:1cm;" >Account:</p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <input type="text" id="account" />
             </div>
         </div>
@@ -54,13 +60,13 @@
             <div class="col-md-2">
                 <p>Last name:</p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <input type="text" id="last-name" />
             </div>
             <div class="col-md-2">
-                <p>Priority:</p>
+                <p style="margin-left:1cm;">Priority:</p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <input type="text" id="priority" />
             </div>
         </div>
@@ -68,10 +74,8 @@
             <div class="col-md-2">
                 <p>Address:</p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <input type="text" id="address" />
-            </div>
-            <div class="col-md-6">
             </div>
         </div>
     </div>

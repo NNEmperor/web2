@@ -1,36 +1,84 @@
-<div>
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+<app-nav-bar></app-nav-bar>
+<app-top-navbar></app-top-navbar>
+<div class="content">
     <div class="row">
-        <div class="col-md-4" style="text-align: center;">
-            <button>
-                <p>My incidents</p>
-                <!--jos svasta nesto-->
-            </button>
-        </div>
-        <div class="col-md-4" style="text-align: center;">
-            <button>
-                <p>My work plans</p>
-                <!--jos svasta nesto-->
-            </button>
-        </div>
-        <div class="col-md-4" style="text-align: center;">
-            <button>
-                <p>My safety docs</p>
-                <!--jos svasta nesto-->
-            </button>
-        </div>
+        <a [routerLink]='["/dashboard/incidents"]' style="box-shadow:0 0 .25em rgba(0, 0, 0, 0.55);" class="col-md-4">
+            <div style="display:flex">
+                <p>MY INCIDENTS</p>
+                <p style="margin-left: 40%;" id="numOfIncidents">0</p>
+            </div>
+            <div style="display: flex;">
+                <p id="numOfDraftsIncidents">0</p>
+                <p style="margin-left: 10%;">Drafts</p>
+            </div>
+            <div style="display: flex;">
+                <p id="numOfCanceledIncidents">0</p>
+                <p style="margin-left: 10%;">Canceled</p>
+            </div>
+            <div style="display: flex;">
+                <p id="numOfExecutingIncidents">0</p>
+                <p style="margin-left: 10%;">Executing</p>
+            </div>
+            <div style="display: flex;">
+                <p id="numOfCompletedIncidents">0</p>
+                <p style="margin-left: 10%;">Completed</p>
+            </div>
+        </a>
+        <a [routerLink]='["/dashboard/incidents"]' style="box-shadow:0 0 .25em rgba(0, 0, 0, 0.55);" class="col-md-4">
+            <div style="display:flex">
+                <p>MY WORK PLANS</p>
+                <p style="margin-left: 40%;" id="numOfIncidents">0</p>
+            </div>
+            <div style="display: flex;">
+                <p id="numOfDraftsIncidents">0</p>
+                <p style="margin-left: 10%;">Drafts</p>
+            </div>
+            <div style="display: flex;">
+                <p id="numOfCanceledIncidents">0</p>
+                <p style="margin-left: 10%;">Canceled</p>
+            </div>
+            <div style="display: flex;">
+                <p id="numOfExecutingIncidents">0</p>
+                <p style="margin-left: 10%;">Executing</p>
+            </div>
+            <div style="display: flex;">
+                <p id="numOfCompletedIncidents">0</p>
+                <p style="margin-left: 10%;">Completed</p>
+            </div>
+        </a>
+        <a [routerLink]='["/dashboard/incidents"]' style="box-shadow:0 0 .25em rgba(0, 0, 0, 0.55);" class="col-md-4">
+            <div style="display:flex">
+                <p>MY SAFETY DOCS</p>
+                <p style="margin-left: 40%;" id="numOfIncidents">0</p>
+            </div>
+            <div style="display: flex;">
+                <p id="numOfDraftsIncidents">0</p>
+                <p style="margin-left: 10%;">Drafts</p>
+            </div>
+            <div style="display: flex;">
+                <p id="numOfCanceledIncidents">0</p>
+                <p style="margin-left: 10%;">Canceled</p>
+            </div>
+            <div style="display: flex;">
+                <p id="numOfExecutingIncidents">0</p>
+                <p style="margin-left: 10%;">Executing</p>
+            </div>
+            <div style="display: flex;">
+                <p id="numOfCompletedIncidents">0</p>
+                <p style="margin-left: 10%;">Completed</p>
+            </div>
+        </a>
     </div>
+    <br>
     <div class="row">
         <div class="col-md-8" style="text-align: center;">
-            <button>
-                <p>Documents</p>
-                <!--jos svasta nesto-->
-            </button>
+            <p>Incidents</p>
         </div>
         <div class="col-md-4" style="text-align: center">
-            <button>
-                <p>Incidents</p>
-                <!--jos svasta nesto-->
-            </button>
+            <p>Documents</p>
         </div>
     </div>
     
