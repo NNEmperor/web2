@@ -1,64 +1,58 @@
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
 <app-nav-bar></app-nav-bar>
 <app-top-navbar  [childMessage]="parentMessage"></app-top-navbar>
-  <div class="main">
-       
-    <form [formGroup]="regiForm">
-    <div class="row">
-        <div class="column">
-            <!--Value: {{ regiForm.value | json }}-->
-        
-                <br/><input mat-Input type="text" placeholder="username" formControlName="username"><br/>
+  <div class="main" id="formContent">
+    
+    <form [formGroup]="regiForm" >
+        <div class="container">
+            <div class="one" >
+                <label  class="hoverable" for="fileInput">
+                    <img  [src]= 'path'   >
+                    <div class="hover-text">Choose file</div>
+                    <div class="background"></div>
+                </label>
+                
+                <input type="file" id="fileInput" accept="image/*" (change)="showPreview($event)" />
+                 <!-- Progress Bar -->
+            <div class="progress form-group" *ngIf="progress > 0" style="width: 50%;">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"  [ngStyle]="{ width: progress + '%' }">
+                    {{ progress }}%
+                </div>
+            </div>
+                <select (change)="selectChangeHandler($event)">
+                    <option *ngFor="let role of uloge" value= {{role.id}}>
+                        {{role.name}}
+                    </option>
+                    </select>
+                    <br>
+                    <br><input type="checkbox" ng-checked="all" >&nbsp;&nbsp;<label style="color:#333; font-weight:bold; font-size: 14px;">Send email confirmation</label> <br>
+                    <button color="primary" (click)="addUser()" [disabled]="regiForm.invalid" >Register</button>
+                <!-- Image Preview 
+            
+                    <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
+                        <img [src]="imageURL" [alt]="regiForm.value.imagename" class="photoview">
+                    </div>
+                -->
+        </div>
+            <div class="two">
+                <!--Value: {{ regiForm.value | json }}-->
+                <input mat-Input type="text" placeholder="name" formControlName="name"><br/>
+                <input mat-Input type="text" placeholder="lastname" formControlName="lastname"><br/>
+                <input mat-Input type="text" placeholder="username" formControlName="username"><br/>
             
                 <input mat-input type="text" placeholder="email" formControlName="email"><br/>
                 
-                <small class="text-danger" >
-                
-                You didn't enter email in valid form!
-            </small><br/>
            
                 <input mat-Input type="password" placeholder="password" formControlName="password"><br/>
 
                 <input mat-Input type="password" placeholder="repeat password" formControlName="passwordCheck"><br/>
 
                 <input mat-Input type="text" placeholder="address" formControlName="address"><br/>
-
-            <select (change)="selectChangeHandler($event)">
-            <option *ngFor="let role of uloge" value= {{role.id}}>
-                {{role.name}}
-            </option>
-            </select>
-            <br><input type="checkbox" ng-checked="all">  Send email confirmation<br>
-            <button color="primary" (click)="addUser()" [disabled]="regiForm.invalid" >Register</button>
-        </div>
-        <div class="column">
-                <input mat-Input type="text" placeholder="name" formControlName="name"><br/>
-
-                <input mat-Input type="text" placeholder="lastname" formControlName="lastname"><br/>
-
-
-            <!-- Image Preview -->
-            <input type="file" accept="image/*" (change)="showPreview($event)" />
-            <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
-                <img [src]="imageURL" [alt]="regiForm.value.imagename" class="photoview">
+  
             </div>
         </div>
-    </div>
-
-        
-        
-       <!-- <input
-  style="display: none"
-  type="file" (change)="onFileChanged($event)"
-  #fileInput>
-<button (click)="fileInput.click()">Select File</button>
-<p>ovo posle</p><br>
- Select File -->
-
-
-
-    
-
     </form>
-
-    
-  </div>
+</div>

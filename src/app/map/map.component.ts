@@ -127,7 +127,7 @@ export class MapComponent implements OnInit {
           // For Internet Explorer 11
           
           //imgSize: [40, 40],
-          src: 'assets/images/rad_ekipe.jpg',
+          src: 'assets/images/vozilo-mapa.png',
         }),
       })
     );

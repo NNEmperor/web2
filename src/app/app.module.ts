@@ -40,9 +40,8 @@ import { UsersComponent } from './users/users.component';
 import { NewIncidentCrewComponent } from './new-incident-crew/new-incident-crew.component';
 import { NewIncidentMultimediaComponent } from './new-incident-multimedia/new-incident-multimedia.component';
 import { NewIncidentEquipmentComponent } from './new-incident-equipment/new-incident-equipment.component';
-//import {MatFormFieldModule} from '@angular/material/form-field';
-//import { MatInputModule } from '@angular/material/input';
-//import { MatFormFieldModule } from "@angular/material/form-field";
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -121,7 +120,7 @@ import { NewIncidentEquipmentComponent } from './new-incident-equipment/new-inci
    MatTableModule,
    MatPaginatorModule,
    MatSortModule,
-    
+   HttpClientModule   //za progressbar
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [],

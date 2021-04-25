@@ -39,14 +39,14 @@
   }
   input[type=text], [type=password] {
     border: none;
-    border-bottom: 2px solid grey;
+    
     width: 40%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
   }
   select {
-    width: 40%;
+    width: 70%;
     padding: 16px 20px;
     border: none;
     border-radius: 4px;
@@ -57,13 +57,14 @@
 
   button{
     background-color: #333;
-    border: none;
+    border: 1px solid transparent;
     color: white;
     padding: 16px 32px;
     text-decoration: none;
+    font-size: 16px;
     margin: 12px 2px;
     cursor: pointer;
-    width: 40%;
+    width: 70%;
   }
   input[type="file"] {
     background-color:rgba(51, 51, 51, 0.3);
@@ -77,26 +78,195 @@
   }
   button:hover {
     background-color:#4CAF50;
+    border: 2px solid white;
   }
   input[type="file"]:hover {
     background-color:#4CAF50;
     color: white;
-    
   }
-  .column {
-    float:left;
-    width: 50%;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    /*clear: both;*/
-  }
+
+
   
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+
+  html {
+    height:100%;
+  }
+  
+  body {
+    margin:0;
+  }
+  
+  .bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+  
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+  
+  .bg3 {
+    animation-duration:5s;
+  }
+  
+  .content {
+    background-color:rgba(255,255,255,.8);
+    border-radius:.25em;
+    width: 80%;
+    height: max-content;
+    padding: 5%;
+    box-shadow:0 0 .25em rgba(0,0,0,.25);
+    box-sizing:border-box;
+    left:50%;
+    position:fixed;
+    text-align:center;
+    top:30%;
+    transform:translate(-50%, -50%);
+  }
+  
+  h1 {
+    font-family:monospace;
+  }
+  
+  @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }
+
+   /*Profile Pic Start*/
+.picture-container{
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+}
+.picture{
+  width: 106px;
+  height: 106px;
+  background-color: #999999;
+  border: 4px solid #CCCCCC;
+  color: #FFFFFF;
+  border-radius: 50%;
+  margin: 0px auto;
+  overflow: hidden;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+}
+.picture:hover{
+  border-color: #2ca8ff;
+}
+.content.ct-wizard-green .picture:hover{
+  border-color: #05ae0e;
+}
+.content.ct-wizard-blue .picture:hover{
+  border-color: #3472f7;
+}
+.content.ct-wizard-orange .picture:hover{
+  border-color: #ff9500;
+}
+.content.ct-wizard-red .picture:hover{
+  border-color: #ff3b30;
+}
+.picture input[type="file"] {
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0 !important;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.picture-src{
+  width: 100%;
+  
+}
+/*za onu kruznu sliku*/
+
+p {
+  font-family: Lato;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+.hoverable{
+  position: relative;
+  display: block;
+  cursor: pointer;
+  height: 300px;
+  width: 300px;
+  border: 2.5px solid white;
+  border-radius: 50%;
+}
+.hoverable .hover-text{
+  position: absolute;
+  display: none;
+  top: 50%;
+  left:  50%;
+  transform: translate(-50%,-50%);   
+  z-index: 2;
+}
+.hoverable .background{
+  position: absolute;
+  display: none;
+  top: 0;
+  left:  0;
+  bottom: 0;
+  right: 0;
+  background-color:rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 1;
+}
+.hoverable:hover .hover-text{
+  display: block;
+}
+.hoverable:hover .background{
+  display: block;
+}
+
+#fileInput{
+  display: none;
+}
+
+.container {
+  margin-top: 2%;
+  width: 100%;
+  height: 70%;
+  background:rgba(255,255,255,.3);
+  position:absolute;
+}
+
+.one {
+  margin-top: 2%;
+  width:50%;
+  height:100%;
+  float: right;
+}
+
+.two {
+  margin-top: 2%;
+  margin-left: 10%;
+  height:100%;
+  
+}
