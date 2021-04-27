@@ -1,0 +1,49 @@
+<div class="bg" ></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+<app-nav-bar></app-nav-bar>
+<app-top-navbar [childMessage]="parentMessage"></app-top-navbar>
+<div class="content" style="width: 50%" >
+    <form [formGroup]="newUserForm">
+        <div class="form-row" style="width: 100%;">
+            <div class="form-group col-md-12"   >
+                <label for="inputName">Name</label>
+                <input type="text" class="form-control" id="inputName" placeholder="Name" required>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="inputLastName">Last Name</label>
+                <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" required>
+            </div>
+            <div class="form-group col-md-12" >
+                <label for="inputAddress">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="inputCity">City/District/Town</label>
+                <input type="text" class="form-control" id="inputCity" placeholder="City, District or Town" required>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="inputZip">ZIP Code</label>
+                <input type="text" class="form-control" id="inputZip" placeholder="ZIP Code"required>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="inputPhoneNumber">Phone Number</label>
+                <input type="text" class="form-control" id="inputPhoneNumber" placeholder="Phone Number" required>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="inputID">Incident ID</label>
+                <input type="text" class="form-control" id="inputID" placeholder="Incident ID" required>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="inputType">Type</label>
+                <select id="inputType" class="form-control">
+                    <option selected>Resident</option>
+                    <option>Commercial</option>
+                </select>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="addUser()"  style="width: 20%;">Save</button>
+      </form>
+
+</div>

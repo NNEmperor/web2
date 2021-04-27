@@ -53,7 +53,7 @@ body {
 }
 
 h6 {
-    font-size: 18px
+    font-size: 16px
 }
 
 .card .card-block p {
@@ -62,7 +62,7 @@ h6 {
 
 @media only screen and (min-width: 1400px) {
     p {
-        font-size: 18px
+        font-size: 16px
     }
 }
 
@@ -226,4 +226,8 @@ a:hover:after{
   top:45%;
   bottom: 3%;
   transform:translate(-50%, -50%);
+}
+
+p{
+    margin-left: 1%;
 }

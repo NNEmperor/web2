@@ -41,6 +41,8 @@ import { NewIncidentCrewComponent } from './new-incident-crew/new-incident-crew.
 import { NewIncidentMultimediaComponent } from './new-incident-multimedia/new-incident-multimedia.component';
 import { NewIncidentEquipmentComponent } from './new-incident-equipment/new-incident-equipment.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NewUserComponent } from './new-user/new-user.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -69,6 +71,8 @@ import { HttpClientModule } from '@angular/common/http';
     NewIncidentCrewComponent,
     NewIncidentMultimediaComponent,
     NewIncidentEquipmentComponent,
+    NewUserComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,12 +87,14 @@ import { HttpClientModule } from '@angular/common/http';
       { path: '', component: StartScreenComponent },
       { path: 'registration', component: RegistrationComponent },
       { path: 'myprofile', component: MyProfileComponent },
+      { path: 'edit-profile', component: EditProfileComponent },
       { path: 'notifications', component: NotificationsComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'work-requests', component: WorkRequestsComponent},
       { path: 'mapa',component: MapComponent},
       { path: 'workreq-new', component: WorkreqNewComponent},
       { path: 'users', component: UsersComponent },
+      { path: 'new-user', component: NewUserComponent },
       { path: 'dashboard', 
         children: [
         { path: "", component: DashboardComponent },

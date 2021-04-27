@@ -5,43 +5,112 @@
     margin-bottom:0.5rem;
   }
 
-   /* Style page content */
-   .main {
-    margin-left: 160px; /* Same as the width of the sidebar */
-    padding: 0px 10px;
-  }
-
-  button{
-    background-color: #333;
-    border: none;
-    color: white;
-    padding: 10px 14px;
-    text-decoration: none;
-    margin: 12px 2px;
-    cursor: pointer;
-    width: 20%;
-    text-align: left;
-  }
-  button:hover {
-    background-color:#4CAF50;
-  }
-
-h1{
-    text-align: center;
-    margin: 12px 2px;
-    padding: 16px 32px;
-    background-color: #c1c1c8;
-    color: white;
+/* Style page content */
+.main {
+  background-color:rgba(255,255,255,.8);
+  border-radius:.25em;
+  width: 80%;
+  height: max-content;
+  padding: 5%;
+  box-shadow:0 0 .25em rgba(0,0,0,.25);
+  box-sizing:border-box;
+  left:50%;
+  position:fixed;
+  text-align:center;
+  top:50%;
+  transform:translate(-50%, -50%);
 }
+
 
 table {
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
 }
+
+td{
+  text-align: left;
+}
+mat-paginator{
+  margin: 0 auto;
+  width: 90%;
+}
+
 th.mat-sort-header-sorted {
   color: black;
 }
+
 .top_el{
   float: left;
   width: 32%;
 }
 
+.left{
+  position: fixed;
+  top: 10%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+}
+
+a{
+  display: block;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #333;
+  border: 2px solid #333;
+  letter-spacing: 2px;
+  text-align: center;
+  transition: all .35s;
+  }
+  
+a span{
+  position: relative;
+  z-index: 2;
+}
+  
+a:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #3619db;
+  transition: all .35s;
+}
+  
+a:hover{
+  color: #fff;
+}
+
+a:hover:after{
+  width: 100%;
+}
+
+.bg {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+  
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:4s;
+}
+  
+.bg3 {
+  animation-duration:5s;
+}
+
+i{
+  cursor: pointer
+}
