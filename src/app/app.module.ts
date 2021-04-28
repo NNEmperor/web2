@@ -43,6 +43,7 @@ import { NewIncidentEquipmentComponent } from './new-incident-equipment/new-inci
 import { HttpClientModule } from '@angular/common/http';
 import { NewUserComponent } from './new-user/new-user.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ReportProblemComponent } from './report-problem/report-problem.component';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     NewIncidentEquipmentComponent,
     NewUserComponent,
     EditProfileComponent,
+    ReportProblemComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,6 +97,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
       { path: 'workreq-new', component: WorkreqNewComponent},
       { path: 'users', component: UsersComponent },
       { path: 'new-user', component: NewUserComponent },
+      { path: 'report-problem', component: ReportProblemComponent },
       { path: 'dashboard', 
         children: [
         { path: "", component: DashboardComponent },
