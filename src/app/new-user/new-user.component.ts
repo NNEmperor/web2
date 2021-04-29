@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessagePassingService } from '../message-passing.service';
 
 @Component({
   selector: 'app-new-user',
@@ -8,11 +9,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class NewUserComponent implements OnInit {
 
-  parentMessage = "New User";
   newUserForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    
+  constructor(private service: MessagePassingService, private fb: FormBuilder) {
+    this.service.changeData("NEW USER")
+
     this.newUserForm=this.fb.group({
 
       inputName:['',[Validators.required,Validators.minLength(1)]],
