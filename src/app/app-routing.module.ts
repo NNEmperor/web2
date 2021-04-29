@@ -43,6 +43,7 @@ const routes: Routes = [
   { path: "", redirectTo: "/start-screen", pathMatch: "full" },
   { path: "start-screen", component: StartScreenComponent },
   { path: "registration", component: RegistrationComponent },
+  { path: 'report-problem', component: ReportProblemComponent },
   { path: "home", component: NavBarComponent, children: [
     { path: "", component: DashboardComponent },
     { path: "mapa", component: MapComponent },
@@ -58,7 +59,6 @@ const routes: Routes = [
     { path: 'users', component: UsersComponent },
     { path: 'new-user', component: NewUserComponent },
     { path: "equipment-new", component: NewEquipmentComponent },
-    { path: 'report-problem', component: ReportProblemComponent },
     { path: "settings", component: SettingsComponent,
       children: [
         { path: "", component: ChangePwdComponent },
