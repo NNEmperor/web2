@@ -57,6 +57,12 @@ import { IgxCategoryChartModule } from 'igniteui-angular-charts';
 
 import { IgxDataChartCoreModule } from 'igniteui-angular-charts';
 import { IgxDataChartCategoryModule } from 'igniteui-angular-charts';
+import { ChangePwdComponent } from './change-pwd/change-pwd.component';
+import { StreetPriorityComponent } from './street-priority/street-priority.component';
+import { IconsComponent } from './icons/icons.component';
+import { NotifSettingsComponent } from './notif-settings/notif-settings.component';
+import { DocSettingsComponent } from './doc-settings/doc-settings.component';
+import { ResetSettingsComponent } from './reset-settings/reset-settings.component';
 
 
 @NgModule({
@@ -95,6 +101,12 @@ import { IgxDataChartCategoryModule } from 'igniteui-angular-charts';
     NewSafetyDocsMultimediaComponent,
     NewSafetyDocsEquipmentComponent,
     NewSafetyDocsChecklistComponent,
+    ChangePwdComponent,
+    StreetPriorityComponent,
+    IconsComponent,
+    NotifSettingsComponent,
+    DocSettingsComponent,
+    ResetSettingsComponent,
   ],
   imports: [
     BrowserModule,

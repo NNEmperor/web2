@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChangePwdComponent } from './change-pwd/change-pwd.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DocSettingsComponent } from './doc-settings/doc-settings.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EquipmentComponent } from './equipment/equipment.component';
+import { IconsComponent } from './icons/icons.component';
 import { MapComponent } from './map/map.component';
 import { MyIncidentsComponent } from './my-incidents/my-incidents.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
@@ -24,11 +27,14 @@ import { NewSafetyDocsHistoryComponent } from './new-safety-docs-history/new-saf
 import { NewSafetyDocsMultimediaComponent } from './new-safety-docs-multimedia/new-safety-docs-multimedia.component';
 import { NewSafetyDocsComponent } from './new-safety-docs/new-safety-docs.component';
 import { NewUserComponent } from './new-user/new-user.component';
+import { NotifSettingsComponent } from './notif-settings/notif-settings.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReportProblemComponent } from './report-problem/report-problem.component';
+import { ResetSettingsComponent } from './reset-settings/reset-settings.component';
 import { SettingsComponent } from './settings/settings.component';
 import { StartScreenComponent } from './start-screen/start-screen.component';
+import { StreetPriorityComponent } from './street-priority/street-priority.component';
 import { UsersComponent } from './users/users.component';
 import { WorkRequestsComponent } from './work-requests/work-requests.component';
 import { WorkreqNewComponent } from './workreq-new/workreq-new.component';
@@ -47,13 +53,22 @@ const routes: Routes = [
     { path: "safety-docs", component:  MySafetyDocsComponent},
     { path: "equipment", component: EquipmentComponent },
     { path: "incidents", component: MyIncidentsComponent },
-    { path: "settings", component: SettingsComponent },
     { path: "work-requests", component: WorkRequestsComponent },
     { path: 'workreq-new', component: WorkreqNewComponent },
     { path: 'users', component: UsersComponent },
     { path: 'new-user', component: NewUserComponent },
     { path: "equipment-new", component: NewEquipmentComponent },
     { path: 'report-problem', component: ReportProblemComponent },
+    { path: "settings", component: SettingsComponent,
+      children: [
+        { path: "", component: ChangePwdComponent },
+        { path: "street-priority", component: StreetPriorityComponent},
+        { path: "icons", component: IconsComponent },
+        { path: "notif", component: NotifSettingsComponent },
+        { path: "docs", component: DocSettingsComponent },
+        { path: "reset", component: ResetSettingsComponent }
+      ]
+    },
 
     {
       path: "safety-docs-new", component: NewSafetyDocsComponent, children: [

@@ -1,6 +1,43 @@
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
 
-<div class="main">
+<div class="container" style="width: 20%; float: left; margin-left: 100px;">
 
-<h4>Change password</h4><br>
-
+<div class="row gutters-sm">
+<div class="col-md-12 d-none d-md-block">
+    <div class="card">
+      <div class="card-body">
+        <nav class="nav flex-column nav-pills nav-gap-y-1">
+          <a [routerLink]='["/home/settings"]' data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded" >
+            <i class = "material-icons">lock</i>
+            Change password
+          </a>
+          <a [routerLink]='["/home/settings/street-priority"]' data-toggle="tab"  class="nav-item nav-link has-icon nav-link-faded" >
+            <i class = "material-icons">edit_road</i>
+            Street Priority
+          </a>
+          <a [routerLink]='["/home/settings/icons"]' data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+            <i class = "material-icons">image</i>
+            Icons
+          </a>
+          <a [routerLink]='["/home/settings/notif"]' data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded" >
+            <i class = "material-icons">notifications</i>
+            Notifications
+          </a>
+          <a [routerLink]='["/home/settings/docs"]' data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded" >
+            <i class = "material-icons">description</i>
+            Documents 
+          </a>
+          <a [routerLink]='["/home/settings/reset"]' data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded" >
+            <i class = "material-icons">restart_alt</i>  
+            Reset Settings
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+
+<router-outlet></router-outlet>

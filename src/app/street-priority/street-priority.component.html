@@ -1,0 +1,56 @@
+<div class="container" style="width: 65%;">
+    <div class="row gutters-sm">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-body tab-content">
+                    <div class="tab-pane active"  id="account">
+                        <h6>STREETS PRIORITY</h6>
+                        <hr>
+                        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">  
+                            <ng-container matColumnDef="priority">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <span *ngIf="element.priority == 'Priority 1'">
+                                        <select id="inputPriority" class="form-control">
+                                            <option selected>Priority 1</option>
+                                            <option>Priority 2</option>
+                                            <option>Priority 3</option>
+                                        </select>
+                                    </span>
+                                    <span *ngIf="element.priority == 'Priority 2'">
+                                        <select id="inputPriority" class="form-control">
+                                            <option>Priority 1</option>
+                                            <option selected>Priority 2</option>
+                                            <option>Priority 3</option>
+                                        </select>
+                                    </span>
+                                    <span *ngIf="element.priority == 'Priority 3'">
+                                        <select id="inputPriority" class="form-control">
+                                            <option>Priority 1</option>
+                                            <option>Priority 2</option>
+                                            <option selected>Priority 3</option>
+                                        </select>
+                                    </span>
+                                </td>
+                            </ng-container>
+                        
+                            <ng-container matColumnDef="street">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Street Name </th>
+                                <td mat-cell *matCellDef="let element"> {{element.street}} </td>
+                            </ng-container>
+                        
+                            <ng-container matColumnDef="number">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Street Number </th>
+                                <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>   
+                        </table>
+                        <mat-paginator  [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

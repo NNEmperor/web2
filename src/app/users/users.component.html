@@ -8,12 +8,12 @@
     <div class="top_el" style="display: flex;">
         <div class="col-md-2">
             <div class="left">
-                <a [routerLink]='["/new-user"]'><span>New</span></a>
+                <a [routerLink]='["/home/new-user"]'><span>New</span></a>
               </div>
         </div>    
     </div>
     
-    <div class="container" style="margin-top: 5%;" >
+    <div class="container" style="margin-top: 5%; width: 90%;" >
         <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">  
             <ng-container matColumnDef="lastname">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Lastname </th>
