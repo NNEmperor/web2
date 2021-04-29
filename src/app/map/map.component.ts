@@ -16,6 +16,7 @@ import Point from 'ol/geom/Point';
 import XyzSource from 'ol/source/XYZ';
 import { fromLonLat } from 'ol/proj';
 import Geometry from 'ol/geom/Geometry';
+import { MessagePassingService } from '../message-passing.service';
 
 @Component({
   selector: 'app-map',
@@ -34,7 +35,9 @@ export class MapComponent implements OnInit {
   marker!: Feature;
   marker2!: Feature;
 
-  constructor() { }
+  constructor(private service: MessagePassingService ) {
+    this.service.changeData("MAP")
+  }
 
   ngOnInit(): void {
     this.marker = new Feature({

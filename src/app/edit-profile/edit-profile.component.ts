@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessagePassingService } from '../message-passing.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditProfileComponent implements OnInit {
 
-  parentMessage = "Edit profile";
-
-  constructor() { }
+  constructor(private service: MessagePassingService ) {
+    this.service.changeData("EDIT PROFILE")
+   }
 
   ngOnInit(): void {
   }

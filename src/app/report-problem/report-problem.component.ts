@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MessagePassingService } from '../message-passing.service';
 
 @Component({
   selector: 'app-report-problem',
@@ -19,8 +20,9 @@ export class ReportProblemComponent implements OnInit {
     'comment': new FormControl('', Validators.required),
 });
 
-  constructor() { }
-
+constructor(private service: MessagePassingService ) {
+  this.service.changeData("REPORTING PROBLEM")
+ }
   ngOnInit(): void {
   }
 

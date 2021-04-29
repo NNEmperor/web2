@@ -1,0 +1,55 @@
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+<div class="content">
+
+    <div class="row">
+        <div class="col-md-3">
+            <p>Type:</p>
+            <p>Status:</p>
+            <p>Switching plan:</p>
+            <p>Safety doc type:</p>
+            <p>Date time created:</p>
+            <p>Created by:</p>
+        </div>
+        <div class="col-md-3">
+            <select style="height: 0.8cm;" name="type-safety-docs" id="type-safety-docs">
+                <option value="Unplaned">Unplaned</option>
+                <option value="Planed">Planed</option>
+            </select>
+            <p ><!--automatski draft ukoliko ne postoji ukoliko postoji vuce se iz baze-->?</p>
+            <a href="#"> <!--pritiskom na plan se otvara isti-->
+                <input type="text" id="switching-plan" name="switching-plan" /> <!--popunjava se sa id-om plana ako postoji ako ne onda ide prazno mozda?-->
+            </a>
+            <select style="margin-bottom: 2mm; height: 0.8cm;" name="type-safety-docs" id="type-safety-docs">
+                <option value="Clearance">Clearance</option>
+                <option value="NZM">NZM</option>
+            </select>
+            <p id="time" name="time"><!--automatski popuni vreme-->?</p>
+            <input type="text" id="created-by" name="created-by" />
+
+
+        </div>
+        <div class="col-md-3">
+            <p>Phone No:</p>
+            <p>Field crew:</p>
+        </div>
+        <div class="col-md-3">
+            <input style="margin-bottom: 3mm;" type="text" id="phone" name="phone" />
+            <p id="crew" name="crew"><!--automatski se generise iz bezbednosnog dokumenta-->?</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <p>Details:</p>
+            <p>Notes:</p>
+        </div>
+        <div class="col-md-9">
+            <input style="width: 100%; margin-bottom: 1mm;" type="text" id="details" name="details" /> 
+            <br>
+            <input style="width: 100%;" type="text" id="notes" name="notes" /> 
+        </div>
+
+    </div>
+
+</div>

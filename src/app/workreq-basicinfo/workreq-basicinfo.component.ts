@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MessagePassingService } from '../message-passing.service';
 @Component({
   selector: 'app-workreq-basicinfo',
   templateUrl: './workreq-basicinfo.component.html',
@@ -47,8 +48,10 @@ export class WorkreqBasicinfoComponent implements OnInit {
 ● Telefonski broj: kontakt telefon od onog ko je prijavio nalog za rad
 ● Datum i vreme kreiranja dokumenta (automatski se popunjava) */
 
-  constructor() {
-
+constructor(private service: MessagePassingService ) {
+  this.service.changeData("WORK REQUEST - NEW")
+ 
+  
     const currentDate:Date = new Date();
     let dd:any = currentDate.getDate();
     let mm:any = currentDate.getMonth()+1;

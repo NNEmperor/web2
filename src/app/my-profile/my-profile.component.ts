@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessagePassingService } from '../message-passing.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -8,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class MyProfileComponent implements OnInit {
 
   user: UserElement;
-  parentMessage = "My profile";
 
-  constructor() {
+  constructor(private service: MessagePassingService ) {
+    this.service.changeData("MY PROFILE")
     this.user = { username: 'lana', email: 'lana@gmail.com', name: 'Lana', lastname: 'Nm', role: 'dispatcher'};
   }
 

@@ -1,9 +1,10 @@
+
+
 <div class="bg"></div>
 <div class="bg bg2"></div>
 <div class="bg bg3"></div>
-<app-nav-bar></app-nav-bar>
-<app-top-navbar></app-top-navbar>
-<app-new-incident></app-new-incident>
+
+
 <div class="content">
 
     <div class="row">
@@ -28,18 +29,10 @@
             <p><!--generise se koji je status-->?</p>
             <input type="text" />
             <div style="display: flex; margin-top: 3mm;">
-                <input class="form-control" placeholder="yyyy-mm-dd"
-                        name="dp-eta" [(ngModel)]="model1" ngbDatepicker #d="ngbDatepicker">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-                </div>
+
             </div>
             <div style="display: flex; margin-top: 3mm;">
-                <input class="form-control" placeholder="yyyy-mm-dd"
-                        name="dp-ata" [(ngModel)]="model2" ngbDatepicker #d="ngbDatepicker">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-                </div>
+
             </div>
         </div>
         <div class="col-md-3">
@@ -57,28 +50,16 @@
         <div class="col-md-3">
             <p><!--generise se automatski-->?</p>
             <div style="display: flex;">
-                <input class="form-control" placeholder="yyyy-mm-dd"
-                        name="dp-outage" [(ngModel)]="model3" ngbDatepicker #d="ngbDatepicker">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-                </div>
+
             </div>
             <div style="display: flex; margin-top: 5mm; margin-bottom: 8mm;">
-                <input class="form-control" placeholder="yyyy-mm-dd"
-                        name="dp-etr" [(ngModel)]="model4" ngbDatepicker #d="ngbDatepicker">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-                </div>
+
             </div>
             <p><!--generise se automatski na osnovu broja prijava-->?</p>
             <br>
             <p><!--generise se automatski na osnovu neceg-->?</p>
             <div style="display: flex; margin-top: 8mm;">
-                <input class="form-control" placeholder="yyyy-mm-dd"
-                        name="dp-scheduled" [(ngModel)]="model5" ngbDatepicker #d="ngbDatepicker">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-                </div>
+
             </div>
         </div>
     </div>

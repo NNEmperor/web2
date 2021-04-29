@@ -1,0 +1,44 @@
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<form [formGroup]="newEquipmentForm">
+    <div class="content">
+        <div class="row" style="margin-top:1cm ;">
+            <div class="col-md-2">
+                <div class="wrapper_left">
+                    <!--dodaj da se vrati jedan unazad-->
+                    <a [routerLink]='["/home/equipment"]'><span>Add</span></a>
+                </div>
+            </div>
+            <div class="col-md-8"></div>
+            <div class="col-md-2">
+                <div class="wrapper_right">
+                    <!--dodaj da se vrati jedan unazad-->
+                    <a [routerLink]='["/home/equipment"]'><span>Cancel</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p>Type:</p>
+            </div>
+            <div class="col-md-6">
+                <select class="select-cls" name="equipment-type" id="equipment-type">
+                    <option value="Power-switch">Power switch</option>
+                    <option value="Fuse">Fuse</option>
+                    <option value="Transformer">Transformer</option>
+                    <option value="Disconnector">Disconnector</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p>Address:</p>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="device-address" id="device-address" />
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessagePassingService } from '../message-passing.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  parentMessage = "Settings";
-
-  constructor() { }
+  constructor(private service: MessagePassingService ) {
+    this.service.changeData("SETTINGS")
+   }
 
   ngOnInit(): void {
   }

@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort} from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { MessagePassingService } from '../message-passing.service';
 
 @Component({
   selector: 'app-work-requests',
@@ -20,11 +21,12 @@ export class WorkRequestsComponent implements OnInit {
     dataSource = new MatTableDataSource(ELEMENT_DATA);
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;
-    parentMessage = "Work Requests"
     //@ViewChild(TopNavbarComponent)topnavbarReference;
     private router!: Router
     
-   constructor() {
+    constructor(private service: MessagePassingService ) {
+      this.service.changeData("WORK REQUEST")
+     
      
      setTimeout(() => {
        this.dataSource.sort = this.sort;

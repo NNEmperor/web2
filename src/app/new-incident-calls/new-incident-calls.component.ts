@@ -4,7 +4,8 @@ import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort} from '@angular/material/sort';
-import { Router } from '@angular/router';
+import { MessagePassingService } from '../message-passing.service';
+
 
 @Component({
   selector: 'app-new-incident-calls',
@@ -19,23 +20,21 @@ export class NewIncidentCallsComponent implements OnInit {
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  parentMessage = "MY INCIDENTS"
-  //@ViewChild(TopNavbarComponent)topnavbarReference;
-  private router!: Router
+
   
- constructor() {
-   
+  constructor(private service: MessagePassingService ) {
+    this.service.changeData("INCIDENT - NEW")
+
    setTimeout(() => {
      this.dataSource.sort = this.sort;
      this.dataSource.paginator = this.paginator;
    });
 
  }
+
  ngOnInit(): void {
  }
- btnNewClick () {
-  this.router.navigateByUrl('/workreq-new');
-};
+
  onDragChange() {
    console.log(this.allMineEnable.value);
    //false je ALL

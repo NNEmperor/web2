@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessagePassingService } from '../message-passing.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  childMessage! : string
+
+  constructor(private service: MessagePassingService){
+
+  }
 
   ngOnInit(): void {
+    this.service.data$.subscribe(res=> this.childMessage = res)
   }
+
+
+
 
 }

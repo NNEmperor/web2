@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessagePassingService } from '../message-passing.service';
 
 
 @Component({
@@ -8,27 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewIncidentMultimediaComponent implements OnInit {
 
-  public files: any[];
-
-  constructor() {
-    this.files = [];
+  constructor(private service: MessagePassingService ) {
+    this.service.changeData("INCIDENT - NEW")
    }
 
   ngOnInit(): void {
   }
 
-  contructor() { this.files = []; }
-  
-  onFileChanged(event: any) {
-    this.files = event.target.files;
-  }
-  
-  onUpload() {
-    const formData = new FormData();
-    for (const file of this.files) {
-        formData.append(file, file.name);
-    }
-    //this.http.post('url', formData).subscribe(x => ....);
-  }
 
 }

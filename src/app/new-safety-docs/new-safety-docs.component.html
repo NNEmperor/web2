@@ -1,0 +1,19 @@
+<ul>
+    <li style="margin-left: 1.5cm;" >
+        <a (click)="changeTitle()" [routerLink]='["/home/safety-docs-new/"]' ><b>BASIC INFO</b></a>
+    </li> 
+    <li>
+        <a (click)="changeTitle()" [routerLink]='["/home/safety-docs-new/history"]' ><b>HISTORY</b></a>
+    </li>
+    <li>
+        <a (click)="changeTitle()" [routerLink]='["/home/safety-docs-new/multimedia"]' >MULTIMEDIA</a>
+    </li> 
+    <li>
+        <a (click)="changeTitle()" [routerLink]='["/home/safety-docs-new/equipment"]' >EQUIPMENT</a>
+    </li>  
+    <li>
+        <a (click)="changeTitle()" [routerLink]='["/home/safety-docs-new/checklist"]' >CHECKLIST</a>
+    </li>  
+  </ul>
+
+  <router-outlet></router-outlet>

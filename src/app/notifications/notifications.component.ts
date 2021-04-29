@@ -2,6 +2,7 @@ import { getParseErrors } from '@angular/compiler';
 import { Component, Directive, Inject, Injectable, Input, OnInit } from '@angular/core';
 import { inject } from '@angular/core/testing';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MessagePassingService } from '../message-passing.service';
 
 @Component({
   selector: 'app-notifications',
@@ -13,10 +14,10 @@ export class NotificationsComponent implements OnInit {
   data: NotificationElement[];
   index: number;
   cur: string;
-  parentMessage = "Notifications";
 
-
-  constructor() {
+  constructor(private service: MessagePassingService ) {
+    this.service.changeData("NOTIFICATIONS")
+   
     this.data = ELEMENT_DATA;
     this.index = 0;
     this.sortByDate();

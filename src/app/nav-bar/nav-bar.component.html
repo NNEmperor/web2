@@ -3,12 +3,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
+<ul>
+    <!-- ovde naslov stranice -->
+    <li class="naslov" style="float:left;font-size: 18px; margin-top: 0.5%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{childMessage}}</li>
+    <li>
+        <a [routerLink]='["/home/myprofile"]' href="#"><span class="glyphicon glyphicon-user"></span></a>
+    </li> 
+  </ul>
+
 <div class="sidenav">
-    <a [routerLink]='["/dashboard"]'><span class="glyphicon glyphicon-home"></span></a>
-    <a [routerLink]='["/notifications"]' ><span class="glyphicon glyphicon-bell"></span></a>
-    <a class="workreq" [routerLink]='["/work-requests"]'><i class="glyphicon glyphicon-list-alt"></i></a>
-    <a [routerLink]='["/mapa"]'><i class="glyphicon glyphicon-globe"></i></a>
-    <a [routerLink]='["/users"]' ><span><i class="material-icons">group</i></span></a>
-    <a [routerLink]='["/settings"]' ><span class="glyphicon glyphicon-cog"></span></a>
+    <a [routerLink]='["/home"]'><span class="glyphicon glyphicon-home"></span></a>
+    <a [routerLink]='["/home/notifications"]' ><span class="glyphicon glyphicon-bell"></span></a>
+    <a class="workreq" [routerLink]='["/home/work-requests"]'><i class="glyphicon glyphicon-list-alt"></i></a>
+    <a [routerLink]='["/home/mapa"]'><i class="glyphicon glyphicon-globe"></i></a>
+    <a [routerLink]='["/home/users"]' ><span><i class="material-icons">group</i></span></a>
+    <a [routerLink]='["/home/settings"]' ><span class="glyphicon glyphicon-cog"></span></a>
     <a [routerLink]='["/"]' ><span class="glyphicon glyphicon-log-out"></span></a>
 </div>
+
+<router-outlet></router-outlet>

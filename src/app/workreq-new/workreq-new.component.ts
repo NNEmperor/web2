@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkreqNewComponent implements OnInit {
 
-  parentMessage = "Work Request-NEW"
   constructor() { }
 
   ngOnInit(): void {

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TopNavbarComponent } from './top-navbar.component';
+import { NewSafetyDocsComponent } from './new-safety-docs.component';
 
-describe('TopNavbarComponent', () => {
-  let component: TopNavbarComponent;
-  let fixture: ComponentFixture<TopNavbarComponent>;
+describe('NewSafetyDocsComponent', () => {
+  let component: NewSafetyDocsComponent;
+  let fixture: ComponentFixture<NewSafetyDocsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TopNavbarComponent ]
+      declarations: [ NewSafetyDocsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TopNavbarComponent);
+    fixture = TestBed.createComponent(NewSafetyDocsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

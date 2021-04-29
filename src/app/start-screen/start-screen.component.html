@@ -19,7 +19,7 @@
               <form [formGroup]="loginForm" (ngSubmit)="onSubmit">
                 <input required type="text" id="userName" class="fadeIn second" name="userName" formControlName="userName" placeholder="example@email.com">
                 <input required type="password" id="password" class="fadeIn third" name="password" formControlName="password" placeholder="Password">
-                <input [routerLink]='["/dashboard"]' [disabled]="!loginForm.valid" type="submit" class="fadeIn fourth" value="Log In">
+                <input [routerLink]='["/home"]' [disabled]="!loginForm.valid" type="submit" class="fadeIn fourth" value="Log In">
               </form>
           
               <!-- Remind Passowrd -->
