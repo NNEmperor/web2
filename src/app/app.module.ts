@@ -63,7 +63,9 @@ import { IconsComponent } from './icons/icons.component';
 import { NotifSettingsComponent } from './notif-settings/notif-settings.component';
 import { DocSettingsComponent } from './doc-settings/doc-settings.component';
 import { ResetSettingsComponent } from './reset-settings/reset-settings.component';
-
+import { TeamComponent } from './team/team.component';
+import { NewTeamComponent } from './new-team/new-team.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -107,6 +109,8 @@ import { ResetSettingsComponent } from './reset-settings/reset-settings.componen
     NotifSettingsComponent,
     DocSettingsComponent,
     ResetSettingsComponent,
+    TeamComponent,
+    NewTeamComponent,
   ],
   imports: [
     BrowserModule,
@@ -132,6 +136,7 @@ import { ResetSettingsComponent } from './reset-settings/reset-settings.componen
    IgxCategoryChartModule,
    IgxDataChartCoreModule,
    IgxDataChartCategoryModule,
+   DragDropModule
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [],

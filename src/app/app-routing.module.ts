@@ -26,6 +26,7 @@ import { NewSafetyDocsEquipmentComponent } from './new-safety-docs-equipment/new
 import { NewSafetyDocsHistoryComponent } from './new-safety-docs-history/new-safety-docs-history.component';
 import { NewSafetyDocsMultimediaComponent } from './new-safety-docs-multimedia/new-safety-docs-multimedia.component';
 import { NewSafetyDocsComponent } from './new-safety-docs/new-safety-docs.component';
+import { NewTeamComponent } from './new-team/new-team.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { NotifSettingsComponent } from './notif-settings/notif-settings.component';
 import { NotificationsComponent } from './notifications/notifications.component';
@@ -35,6 +36,7 @@ import { ResetSettingsComponent } from './reset-settings/reset-settings.componen
 import { SettingsComponent } from './settings/settings.component';
 import { StartScreenComponent } from './start-screen/start-screen.component';
 import { StreetPriorityComponent } from './street-priority/street-priority.component';
+import { TeamComponent } from './team/team.component';
 import { UsersComponent } from './users/users.component';
 import { WorkRequestsComponent } from './work-requests/work-requests.component';
 import { WorkreqNewComponent } from './workreq-new/workreq-new.component';
@@ -58,6 +60,8 @@ const routes: Routes = [
     { path: 'workreq-new', component: WorkreqNewComponent },
     { path: 'users', component: UsersComponent },
     { path: 'new-user', component: NewUserComponent },
+    { path: 'teams', component: TeamComponent },
+    { path: 'new-team', component: NewTeamComponent },
     { path: "equipment-new", component: NewEquipmentComponent },
     { path: "settings", component: SettingsComponent,
       children: [
