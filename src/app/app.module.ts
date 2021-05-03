@@ -66,6 +66,9 @@ import { ResetSettingsComponent } from './reset-settings/reset-settings.componen
 import { TeamComponent } from './team/team.component';
 import { NewTeamComponent } from './new-team/new-team.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { WorkreqHistoryComponent } from './workreq-history/workreq-history.component';
+import { WorkreqMultimediaComponent } from './workreq-multimedia/workreq-multimedia.component';
+import { WorkreqEquipmentComponent } from './workreq-equipment/workreq-equipment.component';
 
 @NgModule({
   declarations: [
@@ -111,6 +114,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ResetSettingsComponent,
     TeamComponent,
     NewTeamComponent,
+    WorkreqHistoryComponent,
+    WorkreqMultimediaComponent,
+    WorkreqEquipmentComponent,
   ],
   imports: [
     BrowserModule,

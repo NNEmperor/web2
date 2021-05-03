@@ -1,5 +1,29 @@
 
+ <div class="bg" ></div>
+ <div class="bg bg2"></div>
+ <div class="bg bg3"></div>
   <div class="main">
+
+    <ul>
+        <li style="margin-left: 1.5cm;" >
+            <a routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}" [routerLink]='["/home/workreq-new"]'  >BASIC INFO</a>
+        </li> 
+        <li>
+            <a routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}" [routerLink]='["/home/workreq-new/workreq-history"]' >HISTORY OF STATE CHANGES</a>
+        </li>
+        <li>
+            <a routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}" [routerLink]='["/home/workreq-new/workreq-multimedia"]' >MULTIMEDIA</a>
+        </li> 
+        <li>
+            <a routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}" [routerLink]='["/home/workreq-new/workreq-equipment"]' >EQUIPMENT</a>
+        </li> 
+       
+      </ul>
+      <router-outlet></router-outlet>
      <!-- <div class="el1">
         <table class="table table-hover">
             <tbody>
@@ -18,7 +42,9 @@
             </tbody>
         </table>
     </div>-->
+    <!--
     <div class="el">
         <app-workreq-basicinfo></app-workreq-basicinfo>
     </div>
+-->
 </div>

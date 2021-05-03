@@ -1,6 +1,6 @@
-<div class="bg" ></div>
+<!--<div class="bg" ></div>
  <div class="bg bg2"></div>
- <div class="bg bg3"></div>
+ <div class="bg bg3"></div>-->
  <head>
     
     <meta charset="utf-8">
@@ -10,25 +10,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
 
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active">Basic information</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" >History of state changes</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" >Multimedia attachments</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" >Equipment</a>
-    </li>
-  </ul>
  <div class="main">
-<form [formGroup]="workReqBasicForm">
+<form [formGroup]="workReqBasicForm" style="margin-left: 8%;">
     <div class="top_el">
         <div class="row">
-            <select (change)="selectChangeHandler($event)" style="width: 52%; text-align: center;">
+            <select (change)="selectChangeHandler($event)" style="width: 52%; height: 25px; text-align: center;">
                 <option *ngFor="let work of works" value= {{work.id}}>
                     {{work.name}}
                 </option>
@@ -99,13 +85,13 @@
         <br>
         <div class="row">
             <label>Purpose:&nbsp;</label>
-            <textarea id="w3review" name="w3review" rows="3" cols="50" maxlength="200" placeholder="Enter purpose" formControlName="purpose"></textarea>
+            <textarea id="w3review" name="w3review" rows="3" cols="50" style=" min-height:50px;max-height: 100px; height:100%;" maxlength="200" placeholder="Enter purpose" formControlName="purpose"></textarea>
             <!--<input type="text" style="width: 50%;"  placeholder="Enter purpose" formControlName="purpose">-->
         </div>
         <br>
         <div class="row">
             <label>Notes:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <textarea id="w3review" name="w3review" rows="3" cols="50" maxlength="200" placeholder="Enter note" formControlName="notes"></textarea>
+            <textarea id="w3review" name="w3review" rows="3" cols="50" style=" min-height:50px;max-height: 100px; height:100%;" maxlength="200" placeholder="Enter note" formControlName="notes"></textarea>
             <!--<input type="text" style="width: 50%;" placeholder="Enter purpose" formControlName="notes">-->
         </div>
     </div>

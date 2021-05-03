@@ -21,17 +21,17 @@
   
   .content {
     margin-top: 5%;
-    background-color:rgba(255,255,255,.8);
+   /* background-color:rgba(255,255,255,.8);*/
     border-radius: 0.9em;
     width: 80%;
-    height: max-content;
+    height: 100%;
     padding: 2%;
-    box-shadow:0 0 .25em rgba(0,0,0,.25);
-    box-sizing:border-box;
+   /* box-shadow:0 0 .25em rgba(0,0,0,.25);
+    box-sizing:border-box;*/
     left:50%;
-    position:fixed;
+    position:absolute;
     text-align:center;
-    top:45%;
+    top:55%;
     bottom: 3%;
     transform:translate(-50%, -50%);
   }
@@ -54,7 +54,13 @@ body {
 label{
     float: left;
     margin-left: 5px;
-}
+   
+    }
+.poz{
+ width: 88%;
+  background-color:rgba(255,255,255,.8);
+  padding: 2%;
+}    
 
 .example-list {
     width: 500px;

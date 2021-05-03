@@ -39,6 +39,10 @@ import { StreetPriorityComponent } from './street-priority/street-priority.compo
 import { TeamComponent } from './team/team.component';
 import { UsersComponent } from './users/users.component';
 import { WorkRequestsComponent } from './work-requests/work-requests.component';
+import { WorkreqBasicinfoComponent } from './workreq-basicinfo/workreq-basicinfo.component';
+import { WorkreqEquipmentComponent } from './workreq-equipment/workreq-equipment.component';
+import { WorkreqHistoryComponent } from './workreq-history/workreq-history.component';
+import { WorkreqMultimediaComponent } from './workreq-multimedia/workreq-multimedia.component';
 import { WorkreqNewComponent } from './workreq-new/workreq-new.component';
 
 const routes: Routes = [
@@ -57,7 +61,14 @@ const routes: Routes = [
     { path: "equipment", component: EquipmentComponent },
     { path: "incidents", component: MyIncidentsComponent },
     { path: "work-requests", component: WorkRequestsComponent },
-    { path: 'workreq-new', component: WorkreqNewComponent },
+    { path: 'workreq-new', component: WorkreqNewComponent,
+        children: [
+          { path: "", component:  WorkreqBasicinfoComponent},
+          { path: "workreq-history", component: WorkreqHistoryComponent },
+          { path: "workreq-multimedia", component: WorkreqMultimediaComponent },
+          { path: "workreq-equipment", component: WorkreqEquipmentComponent },
+        ] 
+    },
     { path: 'users', component: UsersComponent },
     { path: 'new-user', component: NewUserComponent },
     { path: 'teams', component: TeamComponent },
