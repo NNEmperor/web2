@@ -69,6 +69,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { WorkreqHistoryComponent } from './workreq-history/workreq-history.component';
 import { WorkreqMultimediaComponent } from './workreq-multimedia/workreq-multimedia.component';
 import { WorkreqEquipmentComponent } from './workreq-equipment/workreq-equipment.component';
+import { MediaUploadDirective } from './media-upload.directive';
+import { ProgressComponent } from './progress/progress.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +119,8 @@ import { WorkreqEquipmentComponent } from './workreq-equipment/workreq-equipment
     WorkreqHistoryComponent,
     WorkreqMultimediaComponent,
     WorkreqEquipmentComponent,
+    MediaUploadDirective,
+    ProgressComponent,
   ],
   imports: [
     BrowserModule,
