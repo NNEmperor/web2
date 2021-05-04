@@ -1,0 +1,93 @@
+<div class="container" style="width: 85%;">
+    <div class="row gutters-sm">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body" style="padding: 30px;">
+                    <form>
+                        <div class="form-group row">
+                            <label for="inputType" class="col-sm-2 col-form-label">Type:</label>
+                            <div class="col-sm-4">
+                                <select id="inputType" class="form-control">
+                                    <option selected>Planned Work</option>
+                                    <option>Unplanned Work</option>
+                                </select>                            
+                            </div>
+                            <label for="inputCompany" class="col-sm-2 col-form-label">Company:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="inputCompany" placeholder="Company">
+                              </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Status:</label>
+                            <label class="col-sm-4 col-form-label"><b>Draft</b></label>
+                            <label for="inputNumber" class="col-sm-2 col-form-label">Phone No:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="inputNumber" placeholder="Number">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputInc" class="col-sm-2 col-form-label">Incident:</label>
+                            <label class="col-sm-4 col-form-label"><b>INC1</b></label>
+                            <label for="inputDate" class="col-sm-2 col-form-label">Date/time created: </label>
+                            <label class="col-sm-4 col-form-label">{{ dateTimeNow | date : 'shortDate'}}</label>
+                            <!-- <div class="col-sm-4">
+                                <input id="inputDate" type="date" value="dateTimeNow"  class="form-control">
+                            </div> -->
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputWR" class="col-sm-2 col-form-label">Work request:</label>
+                            <label class="col-sm-4 col-form-label"><b>WR150</b></label>
+                            <label for="inputFC" class="col-sm-2 col-form-label">Field crew: </label>
+                            <label class="col-sm-4 col-form-label"><b>NS Crew</b></label>
+                            <!-- <div class="col-sm-4">
+                                <input id="inputDate" type="date"  class="form-control">
+                            </div> -->
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputStartDate" class="col-sm-2 col-form-label">Start date/time: </label>
+                            <div class="col-sm-4">
+                                <input id="inputStartDate" type="datetime-local"  class="form-control">
+                            </div>
+                            <label for="inputEndDate" class="col-sm-2 col-form-label">End date/time: </label>
+                            <div class="col-sm-4">
+                                <input id="inputEndDate" type="datetime-local"  class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Created by: </label>
+                            <label class="col-sm-10 col-form-label">Tamara Jovic</label>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPurpose" class="col-sm-2 col-form-label">Purpose: </label>
+                            <div class="col-sm-10">
+                                <input id="inputPurpose" type="text" placeholder="Purpose"  class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputDetails" class="col-sm-2 col-form-label">Details: </label>
+                            <div class="col-sm-10">
+                                <input id="inputDetails" type="text" placeholder="Details"  class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputNotes" class="col-sm-2 col-form-label">Notes: </label>
+                            <div class="col-sm-10">
+                                <input id="inputNotes" type="text" placeholder="Notes"  class="form-control">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row"  style="display: flex;justify-content: flex-end;" >
+                            <span>
+                                <i class = "material-icons">clear</i> 
+                            </span>
+                            <span>
+                                <i class = "material-icons">save</i> 
+                            </span>
+                            
+                        </div>
+                    </form>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>

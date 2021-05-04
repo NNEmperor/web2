@@ -1,69 +1,77 @@
-
-<div class="vertical-menu">
-    <span (click)="all()" >All Notifications</span>
-    <span (click)="unread()">Unread Notifications</span>
-    <span (click)="errors()">Errors &#10060;</span>
-    <span (click)="info()">Info ℹ️</span>
-    <span (click)="success()">Success ✔️</span>
-    <span (click)="warnings()">Warnings ⚠️</span>
-  </div>
-
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
   <head>
     <link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel = "stylesheet">
  </head>
-<div class="display-wrapper">
 
-
-    <div class="display-wrapper">
-        <ng-container *ngFor="let n of data">
-            <div *ngIf="n.type == 1">
-                <div class="notification notification--success" (click)="markAsRead(n)">
-                    <div class="notification__content-block">
-                        <p class="notification__par">                    
-                        <i class = "material-icons">check</i> 
-                        <span> {{n.text}}</span>
-                        <span class="datum">{{ n.datetime | date:'mediumTime'}}</span>
-                        </p>
-                    </div>
-                </div> <br/>
+<div class="content" style=" margin-left: 120px;margin-top: 30px;">
+    <div clas="row" >
+        <div class="col-md-4" style="display: flex;  width: 50%; justify-content: center; ">
+            <div class="vertical-menu"  >
+                <span (click)="all()" >All Notifications</span>
+                <span (click)="unread()">Unread Notifications</span>
+                <span (click)="errors()">Errors &#10060;</span>
+                <span (click)="info()">Info ℹ️</span>
+                <span (click)="success()">Success ✔️</span>
+                <span (click)="warnings()">Warnings ⚠️</span>
             </div>
-            <div *ngIf="n.type == 2">
-                <div class="notification notification--error" (click)=markAsRead(n)>
-                    <div class="notification__content-block">
-                        <p class="notification__par">                    
-                        <i class = "material-icons">close</i>
-                        <span> {{n.text}}</span>
-                        <span class="datum">{{ n.datetime | date:'mediumTime'}}</span>
-                        </p>
+        </div>
+        <div class="col-md-8" style="display: flex;justify-content: center">
+            <div class="display-wrapper">
+                <ng-container *ngFor="let n of data">
+                    <div  style="display: flex;justify-content: center;"  *ngIf="n.type == 1">
+                        <div class="notification notification--success" style="justify-content: center;" (click)="markAsRead(n)">
+                            <div class="notification__content-block" >
+                                <p class="notification__par">                    
+                                <i class = "material-icons">check</i> 
+                                <span> {{n.text}}</span>
+                                <span class="datum">{{ n.datetime | date:'mediumTime'}}</span>
+                                </p>
+                            </div>
+                        </div> 
+                        <br/>
                     </div>
-                </div> <br/>
-            </div>
-            <div *ngIf="n.type == 3">
-                <div class="notification notification--warning" (click)=markAsRead(n)>
-                    <div class="notification__content-block" (click)=markAsRead(n)>
-                        <p class="notification__par" (click)=markAsRead(n)>                    
-                        <i class = "material-icons">warning</i> 
-                        <span> {{n.text}}</span>
-                        <span class="datum">{{ n.datetime | date:'mediumTime'}}</span>
-                        </p>
+                    <div style="display: flex;justify-content: center;" *ngIf="n.type == 2">
+                        <div class="notification notification--error" style="justify-content: center;" (click)=markAsRead(n)>
+                            <div class="notification__content-block">
+                                <p class="notification__par">                    
+                                <i class = "material-icons">close</i>
+                                <span> {{n.text}}</span>
+                                <span class="datum">{{ n.datetime | date:'mediumTime'}}</span>
+                                </p>
+                            </div>
+                        </div> <br/>
                     </div>
-                </div> <br/>
-            </div>
-            <div *ngIf="n.type == 4">
-                <div class="notification notification--information" (click)=markAsRead(n)>
-                    <div class="notification__content-block">
-                        <p class="notification__par">                    
-                        <i class = "material-icons">info</i> 
-                        <span> {{n.text}}</span>
-                        <span class="datum">{{ n.datetime | date:'mediumTime'}}</span>
-                        </p>
+                    <div style="display: flex;justify-content: center;" *ngIf="n.type == 3">
+                        <div class="notification notification--warning" style="justify-content: center;" (click)=markAsRead(n)>
+                            <div class="notification__content-block" (click)=markAsRead(n)>
+                                <p class="notification__par" (click)=markAsRead(n)>                    
+                                <i class = "material-icons">warning</i> 
+                                <span> {{n.text}}</span>
+                                <span class="datum">{{ n.datetime | date:'mediumTime'}}</span>
+                                </p>
+                            </div>
+                        </div> <br/>
                     </div>
-                </div> <br/>
+                    <div style="display: flex;justify-content: center;" *ngIf="n.type == 4">
+                        <div class="notification notification--information" style="justify-content: center;" (click)=markAsRead(n)>
+                            <div class="notification__content-block">
+                                <p class="notification__par">                    
+                                <i class = "material-icons">info</i> 
+                                <span> {{n.text}}</span>
+                                <span class="datum">{{ n.datetime | date:'mediumTime'}}</span>
+                                </p>
+                            </div>
+                        </div> <br/>
+                    </div>
+                    
+                </ng-container>
+                <br>
+                <div style="display: flex;justify-content: center;">
+                    <button (click)="markAllAsRead()" type="button" class="btn btn-light">Mark all as read</button>
+                </div>
             </div>
-          </ng-container>
-          <div>
-              <button (click)="markAllAsRead()">Mark all as read</button>
-          </div>
+        </div>
     </div>
 </div>
-

@@ -2,7 +2,7 @@
 <div class="bg bg2"></div>
 <div class="bg bg3"></div>
 
-<div class="content" style="width: 50%" >
+<div class="content" style="width: 50%; position: relative;overflow: hidden;" >
     <form [formGroup]="newUserForm">
         <div class="form-row" style="width: 100%;">
             <div class="form-group col-md-12"   >
@@ -42,7 +42,7 @@
             </div>
 
         </div>
-        <button type="submit" class="btn btn-primary" (click)="addUser()"  style="width: 20%;">Save</button>
+        <button type="submit" class="btn btn-primary" (click)="addUser()"  style="width: 20%; min-width: 60px">Save</button>
       </form>
 
 </div>

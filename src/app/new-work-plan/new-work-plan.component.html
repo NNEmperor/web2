@@ -1,0 +1,22 @@
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+<ul style="margin-left: -50px; display: flex;">
+    <li style="margin-left: 1.5cm;" >
+        <a [routerLink]='["/home/new-work-plan"]' >BASIC INFO</a>
+    </li> 
+    <li>
+        <a [routerLink]='["/home/new-work-plan/history"]' >HISTORY</a>
+    </li>
+    <li>
+        <a [routerLink]='["/home/new-work-plan/multimedia"]' >MULTIMEDIA</a>
+    </li> 
+    <li>
+        <a [routerLink]='["/home/new-work-plan/equipment"]' >EQUIPMENT</a>
+    </li> 
+    <li>
+        <a [routerLink]='["/home/new-work-plan/instructions"]' >INSTRUCTIONS</a>
+    </li>  
+</ul>
+<br>
+<router-outlet></router-outlet>

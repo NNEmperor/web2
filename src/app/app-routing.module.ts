@@ -10,6 +10,7 @@ import { MapComponent } from './map/map.component';
 import { MyIncidentsComponent } from './my-incidents/my-incidents.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySafetyDocsComponent } from './my-safety-docs/my-safety-docs.component';
+import { MyWorkPlansComponent } from './my-work-plans/my-work-plans.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NewEquipmentComponent } from './new-equipment/new-equipment.component';
 import { NewIncidentBasicInfoComponent } from './new-incident-basic-info/new-incident-basic-info.component';
@@ -28,6 +29,12 @@ import { NewSafetyDocsMultimediaComponent } from './new-safety-docs-multimedia/n
 import { NewSafetyDocsComponent } from './new-safety-docs/new-safety-docs.component';
 import { NewTeamComponent } from './new-team/new-team.component';
 import { NewUserComponent } from './new-user/new-user.component';
+import { NewWorkPlanBasicInfoComponent } from './new-work-plan-basic-info/new-work-plan-basic-info.component';
+import { NewWorkPlanEquipmentComponent } from './new-work-plan-equipment/new-work-plan-equipment.component';
+import { NewWorkPlanHistoryComponent } from './new-work-plan-history/new-work-plan-history.component';
+import { NewWorkPlanInstructionsComponent } from './new-work-plan-instructions/new-work-plan-instructions.component';
+import { NewWorkPlanMultimediaComponent } from './new-work-plan-multimedia/new-work-plan-multimedia.component';
+import { NewWorkPlanComponent } from './new-work-plan/new-work-plan.component';
 import { NotifSettingsComponent } from './notif-settings/notif-settings.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -61,6 +68,7 @@ const routes: Routes = [
     { path: "equipment", component: EquipmentComponent },
     { path: "incidents", component: MyIncidentsComponent },
     { path: "work-requests", component: WorkRequestsComponent },
+    { path: 'work-plans', component: MyWorkPlansComponent },
     { path: 'workreq-new', component: WorkreqNewComponent,
         children: [
           { path: "", component:  WorkreqBasicinfoComponent},
@@ -69,8 +77,13 @@ const routes: Routes = [
           { path: "workreq-equipment", component: WorkreqEquipmentComponent },
         ] 
     },
-    { path: 'users', component: UsersComponent },
-    { path: 'new-user', component: NewUserComponent },
+    { path: 'users', 
+      children:
+      [
+        { path: '', component: UsersComponent },
+        { path: 'new-user', component: NewUserComponent }
+      ]
+    },
     { path: 'teams', component: TeamComponent },
     { path: 'new-team', component: NewTeamComponent },
     { path: "equipment-new", component: NewEquipmentComponent },
@@ -106,6 +119,16 @@ const routes: Routes = [
       },
         { path: "crew", component: NewIncidentCrewComponent },
         { path: "multimedia", component: NewIncidentMultimediaComponent },
+      ]
+    },
+    {
+      path: 'new-work-plan', component: NewWorkPlanComponent, children:
+      [
+        { path: '', component: NewWorkPlanBasicInfoComponent},
+        { path: 'history', component: NewWorkPlanHistoryComponent},
+        { path: 'multimedia', component: NewWorkPlanMultimediaComponent},
+        { path: 'equipment', component: NewWorkPlanEquipmentComponent},
+        { path: 'instructions', component: NewWorkPlanInstructionsComponent}
       ]
     }
 

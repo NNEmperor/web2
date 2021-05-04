@@ -71,6 +71,13 @@ import { WorkreqMultimediaComponent } from './workreq-multimedia/workreq-multime
 import { WorkreqEquipmentComponent } from './workreq-equipment/workreq-equipment.component';
 import { MediaUploadDirective } from './media-upload.directive';
 import { ProgressComponent } from './progress/progress.component';
+import { MyWorkPlansComponent } from './my-work-plans/my-work-plans.component';
+import { NewWorkPlanComponent } from './new-work-plan/new-work-plan.component';
+import { NewWorkPlanBasicInfoComponent } from './new-work-plan-basic-info/new-work-plan-basic-info.component';
+import { NewWorkPlanEquipmentComponent } from './new-work-plan-equipment/new-work-plan-equipment.component';
+import { NewWorkPlanHistoryComponent } from './new-work-plan-history/new-work-plan-history.component';
+import { NewWorkPlanInstructionsComponent } from './new-work-plan-instructions/new-work-plan-instructions.component';
+import { NewWorkPlanMultimediaComponent } from './new-work-plan-multimedia/new-work-plan-multimedia.component';
 
 @NgModule({
   declarations: [
@@ -121,6 +128,13 @@ import { ProgressComponent } from './progress/progress.component';
     WorkreqEquipmentComponent,
     MediaUploadDirective,
     ProgressComponent,
+    MyWorkPlansComponent,
+    NewWorkPlanComponent,
+    NewWorkPlanBasicInfoComponent,
+    NewWorkPlanEquipmentComponent,
+    NewWorkPlanHistoryComponent,
+    NewWorkPlanInstructionsComponent,
+    NewWorkPlanMultimediaComponent,
   ],
   imports: [
     BrowserModule,

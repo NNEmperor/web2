@@ -1,106 +1,133 @@
 .vertical-menu {
-    /* width: 200px; */
-     margin-left: 100px;
-     margin-top: 30px;
-     width: 180px;
-     border-style: ridge;
-     float: left;
-   }
-   
- /*  .vertical-menu a {
-     background-color: rgb(255, 255, 255); 
-     color: black; 
-     display: block; 
-     padding: 12px; 
-     text-decoration: none; 
-   }
-   
-   .vertical-menu a:hover {
-     background-color: rgb(226, 226, 226); 
-   }
-   */
-   .vertical-menu span {
-    background-color: rgb(255, 255, 255); 
-    color: black; 
-    display: block; 
-    padding: 12px; 
-    text-decoration: none; 
-    cursor:alias;
-  }
+  /* width: 200px; */
   
-  .vertical-menu span:hover {
-    background-color: rgb(226, 226, 226); 
-  } 
-  .display-wrapper {
-    max-width: 50%;
-    margin-left: 200px; /* Same as the width of the sidebar */
-    margin-top: 15px;
-    padding: 0px 10px;
-    border: 1px solid #fefefe;
-    border-radius: 5px;
-    background: #FFF;
-    
+   width: 50%;
+   min-width: 200px;
+   border-style: ridge;
+  
+}
+
+ .vertical-menu span {
+  background-color: rgb(255, 255, 255); 
+  color: black; 
+  display: block; 
+  padding: 12px; 
+  text-decoration: none; 
+  cursor:alias;
+}
+
+.vertical-menu span:hover {
+  background-color: rgb(226, 226, 226); 
+} 
+
+@media only screen and (max-width: 1000px) {
+  .col-md-8 {
+    margin-left: -50px;
   }
+}
+.display-wrapper {
+  padding-top: 50px;
+  max-width: 100%;
+  width: 90%;
+  min-width: 200px;
+  margin-top: 15px;
+ /* margin-left: 200px;  Same as the width of the sidebar */
+  padding: 40px 0px;
+  font-size: 95%;
+  background: #ffffffb5;
+  margin-bottom: 30px;
+  border-radius: 5px;
+}
 
-  .notification {
-    align-items: left;
-    width: 700px;
-    padding: 15px;
-    border-radius: 5px;
-    border-width: 0px 0px 1px 0px;
-    border-style: solid;
-    height: 60px;
-  }
+.notification {
+  align-items: left;
+  width: 90%;
+  padding: 15px;
+  border-radius: 5px;
+  border-width: 0px 0px 1px 0px;
+  border-style: solid;
+  min-height: 60px;
+  margin: 5px 5px 0px -5px;
+}
 
 
-    .notification--information {
-        background: #a6deff;
-        border-color: #4a5f6d;
-        color: #4a5f6d;
-      }
-    
-      .notification--warning {
-    background: #FFF5AE;
-    border-color: #654a1c;
-    color: #654a1c;
+  .notification--information {
+      background: #a6deff;
+      border-color: #4a5f6d;
+      color: #4a5f6d;
     }
-      
-    .notification--error {
-        background: #FFC0C0;
-        border-color: #8c1a1a;
-        color: #8c1a1a;
-      }
-      
-      
-      .notification--success {
-        background: #e1ffdf;
-        border-color: #2c4a2c;
-        color: #2c4a2c;
-      }
-      
-      .notification--new {
-        background: #CCFBFB;
-        border-color: #3f6565;
-        color: #3f6565;
-      }
-
-
   
+    .notification--warning {
+  background: #FFF5AE;
+  border-color: #654a1c;
+  color: #654a1c;
+  }
+    
+  .notification--error {
+      background: #FFC0C0;
+      border-color: #8c1a1a;
+      color: #8c1a1a;
+    }
+    
+    
+    .notification--success {
+      background: #e1ffdf;
+      border-color: #2c4a2c;
+      color: #2c4a2c;
+    }
+    
+    .notification--new {
+      background: #CCFBFB;
+      border-color: #3f6565;
+      color: #3f6565;
+    }
 
-      .notification__icon-block {
-        margin-right: 15px;
-      }
 
-      .notification__icon-block {
-        margin-right: 15px;
-      }
-      
 
-      
-      .notification__content-block {
-        margin-right: 50px;  
-      }
-      
- .datum{
-     float: right;
- }
+
+    .notification__icon-block {
+      margin-right: 15px;
+    }
+
+    .notification__icon-block {
+      margin-right: 15px;
+    }
+    
+
+    
+    .notification__content-block {
+      margin-right: 50px;  
+    }
+    
+.datum{
+float: right;
+}
+i{
+vertical-align: bottom;
+}
+
+
+.bg {
+animation:slide 3s ease-in-out infinite alternate;
+background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+bottom:0;
+left:-50%;
+opacity:.5;
+position:fixed;
+right:-50%;
+top:0;
+z-index:-1;
+}
+
+.bg2 {
+animation-direction:alternate-reverse;
+animation-duration:4s;
+}
+
+.bg3 {
+animation-duration:5s;
+}
+
+#content{
+  width: 100%;
+}
