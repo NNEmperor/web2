@@ -7,61 +7,65 @@
 
 <div class="content">
 
-    <div class="row">
-        <div class="col-md-3">
-            <p>Incident ID:</p>
-            <p>Type:</p>
-            <p>Priority:</p>
-            <p>Confirmed:</p>
-            <p>Status:</p>
-            <p>Description:</p>
-            <p>ETA:</p>
-            <p>ATA:</p>
+    <form [formGroup]="basicInfoForm">
+        <div class="row">
+            <div class="col-md-3">
+                <p>Incident ID:</p>
+                <p>Type:</p>
+                <p>Priority:</p>
+                <p>Confirmed:</p>
+                <p>Status:</p>
+                <p>Description:</p>
+                <p>ETA(date):</p>
+                <p>ETA(time):</p>
+                <p>ATA(date):</p>
+                <p>ATA(time):</p>
+            </div>
+            <div class="col-md-3">
+                <input #idIncident style="text-align: center;" readonly/>
+                <br>
+                <select style="height: 1cm;" formControlName="type">
+                    <option value="">Choose type</option>
+                    <option value="Unplaned">Unplaned</option>
+                    <option value="Planed">Planed</option>
+                </select>
+                <br>
+                <input #prioIncident style="text-align: center;" readonly/>
+                <br>
+                <input type="checkbox" style="width: 0.6cm; height: 0.5cm;">
+                <br>
+                <input #statusIncident style="margin-top: 1mm; text-align: center;" readonly/>
+                <br>
+                <input type="text" id="descriptionIncident" style="margin-top: 2mm;" formControlName="description" />
+                <input type="date" class="form-control" formControlName="etaDate" /> 
+                <input type="time" class="form-control" formControlName="etaTime" />
+                <input type="date" class="form-control" formControlName="ataDate" /> 
+                <input type="time" class="form-control" formControlName="ataTime" /> 
+            </div>
+            <div class="col-md-3">
+                <p>Affected customers:</p>
+                <p>Outage(date):</p>
+                <p>Outage(time):</p>
+                <p>ETR(date):</p>
+                <p>ETR(time):</p>
+                <p>Calls:</p>
+                <p>Voltage:</p>
+                <p>Scheduled(date):</p>
+                <p>Scheduled(time):</p>
+            </div>
+            <div class="col-md-3">
+                <input #affectedByIncident style="text-align: center;" readonly/>
+                <input type="date" class="form-control" formControlName="outageDate" /> 
+                <input type="time" class="form-control" formControlName="outageTime" /> 
+                <input type="date" class="form-control" formControlName="etrDate" /> 
+                <input type="time" class="form-control" formControlName="etrTime" /> 
+                <input type="number" id="numCallsIncident" formControlName="calls" />
+                <br>
+                <input type="number" id="voltageIncident" formControlName="voltage" />
+                <input type="date" class="form-control" formControlName="scheduledDate" /> 
+                <input type="time" class="form-control" formControlName="scheduledTime" /> 
+            </div>
         </div>
-        <div class="col-md-3">
-            <p><!--ovde se generise neki ID-->?</p>
-            <select style="height: 1cm;" name="type-incident" id="type-incident">
-                <option value="Unplaned">Unplaned</option>
-                <option value="Planed">Planed</option>
-            </select>
-            <p style="margin-top: 1mm;"><!--ovde ide naspram lokacije-->?</p>
-            <input type="checkbox" style="width: 0.5cm; height: 0.5cm;">
-            <p><!--generise se koji je status-->?</p>
-            <input type="text" />
-            <div style="display: flex; margin-top: 3mm;">
-
-            </div>
-            <div style="display: flex; margin-top: 3mm;">
-
-            </div>
-        </div>
-        <div class="col-md-3">
-            <p>Affected customers:</p>
-            <p>Outage time:</p>
-            <br>
-            <p>ETR:</p>
-            <br>
-            <p>Calls:</p>
-            <br>
-            <p>Voltage:</p>
-            <br>
-            <p>Scheduled time:</p>
-        </div>
-        <div class="col-md-3">
-            <p><!--generise se automatski-->?</p>
-            <div style="display: flex;">
-
-            </div>
-            <div style="display: flex; margin-top: 5mm; margin-bottom: 8mm;">
-
-            </div>
-            <p><!--generise se automatski na osnovu broja prijava-->?</p>
-            <br>
-            <p><!--generise se automatski na osnovu neceg-->?</p>
-            <div style="display: flex; margin-top: 8mm;">
-
-            </div>
-        </div>
-    </div>
+    </form>
 
 </div>

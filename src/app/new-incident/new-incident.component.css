@@ -4,7 +4,9 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color:transparent;
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 100%;
   }
   
   li {

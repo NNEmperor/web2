@@ -167,6 +167,10 @@ import { NewWorkPlanMultimediaComponent } from './new-work-plan-multimedia/new-w
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {
+  
+
+
+ }
 
 export class AppBootstrapModule {}

@@ -13,6 +13,4 @@ export class NewSafetyDocsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  changeTitle(){}
-
 }
