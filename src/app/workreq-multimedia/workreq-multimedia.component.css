@@ -3,10 +3,16 @@
     height: 300px;
     padding: 2rem;
     text-align: center;
-    border: dashed 1px #979797;
+    border: dashed 3px #0e66e9;
     position: relative;
     margin: 0 auto;
   margin-top: 5%;
+    
+  }
+  .container:hover {
+    cursor: pointer;
+    background-color: #9ecbec !important;
+    opacity: 0.8;
     
   }
   input {

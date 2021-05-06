@@ -103,6 +103,41 @@ export class MapComponent implements OnInit {
       layers: [this.tileLayer, this.vectorLayer],
       view: this.view
     });
+
+    //za test prikaza 
+    var iconFeature = new Feature({
+      geometry:  new Point(fromLonLat([19.795958256378125, 45.29052031509573])),//new Point([0, 0]),
+      name: 'EKIPA NUMERO UNO',
+      population: 4000,
+      rainfall: 500,
+      
+    });
+    var iconStyle = new Style({
+      image: new Icon({
+        
+        src: 'assets/images/ekipa-mapa.png',
+      }),
+    });
+    
+    iconFeature.setStyle(iconStyle);
+    this.vectorSource.addFeature(iconFeature);//dodata JEDNA IKONICA
+    
+    var markercic = new Feature({
+      geometry: new Point(fromLonLat([19.771925663604687,45.23614962921749]/*[lon, lat]*/)),
+      name: 'VOZILO1',
+      title:'vaaat'
+    });
+
+    markercic.setStyle(
+        new Style({
+          image: new Icon({
+            src: 'assets/images/vozilo-mapa.png',
+          }),
+          
+        })
+      );
+
+    this.vectorSource.addFeature(markercic);  //DODATA DRUGA IKONICA
     
   }
 
@@ -110,31 +145,46 @@ export class MapComponent implements OnInit {
     var coordinate = this.map.getEventCoordinate(event);
     console.log(coordinate);
     var lonlat = olProj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
-  var lon = lonlat[0];
-  var lat = lonlat[1];
-  console.log('lon'+lon+" lat"+lat);
-   // var thing = new Point(fromLonLat());//([coordinate[0],coordinate[1]]))
-    //console.log("tacka:"+thing);
-
+    var lon = lonlat[0];
+    var lat = lonlat[1];
+    console.log('lon'+lon+" lat"+lat);
+    
+/*                                                      //KOD ZA DODAVANJE MARKERA NA MAPI privremeno zakomentarisan
     var markercic = new Feature({
-      geometry: new Point(fromLonLat([lon, lat]))
+      geometry: new Point(fromLonLat([lon, lat])),
+      name: 'VOZILO1',
+      title:'vaaat'
     });
-  markercic.setStyle(
-      new Style({
-        image: new Icon({
-          //anchor: [0.5, 46],
-          //anchorXUnits:"fraction",
-          //anchorYUnits:"pixels",
-          ////color: '#BADA55',
-          //crossOrigin: 'anonymous',
-          // For Internet Explorer 11
+
+    markercic.setStyle(
+        new Style({
+          image: new Icon({
+            src: 'assets/images/vozilo-mapa.png',
+          }),
           
-          //imgSize: [40, 40],
-          src: 'assets/images/vozilo-mapa.png',
-        }),
-      })
-    );
-    this.vectorSource.addFeature(markercic);
+        })
+      );
+
+    this.vectorSource.addFeature(markercic); */ //dodaje marker za vozilo
+    
+    
+    var mapica=this.map;
+    this.map.on('click', function(evt) {
+      console.log("osuskuje");
+      var feature = mapica.forEachFeatureAtPixel(evt.pixel,
+        function(feature) {
+          console.log('NASAO');
+          return feature;
+        });
+     // if (feature === marker) {
+       var prop=feature?.get('name'); //na osnovu imena (BICE TO ID ODGOVARAJUCEG DOKUMENTA) poslati zahtev ka serveru i napraviti popup prozor koji ce prikazati sve info
+       //prop.
+       console.log('imeee '+prop);
+
+      });
+      
   }
+  
 
 }
+
