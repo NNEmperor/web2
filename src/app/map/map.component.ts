@@ -149,7 +149,7 @@ export class MapComponent implements OnInit {
     var lat = lonlat[1];
     console.log('lon'+lon+" lat"+lat);
     
-/*                                                      //KOD ZA DODAVANJE MARKERA NA MAPI privremeno zakomentarisan
+                                                  //KOD ZA DODAVANJE MARKERA NA MAPI privremeno zakomentarisan
     var markercic = new Feature({
       geometry: new Point(fromLonLat([lon, lat])),
       name: 'VOZILO1',
@@ -165,7 +165,7 @@ export class MapComponent implements OnInit {
         })
       );
 
-    this.vectorSource.addFeature(markercic); */ //dodaje marker za vozilo
+    this.vectorSource.addFeature(markercic);  //dodaje marker za vozilo
     
     
     var mapica=this.map;

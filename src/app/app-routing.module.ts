@@ -37,6 +37,7 @@ import { NewWorkPlanMultimediaComponent } from './new-work-plan-multimedia/new-w
 import { NewWorkPlanComponent } from './new-work-plan/new-work-plan.component';
 import { NotifSettingsComponent } from './notif-settings/notif-settings.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { ProfilesViewComponent } from './profiles-view/profiles-view.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReportProblemComponent } from './report-problem/report-problem.component';
 import { ResetSettingsComponent } from './reset-settings/reset-settings.component';
@@ -62,6 +63,7 @@ const routes: Routes = [
     { path: "mapa", component: MapComponent },
     { path: "myprofile", component: MyProfileComponent },
     { path: 'edit-profile', component: EditProfileComponent },
+    { path: "profiles", component: ProfilesViewComponent },
     { path: "notifications", component: NotificationsComponent },
     { path: "incidents", component: MyIncidentsComponent },
     { path: "safety-docs", component:  MySafetyDocsComponent},

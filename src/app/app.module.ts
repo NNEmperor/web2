@@ -78,6 +78,7 @@ import { NewWorkPlanEquipmentComponent } from './new-work-plan-equipment/new-wor
 import { NewWorkPlanHistoryComponent } from './new-work-plan-history/new-work-plan-history.component';
 import { NewWorkPlanInstructionsComponent } from './new-work-plan-instructions/new-work-plan-instructions.component';
 import { NewWorkPlanMultimediaComponent } from './new-work-plan-multimedia/new-work-plan-multimedia.component';
+import { ProfilesViewComponent } from './profiles-view/profiles-view.component';
 
 @NgModule({
   declarations: [
@@ -135,6 +136,7 @@ import { NewWorkPlanMultimediaComponent } from './new-work-plan-multimedia/new-w
     NewWorkPlanHistoryComponent,
     NewWorkPlanInstructionsComponent,
     NewWorkPlanMultimediaComponent,
+    ProfilesViewComponent,
   ],
   imports: [
     BrowserModule,
