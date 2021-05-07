@@ -5,67 +5,162 @@
 <div class="bg bg3"></div>
 
 
-<div class="content">
-
-    <form [formGroup]="basicInfoForm">
-        <div class="row">
-            <div class="col-md-3">
-                <p>Incident ID:</p>
-                <p>Type:</p>
-                <p>Priority:</p>
-                <p>Confirmed:</p>
-                <p>Status:</p>
-                <p>Description:</p>
-                <p>ETA(date):</p>
-                <p>ETA(time):</p>
-                <p>ATA(date):</p>
-                <p>ATA(time):</p>
-            </div>
-            <div class="col-md-3">
-                <input #idIncident style="text-align: center;" readonly/>
-                <br>
-                <select style="height: 1cm;" formControlName="type">
-                    <option value="">Choose type</option>
-                    <option value="Unplaned">Unplaned</option>
-                    <option value="Planed">Planed</option>
-                </select>
-                <br>
-                <input #prioIncident style="text-align: center;" readonly/>
-                <br>
-                <input type="checkbox" style="width: 0.6cm; height: 0.5cm;">
-                <br>
-                <input #statusIncident style="margin-top: 1mm; text-align: center;" readonly/>
-                <br>
-                <input type="text" id="descriptionIncident" style="margin-top: 2mm;" formControlName="description" />
-                <input type="date" class="form-control" formControlName="etaDate" /> 
-                <input type="time" class="form-control" formControlName="etaTime" />
-                <input type="date" class="form-control" formControlName="ataDate" /> 
-                <input type="time" class="form-control" formControlName="ataTime" /> 
-            </div>
-            <div class="col-md-3">
-                <p>Affected customers:</p>
-                <p>Outage(date):</p>
-                <p>Outage(time):</p>
-                <p>ETR(date):</p>
-                <p>ETR(time):</p>
-                <p>Calls:</p>
-                <p>Voltage:</p>
-                <p>Scheduled(date):</p>
-                <p>Scheduled(time):</p>
-            </div>
-            <div class="col-md-3">
-                <input #affectedByIncident style="text-align: center;" readonly/>
-                <input type="date" class="form-control" formControlName="outageDate" /> 
-                <input type="time" class="form-control" formControlName="outageTime" /> 
-                <input type="date" class="form-control" formControlName="etrDate" /> 
-                <input type="time" class="form-control" formControlName="etrTime" /> 
-                <input type="number" id="numCallsIncident" formControlName="calls" />
-                <br>
-                <input type="number" id="voltageIncident" formControlName="voltage" />
-                <input type="date" class="form-control" formControlName="scheduledDate" /> 
-                <input type="time" class="form-control" formControlName="scheduledTime" /> 
+<div class="container" style="width: 85%;">
+    <div class="row gutters-sm">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body" style="padding: 30px;">
+                    <form [formGroup]="basicInfoForm">
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>Incident ID:</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input #idIncident style="text-align: center;" readonly/>
+                            </div>
+                            <div class="col-sm-2">
+                                <p>Affected customers:</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input #affectedByIncident style="text-align: center;" readonly/>
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>Type:</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <select style="height: 1cm;" formControlName="type">
+                                    <option value="">Choose type</option>
+                                    <option value="Unplaned">Unplaned</option>
+                                    <option value="Planed">Planed</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <p>Outage(date):</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="date" class="form-control" formControlName="outageDate" /> 
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>Priority:</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input #prioIncident style="text-align: center;" readonly/>
+                            </div>
+                            <div class="col-sm-2">
+                                <p>Outage(time):</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="time" class="form-control" formControlName="outageTime" /> 
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>Confirmed:</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="checkbox" style="width: 0.6cm; height: 0.5cm;">
+                            </div>
+                            <div class="col-sm-2">
+                                <p>ETR(date):</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="date" class="form-control" formControlName="etrDate" /> 
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>Status:</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input #statusIncident style="margin-top: 1mm; text-align: center;" readonly/>
+                            </div>
+                            <div class="col-sm-2">
+                                <p>ETR(time):</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="time" class="form-control" formControlName="etrTime" /> 
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>Description:</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" id="descriptionIncident" style="margin-top: 2mm;" formControlName="description" />
+                            </div>
+                            <div class="col-sm-2">
+                                <p>Calls:</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="number" id="numCallsIncident" formControlName="calls" />
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>ETA(date):</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="date" class="form-control" formControlName="etaDate" /> 
+                            </div>
+                            <div class="col-sm-2">
+                                <p>Voltage:</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="number" id="voltageIncident" formControlName="voltage" />
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>ETA(time):</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="time" class="form-control" formControlName="etaTime" />
+                            </div>
+                            <div class="col-sm-2">
+                                <p>Scheduled(date):</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="date" class="form-control" formControlName="scheduledDate" /> 
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>ATA(date):</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="date" class="form-control" formControlName="ataDate" /> 
+                            </div>
+                            <div class="col-sm-2">
+                                <p>Scheduled(time):</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="time" class="form-control" formControlName="scheduledTime" /> 
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>ATA(time):</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="time" class="form-control" formControlName="ataTime" /> 
+                            </div>
+                        </div>
+                        <div class="form-group row"  style="display: flex;justify-content: flex-end;" >
+                            <span>
+                                <i class = "material-icons">clear</i> 
+                            </span>
+                            <span>
+                                <i class = "material-icons">save</i> 
+                            </span>
+                            
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </form>
-
+    </div>
 </div>

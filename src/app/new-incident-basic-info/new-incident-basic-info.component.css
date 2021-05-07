@@ -10,7 +10,11 @@ html {
   body {
     margin:0;
   }
-  
+
+  .card{
+    background-color: #ffffffad;
+}
+
   .bg {
     animation:slide 3s ease-in-out infinite alternate;
     background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);

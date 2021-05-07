@@ -15,7 +15,7 @@ export class MyIncidentsComponent implements OnInit {
 
   allMineEnable = new FormControl(); 
   mySentences!:Array<Object>
-  displayedColumns: string[] = ['position', 'name', 'email', 'nesto'];
+  displayedColumns: string[] = ['position', 'name', 'email', 'nesto', 'nesto2', 'nesto3', 'nesto4', 'nesto5', 'nesto6'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -71,16 +71,17 @@ export interface UserElement{
   name: string;
   email: string;
   nesto: string;
+  nesto2: string;
 }
 const ELEMENT_DATA: UserElement[] = [
- { position: 1, name: 'John', email:' john@gmail.com', nesto: 'sklj'},
- { position: 2, name: 'Herry', email: 'herry@gmail.com', nesto: 'sklj' },
- { position: 3, name: 'Ann', email: 'ann@gmail.com', nesto: 'sklj' },
- { position: 4, name: 'Johnny', email: 'johnny@gmail.com' , nesto: 'sklj'},
- { position: 5, name: 'Roy', email: 'roy@gmail.com', nesto: 'sklj' },
- { position: 6, name: 'Kia', email: 'kia@gmail.com' , nesto: 'sklj'},
- { position: 7, name: 'Merry', email: 'merry@gmail.com', nesto: 'sklj' },
- { position: 8, name: 'William', email: 'william@gmail.com', nesto: 'sklj'},
- { position: 9, name: 'Shia', email: 'shia@gmail.com', nesto: 'sklj' },
- { position: 10, name: 'Kane', email: 'kane@gmail.com' , nesto: 'sklj'}
+ { position: 1, name: 'John', email:' john@gmail.com', nesto: 'sklj', nesto2: 'sklj'},
+ { position: 2, name: 'Herry', email: 'herry@gmail.com', nesto: 'sklj', nesto2: 'sklj' },
+ { position: 3, name: 'Ann', email: 'ann@gmail.com', nesto: 'sklj', nesto2: 'sklj' },
+ { position: 4, name: 'Johnny', email: 'johnny@gmail.com' , nesto: 'sklj', nesto2: 'sklj' },
+ { position: 5, name: 'Roy', email: 'roy@gmail.com', nesto: 'sklj', nesto2: 'sklj' },
+ { position: 6, name: 'Kia', email: 'kia@gmail.com' , nesto: 'sklj', nesto2: 'sklj' },
+ { position: 7, name: 'Merry', email: 'merry@gmail.com', nesto: 'sklj', nesto2: 'sklj' },
+ { position: 8, name: 'William', email: 'william@gmail.com', nesto: 'sklj', nesto2: 'sklj' },
+ { position: 9, name: 'Shia', email: 'shia@gmail.com', nesto: 'sklj', nesto2: 'sklj' },
+ { position: 10, name: 'Kane', email: 'kane@gmail.com' , nesto: 'sklj', nesto2: 'sklj' }
 ];
