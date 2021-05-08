@@ -30,7 +30,7 @@ html {
   .content {
     background-color:rgba(255,255,255,.8);
     border-radius:.25em;
-    width: 80%;
+    width: max-content;
     height: max-content;
     padding: 5%;
     box-shadow:0 0 .25em rgba(0,0,0,.25);
@@ -38,7 +38,8 @@ html {
     left:50%;
     position:fixed;
     text-align:center;
-    top:50%;
+    margin: 5%;
+    top:40%;
     transform:translate(-50%, -50%);
   }
   

@@ -16,7 +16,7 @@ export class NewIncidentDevicesComponent implements OnInit {
 
   allMineEnable = new FormControl(); 
   mySentences!:Array<Object>
-  displayedColumns: string[] = ['position', 'name', 'email', 'nesto'];
+  displayedColumns: string[] = ['position', 'name', 'email', 'nesto', 'location'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
