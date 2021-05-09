@@ -1,65 +1,120 @@
 <div class="bg"></div>
 <div class="bg bg2"></div>
 <div class="bg bg3"></div>
-<div class="content">
-
-    <form [formGroup]="basicInfoForm">
-        <div class="row">
-            <div class="col-md-3">
-                <p>Type:</p>
-                <p>Status:</p>
-                <p>Switching plan:</p>
-                <p>Safety doc type:</p>
-                <p>Created(date):</p>
-                <p>Created(time)</p>
-            </div>
-            <div class="col-md-3">
-                <select style="height: 1cm;" formControlName="type">
-                    <option value="">Choose type</option>
-                    <option value="Unplaned">Unplaned</option>
-                    <option value="Planed">Planed</option>
-                </select>
-                <br>
-                <input #statusSafetyDoc style="margin-top: 1mm; text-align: center;" readonly/>
-                <br>
-                <a href="#"> <!--pritiskom na plan se otvara isti-->
-                    <input type="text" style="text-align: center;" readonly #switchingPlan />
-                </a>
-                <br>
-                <select style="height: 1cm;" formControlName="docType">
-                    <option value="">Choose doc type</option>
-                    <option value="Clereance ">Clereance</option>
-                    <option value="sklj">nesto jos</option>
-                </select>
-                <input type="date" class="form-control" formControlName="createdDate" /> 
-                <input type="time" class="form-control" formControlName="createdTime" />             
-
-
-            </div>
-            <div class="col-md-3">
-                <p>Created by:</p>
-                <p>Phone No:</p>
-                <p>Field crew:</p>
-            </div>
-            <div class="col-md-3">
-                <input type="text" style="text-align: center;" readonly #createdBy />
-                <br>
-                <input style="margin-bottom: 3mm;" type="number" id="phone" formControlName="phone" />
-                <br>
-                <input type="text" style="text-align: center;" readonly #crew />
+<div class="container" style="width: 85%; margin-top: 10%;">
+    <div class="row gutters-sm">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body" style="padding: 30px;">
+                    <form [formGroup]="basicInfoForm">
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>Type:</p>
+                            </div>
+                            <div clas="col-sm-4">
+                                <select class="form-control" formControlName="type">
+                                    <option value="">Choose type</option>
+                                    <option value="Unplaned">Unplaned</option>
+                                    <option value="Planed">Planed</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <p>Created(date):</p>
+                            </div>
+                            <div clas="col-sm-4">
+                                <input type="date" class="form-control" formControlName="createdDate" /> 
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>Switching plan:</p>
+                            </div>
+                            <div clas="col-sm-4">
+                                <a href="#"> <!--pritiskom na plan se otvara isti-->
+                                    <input class="form-control" type="text" style="text-align: center;" readonly #switchingPlan />
+                                </a>
+                            </div>
+                            <div class="col-sm-2">
+                                <p>Created(time)</p>
+                            </div>
+                            <div clas="col-sm-4">
+                                <input type="time" class="form-control" formControlName="createdTime" />             
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>Status:</p>
+                            </div>
+                            <div clas="col-sm-4">
+                                <input class="form-control" #statusSafetyDoc style="margin-top: 1mm; text-align: center;" readonly/>
+                            </div>
+                            <div class="col-sm-2">
+                                <p>Created by:</p>
+                            </div>
+                            <div clas="col-sm-4">
+                                <input class="form-control" type="text" style="text-align: center;" readonly #createdBy />
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                                <p>Safety doc type:</p>
+                            </div>
+                            <div clas="col-sm-4">
+                                <select class="form-control" style="height: 1cm;" formControlName="docType">
+                                    <option value="">Choose doc type</option>
+                                    <option value="Clereance ">Clereance</option>
+                                    <option value="sklj">nesto jos</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <p>Phone No:</p>
+                            </div>
+                            <div clas="col-sm-4">
+                                <input class="form-control" style="margin-bottom: 3mm;" type="number" id="phone" formControlName="phone" />
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <div class="col-sm-2">
+                            </div>
+                            <div clas="col-sm-4">
+                            </div>
+                            <div class="col-sm-2">
+                                <p>Field crew:</p>
+                            </div>
+                            <div clas="col-sm-4">
+                                <input class="form-control" type="text" style="text-align: center;" readonly #crew />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2">
+                                <p>Details:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="details" /> 
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2">
+                                <p>Notes:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="notes" /> 
+                            </div>
+                        </div>
+                        <div class="form-group row"  style="display: flex;justify-content: flex-end;" >
+                            <span>
+                                <i class = "material-icons">clear</i> 
+                            </span>
+                            <span>
+                                <i class = "material-icons">save</i> 
+                            </span>
+                            
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                <p>Details:</p>
-                <p>Notes:</p>
-            </div>
-            <div class="col-md-9">
-                <input style="width: 100%; margin-bottom: 1mm;" type="text" id="details" /> 
-                <br>
-                <input style="width: 100%;" type="text" id="notes" /> 
-            </div>
-
-        </div>
-    </form>
+    </div>
 </div>
+
+

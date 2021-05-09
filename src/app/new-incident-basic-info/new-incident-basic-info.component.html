@@ -16,13 +16,13 @@
                                 <p>Incident ID:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input #idIncident style="text-align: center;" readonly/>
+                                <input class="form-control" #idIncident style="text-align: center;" readonly/>
                             </div>
                             <div class="col-sm-2">
                                 <p>Affected customers:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input #affectedByIncident style="text-align: center;" readonly/>
+                                <input class="form-control" #affectedByIncident style="text-align: center;" readonly/>
                             </div>
                         </div>
                         <div class=" form-group row">
@@ -30,7 +30,7 @@
                                 <p>Type:</p>
                             </div>
                             <div class="col-sm-4">
-                                <select style="height: 1cm;" formControlName="type">
+                                <select class="form-control" style="height: 1cm;" formControlName="type">
                                     <option value="">Choose type</option>
                                     <option value="Unplaned">Unplaned</option>
                                     <option value="Planed">Planed</option>
@@ -48,7 +48,7 @@
                                 <p>Priority:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input #prioIncident style="text-align: center;" readonly/>
+                                <input class="form-control" #prioIncident style="text-align: center;" readonly/>
                             </div>
                             <div class="col-sm-2">
                                 <p>Outage(time):</p>
@@ -62,7 +62,7 @@
                                 <p>Confirmed:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input type="checkbox" style="width: 0.6cm; height: 0.5cm;">
+                                <input class="form-control" type="checkbox" style="width: 0.6cm; height: 0.5cm;">
                             </div>
                             <div class="col-sm-2">
                                 <p>ETR(date):</p>
@@ -76,7 +76,7 @@
                                 <p>Status:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input #statusIncident style="margin-top: 1mm; text-align: center;" readonly/>
+                                <input class="form-control" #statusIncident style="margin-top: 1mm; text-align: center;" readonly/>
                             </div>
                             <div class="col-sm-2">
                                 <p>ETR(time):</p>
@@ -90,13 +90,13 @@
                                 <p>Description:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" id="descriptionIncident" style="margin-top: 2mm;" formControlName="description" />
+                                <input class="form-control" type="text" id="descriptionIncident" style="margin-top: 2mm;" formControlName="description" />
                             </div>
                             <div class="col-sm-2">
                                 <p>Calls:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input type="number" id="numCallsIncident" formControlName="calls" />
+                                <input class="form-control" type="number" id="numCallsIncident" formControlName="calls" />
                             </div>
                         </div>
                         <div class=" form-group row">
@@ -110,7 +110,7 @@
                                 <p>Voltage:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input type="number" id="voltageIncident" formControlName="voltage" />
+                                <input class="form-control" type="number" id="voltageIncident" formControlName="voltage" />
                             </div>
                         </div>
                         <div class=" form-group row">
