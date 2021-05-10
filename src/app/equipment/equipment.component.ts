@@ -23,7 +23,7 @@ export class EquipmentComponent implements OnInit {
 
   
   constructor(private service: MessagePassingService ) {
-    this.service.changeData("ADD NEW DEVICE")
+    this.service.changeData("DEVICES")
 
    setTimeout(() => {
      this.dataSource.sort = this.sort;

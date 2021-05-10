@@ -14,6 +14,7 @@ export class NewIncidentBasicInfoComponent implements AfterViewInit {
   @ViewChild("prioIncident") prioIncident;
   @ViewChild("statusIncident") statusIncident;
   @ViewChild("affectedByIncident") affectedByIncident;
+  @ViewChild("confirmedIncident") confirmedIncident;
 
   basicInfoForm: FormGroup = new FormGroup({
     'type' : new FormControl('', Validators.required),

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessagePassingService } from '../message-passing.service';
 
 @Component({
@@ -7,6 +7,11 @@ import { MessagePassingService } from '../message-passing.service';
   styleUrls: ['./new-safety-docs-checklist.component.css']
 })
 export class NewSafetyDocsChecklistComponent implements OnInit {
+
+  @ViewChild("workOperationsCompleted") workOperationsCompleted;
+  @ViewChild("tagsRemoved") tagsRemoved;
+  @ViewChild("groundingRemoved") groundingRemoved;
+  @ViewChild("readyForService") readyForService;
 
   constructor(private service: MessagePassingService ) {
     this.service.changeData("SAFETY DOCUMENTS - NEW")

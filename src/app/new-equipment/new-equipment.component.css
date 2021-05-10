@@ -6,7 +6,9 @@
 html {
     height:100%;
   }
-  
+    .card{
+    background-color: #ffffffad;
+}
   body {
     margin:0;
   }
