@@ -1,0 +1,22 @@
+Front:
+	Filter nad incidentima
+	Prikaz incidenata jedinstvenih za korisnika
+	Prikaz prioriteta kod dodavanja novog incidenta na osnovu izabrane opreme
+	Dodatna validacija za parametre kod novih incidenata
+	Prebacivanje uredjaja iz svih u vezane za incident
+	Lociranje iz paging tabele opreme na mapi
+	Popunjavanje podataka nakon izbora potrosaca kod novih poziva
+	Cuvanje multimedia podataka
+	Pritisak na svakoj stranici save i cancel dugmeta
+	Forme za dokumenta
+	Eqiupment srediti dodavanje i rutiranje
+	
+
+Back:
+	Logovanje korisnika
+	Prikaz podataka na Dashboard stranici
+	Generisanje ID-a za nove incidente na osnovu broja u bazi
+	Izlistati pozive na osnovu opreme kod incidenta
+	Biranje svih potrosaca kod dodavanja novog poziva
+	
+	
