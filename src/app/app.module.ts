@@ -79,6 +79,8 @@ import { NewWorkPlanHistoryComponent } from './new-work-plan-history/new-work-pl
 import { NewWorkPlanInstructionsComponent } from './new-work-plan-instructions/new-work-plan-instructions.component';
 import { NewWorkPlanMultimediaComponent } from './new-work-plan-multimedia/new-work-plan-multimedia.component';
 import { ProfilesViewComponent } from './profiles-view/profiles-view.component';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider , FacebookLoginProvider} from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -162,10 +164,29 @@ import { ProfilesViewComponent } from './profiles-view/profiles-view.component';
    IgxCategoryChartModule,
    IgxDataChartCoreModule,
    IgxDataChartCategoryModule,
-   DragDropModule
+   DragDropModule,
+   SocialLoginModule
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('432160350527-fvcllu2k73m5s9e4vkqqptne4rmvpaj8.apps.googleusercontent.com')
+  },
+   {
+     id: FacebookLoginProvider.PROVIDER_ID,
+     provider: new FacebookLoginProvider('2853422978247127')
+   },
+          
+        ]
+      } as SocialAuthServiceConfig,
+    } 
+        ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })

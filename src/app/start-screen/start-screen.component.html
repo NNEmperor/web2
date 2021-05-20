@@ -28,9 +28,25 @@
               </div>
 
               <div>
-                <a href="#" class="fa fa-facebook"></a>
-                <a href="#" class="fa fa-twitter"></a>
-                <a href="#" class="fa fa-google"></a>
+                <div class="container2" style="max-width: 500px">
+
+                  <button type="button" (click)="googleSignin()" style="border-color: transparent;" class="fa fa-google"></button>
+                  <button type="button" (click)="signInWithFB()" style="border-color: transparent;" class="fa fa-facebook"></button>
+                     
+                      <div *ngIf="user" class="card text-center">
+                        <div class="card-block"></div>
+                        <img class="card-img-top img-responsive photo" width="10" height="60" src="{{ user.photoUrl }}">
+                        <div class="card-block">
+                          <h4 class="card-title">{{ user.name }}</h4>
+                          <p class="card-text">{{ user.email }}</p>
+                        </div>
+                        <div class="card-block">
+                          <button class="btn btn-danger" (click)="logout()">Sign out</button>
+                        </div>
+                      </div>
+                
+                </div>
+              
               </div>
           
             </div>
