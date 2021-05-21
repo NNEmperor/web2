@@ -18,6 +18,8 @@ namespace BackProject.Models
         public DbSet<Device> Devices { get; set; }
         public DbSet<WorkRequest> WorkRequests { get; set; }
 
+        public DbSet<RegisterUser> Users { get; set; }
+
 
     }
 }
