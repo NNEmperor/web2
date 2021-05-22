@@ -37,7 +37,7 @@
     background-color: #333;
 
   }
-  input[type=text], [type=password] {
+  input[type=text], [type=password] ,[type=date]{
     border: none;
     
     width: 40%;
@@ -270,4 +270,7 @@ img {
   margin-left: 10%;
   height:100%;
   
+}
+button:disabled{
+  background-color: gray;
 }

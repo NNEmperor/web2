@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FileUploadService } from "../file-upload.service";
 import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { CustomValidationService } from '../custom-validation.service';
+import { AverageTrueRangeIndicator } from 'igniteui-angular-charts';
 
 @Component({
   selector: 'app-registration',
@@ -19,24 +21,27 @@ export class RegistrationComponent implements OnInit {
   selectedFile = null;
   //imageURL: string='';
 
-  constructor(private fb: FormBuilder, public fileUploadService: FileUploadService) { 
+  constructor(private fb: FormBuilder, public fileUploadService: FileUploadService, private customValidator: CustomValidationService) { 
     
     this.regiForm=this.fb.group({
 
       username:['',[Validators.required,Validators.minLength(3)]],
       email:['',[Validators.required,Validators.email]],
-      password:['',[Validators.required,Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')]],//min 1 broj i jedno slovo
+      password:['',[Validators.required,Validators.minLength(4),Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')]],//min 1 broj i jedno slovo
       passwordCheck:['',[Validators.required]],
       //datum
-      name:['',[Validators.required,Validators.minLength(3),Validators.pattern('')]],
-      lastname:['',[Validators.required,Validators.minLength(3),Validators.pattern('')]],
-      address:['',[Validators.required,Validators.minLength(3),Validators.pattern('')]],
+      name:['',[Validators.required,Validators.minLength(3)/*,Validators.pattern('')*/]],
+      lastname:['',[Validators.required,Validators.minLength(3),/*Validators.pattern('')*/]],
+      address:['',[Validators.required,Validators.minLength(3),/*Validators.pattern('')*/]],
       roles:'1',//radnik(sa pravom pregleda), dispecer, clan ekipe( ako postoje ekipe ponuditi kojoj ce pripadati),ako nema naknadno se setuje
       avatar: [null],
-      imagename: ['']
+      imagename: [''],
+      bday:['',[Validators.required]]
       //slika
       //autorizacija,autentifikcija na serveru
 
+    },{
+      validator:this.customValidator.passwordMatchValidator("password","passwordCheck")
     });
    
   }
@@ -54,8 +59,24 @@ export class RegistrationComponent implements OnInit {
     ];
   }
 
+  nameValue(){
+    var ime=this.regiForm.value.name;   //uzimanje vrednisti
+    //alert("Name is "+ime);
+    console.log("napusteno ime");
+    if(ime.length<3){
+      //alert("Name must be 3 characters");
+    }
+  }
+
   addUser(){
-    console.log('dodat user')
+
+    if(this.regiForm.value.imagename.length==0){
+      alert('You must add picture.')
+    }else{
+      console.log('dodat user')
+    }
+
+   
     //console.log("selektovana uloga :"+this.selectedOption);
     //logika za serversku stranu 
 /*
@@ -109,6 +130,16 @@ export class RegistrationComponent implements OnInit {
       this.path = reader.result as string;
     }
     reader.readAsDataURL(file)
+
+    this.regiForm.patchValue({
+      imagename: file.name,   //setovanje imena slike
+   });
+
+    if (file) {
+      console.log('this is the file = ', file);
+    }else{
+      console.log('nije odabrana slika')
+    }
 
     //trebalo bi da gadja na backend, mozda samo ono za proracun da se ove koristi,dogovoriti se
     this.fileUploadService.addUser(
