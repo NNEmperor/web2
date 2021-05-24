@@ -86,7 +86,7 @@ export class RegistrationComponent implements OnInit {
           if(res.succeeded){
             this.customValidator.regiForm.reset();  //resetuje forma
             if(this.hasProfilePic){
-              this.http.post('http://localhost:63759/api/Upload/Upload',this.FileFormData,{reportProgress:true,observe:'events'})
+              this.http.post('http://localhost:63758/api/Upload/Upload',this.FileFormData,{reportProgress:true,observe:'events'})
               .subscribe(event=>{
                if(event.type===HttpEventType.UploadProgress){
                   this.progress = Math.round(event.loaded / event.total! * 100);

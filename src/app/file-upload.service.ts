@@ -15,7 +15,7 @@ export class FileUploadService {
     formData.append("name", name);
     formData.append("avatar", profileImage);
 
-    return this.http.post('http://localhost:63759/api/', formData, {
+    return this.http.post('http://localhost:63758/api/', formData, {
       reportProgress: true,
       observe: 'events'
     }).pipe(

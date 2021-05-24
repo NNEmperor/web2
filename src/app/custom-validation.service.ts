@@ -9,7 +9,7 @@ import { Observable } from 'ol';
 })
 export class CustomValidationService {
   regiForm!: FormGroup;
-  readonly BaseURI="http://localhost:63759/api";
+  readonly BaseURI="http://localhost:63758/api";
 
   constructor(private http:HttpClient,private fb: FormBuilder) { 
     this.regiForm=this.fb.group({
