@@ -2,7 +2,13 @@
 <div class="bg bg2"></div>
 <div class="bg bg3"></div>
 
-  <div class="main" id="formContent">
+ <!--<div class="main" id="formContent">-->
+    <div class="page-content page-container" id="page-content">
+        <div class="padding"  >
+            <div class="row container d-flex justify-content-center">
+                <div class="col-xl-10 col-md-12">
+                    <div class="card user-card-full">
+                        <div class="row m-l-0 m-r-0">
     
     <form [formGroup]="regiForm" >
         <div class="container">
@@ -27,7 +33,7 @@
                     </option>
                     </select>
                     <br>
-                    <br><input type="checkbox" ng-checked="all" >&nbsp;&nbsp;<label style="color:#333; font-weight:bold; font-size: 14px;">Send email confirmation</label> <br>
+                    <br><input type="checkbox" formControlName="confirmation" ng-checked="all" >&nbsp;&nbsp;<label style="color:#333; font-weight:bold; font-size: 14px;">Send email confirmation</label> <br>
                     <button style="width: 67%;" class="btn btn-primary" id="regiBtn" (click)="addUser()" [disabled]="regiForm.invalid" >Register</button>
                 <!-- Image Preview 
             
@@ -73,3 +79,9 @@
         </div>
     </form>
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--</div>-->
