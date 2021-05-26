@@ -14,5 +14,12 @@ namespace WebSERVER.Models
 
         }
         public DbSet<ApplicationUser> AppUsers { get; set; }
+        public DbSet<Call> Calls { get; set; }
+        public DbSet<Device> Devices { get; set; }
+        public DbSet<Incident> Incidents { get; set; }
+        public DbSet<WorkRequest> WorkRequests { get; set; }
+        public DbSet<IncidentDevice> IncidentDevices { get; set; }
+        public DbSet<WorkReqDevice> WorkReqDevices { get; set; }
+
     }
 }
