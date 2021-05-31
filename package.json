@@ -33,6 +33,7 @@
     "ng-bootstrap": "^1.6.3",
     "ng-bootstrap-datetime-angular": "^0.1.27",
     "ngx-bootstrap": "^6.2.0",
+    "ngx-toastr": "^14.0.0",
     "ol": "^6.5.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

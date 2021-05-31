@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 import { SocialAuthService, GoogleLoginProvider, SocialUser,FacebookLoginProvider } from 'angularx-social-login';
 import { FormBuilder } from '@angular/forms';
+import { FormUploadService } from '../form-upload.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start-screen',
@@ -11,15 +13,16 @@ import { FormBuilder } from '@angular/forms';
 })
 export class StartScreenComponent implements OnInit {
 
-  loginForm: FormGroup = new FormGroup({
-      'userName' : new FormControl('', [Validators.required, Validators.email]),
-      'password': new FormControl('', Validators.required)
-  });
+  formModel = {
+    UserName: '',
+    Password: ''
+  }
 
   user!: SocialUser;
   isSignedin!: boolean;  //za drustvene mreze
 
-  constructor(private socialAuthService: SocialAuthService) { }
+  constructor(private socialAuthService: SocialAuthService, private router: Router,
+     private service: FormUploadService) { }
   
   ngOnInit(): void {
     
@@ -28,6 +31,9 @@ export class StartScreenComponent implements OnInit {
       this.isSignedin = (user != null);
       console.log(this.user);
     });
+
+    if(localStorage.getItem('token') != null)
+      this.router.navigateByUrl('/home');
   }
 
   googleSignin(): void {
@@ -49,12 +55,24 @@ export class StartScreenComponent implements OnInit {
   //get userName() {return this.loginForm.get('userName');}
   //get password() {return this.loginForm.get('password');}
 
-  onSubmit(){
-    //provera jel postoji u nekoj bazi podataka
+  onSubmit(form: NgForm){
+    console.log("usao sam")
+    this.service.login(form.value).subscribe(
+      (res: any) => {
+        localStorage.setItem('token', res.token);
+        this.router.navigateByUrl('/home');
+      },
+      err => {
+        if(err.status == 400)
+          console.log(err + "404")
+        else
+          console.log(err);
+      }
+    )
   }
 
   onClear(){
-    this.loginForm.reset();
+
   }
 
 }

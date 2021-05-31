@@ -39,4 +39,8 @@ export class FormUploadService {
 
    return  this.http.post(this.BaseURI+"/ApplicationUser/Register", body);  //vraca observable
   }
+
+  login(formData){
+    return this.http.post(this.BaseURI + '/ApplicationUser/Login', formData);
+  }
 }

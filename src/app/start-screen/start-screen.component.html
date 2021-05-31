@@ -16,10 +16,10 @@
               <h2 class="active"> Sign In </h2>
           
               <!-- Login Form -->
-              <form [formGroup]="loginForm" (ngSubmit)="onSubmit">
-                <input required type="text" id="userName" class="fadeIn second" name="userName" formControlName="userName" placeholder="example@email.com">
-                <input required type="password" id="password" class="fadeIn third" name="password" formControlName="password" placeholder="Password">
-                <input [routerLink]='["/home"]' [disabled]="!loginForm.valid" type="submit" class="fadeIn fourth" value="Log In">
+              <form #form='ngForm' (submit)="onSubmit(form)">
+                <input required type="text" #UserName="ngModel" name="UserName" [(ngModel)]="formModel.UserName" class="fadeIn second" placeholder="example@email.com">
+                <input required type="password" #Password="ngModel" name="Password" [(ngModel)]="formModel.Password" class="fadeIn third" placeholder="Password">
+                <input [disabled]="form.invalid" type="submit" class="fadeIn fourth" value="Log In">
               </form>
           
               <!-- Remind Passowrd -->
