@@ -22,13 +22,14 @@ namespace WebSERVER.Controllers
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
         private ApplicationSettings _appSettings;
+        private readonly WebServerContext _context;
 
-
-        public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<ApplicationSettings> appSettings)
+        public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<ApplicationSettings> appSettings, WebServerContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _appSettings = appSettings.Value;
+            _context = context;
         }
 
         [HttpPost]
@@ -91,6 +92,43 @@ namespace WebSERVER.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetRegisteredUsers")]
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetRegisteredUsers()
+        {
+            return await _userManager.Users.Where(x=> x.Status.ToUpper().Equals("PROCESIRA")).ToListAsync();
+        }
+
+        [HttpPost]
+        [Route("AcceptRegistration")]
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>> AcceptRegistration([FromForm] string userName)
+        {
+            var list = _userManager.Users.ToList();
+            Console.WriteLine(userName);
+            var taj = _userManager.Users.FirstOrDefault(x => x.UserName.Equals(userName));
+            taj.Status = "prihvacen";
+            await _userManager.UpdateAsync(taj);
+            //_context.Users.Update(taj);
+
+            return await _userManager.Users.Where(x => x.Status.ToUpper().Equals("PROCESIRA")).ToListAsync();
+            
+        }
+
+        [HttpPost]
+        [Route("DenyRegistration")]
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>> DenyRegistration([FromForm] string userName)
+        {
+            var list = _userManager.Users.ToList();
+            Console.WriteLine(userName);
+            var taj = _userManager.Users.FirstOrDefault(x => x.UserName.Equals(userName));
+            taj.Status = "odbijen";
+            await _userManager.UpdateAsync(taj);
+            //_context.Users.Update(taj);
+
+            return await _userManager.Users.Where(x => x.Status.ToUpper().Equals("PROCESIRA")).ToListAsync();
+
+
+        }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetUsers()
         {
