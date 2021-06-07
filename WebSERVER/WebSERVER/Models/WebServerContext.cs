@@ -20,6 +20,8 @@ namespace WebSERVER.Models
         public DbSet<WorkRequest> WorkRequests { get; set; }
         public DbSet<IncidentDevice> IncidentDevices { get; set; }
         public DbSet<WorkReqDevice> WorkReqDevices { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<WorkPlan> WorkPlans { get; set; }
 
     }
 }

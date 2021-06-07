@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WebSERVER.Models;
@@ -88,6 +89,28 @@ namespace WebSERVER.Controllers
                 Console.WriteLine(e.Message);
                 throw e;
             }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetUsers()
+        {
+            return await _userManager.Users.ToListAsync();
+        }
+
+        [HttpDelete]
+        [Route("DeleteUser/{id}")]
+        public async Task<ActionResult<ApplicationUser>> Deleteuser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+             await _userManager.DeleteAsync(user);
+            //await _userManager.UpdateAsync()
+
+            return user;
         }
     }
 }

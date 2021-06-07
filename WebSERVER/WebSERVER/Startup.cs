@@ -76,11 +76,11 @@ namespace WebSERVER
 
             app.UseAuthentication();
             app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Recources")),
-                RequestPath = new PathString("/Recources")
-            });
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Recources")),
+            //    RequestPath = new PathString("/Recources")
+            //});
             app.UseMvc();
         }
     }
