@@ -8,7 +8,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 })
 export class FormUploadService {
 
-  readonly BaseURI="http://localhost:63758/api";
+  readonly BaseURI="http://localhost:55333/api";
   constructor(private http:HttpClient) { }
 
   register(forma:any){

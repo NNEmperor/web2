@@ -13,8 +13,8 @@
                                 <div class="m-b-25"> <img height="120" width="120" src= '{{user.image}}' class="img-radius" alt="User-Profile-Image"> </div>
                                 <h6 class="f-w-600">{{user.name}}  {{user.lastname}}</h6>
                                 
-                                <button (click)="AcceptUser(user.name)" ><i class = "material-icons">done</i>Accept</button>
-                                <button (click)="DenyUser(user.name)"><i class = "material-icons">delete_sweep</i>Deny</button>
+                                <button (click)="AcceptUser(user.userName)" ><i class = "material-icons">done</i>Accept</button>
+                                <button (click)="DenyUser(user.userName)"><i class = "material-icons">delete_sweep</i>Deny</button>
                                    
                             </div>
                         </div>
@@ -24,31 +24,31 @@
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <p class="m-b-10 f-w-600">Username</p>
-                                        <h6 class="text-muted f-w-400">imeprezime12</h6>
+                                        <h6 class="text-muted f-w-400">{{user.userName}}</h6>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <p class="m-b-10 f-w-600">Email</p>
-                                        <h6 class="text-muted f-w-400">imeprezime@gmail.com</h6>
+                                        <h6 class="text-muted f-w-400">{{user.email}}</h6>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <p class="m-b-10 f-w-600">Date of Birth</p>
-                                        <h6 class="text-muted f-w-400">20.10.1998.</h6>
+                                        <h6 class="text-muted f-w-400">{{user.birthday}}</h6>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <p class="m-b-10 f-w-600">Address</p>
-                                        <h6 class="text-muted f-w-400">Ulica 4</h6>
+                                        <h6 class="text-muted f-w-400">{{user.address}}</h6>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <p class="m-b-10 f-w-600">Role</p>
-                                        <h6 class="text-muted f-w-400">Dispecer</h6>
+                                        <h6 class="text-muted f-w-400">{{user.userRole}}</h6>
                                     </div>
                                 </div>
                                 

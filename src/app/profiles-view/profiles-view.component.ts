@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessagePassingService } from '../message-passing.service';
+import { HttpClient } from '@angular/common/http';
+import { AdminoptionsService } from '../adminoptions.service';
 
 @Component({
   selector: 'app-profiles-view',
@@ -10,20 +12,41 @@ import { MessagePassingService } from '../message-passing.service';
 export class ProfilesViewComponent implements OnInit {
 
   path="assets/images/user.png"
-  users!: User[];
-  constructor(private service: MessagePassingService ) { 
+  users!: any;
+  constructor(private service: MessagePassingService , private http: HttpClient, private adminOption:AdminoptionsService) { 
     this.service.changeData("PROFILES")
   }
 
   ngOnInit(): void {
-    this.users=ELEMENT_DATA;  //lista usera za prikaz
+    //this.users=ELEMENT_DATA;  //lista usera za prikaz
+    this.adminOption.GetRegisteredUsers().subscribe( data =>
+      {
+        console.log("useri na procesiranju: ");
+        console.log(data);
+       // alert(data);
+        this.users = data;
+      });
   }
   AcceptUser(name:string){
     console.log("prihvacen "+name);
+    this.adminOption.AcceptUser(name).subscribe( data =>
+      {
+        console.log("nnakon accepta:    "+data);
+        //alert(data);
+        this.users = data;
+      });
   }
   DenyUser(name:string){
     console.log("odbijen "+name);
+
+    this.adminOption.DenyUser(name).subscribe( data =>
+      {
+        console.log("nnakon denyja:    "+data);
+        //alert(data);
+        this.users = data;
+      });
   }
+ 
 
 }
 export interface User {
