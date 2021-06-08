@@ -29,4 +29,10 @@ export class AdminoptionsService {
         params = params.set('userName', userName);
     return this.http.post(this.BaseURI + '/ApplicationUser/DenyRegistration', params);
   }
+
+  GetTeamMemebers(){
+    console.log("pozove get clan ekipe")
+    let apiUri=this.BaseURI+'/ApplicationUser/GetTeamMembers';
+    return this.http.get(apiUri);
+  }
 }

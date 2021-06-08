@@ -79,9 +79,9 @@
     <div class="page-content page-container" id="page-content">
         <div class="padding"  >
             <div class="row container d-flex justify-content-center">
-                <div class="col-xl-10 col-md-12">
-                    <div class="card user-card-full">
-                        <div class="row m-l-0 m-r-0">
+                <div class="col-xl-30 col-md-16" >
+                    <div class="card user-card-full" >
+                        <div class="row m-l-0 m-r-0" >
                             <form [formGroup]="newTeamForm">
                             
                             <div class="col-sm-4 bg-c-lite-green user-profile">
@@ -103,7 +103,24 @@
                                                     [cdkDropListConnectedTo]="[doneList]"
                                                     class="example-list"
                                                     (cdkDropListDropped)="drop($event)">
-                                                    <div class="example-box" *ngFor="let item of todo" cdkDrag><div class="example-custom-placeholder" *cdkDragPlaceholder></div>{{item}}</div>
+                                                    <div class="example-box" *ngFor="let item of todo" cdkDrag><div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                                                    <div class="container mt-5 d-flex justify-content-center">
+                                                        <div class="card2 p-3">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="image"> <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" class="rounded" width="120"> </div>
+                                                                <div class="ml-3 w-100">
+                                                                    <h4 class="mb-0 mt-0">{{item.userName}}</h4> <span>{{item.name}}&nbsp;{{item.lastname}}</span>
+                                                                    <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                                                                        <div class="d-flex flex-column"> <span class="articles">Birthday</span> <span class="number1">{{item.birthday}}</span> </div>
+                                                                        <div class="d-flex flex-column"> <span class="followers">Address</span> <span class="number2">{{item.address}}</span> </div>
+                                                                        
+                                                                    </div>
+                                                                 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   </div>
                                                 </div>
                                     </div>
                                 </div>
@@ -122,7 +139,22 @@
                                                     [cdkDropListConnectedTo]="[todoList]"
                                                     class="example-list"
                                                     (cdkDropListDropped)="drop($event)">
-                                                    <div class="example-box" *ngFor="let item of done" cdkDrag><div class="example-custom-placeholder" *cdkDragPlaceholder></div>{{item}}</div>
+                                                    <div class="example-box" *ngFor="let item of done" cdkDrag><div class="example-custom-placeholder" *cdkDragPlaceholder></div> <div class="container mt-5 d-flex justify-content-center">
+                                                        <div class="card2 p-3">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="image"> <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" class="rounded" width="120"> </div>
+                                                                <div class="ml-3 w-100">
+                                                                    <h4 class="mb-0 mt-0">{{item.userName}}</h4> <span>{{item.name}}&nbsp;{{item.lastname}}</span>
+                                                                    <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                                                                        <div class="d-flex flex-column"> <span class="articles">Birthday</span> <span class="number1">{{item.birthday}}</span> </div>
+                                                                        <div class="d-flex flex-column"> <span class="followers">Address</span> <span class="number2">{{item.address}}</span> </div>
+                                                                        
+                                                                    </div>
+                                                                 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div></div>
                                                     </div>
                                             </div>
                                         </div>
