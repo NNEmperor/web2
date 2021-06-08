@@ -126,9 +126,15 @@ namespace WebSERVER.Controllers
             //_context.Users.Update(taj);
 
             return await _userManager.Users.Where(x => x.Status.ToUpper().Equals("PROCESIRA")).ToListAsync();
-
-
         }
+
+        [HttpGet]
+        [Route("GetTeamMembers")]
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetTeamMembers()
+        {
+            return await _userManager.Users.Where(x => x.UserRole.ToUpper().Equals("CLAN EKIPE") && x.Status.ToUpper().Equals("PRIHVACEN")).ToListAsync();
+        }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetUsers()
         {
