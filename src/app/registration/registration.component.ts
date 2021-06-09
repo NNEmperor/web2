@@ -15,7 +15,7 @@ import { FormUploadService } from '../form-upload.service';
 export class RegistrationComponent implements OnInit {
   
   progress: number = 0;
-  path = "assets/images/prof.png";
+  path = "assets/images/ssss.png";
   parentMessage = "Registration"
   regiForm!: FormGroup;
   uloge = this.getRoles();
@@ -76,7 +76,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   addUser(){
-
+    
     /*if(this.regiForm.value.imagename.length==0){
       alert('You must add picture.')
     }else*/{
@@ -86,7 +86,7 @@ export class RegistrationComponent implements OnInit {
           if(res.succeeded){
             this.customValidator.regiForm.reset();  //resetuje forma
             if(this.hasProfilePic){
-              this.http.post('http://localhost:63758/api/Upload/Upload',this.FileFormData,{reportProgress:true,observe:'events'})
+              this.http.post('http://localhost:55333/api/ApplicationUser/UploadFile',this.FileFormData,{reportProgress:true,observe:'events'})
               .subscribe(event=>{
                if(event.type===HttpEventType.UploadProgress){
                   this.progress = Math.round(event.loaded / event.total! * 100);
@@ -194,6 +194,7 @@ export class RegistrationComponent implements OnInit {
 
     }else{
       console.log('nije odabrana slika')
+      alert("sliiiika   "+this.regiForm.value.avatar)
       return;   //VIDETI SA OVIM DA LI TREBA
     }
 

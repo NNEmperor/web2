@@ -10,7 +10,7 @@
                     <div class="row m-l-0 m-r-0">
                         <div class="col-sm-4 bg-c-lite-green user-profile">
                             <div class="card-block text-center text-white">
-                                <div class="m-b-25"> <img height="120" width="120" src= '{{user.image}}' class="img-radius" alt="User-Profile-Image"> </div>
+                                <div class="m-b-25"> <img height="120" width="120" src= 'data:image/JPEG;base64,{{user.image}}' class="img-radius" alt="User-Profile-Image" onerror="this.onerror=null; this.src='assets/images/ssss.png'"> </div>
                                 <h6 class="f-w-600">{{user.name}}  {{user.lastname}}</h6>
                                 
                                 <button (click)="AcceptUser(user.userName)" ><i class = "material-icons">done</i>Accept</button>
