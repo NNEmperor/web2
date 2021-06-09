@@ -1,5 +1,4 @@
 
-
 <div class="bg"></div>
 <div class="bg bg2"></div>
 <div class="bg bg3"></div>
@@ -16,7 +15,7 @@
                                 <p>Incident ID:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input class="form-control" #idIncident style="text-align: center;" readonly/>
+                                <input type="number" class="form-control" #idIncident style="text-align: center;" readonly/>
                             </div>
                             <div class="col-sm-2">
                                 <p>Affected customers:</p>
@@ -30,17 +29,17 @@
                                 <p>Type:</p>
                             </div>
                             <div class="col-sm-4">
-                                <select class="form-control" style="height: 1cm;" formControlName="type">
+                                <select class="form-control" #type style="height: 1cm;" formControlName="type">
                                     <option value="">Choose type</option>
                                     <option value="Unplaned">Unplaned</option>
                                     <option value="Planed">Planed</option>
                                 </select>
                             </div>
                             <div class="col-sm-2">
-                                <p>Outage(date):</p>
+                                <p>Outage:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input type="date" class="form-control" formControlName="outageDate" /> 
+                                <input type="datetime-local" #outage class="form-control" formControlName="outage" /> 
                             </div>
                         </div>
                         <div class=" form-group row">
@@ -49,12 +48,6 @@
                             </div>
                             <div class="col-sm-4">
                                 <input class="form-control" #prioIncident style="text-align: center;" readonly/>
-                            </div>
-                            <div class="col-sm-2">
-                                <p>Outage(time):</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="time" class="form-control" formControlName="outageTime" /> 
                             </div>
                         </div>
                         <div class=" form-group row">
@@ -65,10 +58,10 @@
                                 <input #confirmedIncident class="form-control" type="checkbox" style="width: 0.6cm; height: 0.5cm;">
                             </div>
                             <div class="col-sm-2">
-                                <p>ETR(date):</p>
+                                <p>ETR:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input type="date" class="form-control" formControlName="etrDate" /> 
+                                <input type="datetime-local" #etr class="form-control" formControlName="etr" /> 
                             </div>
                         </div>
                         <div class=" form-group row">
@@ -78,82 +71,58 @@
                             <div class="col-sm-4">
                                 <input class="form-control" #statusIncident style="margin-top: 1mm; text-align: center;" readonly/>
                             </div>
-                            <div class="col-sm-2">
-                                <p>ETR(time):</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="time" class="form-control" formControlName="etrTime" /> 
-                            </div>
                         </div>
                         <div class=" form-group row">
                             <div class="col-sm-2">
                                 <p>Description:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input class="form-control" type="text" id="descriptionIncident" style="margin-top: 2mm;" formControlName="description" />
+                                <input class="form-control" #description type="text" style="margin-top: 2mm;" formControlName="description" />
                             </div>
                             <div class="col-sm-2">
                                 <p>Calls:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input class="form-control" type="number" id="numCallsIncident" formControlName="calls" />
+                                <input class="form-control" type="number" #calls formControlName="calls" />
                             </div>
                         </div>
                         <div class=" form-group row">
                             <div class="col-sm-2">
-                                <p>ETA(date):</p>
+                                <p>ETA:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input type="date" class="form-control" formControlName="etaDate" /> 
+                                <input type="datetime-local" #eta class="form-control" formControlName="etaD" /> 
                             </div>
                             <div class="col-sm-2">
                                 <p>Voltage:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input class="form-control" type="number" id="voltageIncident" formControlName="voltage" />
+                                <input class="form-control" type="number" #voltage formControlName="voltage" />
                             </div>
                         </div>
                         <div class=" form-group row">
                             <div class="col-sm-2">
-                                <p>ETA(time):</p>
+                                <p>Scheduled fix:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input type="time" class="form-control" formControlName="etaTime" />
-                            </div>
-                            <div class="col-sm-2">
-                                <p>Scheduled(date):</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="date" class="form-control" formControlName="scheduledDate" /> 
+                                <input type="datetime-local" #scheduled class="form-control" formControlName="scheduled" /> 
                             </div>
                         </div>
                         <div class=" form-group row">
                             <div class="col-sm-2">
-                                <p>ATA(date):</p>
+                                <p>ATA:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input type="date" class="form-control" formControlName="ataDate" /> 
-                            </div>
-                            <div class="col-sm-2">
-                                <p>Scheduled(time):</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="time" class="form-control" formControlName="scheduledTime" /> 
+                                <input #ata type="datetime-local" class="form-control" formControlName="ata" /> 
                             </div>
                         </div>
                         <div class=" form-group row">
-                            <div class="col-sm-2">
-                                <p>ATA(time):</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="time" class="form-control" formControlName="ataTime" /> 
-                            </div>
                         </div>
                         <div class="form-group row"  style="display: flex;justify-content: flex-end;" >
                             <span>
                                 <i class = "material-icons">clear</i> 
                             </span>
-                            <span>
+                            <span (click)="sendIncidentBasic()">
                                 <i class = "material-icons">save</i> 
                             </span>
                             

@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MessagePassingService } from '../message-passing.service';
+import { IncidentBasic } from '../models/incident-basic';
 
 @Component({
   selector: 'app-new-incident-basic-info',
@@ -15,39 +16,65 @@ export class NewIncidentBasicInfoComponent implements AfterViewInit {
   @ViewChild("statusIncident") statusIncident;
   @ViewChild("affectedByIncident") affectedByIncident;
   @ViewChild("confirmedIncident") confirmedIncident;
+  @ViewChild("ata") ata;
+  @ViewChild("eta") eta;
+  @ViewChild("etr") etr;
+  @ViewChild("type") type;
+  @ViewChild("outage") outage;
+  @ViewChild("description") description;
+  @ViewChild("calls") calls;
+  @ViewChild("voltage") voltage;
+  @ViewChild("scheduled") scheduled;
 
-  basicInfoForm: FormGroup = new FormGroup({
-    'type' : new FormControl('', Validators.required),
-    'description': new FormControl('', Validators.required),
-    'etaDate': new FormControl('', Validators.required),
-    'etaTime': new FormControl('', Validators.required),
-    'ataDate': new FormControl('', Validators.required),
-    'ataTime': new FormControl('', Validators.required),
-    'outageDate': new FormControl('', Validators.required),
-    'outageTime': new FormControl('', Validators.required),
-    'etrDate': new FormControl('', Validators.required),
-    'etrTime': new FormControl('', Validators.required),
-    'calls' : new FormControl('', Validators.required),
-    'voltage' : new FormControl('', Validators.required),
-    'scheduledDate': new FormControl('', Validators.required),
-    'scheduledTime' : new FormControl('', Validators.required)
-});
+  basicInfoData: IncidentBasic = new IncidentBasic();
 
-  constructor(private service: MessagePassingService) {
+  basicInfoForm!: FormGroup;
+
+  constructor(private fb: FormBuilder, private service: MessagePassingService) {
     this.service.changeData("INCIDENT - NEW")
 
-
+    this.basicInfoForm = this.fb.group({
+      type:['', Validators.required],
+      description:['', Validators.required],
+      eta:['', Validators.required],
+      ata:['', Validators.required],
+      outage:['', Validators.required],
+      etr:['', Validators.required],
+      calls:['', Validators.required],
+      voltage:['', Validators.required],
+      scheduled:['', Validators.required]
+    })
   }
-  
+
+  sendIncidentBasic(){
+
+    this.basicInfoData.ATA = this.ata.nativeElement.value;
+    this.basicInfoData.ETA = this.eta.nativeElement.value;
+    this.basicInfoData.ETR = this.etr.nativeElement.value;
+    this.basicInfoData.Outage = this.outage.nativeElement.value;
+    this.basicInfoData.Id = this.idIncident.nativeElement.value;
+    this.basicInfoData.Type = this.type.nativeElement.value;
+    this.basicInfoData.Priority = this.prioIncident.nativeElement.value;
+    this.basicInfoData.Confirmed = this.confirmedIncident.nativeElement.value;
+    this.basicInfoData.Description = this.description.nativeElement.value;
+    this.basicInfoData.Affected = this.affectedByIncident.nativeElement.value;
+    this.basicInfoData.NumCalls = this.calls.nativeElement.value;
+    this.basicInfoData.Estimated = this.scheduled.nativeElement.value;
+    this.basicInfoData.Status = this.statusIncident.nativeElement.value;
+
+
+    this.service.sendIncidentBasic(this.basicInfoData);
+  }
+
   ngAfterViewInit(): void {
     //generise random id
-    this.idIncident.nativeElement.value = "sklj"
+    this.idIncident.nativeElement.value = "1"
     //generise prioritet na osnovu lokacije
     this.prioIncident.nativeElement.value = "0"
     //automatski je draft
     this.statusIncident.nativeElement.value = "Draft"
     //automatski na osnovu izabranih uredjaja
-    this.affectedByIncident = "0"
+    this.affectedByIncident.nativeElement.value = "0"
 
   }
 }

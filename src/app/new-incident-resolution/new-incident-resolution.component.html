@@ -2,45 +2,47 @@
 <div class="bg bg2"></div>
 <div class="bg bg3"></div>
 <div class="content">
-    <div class="row div-cls">
-        <p class="p-cls">Cause:</p>
-        <select class="form-control" name="incident-cause" id="incident-cause">
-            <option value="Weather">Weather</option>
-            <option value="Humans">Humans</option>
-            <option value="Failure">Failure</option>
-        </select>
-    </div>
-    <div class="row div-cls">
-        <p class="p-cls">Subcause:</p>
-        <!--zavisi od uzroka-->
-        <select class="form-control" name="incident-subcause" id="incident-subcause">
-            <option value="Lightning">Lightning</option>
-            <option value="Huricane">Huricane</option>
-            <option value="Wind">Wind</option>
-        </select>
-    </div>
-    <div class="row div-cls">
-        <p class="p-cls">Construction type:</p>
-        <select class="form-control" name="incident-cons-type" id="incident-cons-type">
-            <option value="Underground">Underground</option>
-            <option value="Onground">Onground</option>
-        </select>
-    </div>
-    <div class="row div-cls">
-        <p class="p-cls">Material:</p>
-        <!--zavisi od uzroka-->
-        <select class="form-control" name="incident-material" id="incident-material">
-            <option value="Metal">Metal</option>
-            <option value="Plastic">Plastic</option>
-        </select>
-    </div>
-    <div class="form-group row"  style="display: flex;justify-content: flex-end; margin-top: 10%;" >
-        <span>
-            <i class = "material-icons">clear</i> 
-        </span>
-        <span>
-            <i class = "material-icons">save</i> 
-        </span>
-        
-    </div>
+    <form [formGroup]="resolutionForm" >
+        <div class="row div-cls">
+            <p class="p-cls">Cause:</p>
+            <select class="form-control" name="incident-cause" #cause>
+                <option value="Weather">Weather</option>
+                <option value="Humans">Humans</option>
+                <option value="Failure">Failure</option>
+            </select>
+        </div>
+        <div class="row div-cls">
+            <p class="p-cls">Subcause:</p>
+            <!--zavisi od uzroka-->
+            <select class="form-control" name="incident-subcause" #subcause>
+                <option value="Lightning">Lightning</option>
+                <option value="Huricane">Huricane</option>
+                <option value="Wind">Wind</option>
+            </select>
+        </div>
+        <div class="row div-cls">
+            <p class="p-cls">Construction type:</p>
+            <select class="form-control" name="incident-cons-type" #type>
+                <option value="Underground">Underground</option>
+                <option value="Onground">Onground</option>
+            </select>
+        </div>
+        <div class="row div-cls">
+            <p class="p-cls">Material:</p>
+            <!--zavisi od uzroka-->
+            <select class="form-control" name="incident-material" #material>
+                <option value="Metal">Metal</option>
+                <option value="Plastic">Plastic</option>
+            </select>
+        </div>
+        <div class="form-group row"  style="display: flex;justify-content: flex-end; margin-top: 10%;" >
+            <span>
+                <i class = "material-icons">clear</i> 
+            </span>
+            <span (click)="sendResolution()">
+                <i class = "material-icons">save</i> 
+            </span>
+            
+        </div>
+    </form>
 </div>
