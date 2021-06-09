@@ -15,7 +15,7 @@ namespace WebSERVER.Models
         public string Lastname { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public string Birthday { get; set; }
-        [Column(TypeName = "nvarchar(250)")]
+        [Column(TypeName = "nvarchar(MAX)")]
         public string Image { get; set; }
         [Column(TypeName = "nvarchar(250)")]
         public string Address { get; set; }

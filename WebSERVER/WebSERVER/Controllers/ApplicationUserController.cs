@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -23,7 +24,7 @@ namespace WebSERVER.Controllers
         private SignInManager<ApplicationUser> _signInManager;
         private ApplicationSettings _appSettings;
         private readonly WebServerContext _context;
-
+        static string korime = "";
         public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<ApplicationSettings> appSettings, WebServerContext context)
         {
             _userManager = userManager;
@@ -73,7 +74,7 @@ namespace WebSERVER.Controllers
                 Lastname = model.Lastname,
                 Birthday = model.Birthday,
                 Address = model.Address,
-                Image = model.Image,
+                Image = "",//model.Image,
                 UserRole = model.UserRole,
                 SendConfirmation = model.SendConfirmation,
                 Status = model.Status //inicijalno--procesira
@@ -82,6 +83,7 @@ namespace WebSERVER.Controllers
             try
             {
                 var result = await _userManager.CreateAsync(appuser, model.Password);
+                korime = appuser.UserName;
                 return Ok(result);
 
             }
@@ -90,6 +92,30 @@ namespace WebSERVER.Controllers
                 Console.WriteLine(e.Message);
                 throw e;
             }
+        }
+
+        [HttpPost]
+        [Route("UploadFile")]
+        public async Task<IActionResult> UploadFile()
+        {
+            var userName = korime;
+            korime = "";
+            string base64string;
+            var myFile = Request.Form.Files[0];
+            var filetype = myFile.ContentType;
+            var filepath = Path.GetTempFileName();
+            using (var stream = System.IO.File.Create(filepath))
+            {
+                await myFile.CopyToAsync(stream);
+            }
+            byte[] imageByte = System.IO.File.ReadAllBytes(filepath);
+            base64string = Convert.ToBase64String(imageByte);
+           
+            var taj = _userManager.Users.Where(x => x.UserName.Equals(userName)).Single();
+            taj.Image = base64string;//pamti tu sliku
+            await _userManager.UpdateAsync(taj);
+
+            return new EmptyResult();
         }
 
         [HttpGet]
