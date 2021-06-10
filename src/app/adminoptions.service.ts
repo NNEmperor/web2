@@ -37,12 +37,12 @@ export class AdminoptionsService {
   }
 
   AddTeam(tid,tname, lista){
-    console.log("formica "+tid+"--"+tname);
-    console.log("listica clanova "+lista);
+    console.log("formica za new team"+tid+"--"+tname);
+    console.log("listica clanova new teama"+lista);
    // let params = new HttpParams();
      //   params = params.set('userName', userName);
 
-     alert("id tima je--"+tid);
+     console.log("id tima je--"+tid);
      var body={
       TeamId: tid,
       TeamName: tname,
@@ -50,5 +50,24 @@ export class AdminoptionsService {
     };
 
     return this.http.post(this.BaseURI + '/Team/AddTeam', body);
+  }
+
+  GetTeamID(){
+    console.log("GENERISANJE ID-ja za tim")
+    let apiUri=this.BaseURI+'/Team/GenerateTeamID';
+    return this.http.get(apiUri);
+  }
+
+  GetAllTeams(){
+    console.log("svi timoviiii ")
+    let apiUri=this.BaseURI+'/Team/GetAllTeams';
+    return this.http.get(apiUri);
+  }
+
+  DeleteTeam(teamId:string){
+    console.log("poziva server obrisi "+teamId);
+    let params = new HttpParams();
+        params = params.set('teamId', teamId);
+    return this.http.post(this.BaseURI + '/Team/DeleteTeam', params);
   }
 }

@@ -4,6 +4,7 @@ import { MessagePassingService } from '../message-passing.service';
 import {DragDropModule,CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { AdminoptionsService } from '../adminoptions.service';
 import {copyArrayItem} from '@angular/cdk/drag-drop';
+import { HttpErrorResponse, HttpEventType, HttpResponse } from '@angular/common/http';
 
 
 @Component({
@@ -82,19 +83,39 @@ this.adminOption.GetTeamMemebers().subscribe(data =>{
 
     console.log(this.todo);
   });
+
+  this.adminOption.GetTeamID().subscribe(data=>{
+    //nis
+  }, (err:HttpErrorResponse) => {
+    console.log(err)
+    let message= err.error.text;
+    console.log("ID "+message);
+    this.newTeamForm.controls['inputID'].setValue(message);
+  });
 }
 
   addTeam(){
     console.log('dodat team')
     const lista:Array<string>=[];
     for(let i=0;i<this.done.length;i++){
-      alert(this.done[i].userName);
+      console.log(this.done[i].userName);
       lista.push(this.done[i].userName);
-      alert("el "+i+" "+lista[i])
+      console.log("el "+i+" "+lista[i])
     }
-    this.adminOption.AddTeam(this.newTeamForm.value.inputID, this.newTeamForm.value.inputName,lista).subscribe(data =>{
-     alert(" dodat tim--"+data.toString())
-    });
+    this.adminOption.AddTeam(this.newTeamForm.value.inputID, this.newTeamForm.value.inputName,lista).subscribe((data:any) =>{
+
+     if(data.succeeded){
+       alert("Uspesno dodat tim!  da li ovo prikaze");  //ne udje, ali sa servera ispise
+     }
+     
+    }, (err:HttpErrorResponse) => {
+      console.log(err)
+      //alert("NEMA NIJADNOG CLANA TIMA/ Postoji vec zadat id");
+      let message= err.error.text;
+      alert(message);
+   })
+    
+    //);
   }
 }
 
