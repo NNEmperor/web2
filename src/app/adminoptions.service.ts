@@ -35,4 +35,20 @@ export class AdminoptionsService {
     let apiUri=this.BaseURI+'/ApplicationUser/GetTeamMembers';
     return this.http.get(apiUri);
   }
+
+  AddTeam(tid,tname, lista){
+    console.log("formica "+tid+"--"+tname);
+    console.log("listica clanova "+lista);
+   // let params = new HttpParams();
+     //   params = params.set('userName', userName);
+
+     alert("id tima je--"+tid);
+     var body={
+      TeamId: tid,
+      TeamName: tname,
+      Members: lista
+    };
+
+    return this.http.post(this.BaseURI + '/Team/AddTeam', body);
+  }
 }

@@ -25,7 +25,7 @@ export class NewTeamComponent implements OnInit {
     this.newTeamForm=this.fb.group({
       //id ne bi trebao da se unosi,sam da se generise na serveru
       inputName:['',[Validators.required,Validators.minLength(3)]],
-    
+      inputID:['',[Validators.required,Validators.minLength(3)]],
     });
   }
     
@@ -86,6 +86,15 @@ this.adminOption.GetTeamMemebers().subscribe(data =>{
 
   addTeam(){
     console.log('dodat team')
+    const lista:Array<string>=[];
+    for(let i=0;i<this.done.length;i++){
+      alert(this.done[i].userName);
+      lista.push(this.done[i].userName);
+      alert("el "+i+" "+lista[i])
+    }
+    this.adminOption.AddTeam(this.newTeamForm.value.inputID, this.newTeamForm.value.inputName,lista).subscribe(data =>{
+     alert(" dodat tim--"+data.toString())
+    });
   }
 }
 
