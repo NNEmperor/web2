@@ -22,6 +22,8 @@ namespace WebSERVER.Models
         public DbSet<WorkReqDevice> WorkReqDevices { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<WorkPlan> WorkPlans { get; set; }
+        public DbSet<MemberOfTeam> Members { get; set; }
+        public DbSet<Team> Teams { get; set; }
 
     }
 }

@@ -10,8 +10,8 @@ using WebSERVER.Models;
 namespace WebSERVER.Migrations
 {
     [DbContext(typeof(WebServerContext))]
-    [Migration("20210609210404_profilna")]
-    partial class profilna
+    [Migration("20210609232816_druga")]
+    partial class druga
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -316,6 +316,24 @@ namespace WebSERVER.Migrations
                     b.ToTable("IncidentDevices");
                 });
 
+            modelBuilder.Entity("WebSERVER.Models.MemberOfTeam", b =>
+                {
+                    b.Property<int>("MemberId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("MemberTeamId")
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("MemberUserName")
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("MemberId");
+
+                    b.ToTable("Members");
+                });
+
             modelBuilder.Entity("WebSERVER.Models.Notification", b =>
                 {
                     b.Property<int>("Id")
@@ -335,6 +353,20 @@ namespace WebSERVER.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("WebSERVER.Models.Team", b =>
+                {
+                    b.Property<string>("TeamId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("TeamName")
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("TeamId");
+
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("WebSERVER.Models.WorkPlan", b =>
