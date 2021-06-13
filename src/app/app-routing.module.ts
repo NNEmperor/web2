@@ -4,6 +4,7 @@ import { ChangePwdComponent } from './change-pwd/change-pwd.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DocSettingsComponent } from './doc-settings/doc-settings.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditTeamComponent } from './edit-team/edit-team.component';
 import { EquipmentComponent } from './equipment/equipment.component';
 import { IconsComponent } from './icons/icons.component';
 import { MapComponent } from './map/map.component';
@@ -71,6 +72,7 @@ const routes: Routes = [
     { path: "incidents", component: MyIncidentsComponent },
     { path: "work-requests", component: WorkRequestsComponent },
     { path: 'work-plans', component: MyWorkPlansComponent },
+    { path: 'edit-team', component:EditTeamComponent },
     { path: 'workreq-new', component: WorkreqNewComponent,
         children: [
           { path: "", component:  WorkreqBasicinfoComponent},

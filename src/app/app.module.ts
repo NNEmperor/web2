@@ -81,6 +81,7 @@ import { NewWorkPlanMultimediaComponent } from './new-work-plan-multimedia/new-w
 import { ProfilesViewComponent } from './profiles-view/profiles-view.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider , FacebookLoginProvider} from 'angularx-social-login';
+import { EditTeamComponent } from './edit-team/edit-team.component';
 
 @NgModule({
   declarations: [
@@ -139,6 +140,7 @@ import { GoogleLoginProvider , FacebookLoginProvider} from 'angularx-social-logi
     NewWorkPlanInstructionsComponent,
     NewWorkPlanMultimediaComponent,
     ProfilesViewComponent,
+    EditTeamComponent,
   ],
   imports: [
     BrowserModule,

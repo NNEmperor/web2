@@ -52,6 +52,22 @@ export class AdminoptionsService {
     return this.http.post(this.BaseURI + '/Team/AddTeam', body);
   }
 
+  UpdateTeam(tid,tname, lista){
+    console.log("formica za new team"+tid+"--"+tname);
+    console.log("listica clanova new teama"+lista);
+   // let params = new HttpParams();
+     //   params = params.set('userName', userName);
+
+     console.log("id tima je--"+tid);
+     var body={
+      TeamId: tid,
+      TeamName: tname,
+      Members: lista
+    };
+
+    return this.http.post(this.BaseURI + '/Team/UpdateTeam', body);
+  }
+
   GetTeamID(){
     console.log("GENERISANJE ID-ja za tim")
     let apiUri=this.BaseURI+'/Team/GenerateTeamID';
@@ -69,5 +85,23 @@ export class AdminoptionsService {
     let params = new HttpParams();
         params = params.set('teamId', teamId);
     return this.http.post(this.BaseURI + '/Team/DeleteTeam', params);
+  }
+  GetTeam(timId:string){
+    let params = new HttpParams();
+    console.log("parametarrrrr :"+timId);
+    params = params.set('timId', timId);
+    return this.http.post(this.BaseURI + '/Team/GetTeam',params);
+  }
+  GetMembers(timId:string){
+    let params = new HttpParams();
+    console.log("parametarrrrr :"+timId);
+    params = params.set('timId', timId);
+    return this.http.post(this.BaseURI + '/Team/GetMembers',params);
+  }
+  GetFreeMembers(timId:string){
+    let params = new HttpParams();
+    console.log("parametarrrrr :"+timId);
+    params = params.set('timId', timId);
+    return this.http.post(this.BaseURI + '/Team/GetFreeMembers',params);
   }
 }

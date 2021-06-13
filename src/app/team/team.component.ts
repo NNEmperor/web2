@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ConsolidatedItemHitTestBehavior_$type } from 'igniteui-angular-charts';
 import { AdminoptionsService } from '../adminoptions.service';
 import { MessagePassingService } from '../message-passing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-team',
@@ -22,7 +23,7 @@ displayedColumns: string[] = [ 'teamName','teamId', 'members','edit', 'delete'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private service: MessagePassingService , private adminOption: AdminoptionsService) {
+  constructor(private service: MessagePassingService , private adminOption: AdminoptionsService,  private router: Router) {
     this.service.changeData("TEAMS")
    //poceno bilo
     /*this.data = ELEMENT_DATA;
@@ -91,6 +92,8 @@ displayedColumns: string[] = [ 'teamName','teamId', 'members','edit', 'delete'];
 
   editTeam(e:string){
   alert("edituj tim: "+e);
+  localStorage.setItem('edit-team',e);
+  this.router.navigateByUrl('/home/edit-team');
   }
 }
 
