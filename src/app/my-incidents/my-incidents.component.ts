@@ -38,6 +38,7 @@ export class MyIncidentsComponent implements OnInit {
  ngOnInit(): void {
   this.incidentService.getAll().subscribe(res=>{
     this.data = res as any;
+    console.log(this.data);
     this.dataSource = new MatTableDataSource(this.data);
     setTimeout(() => {
       this.dataSource.sort = this.sort;
