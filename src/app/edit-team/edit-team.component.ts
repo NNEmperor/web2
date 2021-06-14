@@ -48,14 +48,14 @@ export class EditTeamComponent implements OnInit {
   ngOnInit(): void {
 
     let idtima=localStorage.getItem('edit-team');
-    alert("odabran je "+idtima);
+    console.log("odabran je "+idtima);
     this.newTeamForm.controls['inputID'].setValue(idtima);  //setovanje vec onog idja
     this.teamId=idtima as string;
-    alert(this.teamId);
+    console.log(this.teamId);
 this.adminOption.GetTeam(this.teamId).subscribe(data =>{
     console.log("useri na procesiranju: ");
     console.log(data);
-    alert("timm"+data);
+    console.log("timm"+data);
     this.newTeamForm.controls['inputName'].setValue((data as TeamElement).teamName);
    // console.log(data[1]);
     //this.done=(data as TeamElement).members//data as any[];
@@ -65,7 +65,7 @@ this.adminOption.GetTeam(this.teamId).subscribe(data =>{
   this.adminOption.GetMembers(this.teamId).subscribe(data =>{
     console.log("clanovi tima: ");
     console.log(data);
-    alert("timm"+data);
+    console.log("timm"+data);
    
     this.done=data as any[];
 
@@ -74,7 +74,7 @@ this.adminOption.GetTeam(this.teamId).subscribe(data =>{
   this.adminOption.GetFreeMembers(this.teamId).subscribe(data =>{
     console.log("clanovi tima: ");
     console.log(data);
-    alert("timm"+data);
+    console.log("timm"+data);
    
     this.todo=data as any[];
 
@@ -112,7 +112,9 @@ this.adminOption.GetTeam(this.teamId).subscribe(data =>{
       alert(message);
 
       //prebaci NA SVE TIMOVE
+      if(message==="Uspesno izmenjen tim"){
       this.router.navigateByUrl('/home/teams');
+      }
    })
     
     //);

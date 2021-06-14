@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit , ViewChild, ElementRef } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-workreq-multimedia',
@@ -11,9 +12,15 @@ export class WorkreqMultimediaComponent implements OnInit {
   //files:any[]=[];
   @ViewChild("fileDropRef", { static: false }) fileDropEl!: ElementRef;
   files: any[] = [];
-  constructor() { }
+  fileUrl;
+  //  
+  imagePath="assets/images/apple-icon-120x120.png";
+  slika;
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+
+   
   }
  
   
@@ -72,6 +79,11 @@ export class WorkreqMultimediaComponent implements OnInit {
     for (const item of files) {
       item.progress = 0;
       this.files.push(item);
+      this.slika=item;
+      const data =this.slika;//this.imagePath ;
+      const blob = new Blob([data], { type: 'image/jpeg' });
+  
+      this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
     }
     this.fileDropEl.nativeElement.value = "";
     this.uploadFilesSimulator(0);

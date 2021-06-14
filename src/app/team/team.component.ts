@@ -56,9 +56,9 @@ displayedColumns: string[] = [ 'teamName','teamId', 'members','edit', 'delete'];
   }
 
   deleteTeam(e:string){
-    alert("brisi tim: "+e);
+    console.log("brisi tim: "+e);
     this.adminOption.DeleteTeam(e).subscribe(res=>{
-      alert("pogodjeno brisanje")
+      console.log("pogodjeno brisanje")
     }, (err:HttpErrorResponse) => {
       console.log(err)
       let message= err.error.text;
@@ -91,7 +91,7 @@ displayedColumns: string[] = [ 'teamName','teamId', 'members','edit', 'delete'];
   }
 
   editTeam(e:string){
-  alert("edituj tim: "+e);
+  console.log("edituj tim: "+e);
   localStorage.setItem('edit-team',e);
   this.router.navigateByUrl('/home/edit-team');
   }

@@ -9,7 +9,9 @@
   </div>
   <div class="files-list" >
     <div class="single-file" *ngFor="let file of files; let i = index">
-      <img src="assets/images/apple-icon-120x120.png" width="45px" alt="file">
+      <a  [href]="fileUrl" download='{{ file?.name }}'>
+      <img [src]="imagePath" width="45px" alt="file">
+    </a>
       <div class="info">
         <h4 class="name">
           {{ file?.name }}

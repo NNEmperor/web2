@@ -5,6 +5,7 @@ import {DragDropModule,CdkDragDrop, moveItemInArray, transferArrayItem} from '@a
 import { AdminoptionsService } from '../adminoptions.service';
 import {copyArrayItem} from '@angular/cdk/drag-drop';
 import { HttpErrorResponse, HttpEventType, HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class NewTeamComponent implements OnInit {
   
   done:any[]=[];
 
-  constructor(private service: MessagePassingService, private fb: FormBuilder, private adminOption: AdminoptionsService) {
+  constructor(private service: MessagePassingService, private fb: FormBuilder, private adminOption: AdminoptionsService,  private router: Router) {
     this.service.changeData("NEW TEAM")
 
     this.newTeamForm=this.fb.group({
@@ -113,6 +114,11 @@ this.adminOption.GetTeamMemebers().subscribe(data =>{
       //alert("NEMA NIJADNOG CLANA TIMA/ Postoji vec zadat id");
       let message= err.error.text;
       alert(message);
+
+      //prebaci NA SVE TIMOVE
+      if(message==="Uspesno kreiran tim"){
+        this.router.navigateByUrl('/home/teams');
+        }
    })
     
     //);

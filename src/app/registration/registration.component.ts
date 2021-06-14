@@ -6,6 +6,7 @@ import { CustomValidationService } from '../custom-validation.service';
 
 import { Observable, throwError } from 'rxjs';
 import { FormUploadService } from '../form-upload.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -26,7 +27,7 @@ export class RegistrationComponent implements OnInit {
   FileFormData=new FormData();//za slanje slike
   hasProfilePic=false;
 
-  constructor(private fb: FormBuilder, public fileUploadService: FileUploadService,public uploadForm: FormUploadService ,private customValidator: CustomValidationService, private http: HttpClient) { 
+  constructor(private fb: FormBuilder, public fileUploadService: FileUploadService,public uploadForm: FormUploadService ,private customValidator: CustomValidationService, private http: HttpClient, private router: Router) { 
     
     this.regiForm=this.fb.group({
 
@@ -98,11 +99,12 @@ export class RegistrationComponent implements OnInit {
                 }else if(event.type===HttpEventType.Response){
                   alert("OKACENO");
                   console.log("Okaceno")
-                  alert("telo "+event.body);
+                  console.log("telo "+event.body);
                 }
               });
             }
             alert("bravooo");
+            this.router.navigateByUrl('/start-screen');
           }else{
             res.errors.array.forEach(element => {
               switch(element.code){
