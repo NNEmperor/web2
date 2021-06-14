@@ -10,8 +10,8 @@ using WebSERVER.Models;
 namespace WebSERVER.Migrations
 {
     [DbContext(typeof(WebServerContext))]
-    [Migration("20210609232816_druga")]
-    partial class druga
+    [Migration("20210614111431_prva")]
+    partial class prva
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -233,9 +233,7 @@ namespace WebSERVER.Migrations
 
             modelBuilder.Entity("WebSERVER.Models.Device", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("Id");
 
                     b.Property<string>("Address");
 
@@ -256,6 +254,7 @@ namespace WebSERVER.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("ATA");

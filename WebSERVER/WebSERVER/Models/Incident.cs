@@ -10,7 +10,7 @@ namespace WebSERVER.Models
     public class Incident
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Column(TypeName = "int")]
         public int Id { get; set; }
         public string  UserNameCreator { get; set; }
 

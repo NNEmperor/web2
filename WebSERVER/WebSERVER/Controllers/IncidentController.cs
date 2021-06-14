@@ -100,7 +100,7 @@ namespace WebSERVER.Controllers
         public async Task<ActionResult<Incident>> AddIncident([FromBody]IncidentModel IncidentM)
         {
             bool c;
-            if (IncidentM.Confirmed == "on")
+            if (IncidentM.Confirmed.Equals("on"))
                 c = true;
             else
                 c = false;
