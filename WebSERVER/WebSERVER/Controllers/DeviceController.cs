@@ -9,7 +9,7 @@ using WebSERVER.Models;
 
 namespace WebSERVER.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Devices")]
     [ApiController]
     public class DeviceController : ControllerBase
     {
@@ -21,7 +21,8 @@ namespace WebSERVER.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Device>>> GetDevices()
+        [Route("GetAll")]
+        public async Task<ActionResult<IEnumerable<Device>>> GetAll()
         {
             return await _context.Devices.ToListAsync();
         }
@@ -65,7 +66,7 @@ namespace WebSERVER.Controllers
 
         [HttpPost]
         [Route("AddDevice")]
-        public async Task<ActionResult<Device>> AddBook(Device device)
+        public async Task<ActionResult<Device>> AddDevice(Device device)
         {
 
             _context.Devices.Add(device);

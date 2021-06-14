@@ -97,23 +97,28 @@ namespace WebSERVER.Controllers
 
         [HttpPost]
         [Route("AddIncident")]
-        public async Task<ActionResult<Incident>> AddIncident(IncidentModel IncidentM)
+        public async Task<ActionResult<Incident>> AddIncident([FromBody]IncidentModel IncidentM)
         {
+            bool c;
+            if (IncidentM.Confirmed == "on")
+                c = true;
+            else
+                c = false;
+
             Incident incident = new Incident()
             {
-                Id = IncidentM.Id,
                 Type = IncidentM.Type,
-                Priority = IncidentM.Priority,
-                Confirmed = IncidentM.Confirmed,
+                Priority = int.Parse(IncidentM.Priority),
+                Confirmed = c,
                 Status = IncidentM.Status,
                 ETA = DateTime.Parse(IncidentM.ETA),
                 ATA = DateTime.Parse(IncidentM.ATA),
                 ETR = DateTime.Parse(IncidentM.ETR),
                 Outage = DateTime.Parse(IncidentM.Outage),
                 EstimatedWorkStartTime = DateTime.Parse(IncidentM.Estimated),
-                AffectedUsers = IncidentM.Affected,
-                NumberOfCalls = IncidentM.NumCalls,
-                VoltageLevel = IncidentM.Voltage,
+                AffectedUsers = int.Parse(IncidentM.Affected),
+                NumberOfCalls = int.Parse(IncidentM.NumCalls),
+                VoltageLevel = double.Parse(IncidentM.Voltage),
                 Cause = IncidentM.Cause,
                 SubCause = IncidentM.SubCause,
                 Material = IncidentM.Material,
