@@ -4,8 +4,11 @@ import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort} from '@angular/material/sort';
+import {MatDialog} from '@angular/material/dialog';
 
 import { MessagePassingService } from '../message-passing.service';
+import { IncidentPassingService } from '../incident-passing.service';
+import { SelectDevicesPopUpComponent } from '../select-devices-pop-up/select-devices-pop-up.component';
 
 @Component({
   selector: 'app-new-incident-devices',
@@ -16,13 +19,13 @@ export class NewIncidentDevicesComponent implements OnInit {
 
   allMineEnable = new FormControl(); 
   mySentences!:Array<Object>
-  displayedColumns: string[] = ['position', 'name', 'email', 'nesto', 'location'];
+  displayedColumns: string[] = ['position', 'name', 'email', 'nesto', 'location', 'delete'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   
-  constructor(private service: MessagePassingService ){
+  constructor(public dialog: MatDialog ,private service: MessagePassingService, private incidentService: IncidentPassingService ){
     this.service.changeData("INCIDENT - NEW")
 
    setTimeout(() => {
@@ -30,39 +33,34 @@ export class NewIncidentDevicesComponent implements OnInit {
      this.dataSource.paginator = this.paginator;
    });
 
- }
+  }
 
- ngOnInit(): void {
- }
+  ngOnInit(): void {
+  }
 
- onDragChange() {
-   console.log(this.allMineEnable.value);
-   //false je ALL
-   //true MINE
- } 
+  deleteDevice(e: number){
+    const index = ELEMENT_DATA.indexOf(ELEMENT_DATA[e], 0);
+    if (index > -1) {
+    ELEMENT_DATA.splice(index, 1);
+    }
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+  }
 
- applyFilter(filtertext:string){
+  showDevice(e: number){
+    /** otvara se mapa u modulu */
+  }
 
-  this.dataSource.filter=filtertext.trim().toLowerCase(); 
- }
+  applyFilter(filtertext:string){
+    this.dataSource.filter=filtertext.trim().toLowerCase(); 
+  }
+
+  openDialog(){
+    this.dialog.open(SelectDevicesPopUpComponent);
+  }
+
 
 }
-export interface IncidentTypeData {
-  id: string;
-  type: string;
-  priority: number;
-  confirmed: boolean;
-  status: string;
-  description: string;
-  ETA: Date;
-  ATA: Date;
-  outageTime: Date;
-  ETR: Date;
-  affectedUsers: number;
-  numberOfCalls: number;
-  voltage: number;
-  repairTime: Date;
-}
+
 
 export interface UserElement{
   position: number;

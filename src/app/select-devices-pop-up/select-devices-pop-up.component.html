@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Devices</h1>
+<div mat-dialog-content>
+    <ul class="devices">
+        <li *ngFor="let device of devices" (click)="onSelect(device)">
+          <span class="badge">{{device.Id}}</span> {{hero.Name}}
+        </li>
+      </ul>
+</div>

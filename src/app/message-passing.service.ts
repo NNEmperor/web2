@@ -27,8 +27,30 @@ export class MessagePassingService {
   sendIncidentBasic(message: any){ this.incidentBasic.next(message) }
   sentIncidentResolution(message: any){ this.incidentResolution.next(message) }
 
-  UploadIncident(data: IncidentFinal){
-      return this.http.post(this.BaseURI + '/Incident/AddIncident', data);
+  UploadIncident(data){
+
+    var res ={
+      Type: data.Type,
+      Priority: String(data.Priority),
+      Confirmed: data.Confirmed,
+      Description: data.Description,
+      ETA: data.ETA,
+      ATA: data.ATA,
+      ETR: data.ETR,
+      Outage: data.Outage,
+      Affected: String(data.Affected),
+      NumCalls: String(data.NumCalls),
+      Voltage: String(data.Voltage),
+      Estimated: data.Estimated,
+      Status: data.Status,
+      Cause: data.Cause,
+      SubCause: data.SubCause,
+      TypeR: data.TypeR,
+      Material: data.Material
+    }
+
+
+      return this.http.post(this.BaseURI + '/Incident/AddIncident', res);
   }
 
   constructor(private http: HttpClient) { }

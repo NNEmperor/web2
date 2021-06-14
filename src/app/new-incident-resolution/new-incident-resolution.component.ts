@@ -16,7 +16,7 @@ export class NewIncidentResolutionComponent implements OnInit {
   @ViewChild("material") material;
 
   resolutionForm!: FormGroup;
-  resolutionData!: IncidentResolution;
+  resolutionData: IncidentResolution = new IncidentResolution();
 
   constructor(private service: MessagePassingService, private fb: FormBuilder ) {
     this.service.changeData("INCIDENT - NEW")
@@ -34,7 +34,7 @@ export class NewIncidentResolutionComponent implements OnInit {
   }
 
   sendResolution(){
-    this.resolutionData.Cause = this.cause.value;
+    this.resolutionData.Cause = this.cause.nativeElement.value;
     this.resolutionData.SubCause = this.subcause.nativeElement.value;
     this.resolutionData.Material = this.material.nativeElement.value;
     this.resolutionData.Type = this.type.nativeElement.value;

@@ -61,9 +61,12 @@ export class NewIncidentBasicInfoComponent implements AfterViewInit {
     this.basicInfoData.NumCalls = this.calls.nativeElement.value;
     this.basicInfoData.Estimated = this.scheduled.nativeElement.value;
     this.basicInfoData.Status = this.statusIncident.nativeElement.value;
+    this.basicInfoData.Voltage = this.voltage.nativeElement.value
 
 
     this.service.sendIncidentBasic(this.basicInfoData);
+
+    alert('sklj + ' +  this.basicInfoData.Voltage);
   }
 
   ngAfterViewInit(): void {

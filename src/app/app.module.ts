@@ -82,6 +82,7 @@ import { ProfilesViewComponent } from './profiles-view/profiles-view.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider , FacebookLoginProvider} from 'angularx-social-login';
 import { EditTeamComponent } from './edit-team/edit-team.component';
+import { SelectDevicesPopUpComponent } from './select-devices-pop-up/select-devices-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -141,6 +142,7 @@ import { EditTeamComponent } from './edit-team/edit-team.component';
     NewWorkPlanMultimediaComponent,
     ProfilesViewComponent,
     EditTeamComponent,
+    SelectDevicesPopUpComponent,
   ],
   imports: [
     BrowserModule,

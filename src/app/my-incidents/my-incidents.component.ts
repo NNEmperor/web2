@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort} from '@angular/material/sort';
 import { MessagePassingService } from '../message-passing.service';
+import { IncidentPassingService } from '../incident-passing.service';
 
 @Component({
   selector: 'app-my-incidents',
@@ -13,15 +14,16 @@ import { MessagePassingService } from '../message-passing.service';
 })
 export class MyIncidentsComponent implements OnInit {
 
+  data: any[] = [];
   allMineEnable = new FormControl(); 
-  mySentences!:Array<Object>
-  displayedColumns: string[] = ['position', 'name', 'email', 'nesto', 'nesto2', 'nesto3', 'nesto4', 'nesto5', 'nesto6'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  displayedColumns: string[] = ['id', 'creator', 'type', 'priority', 'confirmed', 'status', 'description', 'ETA', 'ATA', 'Outage', 'ETR', 'affectedUsers', 'numberOfCalls', 'voltage', 'repairTime'];
+  dataSource;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   
-  constructor(private service: MessagePassingService ) {
+  constructor(private service: MessagePassingService, private incidentService: IncidentPassingService ) {
     this.service.changeData("INCIDENT BROWSER - ALL")
 
    setTimeout(() => {
@@ -34,13 +36,37 @@ export class MyIncidentsComponent implements OnInit {
  headline!: string;
 
  ngOnInit(): void {
-
+  this.incidentService.getAll().subscribe(res=>{
+    this.data = res as any;
+    this.dataSource = new MatTableDataSource(this.data);
+    setTimeout(() => {
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
+  })
  }
 
  onDragChange() {
-   console.log(this.allMineEnable.value);
-   //false je ALL
-   //true MINE
+  if(this.allMineEnable.value == false){
+    this.incidentService.getAll().subscribe(res=>{
+      this.data = res as any;
+      this.dataSource = new MatTableDataSource(this.data);
+      setTimeout(() => {
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      });
+    })
+  }
+  else{
+    this.incidentService.getMine().subscribe(res=>{
+      this.data = res as any;
+      this.dataSource = new MatTableDataSource(this.data);
+      setTimeout(() => {
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      });
+    })
+  }
  } 
 
  applyFilter(filtertext:string){
@@ -49,39 +75,4 @@ export class MyIncidentsComponent implements OnInit {
  }
 
 }
-export interface IncidentTypeData {
-  id: string;
-  type: string;
-  priority: number;
-  confirmed: boolean;
-  status: string;
-  description: string;
-  ETA: Date;
-  ATA: Date;
-  outageTime: Date;
-  ETR: Date;
-  affectedUsers: number;
-  numberOfCalls: number;
-  voltage: number;
-  repairTime: Date;
-}
 
-export interface UserElement{
-  position: number;
-  name: string;
-  email: string;
-  nesto: string;
-  nesto2: string;
-}
-const ELEMENT_DATA: UserElement[] = [
- { position: 1, name: 'John', email:' john@gmail.com', nesto: 'sklj', nesto2: 'sklj'},
- { position: 2, name: 'Herry', email: 'herry@gmail.com', nesto: 'sklj', nesto2: 'sklj' },
- { position: 3, name: 'Ann', email: 'ann@gmail.com', nesto: 'sklj', nesto2: 'sklj' },
- { position: 4, name: 'Johnny', email: 'johnny@gmail.com' , nesto: 'sklj', nesto2: 'sklj' },
- { position: 5, name: 'Roy', email: 'roy@gmail.com', nesto: 'sklj', nesto2: 'sklj' },
- { position: 6, name: 'Kia', email: 'kia@gmail.com' , nesto: 'sklj', nesto2: 'sklj' },
- { position: 7, name: 'Merry', email: 'merry@gmail.com', nesto: 'sklj', nesto2: 'sklj' },
- { position: 8, name: 'William', email: 'william@gmail.com', nesto: 'sklj', nesto2: 'sklj' },
- { position: 9, name: 'Shia', email: 'shia@gmail.com', nesto: 'sklj', nesto2: 'sklj' },
- { position: 10, name: 'Kane', email: 'kane@gmail.com' , nesto: 'sklj', nesto2: 'sklj' }
-];

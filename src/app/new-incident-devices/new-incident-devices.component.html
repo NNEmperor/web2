@@ -5,7 +5,7 @@
     <div clas="row" style="display: flex;">
         <div class="col-md-2">
             <div class="wrapper_left">
-                <a [routerLink]='["/home/equipment"]'><span>Add</span></a>
+                <a (click)="openDialog()"><span>Add</span></a>
               </div>
         </div>
         <div class="col-md-8">
@@ -13,37 +13,46 @@
           </div>
         <div class="col-md-2">
             <div class="wrapper_right">
-                <a href="#"><span>Filter</span></a>
-              </div>
+                <input #filtertext placeholder="Filter..." (keydown.enter)="applyFilter(filtertext.value)" style="color: #333; background-color:rgb(255,255,255,0.8); height: 40px;" />
+            </div>
         </div>
     </div>
     <div class="container" style="margin-top: 5%;">
         <div style="overflow-x: auto;">    
             <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">  
-            <ng-container matColumnDef="position" sticky>
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-                <td style="text-align: left; background-color: white;"  mat-cell *matCellDef="let element"> {{element.position}} </td>
+            <ng-container matColumnDef="Id" sticky>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+                <td style="text-align: left; background-color: white;"  mat-cell *matCellDef="let element"> {{element.Id}} </td>
             </ng-container>
             
-            <ng-container matColumnDef="name" sticky>
+            <ng-container matColumnDef="Type" sticky>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+                <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.Type}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="Name">
                 <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
-            
-            <ng-container matColumnDef="email">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-                <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.email}} </td>
+                <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.Name}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="nesto">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Nesto </th>
-                <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.nesto}} </td>
+            <ng-container matColumnDef="Address">
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+                <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.Address}} </td>
             </ng-container>
             
             <ng-container matColumnDef="location">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Show </th>
                 <td style="text-align: left;" mat-cell *matCellDef="let element"> 
+                    <button style="background-color: transparent;border-color: transparent;" (click)="showDevice(element.Id)">
+                    </button>
                     <i class = "material-icons" >location_on</i>
+
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="delete">
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Delete  </th>
+                <td style="text-align: left;" mat-cell *matCellDef="let element"> 
+                    <button style="background-color: transparent;border-color: transparent;" (click)="deleteDevice(element.Id)"><i class = "material-icons" >delete</i></button>
 
                 </td>
             </ng-container>

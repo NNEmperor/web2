@@ -30,6 +30,8 @@ export class NewIncidentComponent implements OnInit {
     this.finalData.SubCause = this.resolutionData.SubCause;
     this.finalData.Material = this.resolutionData.Material;
     this.finalData.TypeR = this.resolutionData.Type;
+
+
     
     this.finalData.Confirmed = this.basicInfoData.Confirmed;
     this.finalData.Id = this.basicInfoData.Id;
@@ -46,7 +48,7 @@ export class NewIncidentComponent implements OnInit {
     this.finalData.Affected = this.basicInfoData.Affected;
     this.finalData.Voltage = this.basicInfoData.Voltage;
 
-    this.shared.UploadIncident(this.finalData).subscribe( date =>
+    this.shared.UploadIncident(this.finalData).subscribe( data =>
       {
         alert("desilo se");
     });
