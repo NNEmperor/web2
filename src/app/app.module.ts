@@ -186,7 +186,7 @@ import { NotifierModule } from 'angular-notifier';
   },
    {
      id: FacebookLoginProvider.PROVIDER_ID,
-     provider: new FacebookLoginProvider('2853422978247127')
+     provider: new FacebookLoginProvider('867209693880886')
    },
           
         ]
