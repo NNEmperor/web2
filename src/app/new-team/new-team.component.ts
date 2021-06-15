@@ -6,6 +6,7 @@ import { AdminoptionsService } from '../adminoptions.service';
 import {copyArrayItem} from '@angular/cdk/drag-drop';
 import { HttpErrorResponse, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 
 @Component({
@@ -16,13 +17,17 @@ import { Router } from '@angular/router';
 export class NewTeamComponent implements OnInit {
 
   newTeamForm!: FormGroup;
+
+  private readonly notifier!: NotifierService;
   
   todo:any[]=[];
   
   done:any[]=[];
 
-  constructor(private service: MessagePassingService, private fb: FormBuilder, private adminOption: AdminoptionsService,  private router: Router) {
+  constructor(private service: MessagePassingService, private fb: FormBuilder, private adminOption: AdminoptionsService,  private router: Router, notifierService: NotifierService) {
     this.service.changeData("NEW TEAM")
+
+    this.notifier = notifierService;
 
     this.newTeamForm=this.fb.group({
       //id ne bi trebao da se unosi,sam da se generise na serveru
@@ -74,7 +79,7 @@ export class NewTeamComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    
 this.adminOption.GetTeamMemebers().subscribe(data =>{
     console.log("useri na procesiranju: ");
     console.log(data);
@@ -113,12 +118,25 @@ this.adminOption.GetTeamMemebers().subscribe(data =>{
       console.log(err)
       //alert("NEMA NIJADNOG CLANA TIMA/ Postoji vec zadat id");
       let message= err.error.text;
-      alert(message);
+     // alert(message);
 
-      //prebaci NA SVE TIMOVE
-      if(message==="Uspesno kreiran tim"){
-        this.router.navigateByUrl('/home/teams');
-        }
+     if(message==="Uspesno kreiran tim"){
+      this.notifier.notify('default', message);
+      setTimeout(() => {
+        //prebaci NA SVE TIMOVE
+          this.notifier.hideAll();
+          this.router.navigateByUrl('/home/teams');
+          
+      }, 2000);
+    }else{
+      this.notifier.notify('error', message);
+      /*setTimeout(() => {
+        //ukloni obavestenje
+        this.notifier.hideAll();
+      }, 2000);*/
+    }
+      
+     
    })
     
     //);

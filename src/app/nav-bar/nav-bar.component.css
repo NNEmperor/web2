@@ -58,6 +58,12 @@
   li a:hover {
     background-color: #111;
   }
+  li button{
+    background-color: transparent;
+  }
+  li button:hover {
+    background-color: #111;
+  }
 
   .naslov{
     color: white;

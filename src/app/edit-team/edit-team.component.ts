@@ -6,6 +6,7 @@ import { AdminoptionsService } from '../adminoptions.service';
 import {copyArrayItem} from '@angular/cdk/drag-drop';
 import { HttpErrorResponse, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-edit-team',
@@ -15,14 +16,17 @@ import { Router } from '@angular/router';
 export class EditTeamComponent implements OnInit {
 
   newTeamForm!: FormGroup;
+
+  private readonly notifier!: NotifierService;
+
   teamId!:string;
   
   todo:any[]=[];
   
   done:any[]=[];
-  constructor(private service: MessagePassingService, private fb: FormBuilder, private adminOption: AdminoptionsService,  private router: Router) {
+  constructor(private service: MessagePassingService, private fb: FormBuilder, private adminOption: AdminoptionsService,  private router: Router, notifierService: NotifierService) {
     this.service.changeData("EDIT TEAM")
-
+    this.notifier = notifierService;
     this.newTeamForm=this.fb.group({
       //id ne bi trebao da se unosi,sam da se generise na serveru
       inputName:['',[Validators.required,Validators.minLength(3)]],
@@ -109,11 +113,22 @@ this.adminOption.GetTeam(this.teamId).subscribe(data =>{
       console.log(err)
       //alert("NEMA NIJADNOG CLANA TIMA/ Postoji vec zadat id");
       let message= err.error.text;
-      alert(message);
-
-      //prebaci NA SVE TIMOVE
+      //alert(message);
+     
       if(message==="Uspesno izmenjen tim"){
-      this.router.navigateByUrl('/home/teams');
+        this.notifier.notify('default', message);
+        setTimeout(() => {
+          //prebaci NA SVE TIMOVE
+            this.notifier.hideAll();
+            this.router.navigateByUrl('/home/teams');
+            
+        }, 2000);
+      }else{
+        this.notifier.notify('error', message);
+       /* setTimeout(() => {
+          //ukloni obavestenje
+          this.notifier.hideAll();
+        }, 2000);*/
       }
    })
     

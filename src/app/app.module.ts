@@ -83,6 +83,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
 import { GoogleLoginProvider , FacebookLoginProvider} from 'angularx-social-login';
 import { EditTeamComponent } from './edit-team/edit-team.component';
 import { SelectDevicesPopUpComponent } from './select-devices-pop-up/select-devices-pop-up.component';
+import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
   declarations: [
@@ -169,7 +170,8 @@ import { SelectDevicesPopUpComponent } from './select-devices-pop-up/select-devi
    IgxDataChartCoreModule,
    IgxDataChartCategoryModule,
    DragDropModule,
-   SocialLoginModule
+   SocialLoginModule,
+   NotifierModule
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [

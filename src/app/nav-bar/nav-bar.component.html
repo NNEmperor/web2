@@ -8,6 +8,13 @@
     <!-- ovde naslov stranice -->
     <li class="naslov" style="float:left;font-size: 18px; margin-top: 0.5%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{childMessage}}</li>
     <li>
+        <button style=" border-color: transparent; color: white; text-align: center;
+        padding: 10px 10px;
+        text-decoration: none;" (click)="showStatus()"><span class="material-icons">
+            circle_notifications
+            </span></button>
+    </li>
+    <li>
         <a [routerLink]='["/home/myprofile"]' href="#"><span class="glyphicon glyphicon-user"></span></a>
     </li> 
   </ul>
@@ -25,3 +32,4 @@
     <a [routerLink]='["/"]' ><span class="glyphicon glyphicon-log-out"></span></a>
 </div>
 <router-outlet></router-outlet>
+<notifier-container></notifier-container>

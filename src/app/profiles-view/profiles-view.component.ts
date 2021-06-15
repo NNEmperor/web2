@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessagePassingService } from '../message-passing.service';
 import { HttpClient } from '@angular/common/http';
 import { AdminoptionsService } from '../adminoptions.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-profiles-view',
@@ -11,10 +12,12 @@ import { AdminoptionsService } from '../adminoptions.service';
 
 export class ProfilesViewComponent implements OnInit {
 
+  private readonly notifier!: NotifierService;
   path="assets/images/user.png"
   users!: any;
-  constructor(private service: MessagePassingService , private http: HttpClient, private adminOption:AdminoptionsService) { 
+  constructor(private service: MessagePassingService , private http: HttpClient, private adminOption:AdminoptionsService, notifierService: NotifierService) { 
     this.service.changeData("PROFILES")
+    this.notifier = notifierService;
   }
 
   ngOnInit(): void {
@@ -25,7 +28,16 @@ export class ProfilesViewComponent implements OnInit {
         console.log(data);
        // alert(data);
         this.users = data;
+        if(this.users.length===0){
+          this.notifier.notify('default', "No new registered users.");
+           /* setTimeout(() => {
+              //ukloni obavestenje
+              this.notifier.hideAll();
+            }, 2000);*/
+        }
       });
+
+     
   }
   AcceptUser(name:string){
     console.log("prihvacen "+name);
@@ -35,6 +47,15 @@ export class ProfilesViewComponent implements OnInit {
         //alert(data);
         this.users = data;
       });
+      this.notifier.notify('default', "Successfully accepted user.");
+      console.log("broj usera:  "+this.users.length)
+      if(this.users.length-1==0){
+        this.NoUserMessage();//this.notifier.notify('default', "No new registered users.");
+      }
+      /* setTimeout(() => {
+         //ukloni obavestenje
+         this.notifier.hideAll();
+       }, 2000);*/
   }
   DenyUser(name:string){
     console.log("odbijen "+name);
@@ -45,9 +66,21 @@ export class ProfilesViewComponent implements OnInit {
         //alert(data);
         this.users = data;
       });
+      this.notifier.notify('default', "Successfully denyed user.");
+      console.log("broj usera:  "+this.users.length)
+      if(this.users.length-1==0){
+        this.NoUserMessage();
+        // this.notifier.notify('default', "No new registered users.");
+      }
+      /* setTimeout(() => {
+         //ukloni obavestenje
+         this.notifier.hideAll();
+       }, 2000);*/
   }
  
-
+    NoUserMessage(){
+      this.notifier.notify('default', "No new registered users.");
+    }
 }
 export interface User {
   name: string;

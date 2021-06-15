@@ -7,6 +7,7 @@ import { ConsolidatedItemHitTestBehavior_$type } from 'igniteui-angular-charts';
 import { AdminoptionsService } from '../adminoptions.service';
 import { MessagePassingService } from '../message-passing.service';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-team',
@@ -15,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export class TeamComponent implements OnInit {
 
+  private readonly notifier!: NotifierService;
   parentMessage = "Teams";
   mySentences!:Array<Object>
 displayedColumns: string[] = [ 'teamName','teamId', 'members','edit', 'delete'];
@@ -23,8 +25,9 @@ displayedColumns: string[] = [ 'teamName','teamId', 'members','edit', 'delete'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private service: MessagePassingService , private adminOption: AdminoptionsService,  private router: Router) {
+  constructor(private service: MessagePassingService , private adminOption: AdminoptionsService,  private router: Router, notifierService: NotifierService) {
     this.service.changeData("TEAMS")
+    this.notifier = notifierService;
    //poceno bilo
     /*this.data = ELEMENT_DATA;
     
@@ -82,7 +85,11 @@ displayedColumns: string[] = [ 'teamName','teamId', 'members','edit', 'delete'];
     });
 
 
-   
+    this.notifier.notify('default', "Succeesfully deleted team.");
+   /* setTimeout(() => {
+      //ukloni obavestenje
+      this.notifier.hideAll();
+    }, 2000);*/
 
     //e.deleted = true;
    // this.data = ELEMENT_DATA;

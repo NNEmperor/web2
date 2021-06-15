@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessagePassingService } from '../message-passing.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,8 +11,10 @@ export class NavBarComponent implements OnInit {
 
   childMessage! : string
 
-  constructor(private service: MessagePassingService){
+  private readonly notifier!: NotifierService;
 
+  constructor(private service: MessagePassingService, notifierService: NotifierService){
+    this.notifier = notifierService;
   }
 
   ngOnInit(): void {
@@ -19,6 +22,9 @@ export class NavBarComponent implements OnInit {
   }
 
 
-
+  showStatus(){
+    //alert("status")
+    this.notifier.notify('default', "Profile status:");
+  }
 
 }
