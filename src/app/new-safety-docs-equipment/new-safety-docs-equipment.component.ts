@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort} from '@angular/material/sort';
 
 import { MessagePassingService } from '../message-passing.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SelectDevicesPopUpComponent } from '../select-devices-pop-up/select-devices-pop-up.component';
 
 @Component({
   selector: 'app-new-safety-docs-equipment',
@@ -14,7 +16,7 @@ import { MessagePassingService } from '../message-passing.service';
 })
 export class NewSafetyDocsEquipmentComponent implements OnInit {
 
-  constructor(private service: MessagePassingService ) {
+  constructor(public dialog: MatDialog, private service: MessagePassingService ) {
     this.service.changeData("SAFETY DOCUMENTS - NEW")
 
     setTimeout(() => {
@@ -22,11 +24,12 @@ export class NewSafetyDocsEquipmentComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
    }
-
+   
+   data: any[] = [];
    allMineEnable = new FormControl(); 
    mySentences!:Array<Object>
-   displayedColumns: string[] = ['position', 'name', 'email', 'nesto', 'location'];
-   dataSource = new MatTableDataSource(ELEMENT_DATA);
+   displayedColumns: string[] = ['id', 'name', 'address', 'type', 'location'];
+   dataSource = new MatTableDataSource();
    @ViewChild(MatPaginator) paginator!: MatPaginator;
    @ViewChild(MatSort) sort!: MatSort;
  
@@ -34,51 +37,22 @@ export class NewSafetyDocsEquipmentComponent implements OnInit {
   ngOnInit(): void {
   }
  
-  onDragChange() {
-    console.log(this.allMineEnable.value);
-    //false je ALL
-    //true MINE
-  } 
+
  
   applyFilter(filtertext:string){
  
    this.dataSource.filter=filtertext.trim().toLowerCase(); 
   }
+
+  openDialog(){
+    let dialogRef = this.dialog.open(SelectDevicesPopUpComponent);
+
+    dialogRef.afterClosed().subscribe(res =>{
+      this.data.push(res);
+      //alert('sklj' + res);
+    })
+  }
  
- }
- export interface IncidentTypeData {
-   id: string;
-   type: string;
-   priority: number;
-   confirmed: boolean;
-   status: string;
-   description: string;
-   ETA: Date;
-   ATA: Date;
-   outageTime: Date;
-   ETR: Date;
-   affectedUsers: number;
-   numberOfCalls: number;
-   voltage: number;
-   repairTime: Date;
- }
- 
- export interface UserElement{
-   position: number;
-   name: string;
-   email: string;
-   nesto: string;
- }
- const ELEMENT_DATA: UserElement[] = [
-  { position: 1, name: 'John', email:' john@gmail.com', nesto: 'sklj'},
-  { position: 2, name: 'Herry', email: 'herry@gmail.com', nesto: 'sklj' },
-  { position: 3, name: 'Ann', email: 'ann@gmail.com', nesto: 'sklj' },
-  { position: 4, name: 'Johnny', email: 'johnny@gmail.com' , nesto: 'sklj'},
-  { position: 5, name: 'Roy', email: 'roy@gmail.com', nesto: 'sklj' },
-  { position: 6, name: 'Kia', email: 'kia@gmail.com' , nesto: 'sklj'},
-  { position: 7, name: 'Merry', email: 'merry@gmail.com', nesto: 'sklj' },
-  { position: 8, name: 'William', email: 'william@gmail.com', nesto: 'sklj'},
-  { position: 9, name: 'Shia', email: 'shia@gmail.com', nesto: 'sklj' },
-  { position: 10, name: 'Kane', email: 'kane@gmail.com' , nesto: 'sklj'}
- ];
+}
+
  

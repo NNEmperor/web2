@@ -14,11 +14,19 @@ export class IncidentPassingService {
   }
 
   getMine(){
-    return this.http.get(this.BaseURI + 'Incident/GetMineIncidents' + localStorage.getItem('userName'))
+    return this.http.get(this.BaseURI + '/Incident/GetMineIncidents' + localStorage.getItem('userName'))
   }
 
   getAllDevices(){
-    return this.http.get(this.BaseURI + 'Devices/GetAll');
+    return this.http.get(this.BaseURI + '/Devices/GetAll');
+  }
+
+  getDevice(id){
+    return this.http.post(this.BaseURI + "/Devices/GetDevice", id);
+  }
+
+  getUsers(){
+    return this.http.get(this.BaseURI + "/ApplicationUser/GetAllUsers");
   }
   
 }

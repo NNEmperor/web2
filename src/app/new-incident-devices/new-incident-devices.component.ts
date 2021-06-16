@@ -17,10 +17,13 @@ import { SelectDevicesPopUpComponent } from '../select-devices-pop-up/select-dev
 })
 export class NewIncidentDevicesComponent implements OnInit {
 
+
+  data: any[] = [];
+  showingData: any[] = [];
   allMineEnable = new FormControl(); 
   mySentences!:Array<Object>
-  displayedColumns: string[] = ['position', 'name', 'email', 'nesto', 'location', 'delete'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['id', 'name', 'address', 'type', 'location', 'delete'];
+  dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -36,18 +39,24 @@ export class NewIncidentDevicesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
-  deleteDevice(e: number){
-    const index = ELEMENT_DATA.indexOf(ELEMENT_DATA[e], 0);
-    if (index > -1) {
-    ELEMENT_DATA.splice(index, 1);
+  deleteDevice(data){
+    const index = this.showingData.indexOf(data);
+    if(index > -1){
+      this.showingData.splice(index, 1);
     }
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+    this.dataSource = new MatTableDataSource(this.showingData);
   }
 
   showDevice(e: number){
     /** otvara se mapa u modulu */
+  }
+
+  sendDevices(){
+    this.service.sendIncidentDevices(this.data);
+    alert('sklj' + this.data[0])
   }
 
   applyFilter(filtertext:string){
@@ -55,28 +64,20 @@ export class NewIncidentDevicesComponent implements OnInit {
   }
 
   openDialog(){
-    this.dialog.open(SelectDevicesPopUpComponent);
+    let dialogRef = this.dialog.open(SelectDevicesPopUpComponent);
+
+    dialogRef.afterClosed().subscribe(res =>{
+      this.data.push(res);
+
+      this.incidentService.getDevice(res).subscribe(device =>{
+        this.showingData.push(device);
+        this.dataSource = new MatTableDataSource(this.showingData);
+      }); 
+      
+      //alert('sklj' + res);
+    })
   }
 
 
 }
 
-
-export interface UserElement{
-  position: number;
-  name: string;
-  email: string;
-  nesto: string;
-}
-const ELEMENT_DATA: UserElement[] = [
- { position: 1, name: 'John', email:' john@gmail.com', nesto: 'sklj'},
- { position: 2, name: 'Herry', email: 'herry@gmail.com', nesto: 'sklj' },
- { position: 3, name: 'Ann', email: 'ann@gmail.com', nesto: 'sklj' },
- { position: 4, name: 'Johnny', email: 'johnny@gmail.com' , nesto: 'sklj'},
- { position: 5, name: 'Roy', email: 'roy@gmail.com', nesto: 'sklj' },
- { position: 6, name: 'Kia', email: 'kia@gmail.com' , nesto: 'sklj'},
- { position: 7, name: 'Merry', email: 'merry@gmail.com', nesto: 'sklj' },
- { position: 8, name: 'William', email: 'william@gmail.com', nesto: 'sklj'},
- { position: 9, name: 'Shia', email: 'shia@gmail.com', nesto: 'sklj' },
- { position: 10, name: 'Kane', email: 'kane@gmail.com' , nesto: 'sklj'}
-];

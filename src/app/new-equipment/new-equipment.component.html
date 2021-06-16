@@ -11,7 +11,7 @@
                             <div class="col-sm-2">
                                 <div class="wrapper_left">
                                     <!--dodaj da se vrati jedan unazad-->
-                                    <a [routerLink]='["/home/equipment"]'><span>Add</span></a>
+                                    <a (click)="onAdd()" [routerLink]='["/home/equipment"]'><span>Add</span></a>
                                 </div>
                             </div>
                             <div class="col-sm-8"><br><br></div>
@@ -23,46 +23,36 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-2">
-                                <p>ID:</p>
-                            </div>
-                            <div class="col-sm-4">
- 
-                            </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-6">
                                 <p>Name</p>
                             </div>
                             <div class="col-sm-4">
-
+                                <input type="text" #name class="form-control" />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <p>Type:</p>
                             </div>
                             <div class="col-sm-4">
-                                <select class="form-control" name="equipment-type" id="equipment-type">
+                                <select class="form-control" #equipmentType>
                                     <option value="Power-switch">Power switch</option>
                                     <option value="Fuse">Fuse</option>
                                     <option value="Transformer">Transformer</option>
                                     <option value="Disconnector">Disconnector</option>
                                 </select>
                             </div>
-
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-2">
-                                <p>Address:</p>
+                            <div class="col-sm-6">
+                                <p>Address</p>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" name="device-address" id="device-address" />
+                                <input type="text" #address class="form-control" />
                             </div>
-                            <div class="col-sm-2">
-                                <p>Coordinates:</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" name="device-coordinates" id="device-coordinates" />
-                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <button (click)="openDialog()">Add Location</button>
                         </div>
 
                     </form>

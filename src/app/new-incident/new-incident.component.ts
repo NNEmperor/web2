@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessagePassingService } from '../message-passing.service';
+import { CallBack } from '../models/call-back';
 import { IncidentBasic } from '../models/incident-basic';
 import { IncidentFinal } from '../models/incident-final';
 import { IncidentResolution } from '../models/incident-resolution';
@@ -14,7 +15,10 @@ export class NewIncidentComponent implements OnInit {
   
   basicInfoData: IncidentBasic = new IncidentBasic();
   resolutionData: IncidentResolution = new IncidentResolution();
+  deviceData: number[] = [];
+  callData: CallBack[] = [];
   finalData: IncidentFinal = new IncidentFinal();
+
 
   constructor(private shared: MessagePassingService) {
    }
@@ -22,7 +26,8 @@ export class NewIncidentComponent implements OnInit {
   ngOnInit(): void {
     this.shared.incidentBasic$.subscribe ( message => { this.basicInfoData = message; })
     this.shared.incidentResolution$.subscribe ( message => { this.resolutionData = message; })
-  
+    this.shared.incidentDevices$.subscribe ( message => { this.deviceData = message; })
+    this.shared.incidentCalls$.subscribe ( message => { this.callData = message; })
   }
 
   finished(){
@@ -31,7 +36,7 @@ export class NewIncidentComponent implements OnInit {
     this.finalData.Material = this.resolutionData.Material;
     this.finalData.TypeR = this.resolutionData.Type;
 
-
+    this.finalData.Devices = this.deviceData;
     
     this.finalData.Confirmed = this.basicInfoData.Confirmed;
     this.finalData.Id = this.basicInfoData.Id;
@@ -47,6 +52,8 @@ export class NewIncidentComponent implements OnInit {
     this.finalData.Status = this.basicInfoData.Status;
     this.finalData.Affected = this.basicInfoData.Affected;
     this.finalData.Voltage = this.basicInfoData.Voltage;
+
+    this.finalData.Calls = this.callData;
 
     this.shared.UploadIncident(this.finalData).subscribe( data =>
       {

@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort} from '@angular/material/sort';
 import { MessagePassingService } from '../message-passing.service';
+import { CallBack } from '../models/call-back';
 
 
 @Component({
@@ -14,10 +15,12 @@ import { MessagePassingService } from '../message-passing.service';
 })
 export class NewIncidentCallsComponent implements OnInit {
 
-  allMineEnable = new FormControl(); 
-  mySentences!:Array<Object>
-  displayedColumns: string[] = ['position', 'name', 'email', 'nesto'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  
+  deviceData: number[] = [];
+  calls: CallBack[] = [];
+
+  displayedColumns: string[] = ['id', 'reason', 'address', 'hazard', 'comment'];
+  dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -33,52 +36,25 @@ export class NewIncidentCallsComponent implements OnInit {
  }
 
  ngOnInit(): void {
- }
+  this.service.incidentDevices$.subscribe( message => {this.deviceData = message; })
+  this.service.getCalls(this.deviceData).subscribe(res =>{
+    this.calls = res as any
+    this.dataSource = new MatTableDataSource(this.calls as any);
+  })
+  this.service.newCall$.subscribe( message => {
 
- onDragChange() {
-   console.log(this.allMineEnable.value);
-   //false je ALL
-   //true MINE
- } 
+     this.calls.push(message as any);
+     console.log(this.calls)
+    });
+ }
 
  applyFilter(filtertext:string){
 
   this.dataSource.filter=filtertext.trim().toLowerCase(); 
  }
 
-}
-export interface IncidentTypeData {
-  id: string;
-  type: string;
-  priority: number;
-  confirmed: boolean;
-  status: string;
-  description: string;
-  ETA: Date;
-  ATA: Date;
-  outageTime: Date;
-  ETR: Date;
-  affectedUsers: number;
-  numberOfCalls: number;
-  voltage: number;
-  repairTime: Date;
-}
+ sendIncidentCalls(){
+  this.service.sendIncidentCalls(this.calls);
+ }
 
-export interface UserElement{
-  position: number;
-  name: string;
-  email: string;
-  nesto: string;
 }
-const ELEMENT_DATA: UserElement[] = [
- { position: 1, name: 'John', email:' john@gmail.com', nesto: 'sklj'},
- { position: 2, name: 'Herry', email: 'herry@gmail.com', nesto: 'sklj' },
- { position: 3, name: 'Ann', email: 'ann@gmail.com', nesto: 'sklj' },
- { position: 4, name: 'Johnny', email: 'johnny@gmail.com' , nesto: 'sklj'},
- { position: 5, name: 'Roy', email: 'roy@gmail.com', nesto: 'sklj' },
- { position: 6, name: 'Kia', email: 'kia@gmail.com' , nesto: 'sklj'},
- { position: 7, name: 'Merry', email: 'merry@gmail.com', nesto: 'sklj' },
- { position: 8, name: 'William', email: 'william@gmail.com', nesto: 'sklj'},
- { position: 9, name: 'Shia', email: 'shia@gmail.com', nesto: 'sklj' },
- { position: 10, name: 'Kane', email: 'kane@gmail.com' , nesto: 'sklj'}
-];

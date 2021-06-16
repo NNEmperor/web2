@@ -1,3 +1,5 @@
+import { CallBack } from "./call-back";
+
 export class IncidentFinal {
     Id!: number;
     Type!: string;
@@ -17,4 +19,6 @@ export class IncidentFinal {
     SubCause!: string;
     TypeR!: string;
     Material!: string;
+    Devices!: number[];
+    Calls!: CallBack[]
 }

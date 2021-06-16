@@ -3,9 +3,9 @@
   <div class="container" style="margin-top: 5%;">
     <div style="overflow-x: auto">    
         <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">  
-            <ng-container matColumnDef="id">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-                <td style="text-align: left;" mat-cell *matCellDef="let element"> {{element.id}} </td>
+            <ng-container matColumnDef="userName">
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> userName </th>
+                <td style="text-align: left;" mat-cell *matCellDef="let element"> {{element.userName}} </td>
             </ng-container>
             
             <ng-container matColumnDef="name">
@@ -18,22 +18,10 @@
                 <td style="text-align: left;" mat-cell *matCellDef="let element"> {{element.address}} </td>
             </ng-container>
     
-            <ng-container matColumnDef="type">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
-                <td style="text-align: left;" mat-cell *matCellDef="let element"> {{element.type}} </td>
+            <ng-container matColumnDef="lastname">
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> lastname </th>
+                <td style="text-align: left;" mat-cell *matCellDef="let element"> {{element.lastname}} </td>
             </ng-container>
-        
-        <ng-container matColumnDef="location">
-            <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Show </th>
-            <td style="text-align: left;" mat-cell *matCellDef="let element"> 
-                <i class = "material-icons" >location_on</i>
-
-            </td>
-        </ng-container>
-
-       
-
-
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"

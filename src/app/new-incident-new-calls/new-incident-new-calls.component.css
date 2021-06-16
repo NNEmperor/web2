@@ -57,6 +57,7 @@ html {
     font-family:monospace;
   }
   
+
   @keyframes slide {
     0% {
       transform:translateX(-25%);
@@ -64,4 +65,65 @@ html {
     100% {
       transform:translateX(25%);
     }
-  }
+    }
+    
+    .wrapper_left{
+    position: fixed;
+    top: 10%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    }
+    
+    .wrapper_right{
+    position: fixed;
+    top: 10%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    }
+    
+    a{
+    display: block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: #333;
+    border: 2px solid #333;
+    letter-spacing: 2px;
+    text-align: center;
+    transition: all .35s;
+    }
+    
+    a span{
+    position: relative;
+    z-index: 2;
+    }
+    
+    a:after{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #3619db;
+    transition: all .35s;
+    }
+    
+    a:hover{
+    color: #fff;
+    }
+    
+    a:hover:after{
+    width: 100%;
+    }
+    
+    .labelBeforeSlide {
+      vertical-align: top;
+      line-height: 24px; 
+      margin-right:0.5rem;
+      margin-bottom:0.5rem;
+    }
+    

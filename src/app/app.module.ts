@@ -84,6 +84,10 @@ import { GoogleLoginProvider , FacebookLoginProvider} from 'angularx-social-logi
 import { EditTeamComponent } from './edit-team/edit-team.component';
 import { SelectDevicesPopUpComponent } from './select-devices-pop-up/select-devices-pop-up.component';
 import { NotifierModule } from 'angular-notifier';
+import { MapPopUpComponent } from './map-pop-up/map-pop-up.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { SelectUserPopUpComponent } from './select-user-pop-up/select-user-pop-up.component';
+
 
 @NgModule({
   declarations: [
@@ -144,6 +148,8 @@ import { NotifierModule } from 'angular-notifier';
     ProfilesViewComponent,
     EditTeamComponent,
     SelectDevicesPopUpComponent,
+    MapPopUpComponent,
+    SelectUserPopUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -171,7 +177,8 @@ import { NotifierModule } from 'angular-notifier';
    IgxDataChartCategoryModule,
    DragDropModule,
    SocialLoginModule,
-   NotifierModule
+   NotifierModule,
+  MatDialogModule
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [
