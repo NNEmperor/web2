@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebSERVER.Models;
 
 namespace WebSERVER.Migrations
 {
     [DbContext(typeof(WebServerContext))]
-    partial class WebServerContextModelSnapshot : ModelSnapshot
+    [Migration("20210616095618_prva")]
+    partial class prva
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,28 +195,15 @@ namespace WebSERVER.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address");
 
                     b.Property<string>("Comment");
 
                     b.Property<string>("Hazard");
 
-                    b.Property<string>("LastName");
-
-                    b.Property<string>("Name");
-
                     b.Property<string>("Reason");
 
-                    b.Property<string>("UserName");
-
-                    b.Property<int?>("incidentId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("incidentId");
 
                     b.ToTable("Calls");
                 });
@@ -553,13 +542,6 @@ namespace WebSERVER.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("WebSERVER.Models.Call", b =>
-                {
-                    b.HasOne("WebSERVER.Models.Incident", "incident")
-                        .WithMany("Calls")
-                        .HasForeignKey("incidentId");
                 });
 
             modelBuilder.Entity("WebSERVER.Models.ChangedByWhen", b =>

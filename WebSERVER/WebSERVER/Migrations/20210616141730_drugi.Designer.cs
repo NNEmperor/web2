@@ -10,8 +10,8 @@ using WebSERVER.Models;
 namespace WebSERVER.Migrations
 {
     [DbContext(typeof(WebServerContext))]
-    [Migration("20210614111431_prva")]
-    partial class prva
+    [Migration("20210616141730_drugi")]
+    partial class drugi
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -195,7 +195,10 @@ namespace WebSERVER.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address");
 
                     b.Property<string>("Comment");
 
@@ -203,7 +206,11 @@ namespace WebSERVER.Migrations
 
                     b.Property<string>("Reason");
 
+                    b.Property<int?>("incidentId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("incidentId");
 
                     b.ToTable("Calls");
                 });
@@ -233,7 +240,10 @@ namespace WebSERVER.Migrations
 
             modelBuilder.Entity("WebSERVER.Models.Device", b =>
                 {
-                    b.Property<int>("Id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address");
 
@@ -300,6 +310,7 @@ namespace WebSERVER.Migrations
                 {
                     b.Property<int>("IncidentDeviceId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("DeviceId");
@@ -538,6 +549,13 @@ namespace WebSERVER.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WebSERVER.Models.Call", b =>
+                {
+                    b.HasOne("WebSERVER.Models.Incident", "incident")
+                        .WithMany("Calls")
+                        .HasForeignKey("incidentId");
                 });
 
             modelBuilder.Entity("WebSERVER.Models.ChangedByWhen", b =>

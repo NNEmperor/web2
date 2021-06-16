@@ -24,5 +24,6 @@ namespace WebSERVER.Models.FrontModels
         public string SubCause { get; set; }
         public string TypeR { get; set; }
         public string Material { get; set; }
+        public List<int> Devices { get; set; }
     }
 }

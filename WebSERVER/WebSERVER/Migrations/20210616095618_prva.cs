@@ -75,8 +75,9 @@ namespace WebSERVER.Migrations
                 name: "Devices",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Type = table.Column<string>(nullable: true),
-                    Id = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
                     XCoordinate = table.Column<double>(nullable: false),
@@ -295,7 +296,7 @@ namespace WebSERVER.Migrations
                 name: "IncidentDevices",
                 columns: table => new
                 {
-                    IncidentDeviceId = table.Column<int>(nullable: false)
+                    IncidentDeviceId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     IncidentId = table.Column<int>(nullable: true),
                     DeviceId = table.Column<int>(nullable: true)

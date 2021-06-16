@@ -9,7 +9,7 @@ using WebSERVER.Models;
 
 namespace WebSERVER.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Calls")]
     [ApiController]
     public class CallsController : ControllerBase
     {
@@ -24,6 +24,27 @@ namespace WebSERVER.Controllers
         public async Task<ActionResult<IEnumerable<Call>>> GetCalls()
         {
             return await _context.Calls.ToListAsync();
+        }
+
+        [HttpPost]
+        [Route("GetCallsForDevices")]
+        public async Task<ActionResult<IEnumerable<Call>>> GetCallsForDevices([FromBody]List<int> deviceIds)
+        {
+            List<Device> devices = await _context.Devices.Where(sklj => deviceIds.Contains(sklj.Id)).ToListAsync();
+
+            List<Call> res = new List<Call>();
+            foreach(Device d in devices)
+            {
+                foreach(Call c in _context.Calls)
+                {
+                    if(d.Address == c.Address)
+                    {
+                        res.Add(c);
+                    }
+                }
+            }
+
+            return res;
         }
 
         [HttpGet("{id}")]
@@ -65,14 +86,14 @@ namespace WebSERVER.Controllers
 
         [HttpPost]
         [Route("AddCall")]
-        public async Task<ActionResult<Call>> AddBook(Call call)
+        public async Task<ActionResult<Call>> AddCall(Call call)
         {
 
             _context.Calls.Add(call);
 
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBooks", new { id = call.Id }, call);
+            return CreatedAtAction("GetCall", new { id = call.Id }, call);
         }
 
         // DELETE: api/Books/5

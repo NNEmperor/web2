@@ -31,7 +31,9 @@ namespace WebSERVER.Models
         public string SubCause { get; set; }
         public string ConstructionType { get; set; }
         public string Material { get; set; }
-        //public ICollection<Call> RecievedCalls { get; set; }
+        [NotMapped]
+        public ICollection<Device> Devices { get; set; }
+        public ICollection<Call> Calls { get; set; }
 
         //multimedia
     }

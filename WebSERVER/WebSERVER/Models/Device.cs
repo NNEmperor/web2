@@ -9,13 +9,15 @@ namespace WebSERVER.Models
 {
     public class Device
     {
-        public string Type { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
+        [Column(TypeName = "int")]
         public int Id { get; set; }
+        public string Type { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public double XCoordinate { get; set; }
         public double YCoordinate { get; set; }
+        [NotMapped]
+        public ICollection<Incident> Incidents { get; set; }
     }
 }

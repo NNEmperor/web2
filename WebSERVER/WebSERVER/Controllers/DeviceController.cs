@@ -27,8 +27,9 @@ namespace WebSERVER.Controllers
             return await _context.Devices.ToListAsync();
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Device>> GetDevice(int id)
+        [HttpPost]
+        [Route("GetDevice")]
+        public async Task<ActionResult<Device>> GetDevice([FromBody]int id)
         {
             var devices = await _context.Devices.FindAsync(id);
 

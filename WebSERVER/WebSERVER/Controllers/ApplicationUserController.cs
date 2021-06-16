@@ -125,6 +125,13 @@ namespace WebSERVER.Controllers
             return await _userManager.Users.Where(x=> x.Status.ToUpper().Equals("PROCESIRA")).ToListAsync();
         }
 
+        [HttpGet]
+        [Route("GetAllUsers")]
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetAllUsers()
+        {
+            return await _userManager.Users.ToListAsync();
+        }
+
         [HttpPost]
         [Route("AcceptRegistration")]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> AcceptRegistration([FromForm] string userName)

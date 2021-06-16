@@ -123,8 +123,22 @@ namespace WebSERVER.Controllers
                 SubCause = IncidentM.SubCause,
                 Material = IncidentM.Material,
                 ConstructionType = IncidentM.TypeR
+                
             };
+
             _context.Incidents.Add(incident);
+
+            foreach (int d in IncidentM.Devices)
+            {
+                IncidentDevice id = new IncidentDevice()
+                {
+                    Device = _context.Devices.Where(dev => dev.Id == d).First(),
+                    Incident = incident
+
+                };
+                _context.IncidentDevices.Add(id);
+            }
+
 
             await _context.SaveChangesAsync();
 
