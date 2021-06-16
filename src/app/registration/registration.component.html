@@ -45,26 +45,26 @@
             <div class="two">
                 Value: {{ regiForm.value | json }}
                 <div class="form-group required" >
-                    <input mat-Input type="text" placeholder="name" formControlName="name" required minlength="3"  (blur)="nameValue()" >
+                    <input mat-Input type="text" class="form-control" placeholder="name" formControlName="name" required minlength="3"  (blur)="nameValue()" >
                     <control-messages [control]="regiForm.get('name')"></control-messages>
                     <label class="text-danger" *ngIf="regiForm.get('name')?.errors?.required && regiForm.get('name')?.touched">Name is required.</label>
                     <label class="text-danger" *ngIf="regiForm.get('name')?.errors?.minlength && regiForm.get('name')?.touched">Name must have min 3 characters.</label>
                 </div>
                 
-                <input mat-Input type="text" placeholder="lastname" formControlName="lastname">
+                <input mat-Input type="text" class="form-control" placeholder="lastname" formControlName="lastname">
                 <label class="text-danger" *ngIf="regiForm.get('lastname')?.errors?.required && regiForm.get('lastname')?.touched">Lastname is required.</label>
                 <label class="text-danger" *ngIf="regiForm.get('lastname')?.errors?.minlength && regiForm.get('lastname')?.touched">Lastame must have min 3 characters.</label><br/>
-                <input mat-Input type="text" placeholder="username" formControlName="username">
+                <input mat-Input type="text" class="form-control" placeholder="username" formControlName="username">
                 <label class="text-danger" *ngIf="regiForm.get('username')?.errors?.required && regiForm.get('username')?.touched">Username is required.</label>
                 <label class="text-danger" *ngIf="regiForm.get('username')?.errors?.minlength && regiForm.get('username')?.touched">Username must have min 3 characters.</label><br/>
             
-                <input mat-input type="text" placeholder="email" formControlName="email">
+                <input mat-input type="text" class="form-control" placeholder="email" formControlName="email">
                 <label class="text-danger" *ngIf=" regiForm.get('email')?.touched && regiForm.get('email')?.errors?.required">Email is required.</label>
                 <label class="text-danger" *ngIf=" regiForm.get('email')?.touched && regiForm.get('email')?.errors?.email">Invalid email.</label><br/>
                 <input matt-input type="date" class="form-control"  formControlName="bday" />
                 <label class="text-danger" *ngIf=" regiForm.get('bday')?.touched && regiForm.get('bday')?.errors?.required">Date of birth is required.</label>
            
-                <input mat-Input type="password" placeholder="password" formControlName="password">
+                <input mat-Input type="password" class="form-control" placeholder="password" formControlName="password">
                 <label class="text-danger" *ngIf="regiForm.get('password')?.errors?.required && regiForm.get('password')?.touched">Password is required.</label>
                 <label class="text-danger" *ngIf="regiForm.get('password')?.errors?.minlength && regiForm.get('password')?.touched">Password must have min 4 characters.</label>
                 <label class="text-danger" *ngIf="regiForm.get('password')?.errors?.pattern && regiForm.get('password')?.touched">Password must have numbers and characters.</label><br/>
@@ -72,7 +72,7 @@
                 <input mat-Input type="password" class="form-control" [ngClass]="{'is-invalid':regiForm.get('passwordCheck')?.errors  && regiForm.get('passwordCheck')?.touched}" placeholder="repeat password" formControlName="passwordCheck"><br/>
                 <div class="invalid-feedback" *ngIf="regiForm.get('passwordCheck')?.hasError('passwordMismatch')">Password doesn't match.</div>
                 <label class="text-danger" *ngIf=" regiForm.get('passwordCheck')?.touched && regiForm.get('passwordCheck')?.errors?.required">Confirmation of password is required.</label><br>
-                <input mat-Input type="text" placeholder="address" formControlName="address"><br>
+                <input mat-Input type="text" class="form-control" placeholder="address" formControlName="address"><br>
                 <label class="text-danger" *ngIf=" regiForm.get('address')?.touched && regiForm.get('address')?.errors?.required">Address is required.</label><br/>
   
             </div>

@@ -23,6 +23,7 @@ export class RegistrationComponent implements OnInit {
   selectedRole: string = '';
   selectedFile = null;
   //imageURL: string='';
+  file;
 
   FileFormData=new FormData();//za slanje slike
   hasProfilePic=false;
@@ -90,12 +91,12 @@ export class RegistrationComponent implements OnInit {
               this.http.post('http://localhost:55333/api/ApplicationUser/UploadFile',this.FileFormData,{reportProgress:true,observe:'events'})
               .subscribe(event=>{
                if(event.type===HttpEventType.UploadProgress){
-                  this.progress = Math.round(event.loaded / event.total! * 100);
+                 /* this.progress = Math.round(event.loaded / event.total! * 100);
                    console.log(`Uploaded! ${this.progress}%`);
                    //ovo je tek kad klikne na register, da li tako,malo konfuzno
                        setTimeout(() => {
                       this.progress = 0;
-                      }, 1500);
+                      }, 1500);*///radilo mozda nemam pojma
                 }else if(event.type===HttpEventType.Response){
                   alert("OKACENO");
                   console.log("Okaceno")
@@ -162,10 +163,12 @@ export class RegistrationComponent implements OnInit {
   }
   onFileChanged(event:any) {
     this.selectedFile = event.target.files[0]
+    console.log("promena slike");
   }
 
 
   showPreview(event:any) {
+    console.log("duzina je: "+event.target.files.length)
     const file = event.target.files[0];
     
     this.regiForm.patchValue({
@@ -189,9 +192,15 @@ export class RegistrationComponent implements OnInit {
       console.log('this is the file = ', file);
 
       let fileToUpload=<File>file;  //preuzeta slika
+      console.log("duzina formeee: ")
+      this.FileFormData.forEach((value,key) => {
+        console.log(key+" "+value)
+      });
+      this.FileFormData=new FormData();//da li resetuje
       this.FileFormData.append('file',fileToUpload,fileToUpload.name);
       this.hasProfilePic=true;
-
+      this.file=file;
+      this.uploadFilesSimulator(0);
       //this.progress = Math.round(event.loaded / event.total! * 100);
 
     }else{
@@ -241,7 +250,26 @@ export class RegistrationComponent implements OnInit {
   }
 
 
- 
+  uploadFilesSimulator(index: number) {
+    setTimeout(() => {
+      if (index === this.file.length) {
+        return;
+      } else {
+        const progressInterval = setInterval(() => {
+          if (this.progress === 100) {
+
+            setTimeout(() => {
+              this.progress = 0;
+            }, 1500);
+            clearInterval(progressInterval);
+            //this.uploadFilesSimulator(index + 1);
+          } else {
+            this.progress += 5;
+          }
+        }, 200);
+      }
+    }, 1000);
+  }
   
 
 }
