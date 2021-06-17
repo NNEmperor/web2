@@ -69,8 +69,11 @@ button{
   color: white;
     background-color: rgb(48, 72, 204);
   }*/
-  li a{
+  li button{
+    background-color: transparent;
+    border-color: transparent;
     font-size: 18px;
+    vertical-align: bottom;
   }
   .naslov{
     color: white;

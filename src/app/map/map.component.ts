@@ -17,6 +17,8 @@ import XyzSource from 'ol/source/XYZ';
 import { fromLonLat } from 'ol/proj';
 import Geometry from 'ol/geom/Geometry';
 import { MessagePassingService } from '../message-passing.service';
+import {MatDialog} from '@angular/material/dialog'; 
+import { MapDocPopUpComponent } from '../map-doc-pop-up/map-doc-pop-up.component';
 
 @Component({
   selector: 'app-map',
@@ -35,7 +37,7 @@ export class MapComponent implements OnInit {
   marker!: Feature;
   marker2!: Feature;
 
-  constructor(private service: MessagePassingService ) {
+  constructor(private service: MessagePassingService , public dialog: MatDialog) {
     this.service.changeData("MAP")
   }
 
@@ -143,14 +145,14 @@ export class MapComponent implements OnInit {
 
   getCoord(event: any){
     var coordinate = this.map.getEventCoordinate(event);
-    console.log(coordinate);
+   // console.log(coordinate);
     var lonlat = olProj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
     var lon = lonlat[0];
     var lat = lonlat[1];
-    console.log('lon'+lon+" lat"+lat);
+  //  console.log('lon'+lon+" lat"+lat);
     
                                                   //KOD ZA DODAVANJE MARKERA NA MAPI privremeno zakomentarisan
-    var markercic = new Feature({
+  /*  var markercic = new Feature({
       geometry: new Point(fromLonLat([lon, lat])),
       name: 'VOZILO1',
       title:'vaaat'
@@ -166,25 +168,42 @@ export class MapComponent implements OnInit {
       );
 
     this.vectorSource.addFeature(markercic);  //dodaje marker za vozilo
-    
-    
+    */
+    var postiji='ne'
     var mapica=this.map;
     this.map.on('click', function(evt) {
-      console.log("osuskuje");
+      //console.log("osuskuje");
       var feature = mapica.forEachFeatureAtPixel(evt.pixel,
         function(feature) {
           console.log('NASAO');
           return feature;
         });
      // if (feature === marker) {
-       var prop=feature?.get('name'); //na osnovu imena (BICE TO ID ODGOVARAJUCEG DOKUMENTA) poslati zahtev ka serveru i napraviti popup prozor koji ce prikazati sve info
-       //prop.
-       console.log('imeee '+prop);
-
+       var i=1;
+       //if(i==1){
+        var prop=feature?.get('name'); //na osnovu imena (BICE TO ID ODGOVARAJUCEG DOKUMENTA) poslati zahtev ka serveru i napraviti popup prozor koji ce prikazati sve info
+        //prop.
+        i=2;
+        console.log('imeee '+prop);
+          if(prop==undefined){
+          }else{
+            console.log('postoji');
+            //DODELJUJE KOJI ID JE U PITANJU IZ NAZIVA MARKERA
+          localStorage.setItem('mapa',prop);
+          }
+      //}
       });
-      
+      var mapa=localStorage.getItem('mapa');
+      console.log(mapa);
+      if(mapa!=null){
+        //OTVARA DIJALLOG ZA DOKUMENT
+        let dialogRef = this.dialog.open(MapDocPopUpComponent);
+      }
   }
+  openDialog(){
   
+    let dialogRef = this.dialog.open(MapDocPopUpComponent);
+  }
 
 }
 

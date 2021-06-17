@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit , ViewChild, ElementRef } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MessagePassingService } from '../message-passing.service';
 
 @Component({
   selector: 'app-workreq-multimedia',
@@ -18,7 +19,9 @@ export class WorkreqMultimediaComponent implements OnInit {
   //  
   imagePath="assets/images/apple-icon-120x120.png";
   slika;
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer, private service: MessagePassingService) {
+    this.service.changeData("WORK REQUEST - NEW - Multimedia attachments")
+   }
 
   ngOnInit(): void {
 

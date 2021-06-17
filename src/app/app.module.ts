@@ -87,6 +87,9 @@ import { NotifierModule } from 'angular-notifier';
 import { MapPopUpComponent } from './map-pop-up/map-pop-up.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SelectUserPopUpComponent } from './select-user-pop-up/select-user-pop-up.component';
+import { MapDocPopUpComponent } from './map-doc-pop-up/map-doc-pop-up.component';
+import { WorkReqIncidentPopUpComponent } from './work-req-incident-pop-up/work-req-incident-pop-up.component';
+import { WrBasicInfoPopUpComponent } from './wr-basic-info-pop-up/wr-basic-info-pop-up.component';
 
 
 @NgModule({
@@ -150,6 +153,9 @@ import { SelectUserPopUpComponent } from './select-user-pop-up/select-user-pop-u
     SelectDevicesPopUpComponent,
     MapPopUpComponent,
     SelectUserPopUpComponent,
+    MapDocPopUpComponent,
+    WorkReqIncidentPopUpComponent,
+    WrBasicInfoPopUpComponent,
   ],
   imports: [
     BrowserModule,

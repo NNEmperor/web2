@@ -6,20 +6,20 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul class="navbar-nav">
             <li class="nav-item" >
-                <a class="nav-link" routerLinkActive="active" 
-                [routerLinkActiveOptions]="{exact: true}" [routerLink]='["/home/workreq-new"]'  >Basic information</a>
+                <button class="nav-link" routerLinkActive="active" 
+                [routerLinkActiveOptions]="{exact: true}"  (click)="Info()" >Basic information</button>
             </li> 
             <li  class="nav-item">
-                <a  class="nav-link" routerLinkActive="active" 
-                [routerLinkActiveOptions]="{exact: true}" [routerLink]='["/home/workreq-new/workreq-history"]' >History of state changes</a>
+                <button  class="nav-link" routerLinkActive="active" 
+                [routerLinkActiveOptions]="{exact: true}"  (click)="History()" >History of state changes</button>
             </li>
             <li  class="nav-item">
-                <a class="nav-link" routerLinkActive="active" 
-                [routerLinkActiveOptions]="{exact: true}" [routerLink]='["/home/workreq-new/workreq-multimedia"]' >Multimedia attachments</a>
+                <button class="nav-link" routerLinkActive="active" 
+                [routerLinkActiveOptions]="{exact: true}" [routerLink]='["/home/workreq-new/workreq-multimedia"]' (click)="Media()">Multimedia attachments</button>
             </li> 
             <li  class="nav-item">
-                <a class="nav-link" routerLinkActive="active" 
-                [routerLinkActiveOptions]="{exact: true}" [routerLink]='["/home/workreq-new/workreq-equipment"]' >Equipment</a>
+                <button class="nav-link" routerLinkActive="active" 
+                [routerLinkActiveOptions]="{exact: true}" [routerLink]='["/home/workreq-new/workreq-equipment"]' (click)="Equ()">Equipment</button>
             </li> 
            
           </ul>

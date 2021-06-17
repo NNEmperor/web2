@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessagePassingService } from '../message-passing.service';
 
 @Component({
   selector: 'app-workreq-equipment',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkreqEquipmentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: MessagePassingService) { 
+    this.service.changeData("WORK REQUEST - NEW - Equipment")
+  }
 
   ngOnInit(): void {
   }

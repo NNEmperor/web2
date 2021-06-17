@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessagePassingService } from '../message-passing.service';
+import {MatDialog} from '@angular/material/dialog';
+import { WorkReqIncidentPopUpComponent } from '../work-req-incident-pop-up/work-req-incident-pop-up.component';
+import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import { Location } from "@angular/common";
+import { WorkReqServiceService } from '../work-req-service.service';
+import { WrBasicInfoPopUpComponent } from '../wr-basic-info-pop-up/wr-basic-info-pop-up.component';
+
+
 @Component({
   selector: 'app-workreq-basicinfo',
   templateUrl: './workreq-basicinfo.component.html',
@@ -8,28 +16,29 @@ import { MessagePassingService } from '../message-passing.service';
 })
 export class WorkreqBasicinfoComponent implements OnInit {
 
+  uneseno=false;      //AKO JE NESTO UNETO U NEKO POLJE
   public today;
   selectedStartDate:any;
   //minDate = new Date();
   works = this.getWorkTypes();
   workReqBasicForm: FormGroup = new FormGroup({
-    'userName' : new FormControl('', [Validators.required, Validators.email]),
-    'password': new FormControl('', Validators.required),
+    /*'userName' : new FormControl('', [Validators.required, Validators.email]),
+    'password': new FormControl('', Validators.required),*/
 
     'docType': new FormControl('1'),
     'status': new FormControl('Draft'),   //setovati na osnovu vrednosti iz baze
     'incident': new FormControl,
-    'street': new FormControl,
-    'startdate': new FormControl(null),
-    'starttime': new FormControl,
-    'enddate': new FormControl({value: null, disabled: true}),
-    'endtime': new FormControl({value: null, disabled: true}),
+    'street': new FormControl('',[Validators.required, Validators.minLength(3)]),
+    'startdate': new FormControl(null,Validators.required),
+    'starttime': new FormControl(null,Validators.required),
+    'enddate': new FormControl({value: null, disabled: true}, Validators.required),
+    'endtime': new FormControl({value: null, disabled: true}, Validators.required),
     'creator': new FormControl('logovan user'),//automatski popunjava,onaj koji to radi,uzeti vrednost trenutno ulogovanog usera
-    'purpose': new FormControl, //svrha
-    'notes': new FormControl,
+    'purpose': new FormControl('',[Validators.required]), //svrha
+    'notes': new FormControl('',[Validators.required]),
     'emergency': new FormControl(false),
-    'company': new FormControl,
-    'phoneNo': new FormControl,
+    'company': new FormControl('',[Validators.required]),
+    'phoneNo': new FormControl('',[Validators.required]),
     'cratedate': new FormControl(),   //automatski
     'cratetime': new FormControl(),   //automatski
 
@@ -48,9 +57,9 @@ export class WorkreqBasicinfoComponent implements OnInit {
 ● Telefonski broj: kontakt telefon od onog ko je prijavio nalog za rad
 ● Datum i vreme kreiranja dokumenta (automatski se popunjava) */
 
-constructor(private service: MessagePassingService ) {
-  this.service.changeData("WORK REQUEST - NEW")
- 
+constructor(private service: MessagePassingService, public dialog: MatDialog ,private router: Router,location: Location, private servis:WorkReqServiceService) {
+  this.service.changeData("WORK REQUEST - NEW - Basic Information")
+
   
     const currentDate:Date = new Date();
     let dd:any = currentDate.getDate();
@@ -78,6 +87,29 @@ constructor(private service: MessagePassingService ) {
     let minutes = ("0" + now.getMinutes()).slice(-2);
     let str = hours + ':' + minutes;
     this.workReqBasicForm.controls['cratetime'].setValue(str);
+
+    /*var sTaJeUnEtO=localStorage.getItem("uneseno");
+    if(sTaJeUnEtO==="jeste"){
+      alert("uneeeeto nes DIJALOG SHOW");
+      const dialogRef = this.dialog.open(WrBasicInfoPopUpComponent);
+      //localStorage.removeItem("uneseno");
+      dialogRef.afterClosed().subscribe(() => {
+        // Do stuff after the dialog has closed
+        alert("zatvoren dijalog")
+        let DaLiSeCuva= localStorage.getItem("cuva")
+        if(DaLiSeCuva=='da'){
+          console.log("CUVA BI, OSTANI")
+        }else{
+          console.log("ne cuva BI, IDI NA SL STR")
+        }
+    });
+
+      
+    }else{
+      alert("NEMA DIJALOGA")
+    }*/
+    
+  
   }
   getWorkTypes(){
     return [
@@ -102,7 +134,16 @@ constructor(private service: MessagePassingService ) {
       this.workReqBasicForm.controls['enddate'].enable(); //moze se odabrati,sprecava da se izabere pre start date
     //}
   }
-
+unos($event){
+  console.log('kkk')
+  this.uneseno=true;
+  localStorage.setItem("uneseno","BINFOjeste");
+}
+unoss(){
+  console.log('jjj')
+  this.uneseno=true;
+  localStorage.setItem("uneseno","BINFOjeste");
+}
   enableEnfTime(event:any){
     this.workReqBasicForm.controls['endtime'].enable();
   }
@@ -113,5 +154,30 @@ constructor(private service: MessagePassingService ) {
     //false je ALL
     //true MINE
   } 
+
+  openIncidents(){
+    let dialogRef = this.dialog.open(WorkReqIncidentPopUpComponent);
+  }
+
+  SaveBasicInfo(){
+    alert("aaaaaaaaa")
+    localStorage.removeItem("uneseno"); //ODMAH I OBRISI DA NE OSTANE
+    if(this.uneseno){
+    this.servis.SaveBasicInfo(this.workReqBasicForm).subscribe();
+    }else{
+      console.log("nema sta da se cuva")
+    }
+  }
+
+  ClearBasicInfo(){
+     //ODMAH I OBRISI DA NE OSTANE
+    
+    //brisi formu
+    this.workReqBasicForm.reset();
+    this.workReqBasicForm.controls['status'].setValue('Draft');
+    this.workReqBasicForm.controls['creator'].setValue("logovan user")  //  UZETI VREDNOST I PONOVO SETOVATI----!!!!!!!!!!!!!!!!!!!---
+    this.uneseno=false;
+    localStorage.removeItem("uneseno");
+  }
 
 }
