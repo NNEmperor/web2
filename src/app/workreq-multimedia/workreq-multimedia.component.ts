@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit , ViewChild, ElementRef } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -12,7 +13,8 @@ export class WorkreqMultimediaComponent implements OnInit {
   //files:any[]=[];
   @ViewChild("fileDropRef", { static: false }) fileDropEl!: ElementRef;
   files: any[] = [];
-  fileUrl;
+  fileUrls:SafeResourceUrl[]=[];
+  
   //  
   imagePath="assets/images/apple-icon-120x120.png";
   slika;
@@ -35,8 +37,9 @@ export class WorkreqMultimediaComponent implements OnInit {
   /**
    * handle file from browsing
    */
-  fileBrowseHandler(files) {
-    this.prepareFilesList(files);
+  fileBrowseHandler($event) {
+    let nes=$event?.target.files;
+    this.prepareFilesList(nes);
   }
 
   /**
@@ -76,18 +79,32 @@ export class WorkreqMultimediaComponent implements OnInit {
    * @param files (Files List)
    */
   prepareFilesList(files: Array<any>) {
+
+    //var nizSlika:any[]=[];
+
     for (const item of files) {
       item.progress = 0;
       this.files.push(item);
-      this.slika=item;
-      const data =this.slika;//this.imagePath ;
+      //var nizSlika:Array<any>;
+     // this.slika=item;
+     // nizSlika.push(item);
+      const data =item;//this.imagePath ;
       const blob = new Blob([data], { type: 'image/jpeg' });
-  
-      this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+      console.log("krece se kroz niz slika.....")
+      let nes=this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+      console.log(nes);
+      this.fileUrls.push(nes);
     }
+
+
     this.fileDropEl.nativeElement.value = "";
     this.uploadFilesSimulator(0);
   }
+
+ /* getfileUrl(i: number){
+
+    this.fileUrlFINISH= this.fileUrl[i];
+  }*/
 
   /**
    * format bytes

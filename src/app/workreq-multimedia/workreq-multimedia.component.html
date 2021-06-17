@@ -8,10 +8,13 @@
     <label for="fileDropRef">Browse for file</label>
   </div>
   <div class="files-list" >
-    <div class="single-file" *ngFor="let file of files; let i = index">
-      <a  [href]="fileUrl" download='{{ file?.name }}'>
-      <img [src]="imagePath" width="45px" alt="file">
-    </a>
+    <div class="single-file" *ngFor="let file of files; let i = index;">
+      
+        <a  [href]="fileUrls[i]" download='{{ file?.name }}'>
+        
+        <img [src]="imagePath" width="45px" alt="file">
+        </a>
+      
       <div class="info">
         <h4 class="name">
           {{ file?.name }}

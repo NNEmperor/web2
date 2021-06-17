@@ -22,11 +22,11 @@ button{
   }*/
 
   .main {
-    margin-left: 160px; /* Same as the width of the sidebar */
+    margin-left: 120px; /* Same as the width of the sidebar */
     padding: 0px 10px;
   }
  
-
+/*
   ul {
     list-style-type: none;
     margin: 0;
@@ -35,10 +35,10 @@ button{
     background-color:transparent;
     width: 100%;
   }
-  /*.active {
+  .active {
     color:red;
     font-family: font-bold;
-  }*/
+  }
   .router-link-active.router-link-active.router-link-active.router-link-active {
     color:red;
     font-family: font-bold;
@@ -68,8 +68,10 @@ button{
     border-color: white;
   color: white;
     background-color: rgb(48, 72, 204);
+  }*/
+  li a{
+    font-size: 18px;
   }
-
   .naslov{
     color: white;
     text-align: center;
