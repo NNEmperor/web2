@@ -7,6 +7,8 @@ import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '
 import { Location } from "@angular/common";
 import { WorkReqServiceService } from '../work-req-service.service';
 import { WrBasicInfoPopUpComponent } from '../wr-basic-info-pop-up/wr-basic-info-pop-up.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { NotifierService } from 'angular-notifier';
 
 
 @Component({
@@ -16,6 +18,7 @@ import { WrBasicInfoPopUpComponent } from '../wr-basic-info-pop-up/wr-basic-info
 })
 export class WorkreqBasicinfoComponent implements OnInit {
 
+  private readonly notifier!: NotifierService;
   uneseno=false;      //AKO JE NESTO UNETO U NEKO POLJE
   public today;
   selectedStartDate:any;
@@ -57,10 +60,11 @@ export class WorkreqBasicinfoComponent implements OnInit {
 ● Telefonski broj: kontakt telefon od onog ko je prijavio nalog za rad
 ● Datum i vreme kreiranja dokumenta (automatski se popunjava) */
 
-constructor(private service: MessagePassingService, public dialog: MatDialog ,private router: Router,location: Location, private servis:WorkReqServiceService) {
+constructor(private service: MessagePassingService, public dialog: MatDialog ,private router: Router,location: Location, private servis:WorkReqServiceService, notifierService: NotifierService) {
   this.service.changeData("WORK REQUEST - NEW - Basic Information")
 
-  
+  this.notifier = notifierService;
+
     const currentDate:Date = new Date();
     let dd:any = currentDate.getDate();
     let mm:any = currentDate.getMonth()+1;
@@ -178,6 +182,30 @@ unoss(){
     this.workReqBasicForm.controls['creator'].setValue("logovan user")  //  UZETI VREDNOST I PONOVO SETOVATI----!!!!!!!!!!!!!!!!!!!---
     this.uneseno=false;
     localStorage.removeItem("uneseno");
+  }
+
+  AddBasicInfo(){
+    //dodace u bazu
+    this.servis.AddBasicInfo(this.workReqBasicForm).subscribe((data:any) =>{
+
+      if(data.succeeded){
+        //alert("Uspesno dodat tim!  da li ovo prikaze");  //ne udje, ali sa servera ispise
+      }
+      
+     }, (err:HttpErrorResponse) => {
+       console.log(err)
+       
+       let message= err.error.text;
+      // alert(message);
+ 
+      if(message==="Succeesfully added work request"){
+       this.notifier.notify('default', message);
+       this.router.navigateByUrl('/home/work-requests');
+      
+     }
+       
+      
+    })
   }
 
 }

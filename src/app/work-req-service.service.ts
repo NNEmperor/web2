@@ -59,7 +59,7 @@ export class WorkReqServiceService {
 
       console.log("saved")
       console.log(this.workReqBasicForm);
-
+      //localStorage.setItem('basic',this.workReqBasicForm);
       return this.http.get('');
     }
 

@@ -107,6 +107,37 @@ export class WorkreqNewComponent implements OnInit {
       console.log("ista stranica MEDIA");
     }else{
       console.log("p-->MED")
+      var sTaJeUnEtO=localStorage.getItem("uneseno");
+     
+        if(sTaJeUnEtO==="BINFOjeste")
+        {
+          alert("uneeeeto nes DIJALOG SHOW");
+          const dialogRef = this.dialog.open(WrBasicInfoPopUpComponent);
+          
+          dialogRef.afterClosed().subscribe(() => {
+            // Do stuff after the dialog has closed
+
+              alert("zatvoren dijalog")
+              let DaLiSeCuva= localStorage.getItem("cuva")
+
+              if(DaLiSeCuva=='da')
+              {
+                console.log("CUVA BI, OSTANI")
+
+              }else
+              {
+                console.log("ne cuva BI, IDI NA SL STR")
+                localStorage.removeItem("uneseno"); //ODMAH I OBRISI DA NE OSTANE
+                this.router.navigateByUrl('/home/workreq-new/workreq-multimedia');
+              }
+          });
+        }
+        else
+        {
+          alert("NEMA DIJALOGA")
+          console.log("neMA BI, IDI NA SL STR")
+          this.router.navigateByUrl('/home/workreq-new/workreq-multimedia');
+        }
     }
   }
   Equ(){
@@ -117,6 +148,37 @@ export class WorkreqNewComponent implements OnInit {
       console.log("ista stranica EQ");
     }else{
       console.log("p-->EQ")
+      var sTaJeUnEtO=localStorage.getItem("uneseno");
+     
+        if(sTaJeUnEtO==="BINFOjeste")
+        {
+          alert("uneeeeto nes DIJALOG SHOW");
+          const dialogRef = this.dialog.open(WrBasicInfoPopUpComponent);
+          
+          dialogRef.afterClosed().subscribe(() => {
+            // Do stuff after the dialog has closed
+
+              alert("zatvoren dijalog")
+              let DaLiSeCuva= localStorage.getItem("cuva")
+
+              if(DaLiSeCuva=='da')
+              {
+                console.log("CUVA BI, OSTANI")
+
+              }else
+              {
+                console.log("ne cuva BI, IDI NA SL STR")
+                localStorage.removeItem("uneseno"); //ODMAH I OBRISI DA NE OSTANE
+                this.router.navigateByUrl('/home/workreq-new/workreq-equipment');
+              }
+          });
+        }
+        else
+        {
+          alert("NEMA DIJALOGA")
+          console.log("neMA BI, IDI NA SL STR")
+          this.router.navigateByUrl('/home/workreq-new/workreq-equipment');
+        }
     }
   }
 }
