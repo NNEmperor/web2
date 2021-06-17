@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebSERVER.Models;
 
 namespace WebSERVER.Migrations
 {
     [DbContext(typeof(WebServerContext))]
-    partial class WebServerContextModelSnapshot : ModelSnapshot
+    [Migration("20210617165004_work-request")]
+    partial class workrequest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -453,8 +455,6 @@ namespace WebSERVER.Migrations
 
                     b.Property<string>("CreatedTime");
 
-                    b.Property<string>("Creator");
-
                     b.Property<bool>("Emergency");
 
                     b.Property<string>("EndWorkDate");
@@ -575,7 +575,7 @@ namespace WebSERVER.Migrations
                         .HasForeignKey("WorkPlanId");
 
                     b.HasOne("WebSERVER.Models.WorkRequest", "workRequest")
-                        .WithMany()
+                        .WithMany("History")
                         .HasForeignKey("workRequestId");
                 });
 

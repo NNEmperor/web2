@@ -12,10 +12,13 @@ namespace WebSERVER.Models
         public int Id { get; set; }
         public string Type { get; set; }
         public string Status { get; set; }
-        public Incident Incident { get; set; }
-        public string Street { get; set; }
-        public DateTime StartWork { get; set; }
-        public DateTime EndWork { get; set; }
+       // public Incident Incident { get; set; }
+        public string IncidentID { get; set; }
+        public string Street { get; set; }//ulica
+        public string StartWorkDate { get; set; }
+        public string StartWorkTime { get; set; }
+        public string EndWorkDate { get; set; }
+        public string EndWorkTime { get; set; }
         //user neki
         public string Purpose { get; set; }
         public string Notes { get; set; }
@@ -23,9 +26,11 @@ namespace WebSERVER.Models
         public bool Emergency { get; set; }
         public string Company { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime Created { get; set; }
+        public string CreatedDate { get; set; }
+        public string CreatedTime { get; set; }
+        public string Creator { get; set; }
 
-        public ICollection<ChangedByWhen> History { get; set; }
+       // public ICollection<ChangedByWhen> History { get; set; }
 
         //multimedia
     }

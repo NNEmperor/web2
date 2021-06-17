@@ -64,15 +64,15 @@ namespace WebSERVER.Controllers
         }
 
         [HttpPost]
-        [Route("AddWorkRequest")]
-        public async Task<ActionResult<WorkRequest>> AddBook(WorkRequest workRequest)
+        [Route("AddBasicInfo")]
+        public async Task<ActionResult> AddBasicInfo(WorkRequest workRequest)
         {
 
             _context.WorkRequests.Add(workRequest);
 
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetBooks", new { id = workRequest.Id }, workRequest);
+            return Ok("Succeesfully added work request");
+           // return CreatedAtAction("GetBooks", new { id = workRequest.Id }, workRequest);
         }
 
         // DELETE: api/Books/5
