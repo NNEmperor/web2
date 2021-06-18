@@ -200,6 +200,7 @@ unoss(){
  
       if(message==="Succeesfully added work request"){
        this.notifier.notify('default', message);
+       localStorage.removeItem("uneseno");
        this.router.navigateByUrl('/home/work-requests');
       
      }

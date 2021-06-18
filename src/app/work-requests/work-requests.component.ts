@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { MessagePassingService } from '../message-passing.service';
 import { WorkReqServiceService } from '../work-req-service.service';
 import { NotifierService } from 'angular-notifier';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-work-requests',
@@ -19,7 +20,8 @@ export class WorkRequestsComponent implements OnInit {
     works:any[]=[]
     allMineEnable = new FormControl(); 
     mySentences!:Array<Object>
-    displayedColumns: string[] = ['id', 'company', 'createdDate','createdTime','creator','emergency','endWorkDate','endWorkTime','incidentID','notes','phoneNumber','purpose','startWorkDate','startWorkTime','street','type'];
+    fileUrls:SafeResourceUrl[]=[];
+    displayedColumns: string[] = ['id','edit', 'company', 'createdDate','createdTime','creator','emergency','endWorkDate','endWorkTime','incidentID','notes','phoneNumber','purpose','startWorkDate','startWorkTime','street','type','photos'];
     dataSource ;//= new MatTableDataSource(ELEMENT_DATA);
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;
@@ -119,6 +121,10 @@ export class WorkRequestsComponent implements OnInit {
    applyFilter(filtertext:string){
  
     this.dataSource.filter=filtertext.trim().toLowerCase(); 
+   }
+
+   editTeam(id){
+      alert("edit iiid   "+ id)
    }
  
  }

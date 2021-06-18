@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, HostListener, OnInit , ViewChild, ElementRef } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 import { map } from 'rxjs/operators';
 import { MessagePassingService } from '../message-passing.service';
 import { WorkReqServiceService } from '../work-req-service.service';
@@ -19,16 +21,21 @@ export class WorkreqMultimediaComponent implements OnInit {
   files: any[] = [];
   fileUrls:SafeResourceUrl[]=[];
   FileFormData=new FormData();//za slanje slike
+  private readonly notifier!: NotifierService;
   //  
   imagePath="assets/images/apple-icon-120x120.png";
   slika;
-  constructor(private sanitizer: DomSanitizer, private service: MessagePassingService, private wrServis:WorkReqServiceService, private http:HttpClient) {
+  constructor(private sanitizer: DomSanitizer, private service: MessagePassingService,private router: Router, private wrServis:WorkReqServiceService, private http:HttpClient, notifierService: NotifierService) {
     this.service.changeData("WORK REQUEST - NEW - Multimedia attachments")
+    this.notifier = notifierService;
    }
 
   ngOnInit(): void {
 
    
+  }
+  DiscardImages(){
+    this.files=[]
   }
  
   SaveImages(){
@@ -49,7 +56,24 @@ export class WorkreqMultimediaComponent implements OnInit {
       this.http.post('http://localhost:55333/api/WorkRequest/CreateImage', formData).subscribe(res=>
       {
         console.log(res)
-      });
+      }, (err:HttpErrorResponse) => {
+        console.log(err)
+        
+        let message= err.error.text;
+       
+       if(message==="Successfully added photo to work request"){
+        this.notifier.notify('default', message);
+        //
+        
+        
+        
+      }
+      this.files=[];
+//osvezi stranicu
+     // this.router.navigateByUrl('/home/workreq-new/workreq-multimedia');
+        
+       
+     })
   }
 
    /* const image = new FormData();
