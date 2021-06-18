@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessagePassingService } from '../message-passing.service';
 import { IncidentBasic } from '../models/incident-basic';
 
@@ -10,6 +10,8 @@ import { IncidentBasic } from '../models/incident-basic';
   providers: [] // add config to the component providers
 })
 export class NewIncidentBasicInfoComponent implements AfterViewInit {
+
+  c: boolean = false;
 
   @ViewChild("idIncident") idIncident;
   @ViewChild("prioIncident") prioIncident;
@@ -46,6 +48,15 @@ export class NewIncidentBasicInfoComponent implements AfterViewInit {
     })
   }
 
+  check(event){
+    if(this.c == true){
+      this.c = false
+    }
+    else{
+      this.c = true
+    }
+  }
+
   sendIncidentBasic(){
 
     this.basicInfoData.ATA = this.ata.nativeElement.value;
@@ -55,7 +66,7 @@ export class NewIncidentBasicInfoComponent implements AfterViewInit {
     this.basicInfoData.Id = this.idIncident.nativeElement.value;
     this.basicInfoData.Type = this.type.nativeElement.value;
     this.basicInfoData.Priority = this.prioIncident.nativeElement.value;
-    this.basicInfoData.Confirmed = this.confirmedIncident.nativeElement.value;
+    this.basicInfoData.Confirmed = this.c
     this.basicInfoData.Description = this.description.nativeElement.value;
     this.basicInfoData.Affected = this.affectedByIncident.nativeElement.value;
     this.basicInfoData.NumCalls = this.calls.nativeElement.value;
@@ -65,8 +76,8 @@ export class NewIncidentBasicInfoComponent implements AfterViewInit {
 
 
     this.service.sendIncidentBasic(this.basicInfoData);
+    console.log(this.basicInfoData)
 
-    alert('sklj + ' +  this.basicInfoData.Voltage);
   }
 
   ngAfterViewInit(): void {
@@ -80,4 +91,5 @@ export class NewIncidentBasicInfoComponent implements AfterViewInit {
     this.affectedByIncident.nativeElement.value = "0"
 
   }
+  
 }

@@ -18,7 +18,7 @@ export class RegistrationComponent implements OnInit {
   progress: number = 0;
   path = "assets/images/ssss.png";
   parentMessage = "Registration"
-  regiForm!: FormGroup;
+  regiForm: any;
   uloge = this.getRoles();
   selectedRole: string = '';
   selectedFile = null;

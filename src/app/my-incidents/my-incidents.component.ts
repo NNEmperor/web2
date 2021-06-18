@@ -59,7 +59,7 @@ export class MyIncidentsComponent implements OnInit {
     })
   }
   else{
-    this.incidentService.getMine().subscribe(res=>{
+    this.incidentService.getMine(localStorage.getItem("userName")).subscribe(res=>{
       this.data = res as any;
       this.dataSource = new MatTableDataSource(this.data);
       setTimeout(() => {

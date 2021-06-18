@@ -5,7 +5,7 @@
     <div clas="row" style="display: flex;">
         <div class="col-md-2">
             <div class="wrapper_left">
-                <a (click)="openDialog()" [routerLink]='["/home/equipment"]'><span>Add</span></a>
+                <a (click)="openDialog()"><span>Add</span></a>
               </div>
         </div>
         <div class="col-md-8">
@@ -58,10 +58,7 @@
 
         <mat-paginator style="width: 80%;" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
         <div class="form-group row"  style="display: flex;justify-content: flex-end; margin-right: 20%; margin-top: 5%;" >
-            <span>
-                <i class = "material-icons">clear</i> 
-            </span>
-            <span>
+            <span (click)="sendDevices()">
                 <i class = "material-icons">save</i> 
             </span>
             

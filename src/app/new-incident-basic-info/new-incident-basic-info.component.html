@@ -55,7 +55,7 @@
                                 <p>Confirmed:</p>
                             </div>
                             <div class="col-sm-4">
-                                <input #confirmedIncident class="form-control" type="checkbox" style="width: 0.6cm; height: 0.5cm;">
+                                <input #confirmedIncident (change)="check($event)" class="form-control" type="checkbox" style="width: 0.6cm; height: 0.5cm;">
                             </div>
                             <div class="col-sm-2">
                                 <p>ETR:</p>
@@ -119,9 +119,6 @@
                         <div class=" form-group row">
                         </div>
                         <div class="form-group row"  style="display: flex;justify-content: flex-end;" >
-                            <span>
-                                <i class = "material-icons">clear</i> 
-                            </span>
                             <span (click)="sendIncidentBasic()">
                                 <i class = "material-icons">save</i> 
                             </span>

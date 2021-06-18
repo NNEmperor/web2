@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { MessagePassingService } from '../message-passing.service';
 
 
@@ -9,12 +9,31 @@ import { MessagePassingService } from '../message-passing.service';
 })
 export class DashboardComponent implements OnInit {
 
+  userName =  (localStorage.getItem("userName"))
+
+  @ViewChild("numOfDraftsIncidents") numOfDraftsIncidents;
+  @ViewChild("numOfCanceledIncidents") numOfCanceledIncidents;
+  @ViewChild("numOfExecutingIncidents") numOfExecutingIncidents;
+  @ViewChild("numOfCompletedIncidents") numOfCompletedIncidents;
+
   constructor(private service: MessagePassingService ) {
     this.service.changeData("DASHBOARD")
+
+
+    this.service.getMineStatuses(this.userName).subscribe(res =>{
+
+      console.log(res)
+
+      this.numOfDraftsIncidents.nativeElement.value = res[0];
+      this.numOfCanceledIncidents.nativeElement.value = res[1];
+      this.numOfExecutingIncidents.nativeElement.value = res[2];
+      this.numOfCompletedIncidents.nativeElement.value = res[3];
+    })
    }
 
   ngOnInit(): void {
   }
+
 
   dataPie = [
     { MarketShare: 30, Company: "Google",    },

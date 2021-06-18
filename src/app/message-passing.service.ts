@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
@@ -27,6 +27,15 @@ export class MessagePassingService {
   private newCall = new Subject<any>();
   newCall$ = this.newCall.asObservable();
 
+  private docsBasic = new Subject<any>();
+  docsBasic$ = this.docsBasic.asObservable();
+  private docsChecklsit = new Subject<any>();
+  docsChecklsit$ = this.docsChecklsit.asObservable();
+  private docsDevices = new Subject<any>();
+  docsDevices$ = this.docsDevices.asObservable();
+  private docsHistory = new Subject<any>();
+  docsHistory$ = this.docsHistory.asObservable();
+
   changeData(data: string){
     this.data.next(data)
   }
@@ -37,10 +46,18 @@ export class MessagePassingService {
   sendIncidentCalls(message: any){ this.incidentCalls.next(message) }
   sendNewCall(message: any){ this.newCall.next(message) }
 
+  sendDocsBasic(message: any){ this.docsBasic.next(message) }
+  sendDocsChecklist(message: any){ this.docsChecklsit.next(message) }
+  sendDocsDevices(message: any){ this.docsDevices.next(message) }
+  sendDocsHistory(message: any){ this.docsHistory.next(message) }
+
+
+
   UploadIncident(data){
 
     var res ={
       Type: data.Type,
+      UserName: localStorage.getItem("userName"),
       Priority: String(data.Priority),
       Confirmed: data.Confirmed,
       Description: data.Description,
@@ -60,6 +77,7 @@ export class MessagePassingService {
       Devices: data.Devices,
       Calls: data.Calls
     }
+    console.log(res)
 
       return this.http.post(this.BaseURI + '/Incident/AddIncident', res);
   }
@@ -74,6 +92,26 @@ export class MessagePassingService {
 
   addCall(data){
     return this.http.post(this.BaseURI + "/Calls/AddCall", data);
+  }
+
+  uploadDoc(data){
+    return this.http.post(this.BaseURI + "/SafetyDoc/AddDoc", data)
+  }
+
+  getAllDocs(){
+    return this.http.get(this.BaseURI + "/SafetyDoc/GetAllDocs")
+  }
+
+  getMineDocs(data){
+    let params = new HttpParams();
+    params = params.set('userName', data)
+    return this.http.post(this.BaseURI + "/SafetyDoc/GetAllDocs", params)
+  }
+
+  getMineStatuses(data){
+    let params = new HttpParams();
+    params = params.set('userName', data)
+    return this.http.post(this.BaseURI + "/Incident/GetMyStatuses", params)
   }
 
   constructor(private http: HttpClient) { }

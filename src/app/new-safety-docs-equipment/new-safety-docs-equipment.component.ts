@@ -8,6 +8,7 @@ import { MatSort} from '@angular/material/sort';
 import { MessagePassingService } from '../message-passing.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectDevicesPopUpComponent } from '../select-devices-pop-up/select-devices-pop-up.component';
+import { IncidentPassingService } from '../incident-passing.service';
 
 @Component({
   selector: 'app-new-safety-docs-equipment',
@@ -16,16 +17,14 @@ import { SelectDevicesPopUpComponent } from '../select-devices-pop-up/select-dev
 })
 export class NewSafetyDocsEquipmentComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private service: MessagePassingService ) {
+  constructor(public dialog: MatDialog, private incService: IncidentPassingService , private service: MessagePassingService ) {
     this.service.changeData("SAFETY DOCUMENTS - NEW")
 
-    setTimeout(() => {
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-    });
+
    }
    
    data: any[] = [];
+   showingData: any[] = [];
    allMineEnable = new FormControl(); 
    mySentences!:Array<Object>
    displayedColumns: string[] = ['id', 'name', 'address', 'type', 'location'];
@@ -37,7 +36,14 @@ export class NewSafetyDocsEquipmentComponent implements OnInit {
   ngOnInit(): void {
   }
  
+  deleteDevice(data){
+    const index = this.showingData.indexOf(data);
+    if(index > -1){
+      this.showingData.splice(index, 1);
+    }
+    this.dataSource = new MatTableDataSource(this.showingData);
 
+  }
  
   applyFilter(filtertext:string){
  
@@ -49,10 +55,23 @@ export class NewSafetyDocsEquipmentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res =>{
       this.data.push(res);
-      //alert('sklj' + res);
+
+      this.incService.getDevice(res).subscribe(device =>{
+        this.showingData.push(device);
+        this.dataSource = new MatTableDataSource(this.showingData);
+        setTimeout(() => {
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+        });
+      })
     })
   }
  
+  sendDevices(){
+    this.service.sendDocsDevices(this.data);
+    console.log(this.data)
+  }
+
 }
 
  

@@ -16,10 +16,10 @@
               <h2 class="active"> Sign In </h2>
           
               <!-- Login Form -->
-              <form #form='ngForm' (submit)="onSubmit(form)">
-                <input required type="text" #UserName="ngModel" name="UserName" [(ngModel)]="formModel.UserName" class="fadeIn second" placeholder="example@email.com">
-                <input required type="password" #Password="ngModel" name="Password" [(ngModel)]="formModel.Password" class="fadeIn third" placeholder="Password">
-                <input [disabled]="form.invalid" type="submit" class="fadeIn fourth" value="Log In">
+              <form [formGroup]="loginForm">
+                <input required type="text" formControlName="username" class="fadeIn second" placeholder="example@email.com">
+                <input required type="password" formControlName="password" class="fadeIn third" placeholder="Password">
+                <button (click)="onSubmit()" [disabled]="loginForm.invalid" class="fadeIn fourth" >Log in</button>
               </form>
           
               <!-- Remind Passowrd -->

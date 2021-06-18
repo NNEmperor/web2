@@ -18,11 +18,20 @@ export class StartScreenComponent implements OnInit {
     Password: ''
   }
 
-  user!: SocialUser;
-  isSignedin!: boolean;  //za drustvene mreze
+  loginForm: any;
 
-  constructor(private socialAuthService: SocialAuthService, private router: Router,
-     private service: FormUploadService) { }
+  user!: SocialUser;
+  isSignedin!: boolean;  //za drustvene mreze;
+
+  constructor(private fb: FormBuilder, private socialAuthService: SocialAuthService, private router: Router,
+     private service: FormUploadService) {
+
+      this.loginForm = fb.group({
+        username: ['', Validators.required],
+        password: ['', Validators.required]
+      })
+
+    }
   
   ngOnInit(): void {
     
@@ -32,8 +41,8 @@ export class StartScreenComponent implements OnInit {
       console.log(this.user);
     });
 
-    if(localStorage.getItem('token') != null)
-      this.router.navigateByUrl('/home');
+    //if(localStorage.getItem('token') != null)
+     // this.router.navigateByUrl('/home');
   }
 
   googleSignin(): void {
@@ -55,12 +64,13 @@ export class StartScreenComponent implements OnInit {
   //get userName() {return this.loginForm.get('userName');}
   //get password() {return this.loginForm.get('password');}
 
-  onSubmit(form: NgForm){
+  onSubmit(){
     console.log("usao sam")
-    this.service.login(form.value).subscribe(
-      (res: any) => {
-        localStorage.setItem('token', res.token);
-        this.router.navigateByUrl('/home');
+    this.service.login(this.loginForm.value).subscribe(
+      res => {
+        localStorage.setItem("userName", this.loginForm.get("username").value)
+        console.log(localStorage.getItem("userName"))
+        this.router.navigateByUrl('/home')
       },
       err => {
         if(err.status == 400)

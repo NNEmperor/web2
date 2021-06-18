@@ -32,83 +32,83 @@
             </ng-container>
 
             <ng-container matColumnDef="userNameCreator" sticky>
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> userNameCreator </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Creator </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.userNameCreator}} </td>
             </ng-container>
             
             <ng-container matColumnDef="type">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> type </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.type}} </td>
             </ng-container>
 
             <ng-container matColumnDef="priority">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> priority </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.priority}} </td>
             </ng-container>
 
             <ng-container matColumnDef="confirmed">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> confirmed </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> is Confirmed </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.confirmed}} </td>
             </ng-container>
             
             <ng-container matColumnDef="status">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.status}} </td>
             </ng-container>
 
             <ng-container matColumnDef="description">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> description </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.description}} </td>
             </ng-container>
 
             <ng-container matColumnDef="eTA">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> eTA </th>
-                <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.eTA}} </td>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Estimated TA </th>
+                <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.estimatedTA}} </td>
             </ng-container>
 
             <ng-container matColumnDef="aTA">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> aTA </th>
-                <td style="text-align: left;" mat-cell *matCellDef="let element"> {{element.aTA}} </td>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Actual TA </th>
+                <td style="text-align: left;" mat-cell *matCellDef="let element"> {{element.actualTA}} </td>
             </ng-container>
 
             <ng-container matColumnDef="outage">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> outage </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Outage </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.outage}} </td>
             </ng-container>
             <ng-container matColumnDef="eTR">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> eTR </th>
-                <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.eTR}} </td>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Estimated TR </th>
+                <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.estimatedTR}} </td>
             </ng-container>
             <ng-container matColumnDef="affectedUsers">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> affectedUsers </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Affected Users </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.affectedUsers}} </td>
             </ng-container>
             <ng-container matColumnDef="numberOfCalls">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> numberOfCalls </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Number of calls </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.numberOfCalls}} </td>
             </ng-container>
             <ng-container matColumnDef="voltageLevel">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> voltageLevel </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Voltage level </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.voltageLevel}} </td>
             </ng-container>
             <ng-container matColumnDef="estimatedWorkStartTime">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> estimatedWorkStartTime </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> EstimatedWorkStartTime </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.estimatedWorkStartTime}} </td>
             </ng-container>
             <ng-container matColumnDef="cause">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> cause </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Cause </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.cause}} </td>
             </ng-container>
             <ng-container matColumnDef="subCause">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> subCause </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> SubCause </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.subCause}} </td>
             </ng-container>
             <ng-container matColumnDef="constructionType">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> constructionType </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Construction Type </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.constructionType}} </td>
             </ng-container>
             <ng-container matColumnDef="material">
-                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> material </th>
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Material </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.material}} </td>
             </ng-container>
             

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -13,8 +13,10 @@ export class IncidentPassingService {
     return this.http.get(this.BaseURI + '/Incident/GetAllIncidents')
   }
 
-  getMine(){
-    return this.http.get(this.BaseURI + '/Incident/GetMineIncidents' + localStorage.getItem('userName'))
+  getMine(data){
+    let params = new HttpParams();
+    params = params.set('userName', data)
+    return this.http.post(this.BaseURI + '/Incident/GetMineIncidents', params)
   }
 
   getAllDevices(){

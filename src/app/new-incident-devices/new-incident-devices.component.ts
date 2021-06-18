@@ -9,6 +9,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { MessagePassingService } from '../message-passing.service';
 import { IncidentPassingService } from '../incident-passing.service';
 import { SelectDevicesPopUpComponent } from '../select-devices-pop-up/select-devices-pop-up.component';
+import { MapPopUpComponent } from '../map-pop-up/map-pop-up.component';
 
 @Component({
   selector: 'app-new-incident-devices',
@@ -28,7 +29,7 @@ export class NewIncidentDevicesComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   
-  constructor(public dialog: MatDialog ,private service: MessagePassingService, private incidentService: IncidentPassingService ){
+  constructor(public dialogRef: MatDialog, public dialog: MatDialog ,private service: MessagePassingService, private incidentService: IncidentPassingService ){
     this.service.changeData("INCIDENT - NEW")
 
    setTimeout(() => {
@@ -48,10 +49,18 @@ export class NewIncidentDevicesComponent implements OnInit {
       this.showingData.splice(index, 1);
     }
     this.dataSource = new MatTableDataSource(this.showingData);
+    setTimeout(() => {
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   showDevice(e: number){
-    /** otvara se mapa u modulu */
+    let dialogRef2 = this.dialogRef.open(MapPopUpComponent, {
+      data: {
+        Coordinates: []
+      }
+    })
   }
 
   sendDevices(){
@@ -65,16 +74,19 @@ export class NewIncidentDevicesComponent implements OnInit {
 
   openDialog(){
     let dialogRef = this.dialog.open(SelectDevicesPopUpComponent);
-
+    
     dialogRef.afterClosed().subscribe(res =>{
       this.data.push(res);
 
       this.incidentService.getDevice(res).subscribe(device =>{
         this.showingData.push(device);
         this.dataSource = new MatTableDataSource(this.showingData);
+        setTimeout(() => {
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+        });
       }); 
       
-      //alert('sklj' + res);
     })
   }
 
