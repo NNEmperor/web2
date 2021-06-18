@@ -19,5 +19,7 @@ namespace WebSERVER.Models
         public double YCoordinate { get; set; }
         [NotMapped]
         public ICollection<Incident> Incidents { get; set; }
+        [NotMapped]
+        public ICollection<SafetyDoc> SafetyDocs { get; set; }
     }
 }

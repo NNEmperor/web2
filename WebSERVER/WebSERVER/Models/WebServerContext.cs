@@ -25,6 +25,9 @@ namespace WebSERVER.Models
         public DbSet<MemberOfTeam> Members { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<MediaWorkRequest> MediaWorkRequests { get; set; }
+        public DbSet<SafetyDoc> SafetyDocs { get; set; }
+        public DbSet<SafetyDocDevice> SafetyDocDevices { get; set; }
+        public DbSet<ChangedByWhen> History { get; set; }
 
     }
 }

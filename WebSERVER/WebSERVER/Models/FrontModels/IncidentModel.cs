@@ -8,6 +8,7 @@ namespace WebSERVER.Models.FrontModels
     public class IncidentModel
     {
         public string Type { get; set; }
+        public string UserName { get; set; }
         public string Priority { get; set; }
         public string Confirmed { get; set; }
         public string Description { get; set; }
@@ -25,5 +26,6 @@ namespace WebSERVER.Models.FrontModels
         public string TypeR { get; set; }
         public string Material { get; set; }
         public List<int> Devices { get; set; }
+        public List<Call> Calls { get; set; }
     }
 }

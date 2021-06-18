@@ -10,7 +10,7 @@ using WebSERVER.Models;
 namespace WebSERVER.Migrations
 {
     [DbContext(typeof(WebServerContext))]
-    [Migration("20210618003434_prva")]
+    [Migration("20210618085723_prva")]
     partial class prva
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -227,6 +227,8 @@ namespace WebSERVER.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("SafetyDocId");
+
                     b.Property<DateTime>("WhenChanged");
 
                     b.Property<string>("WhoChanged");
@@ -236,6 +238,8 @@ namespace WebSERVER.Migrations
                     b.Property<int?>("workRequestId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SafetyDocId");
 
                     b.HasIndex("WorkPlanId");
 
@@ -273,7 +277,7 @@ namespace WebSERVER.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("ATA");
+                    b.Property<DateTime>("ActualTA");
 
                     b.Property<int>("AffectedUsers");
 
@@ -283,9 +287,11 @@ namespace WebSERVER.Migrations
 
                     b.Property<string>("ConstructionType");
 
-                    b.Property<DateTime>("ETA");
+                    b.Property<string>("Description");
 
-                    b.Property<DateTime>("ETR");
+                    b.Property<DateTime>("EstimatedTA");
+
+                    b.Property<DateTime>("EstimatedTR");
 
                     b.Property<DateTime>("EstimatedWorkStartTime");
 
@@ -384,6 +390,68 @@ namespace WebSERVER.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("WebSERVER.Models.SafetyDoc", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedWhen");
+
+                    b.Property<string>("Details");
+
+                    b.Property<bool>("GroundingRemoved");
+
+                    b.Property<string>("Notes");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<bool>("ReadyForService");
+
+                    b.Property<string>("Status");
+
+                    b.Property<bool>("TagsRemoved");
+
+                    b.Property<string>("TeamId");
+
+                    b.Property<string>("Type");
+
+                    b.Property<bool>("WorkOpCompleted");
+
+                    b.Property<int?>("WorkPlanId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeamId");
+
+                    b.HasIndex("WorkPlanId");
+
+                    b.ToTable("SafetyDocs");
+                });
+
+            modelBuilder.Entity("WebSERVER.Models.SafetyDocDevice", b =>
+                {
+                    b.Property<int>("SafetyDocDeviceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("DeviceId");
+
+                    b.Property<int?>("SafetyDocId");
+
+                    b.HasKey("SafetyDocDeviceId");
+
+                    b.HasIndex("DeviceId");
+
+                    b.HasIndex("SafetyDocId");
+
+                    b.ToTable("SafetyDocDevices");
                 });
 
             modelBuilder.Entity("WebSERVER.Models.Team", b =>
@@ -587,6 +655,10 @@ namespace WebSERVER.Migrations
 
             modelBuilder.Entity("WebSERVER.Models.ChangedByWhen", b =>
                 {
+                    b.HasOne("WebSERVER.Models.SafetyDoc")
+                        .WithMany("History")
+                        .HasForeignKey("SafetyDocId");
+
                     b.HasOne("WebSERVER.Models.WorkPlan")
                         .WithMany("History")
                         .HasForeignKey("WorkPlanId");
@@ -605,6 +677,28 @@ namespace WebSERVER.Migrations
                     b.HasOne("WebSERVER.Models.Incident", "Incident")
                         .WithMany()
                         .HasForeignKey("IncidentId");
+                });
+
+            modelBuilder.Entity("WebSERVER.Models.SafetyDoc", b =>
+                {
+                    b.HasOne("WebSERVER.Models.Team", "Team")
+                        .WithMany()
+                        .HasForeignKey("TeamId");
+
+                    b.HasOne("WebSERVER.Models.WorkPlan", "WorkPlan")
+                        .WithMany()
+                        .HasForeignKey("WorkPlanId");
+                });
+
+            modelBuilder.Entity("WebSERVER.Models.SafetyDocDevice", b =>
+                {
+                    b.HasOne("WebSERVER.Models.Device", "Device")
+                        .WithMany()
+                        .HasForeignKey("DeviceId");
+
+                    b.HasOne("WebSERVER.Models.SafetyDoc", "SafetyDoc")
+                        .WithMany()
+                        .HasForeignKey("SafetyDocId");
                 });
 
             modelBuilder.Entity("WebSERVER.Models.WorkReqDevice", b =>

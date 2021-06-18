@@ -27,33 +27,32 @@ namespace WebSERVER.Controllers
             return await _context.Incidents.ToListAsync();
         }
 
+        [HttpPost]
         [Route("GetMineIncidents")]
-        public async Task<ActionResult<IEnumerable<Incident>>> GetMyIncidents(string userName)
+        public async Task<ActionResult<IEnumerable<Incident>>> GetMyIncidents([FromForm]string userName)
         {
             return await _context.Incidents.Where(x => x.UserNameCreator == userName).ToListAsync();
         }
 
-        [Route("GetMyStatuses/{id}")]
-        public async Task<ActionResult<string>> GetStatuses(string id)
+        [HttpPost]
+        [Route("GetMyStatuses")]
+        public async Task<ActionResult<ICollection<int>>> GetMyStatuses([FromForm]string userName)
         {
-            List<Incident> temp = _context.Incidents.Where(x => x.UserNameCreator == id).ToList();
-            int draft = 0;
-            int canceled = 0;
-            int executing = 0;
-            int completed = 0;
+            List<Incident> temp = await _context.Incidents.Where(x => x.UserNameCreator == userName).ToListAsync();
+            List<int> res = new List<int>() { 0, 0, 0, 0};
 
             foreach (Incident i in temp)
             {
                 if (i.Status == "Draft")
-                    draft++;
+                    res[0]++;
                 else if (i.Status == "Canceled")
-                    canceled++;
+                    res[1]++;
                 else if (i.Status == "Executing")
-                    executing++;
+                    res[2]++;
                 else if (i.Status == "Completed")
-                    completed++;
+                    res[3]++;
             }
-            return draft.ToString() + "/" + canceled.ToString() + "/" + executing.ToString() + "/" + completed.ToString();
+            return res;
         }
 
         [Route("GetById/{id}")]
@@ -97,33 +96,51 @@ namespace WebSERVER.Controllers
 
         [HttpPost]
         [Route("AddIncident")]
-        public async Task<ActionResult<Incident>> AddIncident([FromBody]IncidentModel IncidentM)
+        public async Task<ActionResult<Incident>> AddIncident([FromBody] IncidentModel IncidentM)
         {
             bool c;
-            if (IncidentM.Confirmed.Equals("on"))
-                c = true;
-            else
-                c = false;
+            bool.TryParse(IncidentM.Confirmed, out c);
+            int p = 0;
+            int.TryParse(IncidentM.Priority, out p);
+            int a = 0;
+            int.TryParse(IncidentM.Affected, out a);
+            int n = 0;
+            int.TryParse(IncidentM.NumCalls, out n);
+            double v = 0;
+            double.TryParse(IncidentM.Voltage, out v);
+            DateTime esta;
+            DateTime.TryParse(IncidentM.ETA, out esta);
+            DateTime asta;
+            DateTime.TryParse(IncidentM.ATA, out asta);
+            DateTime etr;
+            DateTime.TryParse(IncidentM.ETR, out etr);
+            DateTime outa;
+            DateTime.TryParse(IncidentM.Outage, out outa);
+            DateTime est;
+            DateTime.TryParse(IncidentM.Estimated, out est);
 
             Incident incident = new Incident()
             {
                 Type = IncidentM.Type,
-                Priority = int.Parse(IncidentM.Priority),
+                Priority = p,
                 Confirmed = c,
+                UserNameCreator = IncidentM.UserName,
                 Status = IncidentM.Status,
-                ETA = DateTime.Parse(IncidentM.ETA),
-                ATA = DateTime.Parse(IncidentM.ATA),
-                ETR = DateTime.Parse(IncidentM.ETR),
-                Outage = DateTime.Parse(IncidentM.Outage),
-                EstimatedWorkStartTime = DateTime.Parse(IncidentM.Estimated),
-                AffectedUsers = int.Parse(IncidentM.Affected),
-                NumberOfCalls = int.Parse(IncidentM.NumCalls),
-                VoltageLevel = double.Parse(IncidentM.Voltage),
+                EstimatedTA = esta,
+                ActualTA = asta,
+                EstimatedTR = etr,
+                Outage = outa,
+                EstimatedWorkStartTime = est,
+                AffectedUsers = a,
+                NumberOfCalls = n,
+                VoltageLevel = v,
+                Description = IncidentM.Description,
                 Cause = IncidentM.Cause,
                 SubCause = IncidentM.SubCause,
                 Material = IncidentM.Material,
-                ConstructionType = IncidentM.TypeR
-                
+                ConstructionType = IncidentM.TypeR,
+                Calls = IncidentM.Calls
+
             };
 
             _context.Incidents.Add(incident);

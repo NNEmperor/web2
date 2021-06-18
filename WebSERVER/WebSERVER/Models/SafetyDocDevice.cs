@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace WebSERVER.Models
 {
-    public class ChangedByWhen
+    public class SafetyDocDevice
     {
         [Key]
         [Column(TypeName = "int")]
-        public int Id { get; set; }
-        public string WhoChanged { get; set; }
-        public DateTime WhenChanged { get; set; }
-
+        public int SafetyDocDeviceId { get; set; }
         public SafetyDoc SafetyDoc { get; set; }
+        public Device Device { get; set; }
     }
 }

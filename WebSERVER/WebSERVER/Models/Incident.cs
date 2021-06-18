@@ -12,20 +12,20 @@ namespace WebSERVER.Models
         [Key]
         [Column(TypeName = "int")]
         public int Id { get; set; }
-        public string  UserNameCreator { get; set; }
-
+        public string UserNameCreator { get; set; }
         public string Type { get; set; }
         public int Priority { get; set; }
         public bool Confirmed { get; set; }
         public string Status { get; set; }//draft, canceled, executing, completed
-        public DateTime ETA { get; set; }
-        public DateTime ATA { get; set; }
+        public DateTime EstimatedTA { get; set; }
+        public DateTime ActualTA { get; set; }
         public DateTime Outage { get; set; }
-        public DateTime ETR { get; set; }
+        public DateTime EstimatedTR { get; set; }
         public int AffectedUsers { get; set; }
         public int NumberOfCalls { get; set; }
         public double VoltageLevel { get; set; }
         public DateTime EstimatedWorkStartTime { get; set; }
+        public string Description { get; set; }
 
         public string Cause { get; set; }
         public string SubCause { get; set; }

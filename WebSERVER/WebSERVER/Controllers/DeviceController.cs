@@ -74,7 +74,7 @@ namespace WebSERVER.Controllers
 
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBooks", new { id = device.Id }, device);
+            return CreatedAtAction("GetAll", new { id = device.Id }, device);
         }
 
         // DELETE: api/Books/5

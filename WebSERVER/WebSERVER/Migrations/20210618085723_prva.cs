@@ -84,14 +84,15 @@ namespace WebSERVER.Migrations
                     Priority = table.Column<int>(nullable: false),
                     Confirmed = table.Column<bool>(nullable: false),
                     Status = table.Column<string>(nullable: true),
-                    ETA = table.Column<DateTime>(nullable: false),
-                    ATA = table.Column<DateTime>(nullable: false),
+                    EstimatedTA = table.Column<DateTime>(nullable: false),
+                    ActualTA = table.Column<DateTime>(nullable: false),
                     Outage = table.Column<DateTime>(nullable: false),
-                    ETR = table.Column<DateTime>(nullable: false),
+                    EstimatedTR = table.Column<DateTime>(nullable: false),
                     AffectedUsers = table.Column<int>(nullable: false),
                     NumberOfCalls = table.Column<int>(nullable: false),
                     VoltageLevel = table.Column<double>(nullable: false),
                     EstimatedWorkStartTime = table.Column<DateTime>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
                     Cause = table.Column<string>(nullable: true),
                     SubCause = table.Column<string>(nullable: true),
                     ConstructionType = table.Column<string>(nullable: true),
@@ -372,29 +373,38 @@ namespace WebSERVER.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ChangedByWhen",
+                name: "SafetyDocs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    WhoChanged = table.Column<string>(nullable: true),
-                    WhenChanged = table.Column<DateTime>(nullable: false),
-                    workRequestId = table.Column<int>(nullable: true),
-                    WorkPlanId = table.Column<int>(nullable: true)
+                    Type = table.Column<string>(nullable: true),
+                    Status = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    WorkPlanId = table.Column<int>(nullable: true),
+                    Notes = table.Column<string>(nullable: true),
+                    TeamId = table.Column<string>(nullable: true),
+                    Details = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: true),
+                    CreatedWhen = table.Column<DateTime>(nullable: false),
+                    WorkOpCompleted = table.Column<bool>(nullable: false),
+                    TagsRemoved = table.Column<bool>(nullable: false),
+                    GroundingRemoved = table.Column<bool>(nullable: false),
+                    ReadyForService = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ChangedByWhen", x => x.Id);
+                    table.PrimaryKey("PK_SafetyDocs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ChangedByWhen_WorkPlans_WorkPlanId",
-                        column: x => x.WorkPlanId,
-                        principalTable: "WorkPlans",
-                        principalColumn: "Id",
+                        name: "FK_SafetyDocs_Teams_TeamId",
+                        column: x => x.TeamId,
+                        principalTable: "Teams",
+                        principalColumn: "TeamId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ChangedByWhen_WorkRequests_workRequestId",
-                        column: x => x.workRequestId,
-                        principalTable: "WorkRequests",
+                        name: "FK_SafetyDocs_WorkPlans_WorkPlanId",
+                        column: x => x.WorkPlanId,
+                        principalTable: "WorkPlans",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -421,6 +431,67 @@ namespace WebSERVER.Migrations
                         name: "FK_WorkReqDevices_WorkRequests_WorkRequestId",
                         column: x => x.WorkRequestId,
                         principalTable: "WorkRequests",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ChangedByWhen",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    WhoChanged = table.Column<string>(nullable: true),
+                    WhenChanged = table.Column<DateTime>(nullable: false),
+                    workRequestId = table.Column<int>(nullable: true),
+                    SafetyDocId = table.Column<int>(nullable: true),
+                    WorkPlanId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChangedByWhen", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ChangedByWhen_SafetyDocs_SafetyDocId",
+                        column: x => x.SafetyDocId,
+                        principalTable: "SafetyDocs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ChangedByWhen_WorkPlans_WorkPlanId",
+                        column: x => x.WorkPlanId,
+                        principalTable: "WorkPlans",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ChangedByWhen_WorkRequests_workRequestId",
+                        column: x => x.workRequestId,
+                        principalTable: "WorkRequests",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SafetyDocDevices",
+                columns: table => new
+                {
+                    SafetyDocDeviceId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    SafetyDocId = table.Column<int>(nullable: true),
+                    DeviceId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SafetyDocDevices", x => x.SafetyDocDeviceId);
+                    table.ForeignKey(
+                        name: "FK_SafetyDocDevices_Devices_DeviceId",
+                        column: x => x.DeviceId,
+                        principalTable: "Devices",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_SafetyDocDevices_SafetyDocs_SafetyDocId",
+                        column: x => x.SafetyDocId,
+                        principalTable: "SafetyDocs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -470,6 +541,11 @@ namespace WebSERVER.Migrations
                 column: "incidentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ChangedByWhen_SafetyDocId",
+                table: "ChangedByWhen",
+                column: "SafetyDocId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ChangedByWhen_WorkPlanId",
                 table: "ChangedByWhen",
                 column: "WorkPlanId");
@@ -488,6 +564,26 @@ namespace WebSERVER.Migrations
                 name: "IX_IncidentDevices_IncidentId",
                 table: "IncidentDevices",
                 column: "IncidentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SafetyDocDevices_DeviceId",
+                table: "SafetyDocDevices",
+                column: "DeviceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SafetyDocDevices_SafetyDocId",
+                table: "SafetyDocDevices",
+                column: "SafetyDocId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SafetyDocs_TeamId",
+                table: "SafetyDocs",
+                column: "TeamId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SafetyDocs_WorkPlanId",
+                table: "SafetyDocs",
+                column: "WorkPlanId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WorkReqDevices_DeviceId",
@@ -536,7 +632,7 @@ namespace WebSERVER.Migrations
                 name: "Notifications");
 
             migrationBuilder.DropTable(
-                name: "Teams");
+                name: "SafetyDocDevices");
 
             migrationBuilder.DropTable(
                 name: "WorkReqDevices");
@@ -548,16 +644,22 @@ namespace WebSERVER.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "WorkPlans");
+                name: "Incidents");
 
             migrationBuilder.DropTable(
-                name: "Incidents");
+                name: "SafetyDocs");
 
             migrationBuilder.DropTable(
                 name: "Devices");
 
             migrationBuilder.DropTable(
                 name: "WorkRequests");
+
+            migrationBuilder.DropTable(
+                name: "Teams");
+
+            migrationBuilder.DropTable(
+                name: "WorkPlans");
         }
     }
 }
