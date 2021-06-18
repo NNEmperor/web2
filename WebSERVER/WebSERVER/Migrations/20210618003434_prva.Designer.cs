@@ -10,8 +10,8 @@ using WebSERVER.Models;
 namespace WebSERVER.Migrations
 {
     [DbContext(typeof(WebServerContext))]
-    [Migration("20210617185956_work-request2")]
-    partial class workrequest2
+    [Migration("20210618003434_prva")]
+    partial class prva
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -330,6 +330,21 @@ namespace WebSERVER.Migrations
                     b.HasIndex("IncidentId");
 
                     b.ToTable("IncidentDevices");
+                });
+
+            modelBuilder.Entity("WebSERVER.Models.MediaWorkRequest", b =>
+                {
+                    b.Property<int>("IdMedia")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Image");
+
+                    b.Property<int>("WorkRequestID");
+
+                    b.HasKey("IdMedia");
+
+                    b.ToTable("MediaWorkRequests");
                 });
 
             modelBuilder.Entity("WebSERVER.Models.MemberOfTeam", b =>

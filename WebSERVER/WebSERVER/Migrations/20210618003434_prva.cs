@@ -57,21 +57,6 @@ namespace WebSERVER.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Calls",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Reason = table.Column<string>(nullable: true),
-                    Comment = table.Column<string>(nullable: true),
-                    Hazard = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Calls", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Devices",
                 columns: table => new
                 {
@@ -115,6 +100,20 @@ namespace WebSERVER.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Incidents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MediaWorkRequests",
+                columns: table => new
+                {
+                    IdMedia = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Image = table.Column<string>(nullable: true),
+                    WorkRequestID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MediaWorkRequests", x => x.IdMedia);
                 });
 
             migrationBuilder.CreateTable(
@@ -184,6 +183,34 @@ namespace WebSERVER.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_WorkPlans", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WorkRequests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Type = table.Column<string>(nullable: true),
+                    Status = table.Column<string>(nullable: true),
+                    IncidentID = table.Column<string>(nullable: true),
+                    Street = table.Column<string>(nullable: true),
+                    StartWorkDate = table.Column<string>(nullable: true),
+                    StartWorkTime = table.Column<string>(nullable: true),
+                    EndWorkDate = table.Column<string>(nullable: true),
+                    EndWorkTime = table.Column<string>(nullable: true),
+                    Purpose = table.Column<string>(nullable: true),
+                    Notes = table.Column<string>(nullable: true),
+                    Emergency = table.Column<bool>(nullable: false),
+                    Company = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    CreatedDate = table.Column<string>(nullable: true),
+                    CreatedTime = table.Column<string>(nullable: true),
+                    Creator = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkRequests", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -293,6 +320,32 @@ namespace WebSERVER.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Calls",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Reason = table.Column<string>(nullable: true),
+                    Comment = table.Column<string>(nullable: true),
+                    Hazard = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    UserName = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    incidentId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Calls", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Calls_Incidents_incidentId",
+                        column: x => x.incidentId,
+                        principalTable: "Incidents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "IncidentDevices",
                 columns: table => new
                 {
@@ -312,36 +365,6 @@ namespace WebSERVER.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_IncidentDevices_Incidents_IncidentId",
-                        column: x => x.IncidentId,
-                        principalTable: "Incidents",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WorkRequests",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Type = table.Column<string>(nullable: true),
-                    Status = table.Column<string>(nullable: true),
-                    IncidentId = table.Column<int>(nullable: true),
-                    Street = table.Column<string>(nullable: true),
-                    StartWork = table.Column<DateTime>(nullable: false),
-                    EndWork = table.Column<DateTime>(nullable: false),
-                    Purpose = table.Column<string>(nullable: true),
-                    Notes = table.Column<string>(nullable: true),
-                    Emergency = table.Column<bool>(nullable: false),
-                    Company = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WorkRequests", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_WorkRequests_Incidents_IncidentId",
                         column: x => x.IncidentId,
                         principalTable: "Incidents",
                         principalColumn: "Id",
@@ -442,6 +465,11 @@ namespace WebSERVER.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Calls_incidentId",
+                table: "Calls",
+                column: "incidentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ChangedByWhen_WorkPlanId",
                 table: "ChangedByWhen",
                 column: "WorkPlanId");
@@ -470,11 +498,6 @@ namespace WebSERVER.Migrations
                 name: "IX_WorkReqDevices_WorkRequestId",
                 table: "WorkReqDevices",
                 column: "WorkRequestId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorkRequests_IncidentId",
-                table: "WorkRequests",
-                column: "IncidentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -504,6 +527,9 @@ namespace WebSERVER.Migrations
                 name: "IncidentDevices");
 
             migrationBuilder.DropTable(
+                name: "MediaWorkRequests");
+
+            migrationBuilder.DropTable(
                 name: "Members");
 
             migrationBuilder.DropTable(
@@ -525,13 +551,13 @@ namespace WebSERVER.Migrations
                 name: "WorkPlans");
 
             migrationBuilder.DropTable(
+                name: "Incidents");
+
+            migrationBuilder.DropTable(
                 name: "Devices");
 
             migrationBuilder.DropTable(
                 name: "WorkRequests");
-
-            migrationBuilder.DropTable(
-                name: "Incidents");
         }
     }
 }

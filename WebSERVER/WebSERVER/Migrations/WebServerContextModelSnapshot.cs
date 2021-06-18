@@ -330,6 +330,21 @@ namespace WebSERVER.Migrations
                     b.ToTable("IncidentDevices");
                 });
 
+            modelBuilder.Entity("WebSERVER.Models.MediaWorkRequest", b =>
+                {
+                    b.Property<int>("IdMedia")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Image");
+
+                    b.Property<int>("WorkRequestID");
+
+                    b.HasKey("IdMedia");
+
+                    b.ToTable("MediaWorkRequests");
+                });
+
             modelBuilder.Entity("WebSERVER.Models.MemberOfTeam", b =>
                 {
                     b.Property<int>("MemberId")
