@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort} from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { MessagePassingService } from '../message-passing.service';
+import { WorkReqServiceService } from '../work-req-service.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-work-requests',
@@ -14,27 +16,50 @@ import { MessagePassingService } from '../message-passing.service';
  // template: ' <app-top-navbar  [childMessage]="parentMessage"></app-top-navbar>'
 })
 export class WorkRequestsComponent implements OnInit {
-    
+    works:any[]=[]
     allMineEnable = new FormControl(); 
     mySentences!:Array<Object>
-    displayedColumns: string[] = ['position', 'name', 'email'];
-    dataSource = new MatTableDataSource(ELEMENT_DATA);
+    displayedColumns: string[] = ['id', 'company', 'createdDate','createdTime','creator','emergency','endWorkDate','endWorkTime','incidentID','notes','phoneNumber','purpose','startWorkDate','startWorkTime','street','type'];
+    dataSource ;//= new MatTableDataSource(ELEMENT_DATA);
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;
     //@ViewChild(TopNavbarComponent)topnavbarReference;
     private router!: Router
+    private readonly notifier!: NotifierService;
     
-    constructor(private service: MessagePassingService ) {
+    constructor(private service: MessagePassingService, private wrServis:WorkReqServiceService ,notifierService: NotifierService) {
       this.service.changeData("WORK REQUEST")
+      this.notifier = notifierService;
      
-     
-     setTimeout(() => {
+     /*setTimeout(() => {
        this.dataSource.sort = this.sort;
        this.dataSource.paginator = this.paginator;
-     });
+     });*/
  
    }
    ngOnInit(): void {
+
+    this.wrServis.GetWorkRequests().subscribe( data =>
+      {
+        console.log("works: ");
+        console.log(data);
+       // alert(data);
+        this.works = data as any;
+        this.dataSource = new MatTableDataSource(this.works);
+        setTimeout(() => {
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+        });
+        if(this.works.length===0){
+          this.notifier.notify('default', "No work requests to show.");
+           /* setTimeout(() => {
+              //ukloni obavestenje
+              this.notifier.hideAll();
+            }, 2000);*/
+        }
+      });
+
+     
    }
    btnNewClick () {
     this.router.navigateByUrl('/workreq-new');
@@ -43,6 +68,52 @@ export class WorkRequestsComponent implements OnInit {
      console.log(this.allMineEnable.value);
      //false je ALL
      //true MINE
+
+     if(this.allMineEnable.value==false){
+      this.wrServis.GetWorkRequests().subscribe( data =>
+        {
+          console.log("works: ");
+          console.log(data);
+         // alert(data);
+          this.works = data as any;
+          this.dataSource = new MatTableDataSource(this.works);
+          setTimeout(() => {
+            this.dataSource.sort = this.sort;
+            this.dataSource.paginator = this.paginator;
+          });
+          if(this.works.length===0){
+            this.notifier.notify('default', "No work requests to show.");
+             /* setTimeout(() => {
+                //ukloni obavestenje
+                this.notifier.hideAll();
+              }, 2000);*/
+          }
+        });
+     }else{
+       //MINE
+       //IZVUCI KOJI MINE !!!!!
+       var KORISNIK="logovan user"
+       this.wrServis.GetMineWorkRequests(KORISNIK).subscribe( data =>
+        {
+          console.log("works: ");
+          console.log(data);
+         // alert(data);
+          this.works = data as any;
+          this.dataSource = new MatTableDataSource(this.works);
+          setTimeout(() => {
+            this.dataSource.sort = this.sort;
+            this.dataSource.paginator = this.paginator;
+          });
+          if(this.works.length===0){
+            this.notifier.notify('default', "No work requests to show.");
+             /* setTimeout(() => {
+                //ukloni obavestenje
+                this.notifier.hideAll();
+              }, 2000);*/
+          }
+        });
+     }
+
    } 
  
    applyFilter(filtertext:string){
@@ -56,7 +127,7 @@ export class WorkRequestsComponent implements OnInit {
    position: number;
    email: string;
  }
- const ELEMENT_DATA: UserElement[] = [
+ /*const ELEMENT_DATA: UserElement[] = [
    { position: 1, name: 'John', email:' john@gmail.com'},
    { position: 2, name: 'Herry', email: 'herry@gmail.com' },
    { position: 3, name: 'Ann', email: 'ann@gmail.com' },
@@ -67,4 +138,4 @@ export class WorkRequestsComponent implements OnInit {
    { position: 8, name: 'William', email: 'william@gmail.com'},
    { position: 9, name: 'Shia', email: 'shia@gmail.com' },
    { position: 10, name: 'Kane', email: 'kane@gmail.com' }
- ];
+ ];*/

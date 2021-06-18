@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit , ViewChild, ElementRef } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { DomSanitizer } from '@angular/platform-browser';
+import { map } from 'rxjs/operators';
 import { MessagePassingService } from '../message-passing.service';
+import { WorkReqServiceService } from '../work-req-service.service';
 
 @Component({
   selector: 'app-workreq-multimedia',
@@ -15,11 +18,11 @@ export class WorkreqMultimediaComponent implements OnInit {
   @ViewChild("fileDropRef", { static: false }) fileDropEl!: ElementRef;
   files: any[] = [];
   fileUrls:SafeResourceUrl[]=[];
-  
+  FileFormData=new FormData();//za slanje slike
   //  
   imagePath="assets/images/apple-icon-120x120.png";
   slika;
-  constructor(private sanitizer: DomSanitizer, private service: MessagePassingService) {
+  constructor(private sanitizer: DomSanitizer, private service: MessagePassingService, private wrServis:WorkReqServiceService, private http:HttpClient) {
     this.service.changeData("WORK REQUEST - NEW - Multimedia attachments")
    }
 
@@ -28,7 +31,51 @@ export class WorkreqMultimediaComponent implements OnInit {
    
   }
  
-  
+  SaveImages(){
+    /*for(let item in this.files){
+      let fileToUpload=item //as File;
+      this.FileFormData=new FormData();//da li resetuje
+      this.FileFormData.append('file',fileToUpload);
+    }*/
+
+    for (var i = 0; i < this.files.length; i++) { 
+
+     // this.FileFormData.append("file", <File>this.files[i]);
+
+    
+      const formData = new FormData();
+      formData.append('file', this.files[i]);
+
+      this.http.post('http://localhost:55333/api/WorkRequest/CreateImage', formData).subscribe(res=>
+      {
+        console.log(res)
+      });
+  }
+
+   /* const image = new FormData();
+    image.append('productId','10');
+    image.append('colorId','67');
+    for (let index = 0; index < this.files.length; index++) {
+        image.append('files', this.files[index]);
+    }
+     this.http.post('http://localhost:55333/api/WorkRequest/CreateImage', image)
+        .pipe(map(
+          resp => {
+            return console.log(resp);
+          }
+        )).subscribe(data=>
+          {
+            console.log(data)
+          });*/
+/*
+    for(var i = 0; i < this.files.length; i++){
+      this.wrServis.UploadMedia(this.FileFormData[i]).subscribe(res=>
+        {
+
+          console.log(res);
+        });
+    }*/
+  }
 
   /**
    * on file drop handler
@@ -55,6 +102,7 @@ export class WorkreqMultimediaComponent implements OnInit {
       return;
     }
     this.files.splice(index, 1);
+    this.fileUrls.splice(index,1);  //takodje valjda
   }
 
   /**
@@ -97,6 +145,7 @@ export class WorkreqMultimediaComponent implements OnInit {
       let nes=this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
       console.log(nes);
       this.fileUrls.push(nes);
+      
     }
 
 

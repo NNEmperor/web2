@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
@@ -93,5 +93,24 @@ export class WorkReqServiceService {
     };
 
    return  this.http.post(this.BaseURI+"/WorkRequest/AddBasicInfo", body);  //vraca observable
+  }
+
+  GetWorkRequests(){
+    console.log("pozove get work request")
+    let apiUri=this.BaseURI+'/WorkRequest/GetWorkRequests';
+    return this.http.get(apiUri);
+  }
+  GetMineWorkRequests(userName: string){
+    console.log("pozove get mine work request")
+    let apiUri=this.BaseURI+'/WorkRequest/GetMineWorkRequests';
+    let params = new HttpParams();
+        params = params.set('userName', userName);
+    return this.http.post(apiUri,params);
+  }
+
+  UploadMedia(file:FormData){
+    //let params = new HttpParams();
+      //  params = params.set('fajl', FileFormData);
+   return  this.http.post<any>('http://localhost:55333/api/WorkRequest/UploadFile',file)
   }
 }
