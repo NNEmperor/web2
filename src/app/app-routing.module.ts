@@ -53,6 +53,11 @@ import { WorkreqEquipmentComponent } from './workreq-equipment/workreq-equipment
 import { WorkreqHistoryComponent } from './workreq-history/workreq-history.component';
 import { WorkreqMultimediaComponent } from './workreq-multimedia/workreq-multimedia.component';
 import { WorkreqNewComponent } from './workreq-new/workreq-new.component';
+import { WrTabEquipmentComponent } from './wr-tab-equipment/wr-tab-equipment.component';
+import { WrTabHistoryComponent } from './wr-tab-history/wr-tab-history.component';
+import { WrTabInfoComponent } from './wr-tab-info/wr-tab-info.component';
+import { WrTabMediaComponent } from './wr-tab-media/wr-tab-media.component';
+import { WrTabComponent } from './wr-tab/wr-tab.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/start-screen", pathMatch: "full" },
@@ -79,6 +84,14 @@ const routes: Routes = [
           { path: "workreq-history", component: WorkreqHistoryComponent },
           { path: "workreq-multimedia", component: WorkreqMultimediaComponent },
           { path: "workreq-equipment", component: WorkreqEquipmentComponent },
+        ] 
+    },
+    { path: 'workreq-update', component: WrTabComponent,
+        children: [
+          { path: "work-r-info", component:  WrTabInfoComponent},
+          { path: "work-r-history", component: WrTabHistoryComponent },
+          { path: "work-r-multimedia", component: WrTabMediaComponent },
+          { path: "work-r-equipment", component: WrTabEquipmentComponent },
         ] 
     },
     { path: 'users', 

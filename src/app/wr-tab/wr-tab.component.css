@@ -1,0 +1,103 @@
+/*table{
+    
+    border-color:#333;
+    border-style:solid;
+    border-width:medium;
+
+}
+
+button{
+    background-color: #333;
+    border: none;
+    color: white;
+
+    text-decoration: none;
+   
+    cursor: pointer;
+    width: 100%;
+    
+  }
+  button:hover {
+    background-color:#4CAF50;
+  }*/
+
+  .main {
+    margin-left: 120px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+  }
+ 
+/*
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:transparent;
+    width: 100%;
+  }
+  .active {
+    color:red;
+    font-family: font-bold;
+  }
+  .router-link-active.router-link-active.router-link-active.router-link-active {
+    color:red;
+    font-family: font-bold;
+  }
+  li {
+    width: 20%;
+    float: left;
+    display: inline;
+
+  }
+  
+  li a {
+    display: block;
+    color:#333;
+    text-align: center;
+    padding: 14px 16px;
+    
+    background-color:white;
+    line-height: 40px;
+    font-size: 18px;
+    font-family: sans-serif;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: transparent;
+    border-color: white;
+  color: white;
+    background-color: rgb(48, 72, 204);
+  }*/
+  li button{
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 18px;
+    vertical-align: bottom;
+  }
+  .naslov{
+    color: white;
+    text-align: center;
+    padding: 8px;
+  }
+
+  .bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+  
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+  
+  .bg3 {
+    animation-duration:5s;
+  }

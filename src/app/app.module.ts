@@ -90,6 +90,11 @@ import { SelectUserPopUpComponent } from './select-user-pop-up/select-user-pop-u
 import { MapDocPopUpComponent } from './map-doc-pop-up/map-doc-pop-up.component';
 import { WorkReqIncidentPopUpComponent } from './work-req-incident-pop-up/work-req-incident-pop-up.component';
 import { WrBasicInfoPopUpComponent } from './wr-basic-info-pop-up/wr-basic-info-pop-up.component';
+import { WrTabComponent } from './wr-tab/wr-tab.component';
+import { WrTabInfoComponent } from './wr-tab-info/wr-tab-info.component';
+import { WrTabHistoryComponent } from './wr-tab-history/wr-tab-history.component';
+import { WrTabMediaComponent } from './wr-tab-media/wr-tab-media.component';
+import { WrTabEquipmentComponent } from './wr-tab-equipment/wr-tab-equipment.component';
 
 
 @NgModule({
@@ -156,6 +161,11 @@ import { WrBasicInfoPopUpComponent } from './wr-basic-info-pop-up/wr-basic-info-
     MapDocPopUpComponent,
     WorkReqIncidentPopUpComponent,
     WrBasicInfoPopUpComponent,
+    WrTabComponent,
+    WrTabInfoComponent,
+    WrTabHistoryComponent,
+    WrTabMediaComponent,
+    WrTabEquipmentComponent,
   ],
   imports: [
     BrowserModule,

@@ -29,7 +29,7 @@ export class WorkRequestsComponent implements OnInit {
     private router!: Router
     private readonly notifier!: NotifierService;
     
-    constructor(private service: MessagePassingService, private wrServis:WorkReqServiceService ,notifierService: NotifierService) {
+    constructor(private service: MessagePassingService, private wrServis:WorkReqServiceService ,notifierService: NotifierService,private routerr: Router) {
       this.service.changeData("WORK REQUEST")
       this.notifier = notifierService;
      
@@ -123,8 +123,11 @@ export class WorkRequestsComponent implements OnInit {
     this.dataSource.filter=filtertext.trim().toLowerCase(); 
    }
 
-   editTeam(id){
-      alert("edit iiid   "+ id)
+   editTeam(id:any){
+      console.log("edit iiid   "+ id)
+     // workreq-edit
+     //this.router.navigateByUrl('/workreq-edit');
+     this.routerr.navigateByUrl('/home/workreq-update');
    }
  
  }
