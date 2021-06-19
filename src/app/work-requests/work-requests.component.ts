@@ -21,7 +21,7 @@ export class WorkRequestsComponent implements OnInit {
     allMineEnable = new FormControl(); 
     mySentences!:Array<Object>
     fileUrls:SafeResourceUrl[]=[];
-    displayedColumns: string[] = ['id','edit', 'company', 'createdDate','createdTime','creator','emergency','endWorkDate','endWorkTime','incidentID','notes','phoneNumber','purpose','startWorkDate','startWorkTime','street','type','photos'];
+    displayedColumns: string[] = ['id','edit', 'company', 'createdDate','createdTime','creator','emergency','endWorkDate','endWorkTime','incidentID','notes','phoneNumber','purpose','startWorkDate','startWorkTime','street','type','photos', 'historyState'];
     dataSource ;//= new MatTableDataSource(ELEMENT_DATA);
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;
@@ -85,7 +85,10 @@ export class WorkRequestsComponent implements OnInit {
      }else{
        //MINE
        //IZVUCI KOJI MINE !!!!!
-       var KORISNIK="logovan user"
+       let jsonObj;
+        jsonObj =localStorage.getItem('user')
+        let objObj = JSON.parse(jsonObj)
+       var KORISNIK=objObj.UserName//"logovan user"
        this.wrServis.GetMineWorkRequests(KORISNIK).subscribe( data =>
         {
           console.log("works: ");

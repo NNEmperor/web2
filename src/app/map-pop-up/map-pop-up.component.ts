@@ -37,21 +37,15 @@ export class MapPopUpComponent implements OnInit {
   tileLayer!: TileLayer
 
   ngOnInit(): void {
-    console.log("sklj "  + this.data)
+    //console.log("sklj "  + this.data)
+    //console.log(this.data)
+    //console.log(this.data.Coordinates[0]+"  --  "+this.data.Coordinates[1])
     if(this.data != null){
 
-      this.marker = new Feature({
-        geometry: new Point(fromLonLat([this.data[0], this.data[1]]))
-      })
-      this.marker.setStyle( new Style({
-        image: new Icon({
-          src: 'assets/images/vozilo-mapa.png',      
-
-        }),
-      }))
+      
 
       this.vectorSource = new VectorSource({
-        features: [this.marker]
+        //features: [this.marker]
       })
 
       //this.vectorSource.addFeature(this.marker)
@@ -90,13 +84,24 @@ export class MapPopUpComponent implements OnInit {
           src: 'assets/images/ekipa-mapa.png',
         }),
       });
+
+      this.marker = new Feature({
+        geometry: new Point(fromLonLat([this.data.Coordinates[0], this.data.Coordinates[1]]))
+      })
+      this.marker.setStyle( new Style({
+        image: new Icon({
+          src: 'assets/images/vozilo-mapa.png',      
+
+        }),
+      }))
       
       iconFeature.setStyle(iconStyle);
       this.vectorSource.addFeature(iconFeature);//dodata JEDNA IKONICA
+      this.vectorSource.addFeature(this.marker);
 
 
     }
-    else{
+    else{ //stisne na mapu,za dodavanje novig uredjaja
       this.map = new Map({
         view: new View({
           center: fromLonLat([19.822994923248242,45.24834393080695]),
@@ -116,8 +121,8 @@ export class MapPopUpComponent implements OnInit {
 
 
   getCoord(event: any){
-      var coordinate = this.map.getEventCoordinate(event);
+      var coordinate = this.map.getEventCoordinate(event);      //kas stisne na mapu
       var lonlat = olProj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
-      this.dialogRef.close(lonlat as []);
+      this.dialogRef.close(lonlat as []);   //kod new device iz nav bara
   }
 }

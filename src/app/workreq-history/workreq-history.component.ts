@@ -20,7 +20,7 @@ export class WorkreqHistoryComponent implements OnInit {
 
     this.historyForm=this.fb.group({
 
-      state:['1']
+      state:['4']
       
     });
 
@@ -28,13 +28,35 @@ export class WorkreqHistoryComponent implements OnInit {
 
       userName:[localStorage.getItem("userName")],
       datum:[new Date().toISOString().split('T')[0]],
-      state:['1']
+      state:['4']
       
     });
   }
 
 
   ngOnInit(): void {
+    let obb;
+    obb=localStorage.getItem("history-wr");
+    if(obb==null){
+    var formObj=this.rememberForm.getRawValue()
+            let serializedForm = JSON.stringify(formObj);
+            console.log("JSON....istory")
+            console.log(serializedForm);
+            localStorage.setItem("history-wr",serializedForm);
+    }else{
+      //vec je odabrano
+      //prikazati te podatke
+      alert("oovde")
+      let hhh=JSON.parse(obb)
+      this.rememberForm.controls['state'].setValue(hhh.state)
+      this.historyForm.controls['state'].setValue(hhh.state)
+      this.rememberForm.controls['datum'].setValue(hhh.datum)
+      this.rememberForm.controls['userName'].setValue(hhh.userName)
+      if(this.rememberForm.value.state==1 || this.rememberForm.value.state==3){
+        this.whatstate=true; //NE MOZE MENJATI
+     
+       }
+    }
   }
   getStates(){
     return [
@@ -66,11 +88,10 @@ export class WorkreqHistoryComponent implements OnInit {
         }
         //----------
         let state=this.historyForm.value.state
-       // this.selectedValue2=state as string
-        //console.log("seel"+ this.selectedValue2)
+      
         this.historyForm.controls['state'].setValue(state);
         console.log(this.historyForm.value.state)
-       // this.rememberForm.controls['datum'].setValue(new Date().toISOString().split('T')[0]);
+       
         this.rememberForm.controls['state'].setValue(this.historyForm.value.state);
   
         var formObj=this.rememberForm.getRawValue()
@@ -78,11 +99,7 @@ export class WorkreqHistoryComponent implements OnInit {
             console.log("JSON....istory")
             console.log(serializedForm);
             localStorage.setItem("history-wr",serializedForm);
-    });
-     
-//--------------------------------
-     
-     
-   
+    });    
+//-------------------------------- 
   }
 }

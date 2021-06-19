@@ -23,6 +23,12 @@ export class WorkreqBasicinfoComponent implements OnInit {
   public today;
   selectedStartDate:any;
   works = this.getWorkTypes();
+  getUser(){
+    let jsonObj;
+    jsonObj =localStorage.getItem('user')
+    let objObj = JSON.parse(jsonObj)
+    return objObj.UserName;
+  }
   workReqBasicForm: FormGroup = new FormGroup({
    
     'docType': new FormControl('1'),
@@ -33,7 +39,7 @@ export class WorkreqBasicinfoComponent implements OnInit {
     'starttime': new FormControl('',Validators.required),
     'enddate': new FormControl({value: '', disabled: true}, Validators.required),
     'endtime': new FormControl({value: '', disabled: true}, Validators.required),
-    'creator': new FormControl('logovan user'),//automatski popunjava,onaj koji to radi,uzeti vrednost trenutno ulogovanog usera
+    'creator': new FormControl(this.getUser()),//automatski popunjava,onaj koji to radi,uzeti vrednost trenutno ulogovanog usera
     'purpose': new FormControl('',[Validators.required]), //svrha
     'notes': new FormControl('',[Validators.required]),
     'emergency': new FormControl(false),
@@ -78,6 +84,34 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
     this.workReqBasicForm.controls['cratetime'].setValue(str);
 
 
+    //***
+    let oob;
+    oob=localStorage.getItem("history-wr")
+      if(oob!=null){//ako JE  u history da setuje,automatski STATUS
+        //alert(oob)
+        let state=JSON.parse(oob)
+        //alert(state.state)
+        let stanjee;
+        if(state.state==2){
+          stanjee='Deny'
+      }else if(state.state==3){
+        stanjee='Cancle'
+      }else if(state.state==4){
+         stanjee="Draft"
+      }else{
+       stanjee="Approve"
+      }
+        this.workReqBasicForm.controls['status'].setValue(stanjee);
+        console.log(this.workReqBasicForm)
+      }
+    // */
+
+
+    let INFF;
+    INFF=localStorage.getItem("basic-info");
+    if(INFF==null){
+
+
     this.servis.GenerateWorkID().subscribe(res=>{
       // alert('kk')
      }, (err:HttpErrorResponse) => {
@@ -93,7 +127,69 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
         this.workReqBasicForm.controls['id'].setValue(message);
        }
       // this.router.navigateByUrl('/workreq-new');
+    
+       //nema inicijalnu vrednost basic inf
+       var formObj=this.workReqBasicForm.getRawValue()
+       let serializedForm = JSON.stringify(formObj);
+       console.log("----json--start--")
+       console.log(serializedForm);
+
+       let jsonObj;
+    jsonObj =localStorage.getItem('user')
+    let objObj = JSON.parse(jsonObj)
+    this.workReqBasicForm.controls['creator'].setValue(objObj.UserName);
+
+       localStorage.setItem("basic-info",serializedForm);
+
      });
+
+     }else{
+       //postoji nesto uneto
+       //dodeliti vrednosti
+       let savedObj=JSON.parse(INFF);
+       console.log(savedObj)
+       console.log(savedObj.id)
+
+       let oob;
+       oob=localStorage.getItem("history-wr")
+         if(oob!=null){//ako JE  u history da setuje,automatski STATUS
+           //alert(oob)
+           let state=JSON.parse(oob)
+           //alert(state.state)
+           let stanjee;
+           if(state.state==2){
+               stanjee='Deny'
+           }else if(state.state==3){
+             stanjee='Cancle'
+           }else if(state.state==4){
+              stanjee="Draft"
+           }else{
+            stanjee="Approve"
+           }
+           this.workReqBasicForm.controls['status'].setValue(stanjee);
+           console.log(this.workReqBasicForm)
+         }else{
+          this.workReqBasicForm.controls['status'].setValue(savedObj.status)
+         }
+
+       this.workReqBasicForm.controls['id'].setValue(savedObj.id)
+       this.workReqBasicForm.controls['docType'].setValue(savedObj.docType)
+       //this.workReqBasicForm.controls['status'].setValue(savedObj.status)
+       this.workReqBasicForm.controls['incident'].setValue(savedObj.incident)
+       this.workReqBasicForm.controls['street'].setValue(savedObj.street)
+       this.workReqBasicForm.controls['startdate'].setValue(savedObj.startdate)
+       this.workReqBasicForm.controls['starttime'].setValue(savedObj.starttime)
+       this.workReqBasicForm.controls['enddate'].setValue(savedObj.enddate)
+       this.workReqBasicForm.controls['endtime'].setValue(savedObj.endtime)
+       this.workReqBasicForm.controls['creator'].setValue(savedObj.creator)
+       this.workReqBasicForm.controls['purpose'].setValue(savedObj.purpose)
+       this.workReqBasicForm.controls['notes'].setValue(savedObj.notes)
+       this.workReqBasicForm.controls['emergency'].setValue(savedObj.emergency)
+       this.workReqBasicForm.controls['company'].setValue(savedObj.company)
+       this.workReqBasicForm.controls['phoneNo'].setValue(savedObj.phoneNo)
+       this.workReqBasicForm.controls['cratedate'].setValue(savedObj.cratedate)
+       this.workReqBasicForm.controls['cratetime'].setValue(savedObj.cratetime)
+     }
 
   }
   getWorkTypes(){
@@ -172,8 +268,48 @@ unoss(){
     
     //brisi formu
     this.workReqBasicForm.reset();
-    this.workReqBasicForm.controls['status'].setValue('Draft');
-    this.workReqBasicForm.controls['creator'].setValue("logovan user")  //  UZETI VREDNOST I PONOVO SETOVATI----!!!!!!!!!!!!!!!!!!!---
+    var temp=localStorage.getItem("id-wr");
+    this.workReqBasicForm.controls['docType'].setValue('1');
+    this.workReqBasicForm.controls['id'].setValue(temp);
+    //this.workReqBasicForm.controls['status'].setValue('Draft');
+    let oob;
+    oob=localStorage.getItem("history-wr")
+      if(oob!=null){//ako JE  u history da setuje,automatski STATUS
+        //alert(oob)
+        let state=JSON.parse(oob)
+        //alert(state.state)
+        let stanjee;
+        if(state.state==2){
+          stanjee='Deny'
+      }else if(state.state==3){
+        stanjee='Cancle'
+      }else if(state.state==4){
+         stanjee="Draft"
+      }else{
+       stanjee="Approve"
+      }
+        this.workReqBasicForm.controls['status'].setValue(stanjee);
+        console.log(this.workReqBasicForm)
+      }else{
+        this.workReqBasicForm.controls['status'].setValue('Draft');
+      }
+    let jsonObj;
+    jsonObj =localStorage.getItem('user')
+    let objObj = JSON.parse(jsonObj)
+    this.workReqBasicForm.controls['creator'].setValue(objObj.UserName);
+    
+    this.workReqBasicForm.controls['cratedate'].setValue(new Date().toISOString().split('T')[0]);//(new Date().getDate());
+    let now = new Date();
+    let hours = ("0" + now.getHours()).slice(-2);
+    let minutes = ("0" + now.getMinutes()).slice(-2);
+    let str = hours + ':' + minutes;
+    this.workReqBasicForm.controls['cratetime'].setValue(str);
+
+    this.workReqBasicForm.controls['startdate'].setValue('')
+       this.workReqBasicForm.controls['starttime'].setValue('')
+       this.workReqBasicForm.controls['enddate'].setValue('')
+       this.workReqBasicForm.controls['endtime'].setValue('')
+    //this.workReqBasicForm.controls['creator'].setValue("logovan user")  //  UZETI VREDNOST I PONOVO SETOVATI----!!!!!!!!!!!!!!!!!!!---
     this.uneseno=false;
     localStorage.removeItem("uneseno");
 

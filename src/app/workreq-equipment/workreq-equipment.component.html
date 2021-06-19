@@ -1,1 +1,73 @@
-<p>workreq-equipment works!</p>
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+<div>
+    <div clas="row" style="display: flex;">
+        <div class="col-md-2">
+            <div class="wrapper_left">
+                <a class="content" (click)="openDialog()"><span>&nbsp;Select device &nbsp;</span></a>
+              </div>
+        </div>
+        <div class="col-md-8">
+            <br><br>
+          </div>
+        
+    </div>
+    <div class="container" style="margin-top: 5%;">
+        <div style="overflow-x: auto;">    
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">  
+                <ng-container matColumnDef="id">
+                    <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+                    <td style="text-align: left;" mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="name">
+                    <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                    <td style="text-align: left;" mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="address">
+                    <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+                    <td style="text-align: left;" mat-cell *matCellDef="let element"> {{element.address}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="type">
+                    <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+                    <td style="text-align: left;" mat-cell *matCellDef="let element"> {{element.type}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="location">
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Show </th>
+                <td style="text-align: left;" mat-cell *matCellDef="let element"> 
+                    <button style="background-color: transparent;border-color: transparent;" (click)="showDevice(element.id)"><i class = "material-icons" >location_on</i>
+                    </button>
+
+
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="delete">
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Delete  </th>
+                <td style="text-align: left;" mat-cell *matCellDef="let element"> 
+                    <button style="background-color: transparent;border-color: transparent;" (click)="deleteDevice(element)"><i class = "material-icons" >delete</i></button>
+
+                </td>
+            </ng-container>
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+            </table>
+        </div>
+
+        <mat-paginator style="width: 80%;" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+        <div class="form-group row"  style="display: flex;justify-content: flex-end; margin-right: 20%; margin-top: 5%;" >
+            <span (click)="saveDevices()">
+                <i class = "material-icons">save</i> 
+            </span>
+            
+        </div>
+
+    </div>
+</div>

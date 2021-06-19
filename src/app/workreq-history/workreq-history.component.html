@@ -8,6 +8,7 @@
                         <label for="inputState" class="col-sm-4">Change document state:</label>
                         <div class="col-sm-4">
                             <select id="inputType"  class="form-control" (change)="Dijalog($event)">
+                                <option disabled selected>Draft</option>
                                 <option *ngFor="let role of stanja" [disabled]="whatstate"  value= {{role.id}}>
                                     {{role.name}}
                                 </option>
@@ -28,13 +29,19 @@
                                 <tr>
                                     <th scope="col">Document state changed by</th>
                                     <th scope="col">Date of the change</th>
+                                    <th scope="col">State</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>user</td>
-                                    <td>datum</td>
-                                    Value: {{ historyForm.value | json }}
+                                    <td>{{rememberForm.value.userName}}</td>
+                                    <td>{{rememberForm.value.datum}}</td>
+                                    <td>
+                                        <div *ngIf='historyForm.value.state==1'>Approve</div>
+                                        <div *ngIf='historyForm.value.state==2'>Deny</div>
+                                        <div *ngIf='historyForm.value.state==3'>Cancle</div>
+                                    </td>
+                                    <!--Value: {{ historyForm.value | json }}-->
                                 </tr>
                                 </tbody>
                             </table>

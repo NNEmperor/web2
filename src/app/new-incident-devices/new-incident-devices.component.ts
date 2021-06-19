@@ -57,11 +57,11 @@ export class NewIncidentDevicesComponent implements OnInit {
   }
 
   showDevice(e){
-    console.log(e);
+    console.log(e);//e je id od device koji je stisnut
     this.incidentService.getCoords(e).subscribe( res => {
       let dialogRef2 = this.dialogRef.open(MapPopUpComponent, {
         data: {
-          Coordinates: [res[0], res[1]]
+          Coordinates: [res[0], res[1]] //vraca koordinate 
         }
       })
     })
@@ -69,7 +69,7 @@ export class NewIncidentDevicesComponent implements OnInit {
   }
 
   sendDevices(){
-    this.service.sendIncidentDevices(this.data);
+    this.service.sendIncidentDevices(this.data);//lista idjeva izabranih device-a 
     alert('sklj' + this.data[0])
   }
 

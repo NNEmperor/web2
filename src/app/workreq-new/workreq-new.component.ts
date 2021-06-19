@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NotifierService } from 'angular-notifier';
 import { WorkReqServiceService } from '../work-req-service.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-workreq-new',
@@ -17,15 +18,22 @@ import { WorkReqServiceService } from '../work-req-service.service';
 export class WorkreqNewComponent implements OnInit {
 
   private readonly notifier!: NotifierService;
+  rememberForm:any; //za history
 
-  constructor(public location: Location,private router: Router, public dialog: MatDialog,private servis:WorkReqServiceService, notifierService: NotifierService) { 
+  constructor(private fb: FormBuilder,public location: Location,private router: Router, public dialog: MatDialog,private servis:WorkReqServiceService, notifierService: NotifierService) { 
     
     this.notifier = notifierService;
       
   }
 
   ngOnInit(): void {
-    
+    this.rememberForm=this.fb.group({ //STA CE PITI PODATAK HISTORYJA
+
+      userName:[localStorage.getItem("userName")],
+      datum:[new Date().toISOString().split('T')[0]],
+      state:['4'] //automatski deny
+      
+    });
   }
  
   Info(){
@@ -171,13 +179,24 @@ export class WorkreqNewComponent implements OnInit {
     alert("KUTIJA")
       let obj;
       obj=localStorage.getItem("history-wr")
+      if(obj==null){//ako nije ni usao u history da setuje,automatski
+        var formObj=this.rememberForm.getRawValue()
+            let serializedForm = JSON.stringify(formObj);
+            console.log("---JSON....istory KAD NIJE USAO---")
+            console.log(serializedForm);
+            localStorage.setItem("history-wr",serializedForm);
+    //});
+      }
+      //OPET PREUZIMA
+      obj=localStorage.getItem("history-wr")
       let fff=JSON.parse(obj);
       console.log(fff.datum);
+
       var basicinfoJSON=localStorage.getItem("basic-info");
       let basininfoObj=JSON.parse(basicinfoJSON as string);
       alert(basicinfoJSON);
       alert(basininfoObj)
-      alert(basininfoObj['docType'])
+      //alert(basininfoObj['docType'])
       console.log(basininfoObj)
     this.servis.SetHistory(localStorage.getItem('history-wr')).subscribe(data=>{})
 
@@ -203,9 +222,10 @@ export class WorkreqNewComponent implements OnInit {
        
       
     })
-
+    localStorage.removeItem("history-wr")
     localStorage.removeItem("id-wr")
     localStorage.removeItem("basic-info")
+    localStorage.removeItem("device-wr")
   }
   /*AddBasicInfo(){
     //dodace u bazu

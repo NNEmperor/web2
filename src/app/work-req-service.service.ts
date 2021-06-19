@@ -74,6 +74,27 @@ export class WorkReqServiceService {
       docType="Unplanned work"
     }
 
+    let obj;
+    obj=localStorage.getItem("history-wr")
+    let fff=JSON.parse(obj);
+    console.log(fff);
+    console.log("datum:"+fff.datum)
+    let finalstate;
+    let state=fff.state
+    if(state==1){
+      finalstate='Approve'
+    }else if(state==2){
+      finalstate='Deny'
+    }else if(state==3){
+      finalstate='Cancle'
+    }else{
+      finalstate='Draft'
+    }
+
+    let jsonObj;
+    jsonObj =localStorage.getItem('user')
+    let objObj = JSON.parse(jsonObj)
+
     console.log(docType)
 
     var body={
@@ -81,7 +102,7 @@ export class WorkReqServiceService {
       Status: forma['status'],
       IncidentID: forma['incident'],
       Street: forma['street'],
-      Creator:forma['creator'],
+      Creator:objObj.UserName,
       Purpose: forma['purpose'],
       Notes: forma['notes'],
       Emergency: forma['emergency'],
@@ -93,7 +114,8 @@ export class WorkReqServiceService {
       EndWorkTime:(forma['endtime']).toLocaleString(),
       PhoneNumber :forma['phoneNo'],
       CreatedDate: (forma['cratedate']).toLocaleString(),
-      CreatedTime: (forma['cratetime']).toLocaleString()
+      CreatedTime: (forma['cratetime']).toLocaleString(),
+      HistoryState:finalstate
     };
 
    return  this.http.post(this.BaseURI+"/WorkRequest/AddBasicInfo", body);  //vraca observable
@@ -138,7 +160,7 @@ export class WorkReqServiceService {
     obj=localStorage.getItem("history-wr")
     let fff=JSON.parse(obj);
     console.log(fff);
-    alert(fff.datum)
+    console.log("datum:"+fff.datum)
     let finalstate;
     let state=fff.state
     if(state==1){
@@ -148,12 +170,17 @@ export class WorkReqServiceService {
     }else{
       finalstate='Cancle'
     }
+
+    let jsonObj;
+    jsonObj =localStorage.getItem('user')
+    let objObj = JSON.parse(jsonObj)
+
     //console.log("datuuum:"+obj['datum'])
     var body={
       DateHistory : fff.datum,//obj['datum'],   //greska
       HistoryState: finalstate,
       WorkRequestId: localStorage.getItem('id-wr'),
-      UserName:forma['userName']                //UZETI LOCAL STORAGE !!!!--IZMENITI
+      UserName:   objObj.UserName           //UZETI LOCAL STORAGE !!!!--IZMENITI
       
     };
 
