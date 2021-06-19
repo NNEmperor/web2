@@ -204,6 +204,21 @@ namespace WebSERVER.Controllers
            // return CreatedAtAction("GetBooks", new { id = workRequest.Id }, workRequest);
         }
 
+        [HttpPost]
+        [Route("SetHistory")]
+        public async Task<ActionResult> SetHistory(HistoryWorkRequest history)
+        {
+
+            _context.HistoryWorkRequests.Add(history);
+
+            await _context.SaveChangesAsync();
+
+            var lista = _context.WorkRequests.ToList();
+            //workreq = lista[lista.Count - 1].Id;    //dodeli id
+            return Ok("Succeesfully added work request history");
+            // return CreatedAtAction("GetBooks", new { id = workRequest.Id }, workRequest);
+        }
+
         // DELETE: api/Books/5
         [HttpDelete]
         [Route("DeleteWorkRequest/{id}")]

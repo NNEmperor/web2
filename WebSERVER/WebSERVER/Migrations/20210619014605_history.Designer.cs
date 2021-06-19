@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebSERVER.Models;
 
 namespace WebSERVER.Migrations
 {
     [DbContext(typeof(WebServerContext))]
-    partial class WebServerContextModelSnapshot : ModelSnapshot
+    [Migration("20210619014605_history")]
+    partial class history
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -271,7 +273,7 @@ namespace WebSERVER.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DateHistory");
+                    b.Property<string>("Date");
 
                     b.Property<string>("HistoryState");
 

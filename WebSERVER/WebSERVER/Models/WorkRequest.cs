@@ -34,8 +34,10 @@ namespace WebSERVER.Models
         [NotMapped]
         public List<string> Photos { get; set; }
 
+        public string HistoryState { get; set; }    //inicijalno nema None
+
         // public ICollection<ChangedByWhen> History { get; set; }
 
-        
+
     }
 }
