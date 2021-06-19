@@ -15,6 +15,6 @@ namespace WebSERVER.Models
        
         public string Image { get; set; }
         
-        public int WorkRequestID { get; set; }
+        public string WorkRequestID { get; set; }
     }
 }

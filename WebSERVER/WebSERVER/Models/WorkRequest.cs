@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace WebSERVER.Models
     public class WorkRequest
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Type { get; set; }
         public string Status { get; set; }
        // public Incident Incident { get; set; }
@@ -29,9 +30,12 @@ namespace WebSERVER.Models
         public string CreatedDate { get; set; }
         public string CreatedTime { get; set; }
         public string Creator { get; set; }
-
-       // public ICollection<ChangedByWhen> History { get; set; }
-
         //multimedia
+        [NotMapped]
+        public List<string> Photos { get; set; }
+
+        // public ICollection<ChangedByWhen> History { get; set; }
+
+        
     }
 }

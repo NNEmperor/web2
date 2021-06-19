@@ -341,7 +341,7 @@ namespace WebSERVER.Migrations
 
                     b.Property<string>("Image");
 
-                    b.Property<int>("WorkRequestID");
+                    b.Property<string>("WorkRequestID");
 
                     b.HasKey("IdMedia");
 
@@ -510,7 +510,7 @@ namespace WebSERVER.Migrations
 
                     b.Property<int?>("DeviceId");
 
-                    b.Property<int?>("WorkRequestId");
+                    b.Property<string>("WorkRequestId");
 
                     b.HasKey("WorkReqDeviceId");
 
@@ -523,9 +523,8 @@ namespace WebSERVER.Migrations
 
             modelBuilder.Entity("WebSERVER.Models.WorkRequest", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Company");
 

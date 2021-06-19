@@ -110,7 +110,7 @@ namespace WebSERVER.Migrations
                     IdMedia = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Image = table.Column<string>(nullable: true),
-                    WorkRequestID = table.Column<int>(nullable: false)
+                    WorkRequestID = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -190,8 +190,7 @@ namespace WebSERVER.Migrations
                 name: "WorkRequests",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<string>(nullable: false),
                     Type = table.Column<string>(nullable: true),
                     Status = table.Column<string>(nullable: true),
                     IncidentID = table.Column<string>(nullable: true),
@@ -415,7 +414,7 @@ namespace WebSERVER.Migrations
                 {
                     WorkReqDeviceId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    WorkRequestId = table.Column<int>(nullable: true),
+                    WorkRequestId = table.Column<string>(nullable: true),
                     DeviceId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -436,36 +435,29 @@ namespace WebSERVER.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ChangedByWhen",
+                name: "History",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     WhoChanged = table.Column<string>(nullable: true),
                     WhenChanged = table.Column<DateTime>(nullable: false),
-                    workRequestId = table.Column<int>(nullable: true),
                     SafetyDocId = table.Column<int>(nullable: true),
                     WorkPlanId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ChangedByWhen", x => x.Id);
+                    table.PrimaryKey("PK_History", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ChangedByWhen_SafetyDocs_SafetyDocId",
+                        name: "FK_History_SafetyDocs_SafetyDocId",
                         column: x => x.SafetyDocId,
                         principalTable: "SafetyDocs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ChangedByWhen_WorkPlans_WorkPlanId",
+                        name: "FK_History_WorkPlans_WorkPlanId",
                         column: x => x.WorkPlanId,
                         principalTable: "WorkPlans",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ChangedByWhen_WorkRequests_workRequestId",
-                        column: x => x.workRequestId,
-                        principalTable: "WorkRequests",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -541,19 +533,14 @@ namespace WebSERVER.Migrations
                 column: "incidentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChangedByWhen_SafetyDocId",
-                table: "ChangedByWhen",
+                name: "IX_History_SafetyDocId",
+                table: "History",
                 column: "SafetyDocId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChangedByWhen_WorkPlanId",
-                table: "ChangedByWhen",
+                name: "IX_History_WorkPlanId",
+                table: "History",
                 column: "WorkPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ChangedByWhen_workRequestId",
-                table: "ChangedByWhen",
-                column: "workRequestId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_IncidentDevices_DeviceId",
@@ -617,7 +604,7 @@ namespace WebSERVER.Migrations
                 name: "Calls");
 
             migrationBuilder.DropTable(
-                name: "ChangedByWhen");
+                name: "History");
 
             migrationBuilder.DropTable(
                 name: "IncidentDevices");

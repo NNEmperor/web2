@@ -10,7 +10,7 @@ using WebSERVER.Models;
 namespace WebSERVER.Migrations
 {
     [DbContext(typeof(WebServerContext))]
-    [Migration("20210618085723_prva")]
+    [Migration("20210618223610_prva")]
     partial class prva
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -225,6 +225,7 @@ namespace WebSERVER.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("SafetyDocId");
@@ -235,17 +236,13 @@ namespace WebSERVER.Migrations
 
                     b.Property<int?>("WorkPlanId");
 
-                    b.Property<int?>("workRequestId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("SafetyDocId");
 
                     b.HasIndex("WorkPlanId");
 
-                    b.HasIndex("workRequestId");
-
-                    b.ToTable("ChangedByWhen");
+                    b.ToTable("History");
                 });
 
             modelBuilder.Entity("WebSERVER.Models.Device", b =>
@@ -346,7 +343,7 @@ namespace WebSERVER.Migrations
 
                     b.Property<string>("Image");
 
-                    b.Property<int>("WorkRequestID");
+                    b.Property<string>("WorkRequestID");
 
                     b.HasKey("IdMedia");
 
@@ -515,7 +512,7 @@ namespace WebSERVER.Migrations
 
                     b.Property<int?>("DeviceId");
 
-                    b.Property<int?>("WorkRequestId");
+                    b.Property<string>("WorkRequestId");
 
                     b.HasKey("WorkReqDeviceId");
 
@@ -528,9 +525,8 @@ namespace WebSERVER.Migrations
 
             modelBuilder.Entity("WebSERVER.Models.WorkRequest", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Company");
 
@@ -655,17 +651,13 @@ namespace WebSERVER.Migrations
 
             modelBuilder.Entity("WebSERVER.Models.ChangedByWhen", b =>
                 {
-                    b.HasOne("WebSERVER.Models.SafetyDoc")
+                    b.HasOne("WebSERVER.Models.SafetyDoc", "SafetyDoc")
                         .WithMany("History")
                         .HasForeignKey("SafetyDocId");
 
                     b.HasOne("WebSERVER.Models.WorkPlan")
                         .WithMany("History")
                         .HasForeignKey("WorkPlanId");
-
-                    b.HasOne("WebSERVER.Models.WorkRequest", "workRequest")
-                        .WithMany()
-                        .HasForeignKey("workRequestId");
                 });
 
             modelBuilder.Entity("WebSERVER.Models.IncidentDevice", b =>

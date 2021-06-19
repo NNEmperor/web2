@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using WebSERVER.Models;
 
@@ -15,7 +16,7 @@ namespace WebSERVER.Controllers
     public class WorkRequestController : ControllerBase
     {
         private readonly WebServerContext _context;
-        static int workreq = 1;
+        static string workreqID = "";
 
         public WorkRequestController(WebServerContext context)
         {
@@ -26,21 +27,49 @@ namespace WebSERVER.Controllers
         [Route("GetWorkRequests")]
         public async Task<ActionResult<IEnumerable<WorkRequest>>> GetWorkRequests()
         {
-            return await _context.WorkRequests.ToListAsync();
+            var listawr = _context.WorkRequests.ToList();
+            var slike = _context.MediaWorkRequests.ToList();
+
+            foreach(var wr in listawr)
+            {
+                wr.Photos = new List<string>();
+                foreach(var slika in slike)
+                {
+                    if (slika.WorkRequestID.Equals( wr.Id))
+                    {
+                        wr.Photos.Add(slika.Image);
+                    }
+                }
+            }
+            return listawr;
         }
 
         [HttpPost]
         [Route("GetMineWorkRequests")]
         public async Task<ActionResult<IEnumerable<WorkRequest>>> GetMineWorkRequests([FromForm]string userName)
         {
-            return await _context.WorkRequests.Where(x=>x.Creator.Equals(userName)).ToListAsync();
+            var listawr = _context.WorkRequests.Where(x => x.Creator.Equals(userName)).ToList();
+            var slike = _context.MediaWorkRequests.ToList();
+
+            foreach (var wr in listawr)
+            {
+                wr.Photos = new List<string>();
+                foreach (var slika in slike)
+                {
+                    if (slika.WorkRequestID.Equals(wr.Id))
+                    {
+                        wr.Photos.Add(slika.Image);
+                    }
+                }
+            }
+            return listawr;
         }
         [HttpPost]
         [Route("CreateImage")]
         public async Task<IActionResult> CreateImage() {
             var nesto = Request.Form.Files[0];
-            var workkkk = workreq;
-            workreq = 1;
+            var workkkk = workreqID;
+            //workreqID = "";       //ne treba
             string base64string;
             var myFile = nesto;
             var filetype = myFile.ContentType;
@@ -55,12 +84,13 @@ namespace WebSERVER.Controllers
             //var taj = _context.WorkRequests.Where(x => x.id).Single();
             //taj.Image = base64string;//pamti tu sliku
             //await _userManager.UpdateAsync(taj);
-
+            var listaWR = _context.WorkRequests.ToList();
+           // var poslednjiID = listaWR[listaWR.Count - 1].Id;
             _context.MediaWorkRequests.Add(new MediaWorkRequest { Image = base64string, WorkRequestID = workkkk });
             _context.SaveChanges();
 
-            return new EmptyResult();
-            return Ok();
+           // return new EmptyResult();
+            return Ok("Successfully added photo to work request");
         }
        /// <summary>
        /// ne radi
@@ -69,8 +99,8 @@ namespace WebSERVER.Controllers
        /// <returns></returns>
         public async Task<IActionResult> UploadFile([FromForm]object file)
         {
-            var workkkk = workreq;
-            workreq = 1;
+            var workkkk = workreqID;
+            //workreqID = "";       //ne treba
             string base64string;
             var myFile = file as IFormFile;
             var filetype = myFile.ContentType;
@@ -86,10 +116,39 @@ namespace WebSERVER.Controllers
             //taj.Image = base64string;//pamti tu sliku
             //await _userManager.UpdateAsync(taj);
 
-            _context.MediaWorkRequests.Add(new MediaWorkRequest { Image = base64string, WorkRequestID = workkkk });
+            _context.MediaWorkRequests.Add(new MediaWorkRequest { Image = base64string, WorkRequestID = workkkk.ToString() });
             _context.SaveChanges();
 
             return new EmptyResult();
+        }
+
+       
+        [HttpGet]
+        [Route("GenerateWorkID")]
+        public async Task<Object> GenerateWorkID()
+        {
+            string result = GetRandomString(10);
+            return Ok(result);
+        }
+
+        internal static string GetRandomString(int stringLength)
+        {
+            StringBuilder sb = new StringBuilder();
+            int numGuidsToConcat = (((stringLength - 1) / 32) + 1);
+            for (int i = 1; i <= numGuidsToConcat; i++)
+            {
+                sb.Append(Guid.NewGuid().ToString("N"));
+            }
+
+            return sb.ToString(0, stringLength);
+        }
+
+        [HttpPost]
+        [Route("GetID")]
+        public async Task<Object> GetID([FromForm]string idwr)
+        {
+            workreqID = idwr;
+            return Ok();
         }
 
         [HttpGet("{id}")]
@@ -116,18 +175,19 @@ namespace WebSERVER.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!WorkRequestsExists(workRequest.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+               // if (!WorkRequestsExists(workRequest.Id))
+                //{
+                //    return NotFound();
+                //}
+                //else
+                //{
+                //    throw;
+                //}
             }
 
             return NoContent();
         }
+
 
         [HttpPost]
         [Route("AddBasicInfo")]
@@ -139,7 +199,7 @@ namespace WebSERVER.Controllers
             await _context.SaveChangesAsync();
 
             var lista = _context.WorkRequests.ToList();
-            workreq = lista[lista.Count - 1].Id;    //dodeli id
+            //workreq = lista[lista.Count - 1].Id;    //dodeli id
             return Ok("Succeesfully added work request");
            // return CreatedAtAction("GetBooks", new { id = workRequest.Id }, workRequest);
         }
@@ -163,7 +223,7 @@ namespace WebSERVER.Controllers
 
         private bool WorkRequestsExists(int id)
         {
-            return _context.WorkRequests.Any(e => e.Id == id);
+            return _context.WorkRequests.Any(e => e.Id.Equals( id));
         }
     }
 }
