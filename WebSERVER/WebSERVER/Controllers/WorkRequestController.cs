@@ -81,11 +81,8 @@ namespace WebSERVER.Controllers
             byte[] imageByte = System.IO.File.ReadAllBytes(filepath);
             base64string = Convert.ToBase64String(imageByte);
 
-            //var taj = _context.WorkRequests.Where(x => x.id).Single();
-            //taj.Image = base64string;//pamti tu sliku
-            //await _userManager.UpdateAsync(taj);
             var listaWR = _context.WorkRequests.ToList();
-           // var poslednjiID = listaWR[listaWR.Count - 1].Id;
+           
             _context.MediaWorkRequests.Add(new MediaWorkRequest { Image = base64string, WorkRequestID = workkkk });
             _context.SaveChanges();
 
@@ -112,9 +109,6 @@ namespace WebSERVER.Controllers
             byte[] imageByte = System.IO.File.ReadAllBytes(filepath);
             base64string = Convert.ToBase64String(imageByte);
 
-            //var taj = _context.WorkRequests.Where(x => x.id).Single();
-            //taj.Image = base64string;//pamti tu sliku
-            //await _userManager.UpdateAsync(taj);
 
             _context.MediaWorkRequests.Add(new MediaWorkRequest { Image = base64string, WorkRequestID = workkkk.ToString() });
             _context.SaveChanges();
@@ -199,24 +193,23 @@ namespace WebSERVER.Controllers
             await _context.SaveChangesAsync();
 
             var lista = _context.WorkRequests.ToList();
-            //workreq = lista[lista.Count - 1].Id;    //dodeli id
+            
             return Ok("Succeesfully added work request");
-           // return CreatedAtAction("GetBooks", new { id = workRequest.Id }, workRequest);
+           
         }
 
         [HttpPost]
         [Route("SetHistory")]
         public async Task<ActionResult> SetHistory(HistoryWorkRequest history)
         {
-
             _context.HistoryWorkRequests.Add(history);
 
             await _context.SaveChangesAsync();
 
             var lista = _context.WorkRequests.ToList();
-            //workreq = lista[lista.Count - 1].Id;    //dodeli id
+            
             return Ok("Succeesfully added work request history");
-            // return CreatedAtAction("GetBooks", new { id = workRequest.Id }, workRequest);
+           
         }
 
         // DELETE: api/Books/5
