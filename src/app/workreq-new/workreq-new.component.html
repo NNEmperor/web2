@@ -21,31 +21,13 @@
                 <button class="nav-link" routerLinkActive="active" 
                 [routerLinkActiveOptions]="{exact: true}"  (click)="Equ()">Equipment</button>
             </li> 
+            <li>
+
+                <button (click)="AddWorkRequest()" class="btn btn-primary" style="font-size: 18px;"><i ><span style="vertical-align:bottom;" class="material-icons">archive</span></i>&nbsp;Add</button>
+            </li>
            
           </ul>
         </nav>
       <router-outlet></router-outlet>
-     <!-- <div class="el1">
-        <table class="table table-hover">
-            <tbody>
-            <tr>
-                <td><button>Basic Information</button></td>
-            </tr>
-            <tr>
-                <td><button> History of state changes</button></td>
-            </tr>
-            <tr>
-                <td><button>Multimedia attachments</button> </td>
-            </tr>
-            <tr>
-                <td><button> Equipment</button></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>-->
-    <!--
-    <div class="el">
-        <app-workreq-basicinfo></app-workreq-basicinfo>
-    </div>
--->
+    
 </div>

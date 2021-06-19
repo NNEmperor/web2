@@ -12,7 +12,7 @@
       
         <a  [href]="fileUrls[i]" download='{{ file?.name }}'>
         
-        <img [src]="imagePath" width="45px" alt="file">
+        <img [src]="fileUrls[i]" width="45px" alt="file">
         </a>
       
       <div class="info">
@@ -30,35 +30,4 @@
   </div>
   <button class="btn-primary" (click)='DiscardImages()'>Discard</button>
   <button class="btn-primary" (click)='SaveImages()'>Save</button>
-<!--<div class="dropzone" appMediaUpload>
-    <input type="file" #fileDropRef id="fileDropRef" multiple  />
-    <img src="assets/images/add_photo-512.png" width="450px"
-    height="400px" alt="">
-    <h3>Drag and drop file here</h3>
-    <h3>or</h3>
-    <label for="fileDropRef">Browse for file</label>
-</div>
-<div class="container" appMediaUpload (fileDropped)="onFileDropped($event)"></div>
-
-<div class="files-list">
-    <div class="single-file" *ngFor="let file of files; let i=index">
-        <img src="assets/images/add_photo-512.png" width="45px" alt="file">
-        <div class="info">
-            <h4 class="name">{{file?.name}}</h4>
-            <p class="size">{{formatBytes(file?.size)}}</p>
-        <app-progress [progress]="file?.progress"></app-progress>
-        </div>
-        <img src="assets/images/pozadina.png" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
-    </div>
-</div>-->
-
-<!--<div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
-    <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
-  </div>
-  <div  class="files-list" *ngFor="let file of files;let i= index">
-      <p> {{ file }} </p>
-      <button class="delete-file" (click)="deleteAttachment(i)">
-        <img src="assets/images/add_photo-512.png">
-      </button>
-   </div>
--->
+  

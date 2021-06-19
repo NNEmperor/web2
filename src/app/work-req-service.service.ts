@@ -65,31 +65,35 @@ export class WorkReqServiceService {
 
   AddBasicInfo(forma:any){
     //let rodj=this.datepipe.transform(forma.value.bday, 'MM-dd-yyyy')  ;
-
+    console.log(forma)
+    //console.log("doooc   "+forma.value.docType)
     let docType;
-    if(forma.value.docType==1){
-      docType='Planned Work'
-    }else if(forma.value.docType==2){
-      docType='Unplanned work'
+    if(forma['docType']==1){
+      docType="Planned Work"
+    }else if(forma['docType']==2){
+      docType="Unplanned work"
     }
 
+    console.log(docType)
+
     var body={
-      Status: forma.value.status,
-      IncidentID: forma.value.incident,
-      Street: forma.value.street,
-      Creator:forma.value.creator,
-      Purpose: forma.value.purpose,
-      Notes: forma.value.notes,
-      Emergency: forma.value.emergency,
-      Company:forma.value.company,
+      Id: forma['id'],
+      Status: forma['status'],
+      IncidentID: forma['incident'],
+      Street: forma['street'],
+      Creator:forma['creator'],
+      Purpose: forma['purpose'],
+      Notes: forma['notes'],
+      Emergency: forma['emergency'],
+      Company:forma['company'],
       Type:docType,//ok
-      StartWorkDate:(forma.value.startdate).toLocaleString(),
-      StartWorkTime:(forma.value.starttime).toLocaleString(),
-      EndWorkDate:(forma.value.enddate).toLocaleString(),
-      EndWorkTime:(forma.value.endtime).toLocaleString(),
-      PhoneNumber :forma.value.phoneNo,
-      CreatedDate: (forma.value.cratedate).toLocaleString(),
-      CreatedTime: (forma.value.cratetime).toLocaleString()
+      StartWorkDate:(forma['startdate']).toLocaleString(),
+      StartWorkTime:(forma['starttime']).toLocaleString(),
+      EndWorkDate:(forma['enddate']).toLocaleString(),
+      EndWorkTime:(forma['endtime']).toLocaleString(),
+      PhoneNumber :forma['phoneNo'],
+      CreatedDate: (forma['cratedate']).toLocaleString(),
+      CreatedTime: (forma['cratetime']).toLocaleString()
     };
 
    return  this.http.post(this.BaseURI+"/WorkRequest/AddBasicInfo", body);  //vraca observable
@@ -112,5 +116,20 @@ export class WorkReqServiceService {
     //let params = new HttpParams();
       //  params = params.set('fajl', FileFormData);
    return  this.http.post<any>('http://localhost:55333/api/WorkRequest/UploadFile',file)
+  }
+
+  GenerateWorkID(){
+    console.log("GENERISANJE ID-ja za w r")
+    let apiUri='http://localhost:55333/api/WorkRequest/GenerateWorkID';
+    let params = new HttpParams();
+        params = params.set('id', '');
+    return this.http.get(apiUri);
+  }
+
+  SendID(idwr){
+    let apiUri=this.BaseURI+'/WorkRequest/GetID';
+    let params = new HttpParams();
+        params = params.set('idwr', idwr);
+    return this.http.post(apiUri,params);
   }
 }

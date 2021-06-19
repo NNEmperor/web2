@@ -4,6 +4,9 @@ import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '
 import { prepareEventListenerParameters } from '@angular/compiler/src/render3/view/template';
 import { WrBasicInfoPopUpComponent } from '../wr-basic-info-pop-up/wr-basic-info-pop-up.component';
 import { MatDialog } from '@angular/material/dialog';
+import { HttpErrorResponse } from '@angular/common/http';
+import { NotifierService } from 'angular-notifier';
+import { WorkReqServiceService } from '../work-req-service.service';
 
 @Component({
   selector: 'app-workreq-new',
@@ -13,40 +16,22 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class WorkreqNewComponent implements OnInit {
 
-  constructor(public location: Location,private router: Router, public dialog: MatDialog) { 
-    
-      //console.log(location.path());
-      //RUTA
-      this.router.events.subscribe((event) => {
-     /* if(event instanceof NavigationStart) {
-        console.log("START info"+event)
-      }else if (event instanceof NavigationEnd){
-        //if(event.url==location.path()){
-          //alert("prelazak")
-        //}
-      console.log("ennnnd"+event)
-      }*/
+  private readonly notifier!: NotifierService;
 
+  constructor(public location: Location,private router: Router, public dialog: MatDialog,private servis:WorkReqServiceService, notifierService: NotifierService) { 
+    
+    this.notifier = notifierService;
       
-      // NavigationEnd
-      // NavigationCancel
-      // NavigationError
-      // RoutesRecognized
-    });
   }
 
   ngOnInit(): void {
-
+    
   }
-  /*
-  isActive(instruction: any[]): boolean {
-    return this.router.isRouteActive(this.router.generate(instruction));
-  }*/
+ 
   Info(){
-    //alert("b i")
     
     var path=location.pathname;
-    //console.log("path:   "+path)
+    
     if(path=="/home/workreq-new"){
       console.log("ista stranica B I");
     }else{
@@ -55,9 +40,9 @@ export class WorkreqNewComponent implements OnInit {
     }
   }
   History(){
-    //alert("h")
+    
     var path=location.pathname;
-    //console.log("path:   "+path)
+  
     if(path=="/home/workreq-new/workreq-history")
     {
       console.log("ista stranica HI");
@@ -100,9 +85,9 @@ export class WorkreqNewComponent implements OnInit {
   }
 
   Media(){
-    //alert("m")
+    
     var path=location.pathname;
-    //console.log("path:   "+path)
+    
     if(path=="/home/workreq-new/workreq-multimedia"){
       console.log("ista stranica MEDIA");
     }else{
@@ -141,7 +126,7 @@ export class WorkreqNewComponent implements OnInit {
     }
   }
   Equ(){
-    //alert("e")
+    
     var path=location.pathname;
     //console.log("path:   "+path)
     if(path=="/home/workreq-new/workreq-equipment"){
@@ -181,4 +166,60 @@ export class WorkreqNewComponent implements OnInit {
         }
     }
   }
+
+  AddWorkRequest(){
+    alert("KUTIJA")
+      localStorage.removeItem("id-wr")
+      var basicinfoJSON=localStorage.getItem('basic-info');
+      let basininfoObj=JSON.parse(basicinfoJSON as string);
+      alert(basicinfoJSON);
+      alert(basininfoObj)
+      alert(basininfoObj['docType'])
+      console.log(basininfoObj)
+    this.servis.AddBasicInfo(basininfoObj).subscribe((data:any) =>{
+
+      if(data.succeeded){
+        //alert("Uspesno dodat tim!  da li ovo prikaze");  //ne udje, ali sa servera ispise
+      }
+      
+     }, (err:HttpErrorResponse) => {
+       console.log(err)
+       
+       let message= err.error.text;
+      // alert(message);
+ 
+      if(message==="Succeesfully added work request"){
+       this.notifier.notify('default', message);
+       localStorage.removeItem("uneseno");
+       this.router.navigateByUrl('/home/work-requests');
+      
+     }
+       
+      
+    })
+  }
+  /*AddBasicInfo(){
+    //dodace u bazu
+    this.servis.AddBasicInfo(this.workReqBasicForm).subscribe((data:any) =>{
+
+      if(data.succeeded){
+        //alert("Uspesno dodat tim!  da li ovo prikaze");  //ne udje, ali sa servera ispise
+      }
+      
+     }, (err:HttpErrorResponse) => {
+       console.log(err)
+       
+       let message= err.error.text;
+      // alert(message);
+ 
+      if(message==="Succeesfully added work request"){
+       this.notifier.notify('default', message);
+       localStorage.removeItem("uneseno");
+       this.router.navigateByUrl('/home/work-requests');
+      
+     }
+       
+      
+    })
+  } */
 }

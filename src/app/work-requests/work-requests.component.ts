@@ -32,11 +32,7 @@ export class WorkRequestsComponent implements OnInit {
     constructor(private service: MessagePassingService, private wrServis:WorkReqServiceService ,notifierService: NotifierService,private routerr: Router) {
       this.service.changeData("WORK REQUEST")
       this.notifier = notifierService;
-     
-     /*setTimeout(() => {
-       this.dataSource.sort = this.sort;
-       this.dataSource.paginator = this.paginator;
-     });*/
+    
  
    }
    ngOnInit(): void {
@@ -54,16 +50,14 @@ export class WorkRequestsComponent implements OnInit {
         });
         if(this.works.length===0){
           this.notifier.notify('default', "No work requests to show.");
-           /* setTimeout(() => {
-              //ukloni obavestenje
-              this.notifier.hideAll();
-            }, 2000);*/
+           
         }
       });
 
      
    }
    btnNewClick () {
+    
     this.router.navigateByUrl('/workreq-new');
 };
    onDragChange() {
@@ -85,10 +79,7 @@ export class WorkRequestsComponent implements OnInit {
           });
           if(this.works.length===0){
             this.notifier.notify('default', "No work requests to show.");
-             /* setTimeout(() => {
-                //ukloni obavestenje
-                this.notifier.hideAll();
-              }, 2000);*/
+             
           }
         });
      }else{
@@ -108,10 +99,7 @@ export class WorkRequestsComponent implements OnInit {
           });
           if(this.works.length===0){
             this.notifier.notify('default', "No work requests to show.");
-             /* setTimeout(() => {
-                //ukloni obavestenje
-                this.notifier.hideAll();
-              }, 2000);*/
+             
           }
         });
      }
@@ -124,9 +112,8 @@ export class WorkRequestsComponent implements OnInit {
    }
 
    editTeam(id:any){
-      console.log("edit iiid   "+ id)
-     // workreq-edit
-     //this.router.navigateByUrl('/workreq-edit');
+    console.log("edit iiid   "+ id)
+     
      this.routerr.navigateByUrl('/home/workreq-update');
    }
  
@@ -136,15 +123,4 @@ export class WorkRequestsComponent implements OnInit {
    position: number;
    email: string;
  }
- /*const ELEMENT_DATA: UserElement[] = [
-   { position: 1, name: 'John', email:' john@gmail.com'},
-   { position: 2, name: 'Herry', email: 'herry@gmail.com' },
-   { position: 3, name: 'Ann', email: 'ann@gmail.com' },
-   { position: 4, name: 'Johnny', email: 'johnny@gmail.com' },
-   { position: 5, name: 'Roy', email: 'roy@gmail.com' },
-   { position: 6, name: 'Kia', email: 'kia@gmail.com' },
-   { position: 7, name: 'Merry', email: 'merry@gmail.com' },
-   { position: 8, name: 'William', email: 'william@gmail.com'},
-   { position: 9, name: 'Shia', email: 'shia@gmail.com' },
-   { position: 10, name: 'Kane', email: 'kane@gmail.com' }
- ];*/
+ 
