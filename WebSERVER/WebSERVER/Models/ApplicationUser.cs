@@ -21,6 +21,8 @@ namespace WebSERVER.Models
         public string Address { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public string UserRole { get; set; }
+        [NotMapped]
+        public string Token { get; set; }
 
         public bool SendConfirmation { get; set; }
         [Column(TypeName = "nvarchar(50)")]

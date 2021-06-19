@@ -41,6 +41,21 @@ namespace WebSERVER.Controllers
             return devices;
         }
 
+        [HttpPost]
+        [Route("GetCoords")]
+        public async Task<ActionResult<List<double>>> GetCoords([FromBody]int id)
+        {
+            List<double> res = new List<double>();
+
+            Device temp = await _context.Devices.Where(device => device.Id == id).FirstAsync();
+            res.Add(temp.XCoordinate);
+            res.Add(temp.YCoordinate);
+
+            return res;
+        }
+
+
+
         [Route("UpdateDevice")]
         public async Task<IActionResult> UpdateDevice(Device device)
         {

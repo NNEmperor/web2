@@ -20,5 +20,6 @@ namespace WebSERVER.Models
         public bool SendConfirmation { get; set; }
 
         public string Status { get; set; }      //procesira,aktivan,odbijen nalog
+
     }
 }

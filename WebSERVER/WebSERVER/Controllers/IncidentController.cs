@@ -39,7 +39,8 @@ namespace WebSERVER.Controllers
         public async Task<ActionResult<ICollection<int>>> GetMyStatuses([FromForm]string userName)
         {
             List<Incident> temp = await _context.Incidents.Where(x => x.UserNameCreator == userName).ToListAsync();
-            List<int> res = new List<int>() { 0, 0, 0, 0};
+            List<SafetyDoc> temp2 = await _context.SafetyDocs.Where(x => x.CreatedBy == userName).ToListAsync();
+            List<int> res = new List<int>() { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             foreach (Incident i in temp)
             {
@@ -51,7 +52,22 @@ namespace WebSERVER.Controllers
                     res[2]++;
                 else if (i.Status == "Completed")
                     res[3]++;
+                res[4]++;
             }
+
+            foreach (SafetyDoc i in temp2)
+            {
+                if (i.Status == "Draft")
+                    res[5]++;
+                else if (i.Status == "Canceled")
+                    res[6]++;
+                else if (i.Status == "Executing")
+                    res[7]++;
+                else if (i.Status == "Completed")
+                    res[8]++;
+                res[9]++;
+            }
+
             return res;
         }
 

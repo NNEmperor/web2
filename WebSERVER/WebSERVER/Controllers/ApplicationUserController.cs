@@ -54,7 +54,9 @@ namespace WebSERVER.Controllers
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                 var token = tokenHandler.WriteToken(securityToken);
-                return Ok(new { token });
+                user.Token = token;
+                var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+                return Ok(new { jsonString });
             }
             else
                 return BadRequest(new { message = "Username or password is incorrect." });
