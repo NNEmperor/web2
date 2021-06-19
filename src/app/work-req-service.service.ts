@@ -138,9 +138,9 @@ export class WorkReqServiceService {
     obj=localStorage.getItem("history-wr")
     let fff=JSON.parse(obj);
     console.log(fff);
-    alert(obj)
+    alert(fff.datum)
     let finalstate;
-    let state=obj['state']
+    let state=fff.state
     if(state==1){
       finalstate='Approve'
     }else if(state==2){
@@ -150,7 +150,7 @@ export class WorkReqServiceService {
     }
     //console.log("datuuum:"+obj['datum'])
     var body={
-      DateHistory : fff.value.datum,//obj['datum'],   //greska
+      DateHistory : fff.datum,//obj['datum'],   //greska
       HistoryState: finalstate,
       WorkRequestId: localStorage.getItem('id-wr'),
       UserName:forma['userName']                //UZETI LOCAL STORAGE !!!!--IZMENITI

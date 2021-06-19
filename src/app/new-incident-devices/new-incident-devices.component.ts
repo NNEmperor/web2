@@ -21,6 +21,7 @@ export class NewIncidentDevicesComponent implements OnInit {
 
   data: any[] = [];
   showingData: any[] = [];
+  coords: any[] = [];
   allMineEnable = new FormControl(); 
   mySentences!:Array<Object>
   displayedColumns: string[] = ['id', 'name', 'address', 'type', 'location', 'delete'];
@@ -55,12 +56,16 @@ export class NewIncidentDevicesComponent implements OnInit {
     });
   }
 
-  showDevice(e: number){
-    let dialogRef2 = this.dialogRef.open(MapPopUpComponent, {
-      data: {
-        Coordinates: []
-      }
+  showDevice(e){
+    console.log(e);
+    this.incidentService.getCoords(e).subscribe( res => {
+      let dialogRef2 = this.dialogRef.open(MapPopUpComponent, {
+        data: {
+          Coordinates: [res[0], res[1]]
+        }
+      })
     })
+
   }
 
   sendDevices(){

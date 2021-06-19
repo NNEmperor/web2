@@ -34,6 +34,9 @@ export class StartScreenComponent implements OnInit {
     }
   
   ngOnInit(): void {
+    localStorage.removeItem('jwt');
+    localStorage.removeItem("userName");
+
     
     this.socialAuthService.authState.subscribe((user) => {
       this.user = user;
@@ -67,8 +70,13 @@ export class StartScreenComponent implements OnInit {
   onSubmit(){
     console.log("usao sam")
     this.service.login(this.loginForm.value).subscribe(
-      res => {
+      (res: any) => {
+        console.log(res.jsonString)
+        let obj = JSON.parse(res.jsonString)
+        console.log(obj)
+        localStorage.setItem('jwt', obj.Token);
         localStorage.setItem("userName", this.loginForm.get("username").value)
+        localStorage.setItem('user', res.jsonString)
         console.log(localStorage.getItem("userName"))
         this.router.navigateByUrl('/home')
       },

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './auth-guard.service';
 import { ChangePwdComponent } from './change-pwd/change-pwd.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DocSettingsComponent } from './doc-settings/doc-settings.component';
@@ -65,8 +66,8 @@ const routes: Routes = [
   { path: "registration", component: RegistrationComponent },
   { path: 'report-problem', component: ReportProblemComponent },
   { path: "home", component: NavBarComponent, children: [
-    { path: "", component: DashboardComponent },
-    { path: "mapa", component: MapComponent },
+    { path: "", component: DashboardComponent, canActivate: [AuthGuardService] },
+    { path: "mapa", component: MapComponent, canActivate: [AuthGuardService] },
     { path: "myprofile", component: MyProfileComponent },
     { path: 'edit-profile', component: EditProfileComponent },
     { path: "profiles", component: ProfilesViewComponent },

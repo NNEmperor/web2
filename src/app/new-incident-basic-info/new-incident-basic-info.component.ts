@@ -82,7 +82,7 @@ export class NewIncidentBasicInfoComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     //generise random id
-    this.idIncident.nativeElement.value = "1"
+    this.idIncident.nativeElement.value = "Database generated"
     //generise prioritet na osnovu lokacije
     this.prioIncident.nativeElement.value = "0"
     //automatski je draft

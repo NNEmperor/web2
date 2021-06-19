@@ -169,7 +169,10 @@ export class WorkreqNewComponent implements OnInit {
 
   AddWorkRequest(){
     alert("KUTIJA")
-      
+      let obj;
+      obj=localStorage.getItem("history-wr")
+      let fff=JSON.parse(obj);
+      console.log(fff.datum);
       var basicinfoJSON=localStorage.getItem("basic-info");
       let basininfoObj=JSON.parse(basicinfoJSON as string);
       alert(basicinfoJSON);

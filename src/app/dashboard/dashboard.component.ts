@@ -15,6 +15,13 @@ export class DashboardComponent implements OnInit {
   @ViewChild("numOfCanceledIncidents") numOfCanceledIncidents;
   @ViewChild("numOfExecutingIncidents") numOfExecutingIncidents;
   @ViewChild("numOfCompletedIncidents") numOfCompletedIncidents;
+  @ViewChild("numOfIncidents") numOfIncidents;
+
+  @ViewChild("numOfDraftsIncidents") numOfDraftsDoc;
+  @ViewChild("numOfCanceledIncidents") numOfCanceledDocs;
+  @ViewChild("numOfExecutingIncidents") numOfExecutingDocs;
+  @ViewChild("numOfCompletedIncidents") numOfCompletedDocs;
+  @ViewChild("numOfIncidents") numOfDocs;
 
   constructor(private service: MessagePassingService ) {
     this.service.changeData("DASHBOARD")
@@ -22,12 +29,17 @@ export class DashboardComponent implements OnInit {
 
     this.service.getMineStatuses(this.userName).subscribe(res =>{
 
-      console.log(res)
-
       this.numOfDraftsIncidents.nativeElement.value = res[0];
       this.numOfCanceledIncidents.nativeElement.value = res[1];
       this.numOfExecutingIncidents.nativeElement.value = res[2];
       this.numOfCompletedIncidents.nativeElement.value = res[3];
+      this.numOfIncidents.nativeElement.value = res[4];
+
+      this.numOfDraftsDoc.nativeElement.value = res[5];
+      this.numOfCanceledDocs.nativeElement.value = res[6];
+      this.numOfExecutingDocs.nativeElement.value = res[7];
+      this.numOfCompletedDocs.nativeElement.value = res[8];
+      this.numOfDocs.nativeElement.value = res[9];
     })
    }
 

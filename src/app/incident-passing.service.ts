@@ -30,5 +30,10 @@ export class IncidentPassingService {
   getUsers(){
     return this.http.get(this.BaseURI + "/ApplicationUser/GetAllUsers");
   }
+
+  getCoords(data){
+    console.log(data)
+    return this.http.post(this.BaseURI + "/Devices/GetCoords", data)
+  }
   
 }

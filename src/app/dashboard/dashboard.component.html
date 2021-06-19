@@ -6,22 +6,22 @@
         <a [routerLink]='["/home/incidents"]' style="box-shadow:0 0 .25em rgba(0, 0, 0, 0.55);" class="col-md-4">
             <div style="display:flex">
                 <p>MY INCIDENTS</p>
-                <p style="margin-left: 40%;" id="numOfIncidents">0</p>
+                <input type="text" style="border: transparent; background: transparent; margin-left: 40%;" #numOfIncidents />
             </div>
             <div style="display: flex;">
-                <input type="text" #numOfDraftsIncidents />
+                <input style="border: transparent; background: transparent;" type="text" #numOfDraftsIncidents />
                 <p style="margin-left: 10%;">Drafts</p>
             </div>
             <div style="display: flex;">
-                <input type="text" #numOfCanceledIncidents />
+                <input style="border: transparent; background: transparent;" type="text" #numOfCanceledIncidents />
                 <p style="margin-left: 10%;">Canceled</p>
             </div>
             <div style="display: flex;">
-                <input type="text" #numOfExecutingIncidents />
+                <input style="border: transparent; background: transparent;" type="text" #numOfExecutingIncidents />
                 <p style="margin-left: 10%;">Executing</p>
             </div>
             <div style="display: flex;">
-                <input type="text" #numOfCompletedIncidents/>
+                <input style="border: transparent; background: transparent;" type="text" #numOfCompletedIncidents/>
                 <p style="margin-left: 10%;">Completed</p>
             </div>
         </a>
@@ -50,22 +50,22 @@
         <a [routerLink]='["/home/safety-docs"]' style="box-shadow:0 0 .25em rgba(0, 0, 0, 0.55);" class="col-md-4">
             <div style="display:flex">
                 <p>MY SAFETY DOCS</p>
-                <p style="margin-left: 40%;" id="numOfIncidents">0</p>
+                <input type="text" style="border: transparent; background: transparent; margin-left: 40%;" #numOfDocs />
             </div>
             <div style="display: flex;">
-                <p id="numOfDraftsIncidents">0</p>
+                <input style="border: transparent; background: transparent;"  type="text" #numOfDraftsDoc />
                 <p style="margin-left: 10%;">Drafts</p>
             </div>
             <div style="display: flex;">
-                <p id="numOfCanceledIncidents">0</p>
+                <input style="border: transparent; background: transparent;"  type="text" numOfCanceledDocs />
                 <p style="margin-left: 10%;">Canceled</p>
             </div>
             <div style="display: flex;">
-                <p id="numOfExecutingIncidents">0</p>
+                <input style="border: transparent; background: transparent;"  type="text" #numOfExecutingDocs />
                 <p style="margin-left: 10%;">Executing</p>
             </div>
             <div style="display: flex;">
-                <p id="numOfCompletedIncidents">0</p>
+                <input style="border: transparent; background: transparent;"  type="text" #numOfCompletedDocs />
                 <p style="margin-left: 10%;">Completed</p>
             </div>
         </a>

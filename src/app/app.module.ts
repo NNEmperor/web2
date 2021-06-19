@@ -96,7 +96,12 @@ import { WrTabHistoryComponent } from './wr-tab-history/wr-tab-history.component
 import { WrTabMediaComponent } from './wr-tab-media/wr-tab-media.component';
 import { WrTabEquipmentComponent } from './wr-tab-equipment/wr-tab-equipment.component';
 import { HistoryWrPoUpComponent } from './history-wr-po-up/history-wr-po-up.component';
+import { AuthGuardService } from './auth-guard.service';
+import { JwtModule } from '@auth0/angular-jwt';
 
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -170,6 +175,12 @@ import { HistoryWrPoUpComponent } from './history-wr-po-up/history-wr-po-up.comp
     HistoryWrPoUpComponent,
   ],
   imports: [
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains:['localhost:4200']
+      }
+    }),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
