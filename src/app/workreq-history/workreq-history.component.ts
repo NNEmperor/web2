@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { HistoryWrPoUpComponent } from '../history-wr-po-up/history-wr-po-up.component';
 import { MessagePassingService } from '../message-passing.service';
 
 @Component({
@@ -7,12 +10,79 @@ import { MessagePassingService } from '../message-passing.service';
   styleUrls: ['./workreq-history.component.css']
 })
 export class WorkreqHistoryComponent implements OnInit {
-
-  constructor(private service: MessagePassingService) { 
+  selectedValue3=1;
+  stanja = this.getStates();
+  historyForm:any;
+  rememberForm:any;
+  whatstate=false;
+  constructor(private service: MessagePassingService, private fb: FormBuilder, public dialog: MatDialog) { 
     this.service.changeData("WORK REQUEST - NEW - History of state changes")
+
+    this.historyForm=this.fb.group({
+
+      state:['1']
+      
+    });
+
+    this.rememberForm=this.fb.group({ //STA CE PITI PODATAK HISTORYJA
+
+      userName:[localStorage.getItem("userName")],
+      datum:[new Date().toISOString().split('T')[0]],
+      state:['1']
+      
+    });
   }
+
 
   ngOnInit(): void {
   }
+  getStates(){
+    return [
+      { id: '1', name: 'Approve' },
+      { id: '2', name: 'Deny' },
+      { id: '3', name: 'Cancel' }
+    ];
+  }
 
+  Dijalog(event: any)
+  {
+    const dialogRef = this.dialog.open(HistoryWrPoUpComponent)
+      //update the ui
+      let selektovano = event.target.value;
+      console.log(selektovano);
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+            console.log("Result is TRUE!");
+            this.historyForm.controls['state'].setValue(selektovano);
+
+            
+      
+            console.log(this.historyForm.value.state)
+            if(this.historyForm.value.state==1 || this.historyForm.value.state==3){
+              this.whatstate=true; //NE MOZE MENJATI
+           
+             }
+        }
+        //----------
+        let state=this.historyForm.value.state
+       // this.selectedValue2=state as string
+        //console.log("seel"+ this.selectedValue2)
+        this.historyForm.controls['state'].setValue(state);
+        console.log(this.historyForm.value.state)
+       // this.rememberForm.controls['datum'].setValue(new Date().toISOString().split('T')[0]);
+        this.rememberForm.controls['state'].setValue(this.historyForm.value.state);
+  
+        var formObj=this.rememberForm.getRawValue()
+            let serializedForm = JSON.stringify(formObj);
+            console.log("JSON....istory")
+            console.log(serializedForm);
+            localStorage.setItem("history-wr",serializedForm);
+    });
+     
+//--------------------------------
+     
+     
+   
+  }
 }

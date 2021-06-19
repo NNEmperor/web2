@@ -169,13 +169,16 @@ export class WorkreqNewComponent implements OnInit {
 
   AddWorkRequest(){
     alert("KUTIJA")
-      localStorage.removeItem("id-wr")
-      var basicinfoJSON=localStorage.getItem('basic-info');
+      
+      var basicinfoJSON=localStorage.getItem("basic-info");
       let basininfoObj=JSON.parse(basicinfoJSON as string);
       alert(basicinfoJSON);
       alert(basininfoObj)
       alert(basininfoObj['docType'])
       console.log(basininfoObj)
+    this.servis.SetHistory(localStorage.getItem('history-wr')).subscribe(data=>{})
+
+
     this.servis.AddBasicInfo(basininfoObj).subscribe((data:any) =>{
 
       if(data.succeeded){
@@ -197,6 +200,9 @@ export class WorkreqNewComponent implements OnInit {
        
       
     })
+
+    localStorage.removeItem("id-wr")
+    localStorage.removeItem("basic-info")
   }
   /*AddBasicInfo(){
     //dodace u bazu

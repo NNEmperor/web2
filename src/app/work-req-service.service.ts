@@ -132,4 +132,31 @@ export class WorkReqServiceService {
         params = params.set('idwr', idwr);
     return this.http.post(apiUri,params);
   }
+
+  SetHistory(forma){
+    var obj;
+    obj=localStorage.getItem("history-wr")
+    let fff=JSON.parse(obj);
+    console.log(fff);
+    alert(obj)
+    let finalstate;
+    let state=obj['state']
+    if(state==1){
+      finalstate='Approve'
+    }else if(state==2){
+      finalstate='Deny'
+    }else{
+      finalstate='Cancle'
+    }
+    //console.log("datuuum:"+obj['datum'])
+    var body={
+      DateHistory : fff.value.datum,//obj['datum'],   //greska
+      HistoryState: finalstate,
+      WorkRequestId: localStorage.getItem('id-wr'),
+      UserName:forma['userName']                //UZETI LOCAL STORAGE !!!!--IZMENITI
+      
+    };
+
+   return  this.http.post(this.BaseURI+"/WorkRequest/SetHistory", body);  //vraca observable
+  }
 }

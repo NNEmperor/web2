@@ -95,6 +95,7 @@ import { WrTabInfoComponent } from './wr-tab-info/wr-tab-info.component';
 import { WrTabHistoryComponent } from './wr-tab-history/wr-tab-history.component';
 import { WrTabMediaComponent } from './wr-tab-media/wr-tab-media.component';
 import { WrTabEquipmentComponent } from './wr-tab-equipment/wr-tab-equipment.component';
+import { HistoryWrPoUpComponent } from './history-wr-po-up/history-wr-po-up.component';
 
 
 @NgModule({
@@ -166,6 +167,7 @@ import { WrTabEquipmentComponent } from './wr-tab-equipment/wr-tab-equipment.com
     WrTabHistoryComponent,
     WrTabMediaComponent,
     WrTabEquipmentComponent,
+    HistoryWrPoUpComponent,
   ],
   imports: [
     BrowserModule,

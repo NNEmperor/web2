@@ -86,7 +86,8 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
        let message= err.error.text;
        console.log("ID jjj"+message);
        var temp=localStorage.getItem("id-wr");
-       if(temp==null){
+      // if(temp==null)
+      {
          alert("pppp")
         localStorage.setItem("id-wr",message);    //ID WORK REQUESTA
         this.workReqBasicForm.controls['id'].setValue(message);
