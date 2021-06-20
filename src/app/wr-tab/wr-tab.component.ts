@@ -17,6 +17,10 @@ export class WrTabComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  UpdateWorkRequest(){
+    let idwr=localStorage.getItem("wr-id")
+  }
   Info(){
     //alert("b i")
     

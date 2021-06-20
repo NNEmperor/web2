@@ -99,7 +99,7 @@ export class WorkReqServiceService {
 
     var body={
       Id: forma['id'],
-      Status: forma['status'],
+      Status: finalstate,
       IncidentID: forma['incident'],
       Street: forma['street'],
       Creator:objObj.UserName,
@@ -185,5 +185,13 @@ export class WorkReqServiceService {
     };
 
    return  this.http.post(this.BaseURI+"/WorkRequest/SetHistory", body);  //vraca observable
+  }
+
+  GetOneWorkRequest(id: string){
+    console.log("pozove get w r")
+    let apiUri=this.BaseURI+'/WorkRequest/GetOneWorkRequest';
+    let params = new HttpParams();
+        params = params.set('id', id);
+    return this.http.post(apiUri,params);
   }
 }

@@ -1,1 +1,151 @@
-<p>wr-tab-info works!</p>
+<!--<div class="bg" ></div>
+ <div class="bg bg2"></div>
+ <div class="bg bg3"></div>-->
+ <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+
+
+<!--===============================================================================================-->
+
+<div class="container" style="width: 85%;">
+    <div class="row gutters-sm" style="justify-content: center;">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-body tab-content">
+                    <div class="tab-pane active"  id="account">
+                        
+                        
+                        <div >
+                            <form [formGroup]="workReqBasicForm" style="margin-left: 8%;">
+                                <div class="top_el">
+                                    <div class="row">
+                                        <select (change)="selectChangeHandler($event)" [(ngModel)]='nrSelect' [ngModelOptions]="{standalone: true}" style="width: 52%; height: 25px; text-align: center;">
+                                            <option *ngFor="let work of works"  value= {{work.id}}>
+                                                {{work.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <label>Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <input style="border:transparent;background-color: transparent; font-weight: bold;" type="text" readonly value={{workReqBasicForm.value.status}}>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <label>Incident:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <!--<label>dodati&nbsp;&nbsp;</label>-->
+                                        <!-- Trigger the modal with a button -->
+                                        <button  type="button" class="btn btn-info" (click)="openIncidents()">Add incident</button>
+                                        <!-- Modal -->
+                                        
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <label>Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <input type="text" (keyup)="unos($event)" class="form-control" placeholder="Enter street" formControlName="street"><br>
+                                        <label class="text-danger" *ngIf="workReqBasicForm.get('street')?.errors?.required && workReqBasicForm.get('street')?.touched">&nbsp;Street is required.</label><br>
+                                        <label class="text-danger" *ngIf="workReqBasicForm.get('street')?.errors?.minlength && workReqBasicForm.get('street')?.touched">&nbsp;Street must have min 3 characters.</label>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <label>Start date: &nbsp;</label>
+                                        <input type="date" (ngModelChange)="unoss()" class="form-control" (change)="disableOldDates($event)" [min]="today" formControlName="startdate" /> <br>
+                                        <label class="text-danger" *ngIf="workReqBasicForm.get('startdate')?.errors?.required && workReqBasicForm.get('startdate')?.touched">&nbsp;Start date is required.</label><br>
+                                        
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <label>Start time: &nbsp;</label>
+                                        <input type="time" (ngModelChange)="unoss()" class="form-control" (change)="enableEnfTime($event)" formControlName="starttime" ><br>
+                                        <label class="text-danger" *ngIf="workReqBasicForm.get('starttime')?.errors?.required && workReqBasicForm.get('starttime')?.touched">&nbsp;Start time is required.</label><br>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <label>End date: &nbsp;&nbsp;&nbsp;</label>
+                                        <input type="date" (ngModelChange)="unoss()" class="form-control" [min]="selectedStartDate" formControlName="enddate" /><br>
+                                        <label class="text-danger" *ngIf="workReqBasicForm.get('enddate')?.errors?.required && workReqBasicForm.get('enddate')?.touched">&nbsp;End date is required.</label><br>
+                                    </div>
+                                    <br>
+                                    <div class="row"> 
+                                        <label>End time: &nbsp;&nbsp;&nbsp;</label>
+                                        <input type="time" (ngModelChange)="unoss()" class="form-control" formControlName="endtime" ><br>
+                                        <label class="text-danger" *ngIf="workReqBasicForm.get('endtime')?.errors?.required && workReqBasicForm.get('endtime')?.touched">&nbsp;End time is required.</label><br>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <label>Created by:&nbsp;</label>
+                                        <input style="border:transparent;background-color: transparent; font-weight: bold;" type="text" readonly value={{workReqBasicForm.value.creator}}>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <label>Purpose:&nbsp;</label>
+                                        <textarea id="w3review" (keyup)="unos($event)" class="form-control" name="w3review" rows="3" cols="50" style=" min-height:50px;max-height: 100px; height:100%;" maxlength="200" placeholder="Enter purpose" formControlName="purpose"></textarea>
+                                        <label class="text-danger" *ngIf="workReqBasicForm.get('purpose')?.errors?.required && workReqBasicForm.get('purpose')?.touched">&nbsp;Purpose is required.</label><br>
+                                        <!--<input type="text" style="width: 50%;"  placeholder="Enter purpose" formControlName="purpose">-->
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <label>Notes:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <textarea id="w3review" (keyup)="unos($event)" class="form-control" name="w3review" rows="3" cols="50" style=" min-height:50px;max-height: 100px; height:100%;" maxlength="200" placeholder="Enter note" formControlName="notes"></textarea>
+                                        <label class="text-danger" *ngIf="workReqBasicForm.get('notes')?.errors?.required && workReqBasicForm.get('notes')?.touched">&nbsp;Notes are required.</label><br>
+                                        
+                                        <!--<input type="text" style="width: 50%;" placeholder="Enter purpose" formControlName="notes">-->
+                                    </div>
+                                </div>
+                                <div class="top_el">
+                                    <br>
+                                    <div class="row">
+                                     <mat-slide-toggle (ngModelChange)="unoss()" formControlName="emergency" color="primary">Emergency work</mat-slide-toggle>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                    <label>Company:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <input type="text" (keyup)="unos($event)" placeholder="Enter company name" class="form-control" formControlName="company">
+                                    <label class="text-danger" *ngIf="workReqBasicForm.get('company')?.errors?.required && workReqBasicForm.get('company')?.touched">&nbsp;Company required.</label><br>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                    <label>Phone No:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <input type="tel" (keyup)="unos($event)" id="phone" name="phone" class="form-control" placeholder="Enter phone number" formControlName="phoneNo">
+                                    <label class="text-danger" *ngIf="workReqBasicForm.get('phoneNo')?.errors?.required && workReqBasicForm.get('phoneNo')?.touched">&nbsp;Phone number is required.</label><br>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                    <label>Date created: &nbsp;</label>
+                                    <input type="date" class="form-control"  readonly formControlName="cratedate" /> 
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                    <label>Time created: &nbsp;</label>
+                                    <input type="time" class="form-control" readonly formControlName="cratetime" >
+                                    </div>
+                                    <br>
+                                </div>
+                               
+                                
+                                
+                                <div class="row">
+                                    <button (click)="ClearBasicInfo()" class="btn btn-primary" style="font-size: 18px;"><i><span style="vertical-align:bottom;" class="material-icons">clear</span></i>&nbsp;Clear</button>&nbsp;&nbsp;
+                                    <button (click)="SaveBasicInfo()" class="btn btn-primary" style="font-size: 18px;"><i ><span style="vertical-align:bottom;" class="material-icons">save</span></i>&nbsp;Save</button>
+                                    
+                                </div>
+                                <br>
+                                <div class="row">
+                                    
+                                   
+                                Value: {{ workReqBasicForm.value | json }}
+                                </div>
+                            </form>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

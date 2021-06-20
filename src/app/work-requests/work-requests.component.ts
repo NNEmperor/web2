@@ -116,7 +116,7 @@ export class WorkRequestsComponent implements OnInit {
 
    editTeam(id:any){
     console.log("edit iiid   "+ id)
-     
+     localStorage.setItem("wr-id",id);  //odabrani wr za edit
      this.routerr.navigateByUrl('/home/workreq-update');
    }
  

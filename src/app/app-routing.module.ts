@@ -89,7 +89,7 @@ const routes: Routes = [
     },
     { path: 'workreq-update', component: WrTabComponent,
         children: [
-          { path: "work-r-info", component:  WrTabInfoComponent},
+          { path: "", component:  WrTabInfoComponent},
           { path: "work-r-history", component: WrTabHistoryComponent },
           { path: "work-r-multimedia", component: WrTabMediaComponent },
           { path: "work-r-equipment", component: WrTabEquipmentComponent },

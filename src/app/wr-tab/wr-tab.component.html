@@ -21,7 +21,9 @@
                 <button class="nav-link" routerLinkActive="active" 
                 [routerLinkActiveOptions]="{exact: true}"  (click)="Equ()">Equipment</button>
             </li> 
-           
+            <li>
+
+                <button (click)="UpdateWorkRequest()" class="btn btn-primary" style="font-size: 18px;"><i ><span style="vertical-align:bottom;" class="material-icons">archive</span></i>&nbsp;Update</button>
           </ul>
         </nav>
       <router-outlet></router-outlet>
