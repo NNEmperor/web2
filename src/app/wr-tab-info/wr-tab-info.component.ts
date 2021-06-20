@@ -81,7 +81,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
     
     //***
     let oob;
-    oob=localStorage.getItem("history-wr")
+    oob=localStorage.getItem("history-wr-edited")
       if(oob!=null){//ako JE  u history da setuje,automatski STATUS
         alert("iiiiistorija")
         let state=JSON.parse(oob)
@@ -90,12 +90,15 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
         let stanjee;
         if(state.state==2){
           stanjee='Deny'
+          alert("pp1")
       }else if(state.state==3){
         stanjee='Cancle'
       }else if(state.state==4){
          stanjee="Draft"
+         alert("ovdje")
       }else{
        stanjee="Approve"
+       alert("yy1")
       }
         this.workReqBasicForm.controls['status'].setValue(stanjee);
         console.log(this.workReqBasicForm.value.status)
@@ -112,24 +115,34 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
        console.log(savedObj.id)
 
        let oob;
-       oob=localStorage.getItem("history-wr")
+       oob=localStorage.getItem("history-wr-edited")
          if(oob!=null){//ako JE  u history da setuje,automatski STATUS
-           //alert(oob)
+           alert(oob)
+           console.log("ovdje2---"+oob)
            let state=JSON.parse(oob)
            //alert(state.state)
            let stanjee;
            if(state.state==2){
                stanjee='Deny'
+               alert("pp2")
            }else if(state.state==3){
              stanjee='Cancle'
            }else if(state.state==4){
               stanjee="Draft"
+              alert("ovdje2")
            }else{
             stanjee="Approve"
+            alert("yy2")
            }
            this.workReqBasicForm.controls['status'].setValue(stanjee);
            console.log(this.workReqBasicForm)
          }else{
+           alert('tuuu2'/*+savedObj.status*/)
+           console.log(savedObj)
+           //alert(savedObj.status)
+          // console.log(savedObj.status)
+           //console.log(savedObj.comapany)//wtf
+           localStorage.setItem("prvo-stanje",savedObj.status)
           this.workReqBasicForm.controls['status'].setValue(savedObj.status)
          }
 
@@ -178,7 +191,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
         this.workReqBasicForm.controls['docType'].setValue(2)
       }
       let oob;
-       oob=localStorage.getItem("history-wr")
+       oob=localStorage.getItem("history-wr-edited")
          if(oob!=null){//ako JE  u history da setuje,automatski STATUS
            //alert(oob)
            let state=JSON.parse(oob)
@@ -186,14 +199,20 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
            let stanjee;
            if(state.state==2){
                stanjee='Deny'
+               alert("pp3")
            }else if(state.state==3){
              stanjee='Cancle'
            }else if(state.state==4){
               stanjee="Draft"
+              alert("ovdje3")
            }else{
             stanjee="Approve"
+            alert("yy3")
            }
            this.workReqBasicForm.controls['status'].setValue(stanjee)
+          }else{
+            alert('tuuu')
+            this.workReqBasicForm.controls['status'].setValue(res['status'])
           }
        //this.workReqBasicForm.controls['status'].setValue(res['historyState'])
        this.workReqBasicForm.controls['incident'].setValue(res['incident'])
@@ -291,24 +310,28 @@ unoss(){
     this.workReqBasicForm.reset();
     this.FirstValuesOfDoc()
     let oob;
-    oob=localStorage.getItem("history-wr")
+    oob=localStorage.getItem("history-wr-edited")
       if(oob!=null){//ako JE  u history da setuje,automatski STATUS
-        //alert(oob)
+        alert('NN')
         let state=JSON.parse(oob)
         //alert(state.state)
         let stanjee;
         if(state.state==2){
           stanjee='Deny'
+          alert("pp4")
       }else if(state.state==3){
         stanjee='Cancle'
       }else if(state.state==4){
          stanjee="Draft"
+         alert("ovdje4")
       }else{
        stanjee="Approve"
+       alert("yy4")
       }
         this.workReqBasicForm.controls['status'].setValue(stanjee);
         console.log(this.workReqBasicForm)
       }else{
+        alert("ovdje5")
         this.workReqBasicForm.controls['status'].setValue('Draft');
       }
    //---------

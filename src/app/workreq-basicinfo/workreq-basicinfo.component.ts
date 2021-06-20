@@ -75,6 +75,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
    }
 
   ngOnInit(): void {
+    
     //this.todayDate=this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.workReqBasicForm.controls['cratedate'].setValue(new Date().toISOString().split('T')[0]);//(new Date().getDate());
     let now = new Date();
@@ -98,7 +99,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
         stanjee='Cancle'
       }else if(state.state==4){
          stanjee="Draft"
-      }else{
+      }else if(state.state==1){
        stanjee="Approve"
       }
         this.workReqBasicForm.controls['status'].setValue(stanjee);
@@ -163,12 +164,13 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
              stanjee='Cancle'
            }else if(state.state==4){
               stanjee="Draft"
-           }else{
+           }else if(state.state==1){
             stanjee="Approve"
            }
            this.workReqBasicForm.controls['status'].setValue(stanjee);
            console.log(this.workReqBasicForm)
          }else{
+           alert('bbbam')
           this.workReqBasicForm.controls['status'].setValue(savedObj.status)
          }
 
@@ -285,7 +287,7 @@ unoss(){
         stanjee='Cancle'
       }else if(state.state==4){
          stanjee="Draft"
-      }else{
+      }else if(state.state==1){
        stanjee="Approve"
       }
         this.workReqBasicForm.controls['status'].setValue(stanjee);

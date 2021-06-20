@@ -34,6 +34,8 @@ export class WorkreqNewComponent implements OnInit {
       state:['4'] //automatski deny
       
     });
+    localStorage.removeItem("basic-info")
+    //localStorage.removeItem("history-wr")
   }
  
   Info(){

@@ -134,7 +134,7 @@ export class MapComponent implements OnInit {
     markercic.setStyle(
         new Style({
           image: new Icon({
-            src: 'assets/images/vozilo-mapa.png',
+            src: 'assets/images/ekipa-mapa.png',
           }),
           
         })
@@ -148,7 +148,7 @@ export class MapComponent implements OnInit {
   //yCoordinate: 45.25776989010703
        
         //devicovi
-        alert(this.deviceovi.length)
+        console.log(this.deviceovi.length)
     for(let i=0;i<this.deviceovi.length;i++){
       console.log(this.deviceovi[i].xCoordinate,this.deviceovi[i].yCoordinate)
       var markercic22 = new Feature({

@@ -13,6 +13,7 @@ import { WorkReqServiceService } from '../work-req-service.service';
 export class MapDocPopUpComponent implements OnInit {
   displayedColumns: string[] = ['id', 'userNameCreator', 'type', 'priority', 'confirmed', 'status', 'description', 'eTA', 'aTA', 'outage', 'eTR', 'affectedUsers', 'numberOfCalls', 'voltageLevel', 'estimatedWorkStartTime', 'photos'];
   dataSource;
+  incidenti=[] as any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
@@ -22,10 +23,10 @@ export class MapDocPopUpComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
    }
-  incidenti=[] as any;
+  
   ngOnInit(): void {
     let naziv=localStorage.getItem('mapa');
-    alert("NAZIV:  "+naziv);
+    console.log("NAZIV:  "+naziv);
     localStorage.removeItem('mapa');
 
     this.incidentService.GetIncidentMap(naziv as string).subscribe(res=>{

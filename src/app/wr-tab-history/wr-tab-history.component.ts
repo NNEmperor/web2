@@ -32,14 +32,27 @@ export class WrTabHistoryComponent implements OnInit {
 
       userName:[localStorage.getItem("userName")],
       datum:[new Date().toISOString().split('T')[0]],
-      state:['4']
+      state:['']
       
     });
+  
   }
-
+ 
 
   ngOnInit(): void {
     let id;
+
+   /* let setovanje;
+    setovanje=localStorage.getItem("history-wr")
+    if(setovanje==null){//ako JE  u history da setuje,automatski STATUS na prvobitni
+      let INFF;
+      alert(';;;;;;;;;;;')
+    INFF=localStorage.getItem("basic-info-edit");
+      let state=JSON.parse(INFF)
+      this.rememberForm.controls['state'].setValue(INFF['status'])
+      
+    }*/
+
    //localStorage.removeItem('history-wr')   //DODATO, OBRISATI POSLE PROVERA
    //localStorage.removeItem('istorija')
    let hh=localStorage.getItem('istorija')  //nju slati na back
@@ -61,6 +74,15 @@ export class WrTabHistoryComponent implements OnInit {
     let obb;
     obb=localStorage.getItem("history-wr");
     if(obb==null){
+      alert('oooovo')
+      /******** */
+      // let INFF;
+      //alert(';;;;;;;;;;;')
+    //INFF=localStorage.getItem("basic-info-edit");
+      //let state=JSON.parse(INFF)
+      
+      this.rememberForm.controls['state'].setValue(localStorage.getItem("prvo-stanje"))
+      //********** */
     var formObj=this.rememberForm.getRawValue()
             let serializedForm = JSON.stringify(formObj);
             console.log("JSON....istory")
@@ -84,7 +106,7 @@ export class WrTabHistoryComponent implements OnInit {
   getStates(){
     return [
       { id: '1', name: 'Approve' },
-      { id: '2', name: 'Deny' },
+      //{ id: '2', name: 'Deny' },
       { id: '3', name: 'Cancel' }
     ];
   }
@@ -132,9 +154,9 @@ export class WrTabHistoryComponent implements OnInit {
   
         var formObj=this.rememberForm.getRawValue()
             let serializedForm = JSON.stringify(formObj);
-            console.log("JSON....istory")
-            console.log(serializedForm);
-            localStorage.setItem("history-wr",serializedForm);
+            //console.log("JSON....istory")
+            console.log("saaaavu:"+serializedForm);
+            localStorage.setItem("history-wr-edited",serializedForm);
 
             var jjjISTORIJA=JSON.stringify(this.istorija)
             alert(jjjISTORIJA)

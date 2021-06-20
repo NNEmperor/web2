@@ -8,7 +8,7 @@
                         <label for="inputState" class="col-sm-4">Change document state:</label>
                         <div class="col-sm-4">
                             <select id="inputType"  class="form-control" (change)="Dijalog($event)">
-                                <option disabled selected>Draft</option>
+                                <option disabled selected>Deny</option>
                                 <option *ngFor="let role of stanja" [disabled]="whatstate"  value= {{role.id}}>
                                     {{role.name}}
                                 </option>

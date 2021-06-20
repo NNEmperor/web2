@@ -17,7 +17,9 @@ export class WrTabComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    localStorage.removeItem('history-wr')
+    localStorage.removeItem('history-wr-edited')
+    localStorage.removeItem("istorija")
   }
 
   UpdateWorkRequest(){
