@@ -52,7 +52,7 @@ export class MessagePassingService {
   sendIncidentCalls(message: any){ this.incidentCalls.next(message) }
   sendNewCall(message: any){ this.newCall.next(message) }
   sendIncidentMedia(message: any) { this.incidentMedia.next(message) }
-  sendIncidentCrew(message: any) { this.incidentMedia.next(message) }
+  sendIncidentCrew(message: any) { this.incidentCrew.next(message) }
 
   sendDocsBasic(message: any){ this.docsBasic.next(message) }
   sendDocsChecklist(message: any){ this.docsChecklsit.next(message) }
@@ -65,6 +65,7 @@ export class MessagePassingService {
   UploadIncident(data){
 
     var res ={
+      Team:data.Crew,
       Type: data.Type,
       UserName: localStorage.getItem("userName"),
       Priority: String(data.Priority),
