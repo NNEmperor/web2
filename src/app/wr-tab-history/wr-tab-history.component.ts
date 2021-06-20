@@ -20,7 +20,7 @@ export class WrTabHistoryComponent implements OnInit {
   rememberForm:any;
   whatstate=false;
   constructor(private service: MessagePassingService, private fb: FormBuilder, public dialog: MatDialog, private servis:WorkReqServiceService) { 
-    this.service.changeData("WORK REQUEST - NEW - History of state changes")
+    this.service.changeData("WORK REQUEST - UPDATE - History of state changes")
 
     this.historyForm=this.fb.group({
 

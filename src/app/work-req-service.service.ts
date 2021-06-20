@@ -319,4 +319,13 @@ export class WorkReqServiceService {
     console.log(body)
    return  this.http.post(this.BaseURI+"/WorkRequest/UpdateBasicInfo", body);  //vraca observable
   }
+
+  RemoveMedia(id: string){
+    console.log("pozove remove w r")
+    console.log("MEDIA---"+id)
+    let apiUri=this.BaseURI+'/WorkRequest/RemoveMedia';
+    let params = new HttpParams();
+        params = params.set('listid', id);
+    return this.http.post(apiUri,params);
+  }
 }

@@ -24,7 +24,7 @@ export class WrTabComponent implements OnInit {
     localStorage.removeItem('history-wr-edited')
     localStorage.removeItem("istorija")
     localStorage.removeItem("basic-info-edit")
-
+    localStorage.removeItem("obrisati-slike")
     //kad se nije dirao b info
     this.FirstValuesOfDoc()
     
@@ -64,13 +64,44 @@ export class WrTabComponent implements OnInit {
       if(message==="Succeesfully updated work request"){
        this.notifier.notify('default', message);
        localStorage.removeItem("uneseno");
-       this.router.navigateByUrl('/home/work-requests');
+      // this.router.navigateByUrl('/home/work-requests');
       
      }
     })
-    this.servis.UpdateHistoryWorkRequest(istorija,idwr).subscribe(res=>{
-      alert(res)
+
+    let yesHistory=localStorage.getItem('istorija')
+    if(yesHistory!=null)
+    {
+      this.servis.UpdateHistoryWorkRequest(istorija,idwr).subscribe(res=>{
+        alert(res)
+      })
+    }else{
+      alert('NEMA ISTORIJE ZA MENJANJE')
+    }
+    //obrisati slike
+    let obrisati;
+    obrisati=localStorage.getItem("obrisati-slike"/*,JSON.stringify(this.obrisati)*/);
+    if(obrisati!=null){
+      //jedino tad poziva
+      this.servis.RemoveMedia(obrisati).subscribe(res=>{
+
+      }, (err:HttpErrorResponse) => {
+        console.log(err)
+        
+        let message= err.error.text;
+       // alert(message);
+  
+       if(message==="Media saved"){
+        this.notifier.notify('default', message);
+        //localStorage.removeItem("uneseno");
+        this.router.navigateByUrl('/home/work-requests');
+       
+      }
     })
+
+    }else{
+      this.router.navigateByUrl('/home/work-requests');
+    }
   }
   Info(){
     var path=location.pathname;

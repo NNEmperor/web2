@@ -19,7 +19,9 @@ export class WrTabMediaComponent implements OnInit {
   @ViewChild("fileDropRef", { static: false }) fileDropEl!: ElementRef;
   files: any[] = [];
   slike: any[] = [];
+  obrisati: any[] = [];
   proba!:SafeResourceUrl      //pokusaj skidanja slike wish me luck
+  probaUrls:SafeResourceUrl[]=[];
   fileUrls:SafeResourceUrl[]=[];
   FileFormData=new FormData();//za slanje slike
   private readonly notifier!: NotifierService;
@@ -27,7 +29,7 @@ export class WrTabMediaComponent implements OnInit {
   imagePath="assets/images/apple-icon-120x120.png";
   slika;
   constructor(private sanitizer: DomSanitizer, private service: MessagePassingService,private router: Router, private wrServis:WorkReqServiceService, private http:HttpClient, notifierService: NotifierService) {
-    this.service.changeData("WORK REQUEST - NEW - Multimedia attachments")
+    this.service.changeData("WORK REQUEST - UPDATE - Multimedia attachments")
     this.notifier = notifierService;
 
   }
@@ -48,14 +50,20 @@ export class WrTabMediaComponent implements OnInit {
       console.log('slike')
       console.log(res)
       this.slike=res as any[]
-      const contentType = 'image/png';//radi i tako iako je jpeg najs svakako hahahah
+      const contentType = 'image/JPEG';//radi i tako iako je jpeg najs svakako hahahah
       var sss=res[0]['image']   //prvi el
       console.log(sss)
-//const b64Data = 'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==';
+//const b64Data = 'iVBORw0KGgoAAAANSUhEUgADHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==';
       const blob = base64StringToBlob(sss, contentType);
 
       let nes=this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));  //konvervotano
       this.proba=nes//za prikazivanje
+      //blobMedia;
+      for(let i=0;i<this.slike.length;i++){
+        const blobMedia=base64StringToBlob(this.slike[i], contentType);
+        let nesss=this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blobMedia));
+        this.probaUrls.push(nesss)
+      }
     })
     
   }
@@ -124,22 +132,17 @@ export class WrTabMediaComponent implements OnInit {
        
      })
   }
-  this.router.onSameUrlNavigation = 'reload';
-  /*var idwr;
-    //var idwr=localStorage.getItem("id-wr");//ranije za add
-    idwr=localStorage.getItem("wr-id");
-    this.wrServis.GetPhotosWorkRequest(idwr).subscribe(res=>{
-
-      console.log('slike')
-      console.log(res)
-      this.slike=res as any[]
-    })*/
+  //this.router.onSameUrlNavigation = 'reload';
+  
 
   }
-  odabranaSlika(id, index){
+  brisiSliku(id, index){
     alert(id)
     //ZA BRISANJE
     this.slike.splice(index,1);
+    this.probaUrls.splice(index,1);
+    this.obrisati.push(id); //setujemo niz id-jeva koji ce se obrisati
+    localStorage.setItem("obrisati-slike",JSON.stringify(this.obrisati));
   }
   /**
    * on file drop handler
