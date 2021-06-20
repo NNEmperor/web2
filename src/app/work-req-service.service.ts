@@ -220,4 +220,12 @@ export class WorkReqServiceService {
         params = params.set('id', id);
     return this.http.post(apiUri,params);
   }
+
+  GetIncidentMap(id:string){
+    console.log("pozove get w r")
+    let apiUri=this.BaseURI+'/WorkRequest/GetIncidentMap';
+    let params = new HttpParams();
+        params = params.set('id', id );//konvertovati u int na backu
+    return this.http.post(apiUri,params);
+  }
 }

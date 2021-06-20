@@ -1,1 +1,204 @@
-<p>map-doc-pop-up works!</p>
+<div *ngIf="incidenti?.length > 0">
+<div style="overflow-x: auto;">
+    
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">  
+
+        <ng-container matColumnDef="id" >
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td style="text-align: left; background-color: white;"  mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="userNameCreator">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Creator </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.userNameCreator}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="type">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="priority">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.priority}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="confirmed">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> is Confirmed </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.confirmed}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="status">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="eTA">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Estimated TA </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.estimatedTA}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="aTA">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Actual TA </th>
+        <td style="text-align: left;" mat-cell *matCellDef="let element"> {{element.actualTA}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outage">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Outage </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.outage}} </td>
+    </ng-container>
+    <ng-container matColumnDef="eTR">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Estimated TR </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.estimatedTR}} </td>
+    </ng-container>
+    <ng-container matColumnDef="affectedUsers">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Affected Users </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.affectedUsers}} </td>
+    </ng-container>
+    <ng-container matColumnDef="numberOfCalls">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Number of calls </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.numberOfCalls}} </td>
+    </ng-container>
+    <ng-container matColumnDef="voltageLevel">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Voltage level </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.voltageLevel}} </td>
+    </ng-container>
+    <ng-container matColumnDef="estimatedWorkStartTime">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> EstimatedWorkStartTime </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.estimatedWorkStartTime}} </td>
+    </ng-container>
+    <ng-container matColumnDef="cause">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Cause </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.cause}} </td>
+    </ng-container>
+    <ng-container matColumnDef="subCause">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> SubCause </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.subCause}} </td>
+    </ng-container>
+    <ng-container matColumnDef="constructionType">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Construction Type </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.constructionType}} </td>
+    </ng-container>
+    <ng-container matColumnDef="material">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Material </th>
+        <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.material}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="photos">
+        <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Photos </th>
+        <td mat-cell *matCellDef="let element; let j = index"> 
+          <ol>
+              <li *ngFor='let item of element.photos;let i =index'>
+                  <!--{{item}}--> 
+                  <img height="60" width="60" src= 'data:image/JPEG;base64,{{item}}' class="img-radius" alt="Work-Request-Image" onerror="this.onerror=null; this.src='assets/images/ssss.png'">
+              </li>
+          </ol>
+      </td>
+      </ng-container>
+    
+    
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    </table>
+</div>
+<mat-paginator style="width: 80%;" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+</div>
+<div *ngIf="incidenti?.length == 0"><h1>Work Plan</h1>
+
+    <div class="row gutters-sm">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body" style="padding: 30px;">
+                    <form>
+                        <div class="form-group row">
+                            <label for="inputType" class="col-sm-2 col-form-label">Type:</label>
+                            <div class="col-sm-4">
+                                <select id="inputType" class="form-control" disabled>
+                                    <option selected>Planned Work</option>
+                                    <option>Unplanned Work</option>
+                                </select>                            
+                            </div>
+                            <label for="inputCompany" class="col-sm-2 col-form-label">Company:</label>
+                            <div class="col-sm-4">
+                                <input readonly type="text" class="form-control" id="inputCompany" value="Company Lucky4">
+                              </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Status:</label>
+                            <label class="col-sm-4 col-form-label"><b>Approved</b></label>
+                            <label for="inputNumber" class="col-sm-2 col-form-label">Phone No:</label>
+                            <div class="col-sm-4">
+                                <input readonly type="text" class="form-control" id="inputNumber" value="021/ 123-456">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputInc" class="col-sm-2 col-form-label">Incident:</label>
+                            <label class="col-sm-4 col-form-label"><b>INC1</b></label>
+                            <label for="inputDate" class="col-sm-2 col-form-label">Date/time created: </label>
+                            <div class="col-sm-4">
+                            <input readonly id="inputStartDate" type="datetime-local" value="2018-05-12T19:30"  class="form-control">
+                            
+                        </div><!-- <div class="col-sm-4">
+                                <input id="inputDate" type="date" value="dateTimeNow"  class="form-control">
+                             -->
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputWR" class="col-sm-2 col-form-label">Work request:</label>
+                            <label class="col-sm-4 col-form-label"><b>WR150</b></label>
+                            <label for="inputFC" class="col-sm-2 col-form-label">Field crew: </label>
+                            <label class="col-sm-4 col-form-label"><b>NS Crew</b></label>
+                            <!-- <div class="col-sm-4">
+                                <input id="inputDate" type="date"  class="form-control">
+                            </div> -->
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputStartDate" class="col-sm-2 col-form-label">Start date/time: </label>
+                            <div class="col-sm-4">
+                                <input readonly id="inputStartDate" type="datetime-local" value="2018-06-12T19:30"  class="form-control">
+                            </div>
+                            <label for="inputEndDate" class="col-sm-2 col-form-label">End date/time: </label>
+                            <div class="col-sm-4">
+                                <input readonly id="inputEndDate" type="datetime-local" value="2021-06-12T19:30"  class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Created by: </label>
+                            <label class="col-sm-10 col-form-label">Tamara Jovic</label>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPurpose" class="col-sm-2 col-form-label">Purpose: </label>
+                            <div class="col-sm-10">
+                                <input readonly id="inputPurpose" type="text" value="To fix incident on Liman"  class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputDetails" class="col-sm-2 col-form-label">Details: </label>
+                            <div class="col-sm-10">
+                                <input readonly id="inputDetails" type="text" Value="Demage coused by the wind"  class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputNotes" class="col-sm-2 col-form-label">Notes: </label>
+                            <div class="col-sm-10">
+                                <input readonly id="inputNotes" type="text" value="Min 2 team members needed"  class="form-control">
+                            </div>
+                        </div>
+                        <hr>
+                       
+                    </form>
+
+                    <img src="assets/images/project-plan-templates-5.png" width="260" height="240">
+                    <img src="assets/images/ppp.png" width="260" height="240">
+                    <img src="assets/images/p2.png" width="260" height="240">
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>

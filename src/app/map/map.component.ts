@@ -19,6 +19,7 @@ import Geometry from 'ol/geom/Geometry';
 import { MessagePassingService } from '../message-passing.service';
 import {MatDialog} from '@angular/material/dialog'; 
 import { MapDocPopUpComponent } from '../map-doc-pop-up/map-doc-pop-up.component';
+import { IncidentPassingService } from '../incident-passing.service';
 
 @Component({
   selector: 'app-map',
@@ -36,8 +37,8 @@ export class MapComponent implements OnInit {
   view!: View;
   marker!: Feature;
   marker2!: Feature;
-
-  constructor(private service: MessagePassingService , public dialog: MatDialog) {
+  deviceovi=[] as any;
+  constructor(private service: MessagePassingService , public dialog: MatDialog,private incidentService: IncidentPassingService) {
     this.service.changeData("MAP")
   }
 
@@ -49,7 +50,7 @@ export class MapComponent implements OnInit {
       geometry: new Point(fromLonLat([50.46164, 60.902257]))
     });
 
-    
+   
     //------------
 
 
@@ -138,6 +139,36 @@ export class MapComponent implements OnInit {
           
         })
       );
+
+
+      this.incidentService.getAllDevices().subscribe(res=>{
+        this.deviceovi = res as any;
+        console.log(this.deviceovi)
+        //xCoordinate: 19.810897552903093
+  //yCoordinate: 45.25776989010703
+       
+        //devicovi
+        alert(this.deviceovi.length)
+    for(let i=0;i<this.deviceovi.length;i++){
+      console.log(this.deviceovi[i].xCoordinate,this.deviceovi[i].yCoordinate)
+      var markercic22 = new Feature({
+        geometry: new Point(fromLonLat([this.deviceovi[i].xCoordinate,this.deviceovi[i].yCoordinate]/*[lon, lat]*/)),
+        name: this.deviceovi[i].id,
+        title:'vaaat'
+      });
+  
+      markercic22.setStyle(
+          new Style({
+            image: new Icon({
+              src: 'assets/images/vozilo-mapa.png',
+            }),
+            
+          })
+        );
+
+        this.vectorSource.addFeature(markercic22);//DODAJU SVE
+    }  
+  })
 
     this.vectorSource.addFeature(markercic);  //DODATA DRUGA IKONICA
     
