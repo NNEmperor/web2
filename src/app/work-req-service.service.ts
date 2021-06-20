@@ -167,8 +167,10 @@ export class WorkReqServiceService {
       finalstate='Approve'
     }else if(state==2){
       finalstate='Deny'
-    }else{
+    }else if(state==3){
       finalstate='Cancle'
+    }else{
+      finalstate='Draft'
     }
 
     let jsonObj;
@@ -191,6 +193,23 @@ export class WorkReqServiceService {
     console.log("pozove get w r")
     let apiUri=this.BaseURI+'/WorkRequest/GetOneWorkRequest';
     let params = new HttpParams();
+        params = params.set('id', id);
+    return this.http.post(apiUri,params);
+  }
+
+  GetHistoryWorkRequest(id: string){
+    console.log("pozove get w r")
+    let apiUri=this.BaseURI+'/WorkRequest/GetHistoryWorkRequest';
+    let params = new HttpParams();
+        params = params.set('id', id);
+    return this.http.post(apiUri,params);
+  }
+
+  UpdateHistoryWorkRequest(istorija: string, id:string){
+    console.log("pozove get w r")
+    let apiUri=this.BaseURI+'/WorkRequest/UpdateHistoryWorkRequest';
+    let params = new HttpParams();
+        params = params.set('history', istorija);
         params = params.set('id', id);
     return this.http.post(apiUri,params);
   }

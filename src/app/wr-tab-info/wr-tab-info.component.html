@@ -55,26 +55,26 @@
                                     <br>
                                     <div class="row">
                                         <label>Start date: &nbsp;</label>
-                                        <input type="date" (ngModelChange)="unoss()" class="form-control" (change)="disableOldDates($event)" [min]="today" formControlName="startdate" /> <br>
+                                        <input type="date" (selectedChanged)="unoss()" class="form-control" (change)="disableOldDates($event)" [min]="today" formControlName="startdate" /> <br>
                                         <label class="text-danger" *ngIf="workReqBasicForm.get('startdate')?.errors?.required && workReqBasicForm.get('startdate')?.touched">&nbsp;Start date is required.</label><br>
                                         
                                     </div>
                                     <br>
                                     <div class="row">
                                         <label>Start time: &nbsp;</label>
-                                        <input type="time" (ngModelChange)="unoss()" class="form-control" (change)="enableEnfTime($event)" formControlName="starttime" ><br>
+                                        <input type="time" (selectedChanged)="unoss()" class="form-control" (change)="enableEnfTime($event)" formControlName="starttime" ><br>
                                         <label class="text-danger" *ngIf="workReqBasicForm.get('starttime')?.errors?.required && workReqBasicForm.get('starttime')?.touched">&nbsp;Start time is required.</label><br>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <label>End date: &nbsp;&nbsp;&nbsp;</label>
-                                        <input type="date" (ngModelChange)="unoss()" class="form-control" [min]="selectedStartDate" formControlName="enddate" /><br>
+                                        <input type="date" (selectedChanged)="unoss()" class="form-control" [min]="selectedStartDate" formControlName="enddate" /><br>
                                         <label class="text-danger" *ngIf="workReqBasicForm.get('enddate')?.errors?.required && workReqBasicForm.get('enddate')?.touched">&nbsp;End date is required.</label><br>
                                     </div>
                                     <br>
                                     <div class="row"> 
                                         <label>End time: &nbsp;&nbsp;&nbsp;</label>
-                                        <input type="time" (ngModelChange)="unoss()" class="form-control" formControlName="endtime" ><br>
+                                        <input type="time" (selectedChanged)="unoss()" class="form-control" formControlName="endtime" ><br>
                                         <label class="text-danger" *ngIf="workReqBasicForm.get('endtime')?.errors?.required && workReqBasicForm.get('endtime')?.touched">&nbsp;End time is required.</label><br>
                                     </div>
                                     <br>
@@ -101,7 +101,7 @@
                                 <div class="top_el">
                                     <br>
                                     <div class="row">
-                                     <mat-slide-toggle (ngModelChange)="unoss()" formControlName="emergency" color="primary">Emergency work</mat-slide-toggle>
+                                     <mat-slide-toggle (selectedChanged)="unoss()" formControlName="emergency" color="primary">Emergency work</mat-slide-toggle>
                                     </div>
                                     <br>
                                     <div class="row">

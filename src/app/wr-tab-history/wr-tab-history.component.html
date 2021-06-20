@@ -1,1 +1,64 @@
-<p>wr-tab-history works!</p>
+
+<div class="container" style="width: 60%;">
+    <div class="row gutters-sm">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body" style="padding: 30px;justify-content: center;">
+                    <div class="row">
+                        <label for="inputState" class="col-sm-4">Change document state:</label>
+                        <div class="col-sm-4">
+                            <select id="inputType"  class="form-control" (change)="Dijalog($event)">
+                                <option disabled selected>Draft</option>
+                                <option *ngFor="let role of stanja" [disabled]="whatstate"  value= {{role.id}}>
+                                    {{role.name}}
+                                </option>
+                            </select>                            
+                        </div>
+                        <div class="col-sm-4" style="display: flex;justify-content: center;">
+
+                                <!--<button type="button" class="btn btn-primary" [disabled]="whatstate" (click)="SaveBtn()">Save</button>-->
+                               <!--<button type="button" class="btn btn-secondary">Discard</button>-->
+                    </div>
+
+                    </div>
+                    <hr>
+                    <div class="row" >
+                        <div class="col-sm-12" style="display: flex; justify-content: center;">
+                            <table class="table" style="width: 70%;">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Document state changed by</th>
+                                    <th scope="col">Date of the change</th>
+                                    <th scope="col">State</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of istorija">
+                                        <td>{{item.userName}}</td>
+                                        <td>{{item.dateHistory}}</td>
+                                        <td>{{item.historyState}}
+                                            <div *ngIf='item.historyState==1'>Approve</div>
+                                            <div *ngIf='item.historyState==2'>Deny</div>
+                                            <div *ngIf='item.historyState==3'>Cancle</div>
+                                        </td>
+                                    </tr>
+                                <tr>
+                                    <!--<td>{{rememberForm.value.userName}}</td>
+                                    <td>{{rememberForm.value.datum}}</td>
+                                    <td>
+                                        <div *ngIf='historyForm.value.state==1'>Approve</div>
+                                        <div *ngIf='historyForm.value.state==2'>Deny</div>
+                                        <div *ngIf='historyForm.value.state==3'>Cancle</div>
+                                    </td>-->
+                                    <!--Value: {{ historyForm.value | json }}-->
+                                   <!-- Value: {{ istorija | json }}-->
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

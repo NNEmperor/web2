@@ -70,7 +70,9 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
    }
    
    ngOnInit(): void {
-    
+    localStorage.removeItem("editovano");
+    alert(localStorage.getItem("editovano"))
+
     let INFF;
     INFF=localStorage.getItem("basic-info-edit");
     if(INFF==null){     //ako nije cuvana izmena
@@ -78,12 +80,13 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
     this.FirstValuesOfDoc()
     
     //***
-    /*let oob;
+    let oob;
     oob=localStorage.getItem("history-wr")
       if(oob!=null){//ako JE  u history da setuje,automatski STATUS
-        //alert(oob)
+        alert("iiiiistorija")
         let state=JSON.parse(oob)
-        //alert(state.state)
+        console.log("iis")
+        console.log(state)
         let stanjee;
         if(state.state==2){
           stanjee='Deny'
@@ -95,8 +98,8 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
        stanjee="Approve"
       }
         this.workReqBasicForm.controls['status'].setValue(stanjee);
-        console.log(this.workReqBasicForm)
-      }*/
+        console.log(this.workReqBasicForm.value.status)
+      }
     // */
 
       
@@ -174,7 +177,25 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
         this.nrSelect='2'
         this.workReqBasicForm.controls['docType'].setValue(2)
       }
-       this.workReqBasicForm.controls['status'].setValue(res['historyState'])
+      let oob;
+       oob=localStorage.getItem("history-wr")
+         if(oob!=null){//ako JE  u history da setuje,automatski STATUS
+           //alert(oob)
+           let state=JSON.parse(oob)
+           //alert(state.state)
+           let stanjee;
+           if(state.state==2){
+               stanjee='Deny'
+           }else if(state.state==3){
+             stanjee='Cancle'
+           }else if(state.state==4){
+              stanjee="Draft"
+           }else{
+            stanjee="Approve"
+           }
+           this.workReqBasicForm.controls['status'].setValue(stanjee)
+          }
+       //this.workReqBasicForm.controls['status'].setValue(res['historyState'])
        this.workReqBasicForm.controls['incident'].setValue(res['incident'])
        this.workReqBasicForm.controls['street'].setValue(res['street'])
        if(res['startWorkDate']!=''){
@@ -224,12 +245,12 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
 unos($event){
   console.log('kkk')
   this.uneseno=true;
-  localStorage.setItem("uneseno","BINFOjeste");
+  localStorage.setItem("editovano","BINFOjeste");
 }
 unoss(){
   console.log('jjj')
   this.uneseno=true;
-  localStorage.setItem("uneseno","BINFOjeste");
+  localStorage.setItem("editovano","BINFOjeste");
 }
   enableEnfTime(event:any){
     this.workReqBasicForm.controls['endtime'].enable();
@@ -242,7 +263,7 @@ unoss(){
 
   SaveBasicInfo(){
     alert("UPDATEEE")
-    localStorage.removeItem("uneseno"); //ODMAH I OBRISI DA NE OSTANE
+    localStorage.removeItem("editovano"); //ODMAH I OBRISI DA NE OSTANE
     if(this.uneseno){
      
       var formObj=this.workReqBasicForm.getRawValue()
@@ -292,7 +313,8 @@ unoss(){
       }
    //---------
     this.uneseno=false;
-    localStorage.removeItem("uneseno");
+    localStorage.removeItem("editovano"); //TREBA OBRISATI
+    alert(localStorage.getItem("editovano"));
 
     var formObj=this.workReqBasicForm.getRawValue()
       let serializedForm = JSON.stringify(formObj);
@@ -302,13 +324,13 @@ unoss(){
       localStorage.removeItem("basic-info-edit");//ako nema bs edit samo uzima original,opet pozove get za njega...i mozda izmeni history
   }
 
-  /*ngAfterViewInit(){
+  ngAfterViewInit(){
 
-    var forma=localStorage.getItem("basic-info")
+    /*var forma=localStorage.getItem("basic-info")
     if(forma==null){
       alert("nema inf")
-    }
-  
-  }*/
+    }*/
+    localStorage.removeItem("editovano");
+  }
 
 }

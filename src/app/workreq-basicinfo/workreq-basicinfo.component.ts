@@ -82,7 +82,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
     let minutes = ("0" + now.getMinutes()).slice(-2);
     let str = hours + ':' + minutes;
     this.workReqBasicForm.controls['cratetime'].setValue(str);
-
+    //localStorage.removeItem("basic-info")
 
     //***
     let oob;
