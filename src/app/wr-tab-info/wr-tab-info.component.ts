@@ -148,11 +148,11 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
 
        this.workReqBasicForm.controls['id'].setValue(savedObj.id)
        if(savedObj.docType=="1"){
-        this.nrSelect='1'
-       this.workReqBasicForm.controls['docType'].setValue(1)
+        this.nrSelect="1"
+       this.workReqBasicForm.controls['docType'].setValue("1")
       }else{
-        this.nrSelect='2'
-        this.workReqBasicForm.controls['docType'].setValue(2)
+        this.nrSelect="2"
+        this.workReqBasicForm.controls['docType'].setValue("2")
       }
        //this.workReqBasicForm.controls['docType'].setValue(savedObj.docType)
        //this.workReqBasicForm.controls['status'].setValue(savedObj.status)
@@ -185,13 +185,13 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
       this.workReqBasicForm.controls['id'].setValue(res['id'])
       if(res['type']=="Planned Work"){
         this.nrSelect='1'
-       this.workReqBasicForm.controls['docType'].setValue(1)
+       this.workReqBasicForm.controls['docType'].setValue("1")
       }else{
         this.nrSelect='2'
-        this.workReqBasicForm.controls['docType'].setValue(2)
+        this.workReqBasicForm.controls['docType'].setValue("2")
       }
       let oob;
-       oob=localStorage.getItem("history-wr-edited")
+       oob=localStorage.getItem("history-wr")
          if(oob!=null){//ako JE  u history da setuje,automatski STATUS
            //alert(oob)
            let state=JSON.parse(oob)

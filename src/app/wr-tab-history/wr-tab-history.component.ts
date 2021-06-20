@@ -42,17 +42,6 @@ export class WrTabHistoryComponent implements OnInit {
   ngOnInit(): void {
     let id;
 
-   /* let setovanje;
-    setovanje=localStorage.getItem("history-wr")
-    if(setovanje==null){//ako JE  u history da setuje,automatski STATUS na prvobitni
-      let INFF;
-      alert(';;;;;;;;;;;')
-    INFF=localStorage.getItem("basic-info-edit");
-      let state=JSON.parse(INFF)
-      this.rememberForm.controls['state'].setValue(INFF['status'])
-      
-    }*/
-
    //localStorage.removeItem('history-wr')   //DODATO, OBRISATI POSLE PROVERA
    //localStorage.removeItem('istorija')
    let hh=localStorage.getItem('istorija')  //nju slati na back
@@ -72,14 +61,9 @@ export class WrTabHistoryComponent implements OnInit {
       })
     }//zatvara onaj if ??
     let obb;
-    obb=localStorage.getItem("history-wr");
+    obb=localStorage.getItem("history-wr-edited");
     if(obb==null){
-      alert('oooovo')
-      /******** */
-      // let INFF;
-      //alert(';;;;;;;;;;;')
-    //INFF=localStorage.getItem("basic-info-edit");
-      //let state=JSON.parse(INFF)
+      //alert('oooovo')
       
       this.rememberForm.controls['state'].setValue(localStorage.getItem("prvo-stanje"))
       //********** */
@@ -91,15 +75,15 @@ export class WrTabHistoryComponent implements OnInit {
     }else{
       //vec je odabrano
       //prikazati te podatke
-      alert("oovde")
+      //alert("oovdeQQ"+obb)
       let hhh=JSON.parse(obb)
       this.rememberForm.controls['state'].setValue(hhh.state)
       this.historyForm.controls['state'].setValue(hhh.state)
       this.rememberForm.controls['datum'].setValue(hhh.datum)
       this.rememberForm.controls['userName'].setValue(hhh.userName)
-      if(this.rememberForm.value.state==1 || this.rememberForm.value.state==3){
+      if(hhh.state==1 || hhh.state==3){
         this.whatstate=true; //NE MOZE MENJATI
-     
+       // alert('NE MOZE')
        }
     }
   }

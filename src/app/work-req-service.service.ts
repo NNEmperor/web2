@@ -228,4 +228,95 @@ export class WorkReqServiceService {
         params = params.set('id', id );//konvertovati u int na backu
     return this.http.post(apiUri,params);
   }
+
+  UpdateBasicInfo(forma:any){
+    
+    console.log(forma)
+    //console.log("doooc   "+forma.value.docType)
+    let docType;
+    
+    alert(forma['docType'])
+    if(forma['docType']==1){
+      docType="Planned Work"
+    }else if(forma['docType']==2){
+      docType="Unplanned work"
+    }
+
+   /* let obj;
+    obj=localStorage.getItem("history-wr-edited")
+    let fff=JSON.parse(obj);
+    console.log(fff);
+    console.log("datum:"+fff.datum)
+    let finalstate;
+    let state=fff.state
+    if(state==1){
+      finalstate='Approve'
+    }else if(state==2){
+      finalstate='Deny'
+    }else if(state==3){
+      finalstate='Cancle'
+    }else{
+      finalstate='Draft'
+    }*/
+
+    let jsonObj;
+    jsonObj =localStorage.getItem('user')
+    let objObj = JSON.parse(jsonObj)
+
+    console.log(docType)
+
+    let sdatum;
+    if(forma['startdate']!=''){
+      sdatum=(forma['startdate'])//.toLocaleString()
+    }else{
+      sdatum=forma['startdate']
+    }
+
+    let stime;
+    if((forma['starttime'])!=''){
+      stime=(forma['starttime'])//.toLocaleString()
+    }else{
+      stime=(forma['starttime'])
+    }
+
+    let edatum;
+    if((forma['enddate'])!=''){
+      edatum=(forma['enddate'])//.toLocaleString()
+    }else{
+      edatum=(forma['enddate'])
+    }
+    let etime;
+    if((forma['endtime'])!=''){
+      etime=(forma['endtime'])//.toLocaleString()
+    }else{
+      etime=(forma['endtime'])
+    }
+
+    var body={
+      Id: forma['id'],
+      Status: 'finalstate',
+      IncidentID: forma['incident'],
+      Street: forma['street'],
+      Creator:forma['user'],//objObj.UserName,      //ostaje prvobitni////paznja
+      Purpose: forma['purpose'],
+      Notes: forma['notes'],
+      Emergency: forma['emergency'],
+      Company:forma['company'],
+      Type:docType,//ok
+
+      
+
+      StartWorkDate:sdatum,
+      StartWorkTime:stime,
+      EndWorkDate:edatum,
+      EndWorkTime:etime,
+      PhoneNumber :forma['phoneNo'],
+      CreatedDate:'',// (forma['cratedate']).toLocaleString(),
+      CreatedTime: '',//(forma['cratetime']).toLocaleString(),
+      HistoryState:'NES'
+    };
+    console.log('poooozvano'+body)
+    console.log(body)
+   return  this.http.post(this.BaseURI+"/WorkRequest/UpdateBasicInfo", body);  //vraca observable
+  }
 }

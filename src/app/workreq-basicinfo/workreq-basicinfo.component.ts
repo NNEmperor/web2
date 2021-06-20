@@ -104,6 +104,9 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
       }
         this.workReqBasicForm.controls['status'].setValue(stanjee);
         console.log(this.workReqBasicForm)
+      }else{
+        alert('udjjee')
+        //this.workReqBasicForm.controls['status'].setValue('Draft');
       }
     // */
 
@@ -139,6 +142,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
     jsonObj =localStorage.getItem('user')
     let objObj = JSON.parse(jsonObj)
     this.workReqBasicForm.controls['creator'].setValue(objObj.UserName);
+    this.workReqBasicForm.controls['status'].setValue('Draft');
 
        localStorage.setItem("basic-info",serializedForm);
 
