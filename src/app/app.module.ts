@@ -99,6 +99,7 @@ import { HistoryWrPoUpComponent } from './history-wr-po-up/history-wr-po-up.comp
 import { AuthGuardService } from './auth-guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
 
+
 export function tokenGetter() {
   return localStorage.getItem("jwt");
 }

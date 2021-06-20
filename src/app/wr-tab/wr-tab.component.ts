@@ -84,7 +84,44 @@ export class WrTabComponent implements OnInit {
   }
 
   Media(){
+    var path=location.pathname;
     
+    if(path=="/home/workreq-update/work-r-multimedia"){
+      console.log("ista stranica MEDIA");
+    }else{
+      console.log("p-->MED")
+      var sTaJeUnEtO=localStorage.getItem("editovano");
+     
+        if(sTaJeUnEtO==="BINFOjeste")
+        {
+          alert("uneeeeto nes DIJALOG SHOW");
+          const dialogRef = this.dialog.open(WrBasicInfoPopUpComponent);
+          
+          dialogRef.afterClosed().subscribe(() => {
+            // Do stuff after the dialog has closed
+
+              alert("zatvoren dijalog")
+              let DaLiSeCuva= localStorage.getItem("cuva")
+
+              if(DaLiSeCuva=='da')
+              {
+                console.log("CUVA BI, OSTANI")
+
+              }else
+              {
+                console.log("ne cuva BI, IDI NA SL STR")
+                localStorage.removeItem("editovano"); //ODMAH I OBRISI DA NE OSTANE
+                this.router.navigateByUrl("/home/workreq-update/work-r-multimedia");
+              }
+          });
+        }
+        else
+        {
+          alert("NEMA DIJALOGA")
+          console.log("neMA BI, IDI NA SL STR")
+          this.router.navigateByUrl("/home/workreq-update/work-r-multimedia");
+        }
+    }
   }
   Equ(){
     

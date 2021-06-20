@@ -213,4 +213,11 @@ export class WorkReqServiceService {
         params = params.set('id', id);
     return this.http.post(apiUri,params);
   }
+  GetPhotosWorkRequest(id:string){
+    console.log("pozove get w r")
+    let apiUri=this.BaseURI+'/WorkRequest/GetPhotosWorkRequest';
+    let params = new HttpParams();
+        params = params.set('id', id);
+    return this.http.post(apiUri,params);
+  }
 }

@@ -1,1 +1,43 @@
-<p>wr-tab-media works!</p>
+
+<div class="container" appMediaUpload (fileDropped)="onFileDropped($event)">
+    <input type="file" #fileDropRef id="fileDropRef" accept="image/jpeg" multiple (change)="fileBrowseHandler($event)" />
+    <img src="assets/images/drag-and-drop-icon.png" width="400px"
+    height="280px" alt="">
+    <h3>Drag and drop file here</h3>
+    <h3>or</h3>
+    <label for="fileDropRef">Browse for file</label>
+  </div>
+  <div class="files-list" >
+    <div class="single-file" *ngFor="let file of files; let i = index;">
+      
+        <a  [href]="fileUrls[i]" download='{{ file?.name }}'>
+        
+        <img [src]="fileUrls[i]" width="65px" alt="file">
+        </a>
+      
+      <div class="info">
+        <h4 class="name">
+          {{ file?.name }}
+        </h4>
+        <p class="size">
+          {{ formatBytes(file?.size) }}
+        </p>
+        <app-progress [progress]="file?.progress"></app-progress>
+      </div>
+      <img src="assets/images/kanta.png" class="delete" width="60px" alt="file" (click)="deleteFile(i)">
+    </div>
+    <br>
+  </div>
+  <button class="btn-primary" (click)='DiscardImages()'>Discard</button>
+  <button class="btn-primary" (click)='SaveImages()'>Save</button>
+
+  <ol>
+    <li *ngFor='let item of slike;let i =index'>
+        <!--{{item}}--> 
+        <a  [href]="proba" download='media{{item.idMedia}}'>
+            <img height="160" width="160" src= 'data:image/JPEG;base64,{{item.image}}'  class="img-radius" alt="Work-Request-Image" onerror="this.onerror=null; this.src='assets/images/ssss.png'">
+        </a>
+        <img src="assets/images/kanta.png" class="delete" width="60px" alt="file" (click)="odabranaSlika(item.idMedia,i)">
+    </li>
+</ol>
+  
