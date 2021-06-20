@@ -22,6 +22,8 @@ namespace WebSERVER.Models.FrontModels
         public string Estimated { get; set; }
         public string Status { get; set; }
         public string Cause { get; set; }
+        public string Team { get; set; }
+
         public string SubCause { get; set; }
         public string TypeR { get; set; }
         public string Material { get; set; }

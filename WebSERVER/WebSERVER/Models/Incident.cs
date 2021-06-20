@@ -28,6 +28,7 @@ namespace WebSERVER.Models
         public string Description { get; set; }
         [NotMapped]
         public List<string> Photos { get; set; }
+        public string Team { get; set; }
         public string Cause { get; set; }
         public string SubCause { get; set; }
         public string ConstructionType { get; set; }

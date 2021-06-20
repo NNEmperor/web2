@@ -195,6 +195,7 @@ namespace WebSERVER.Controllers
                 ActualTA = asta,
                 EstimatedTR = etr,
                 Outage = outa,
+                Team = IncidentM.Team,
                 EstimatedWorkStartTime = est,
                 AffectedUsers = a,
                 NumberOfCalls = n,
