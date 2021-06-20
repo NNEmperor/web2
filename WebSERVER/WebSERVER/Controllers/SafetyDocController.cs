@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebSERVER.Models;
@@ -21,17 +22,63 @@ namespace WebSERVER.Controllers
             _context = context;
         }
 
+        [HttpPost]
+        [Route("CreateImage")]
+        public Task<IActionResult> CreateImage()
+        {
+            var nesto = Request.Form.Files[0];
+            string base64string;
+            var myFile = nesto;
+            var filepath = Path.GetTempFileName();
+            using (var stream = System.IO.File.Create(filepath))
+            {
+                myFile.CopyTo(stream);
+            }
+            byte[] imageByte = System.IO.File.ReadAllBytes(filepath);
+            base64string = Convert.ToBase64String(imageByte);
+
+            _context.DocImages.Add(new DocImage { Image = base64string, DocId = 0 });
+            _context.SaveChanges();
+
+            // return new EmptyResult();
+            return null;
+        }
+
         [Route("GetAllDocs")]
         public async Task<ActionResult<IEnumerable<SafetyDoc>>> GetAllDocs()
         {
-            return await _context.SafetyDocs.ToListAsync();
+            var listI = await _context.SafetyDocs.ToListAsync();
+            var listS = await _context.DocImages.ToListAsync();
+
+            foreach (var i in listI)
+            {
+                i.Photos = new List<string>();
+                foreach (var s in listS)
+                {
+                    if (s.DocId == i.Id)
+                        i.Photos.Add(s.Image);
+                }
+            }
+            return listI;
         }
 
         [HttpPost]
         [Route("GetMineDocs")]
         public async Task<ActionResult<IEnumerable<SafetyDoc>>> GetMineDocs([FromForm] string userName)
         {
-            return await _context.SafetyDocs.Where(x => x.CreatedBy == userName).ToListAsync();
+            var listI = await _context.SafetyDocs.Where(x => x.CreatedBy == userName).ToListAsync();
+            var listS = await _context.DocImages.ToListAsync();
+
+            foreach (var i in listI)
+            {
+                i.Photos = new List<string>();
+                foreach (var s in listS)
+                {
+                    if (s.DocId == i.Id)
+                        i.Photos.Add(s.Image);
+                }
+            }
+            return listI;
         }
 
         [HttpPost]
@@ -60,6 +107,7 @@ namespace WebSERVER.Controllers
             };
 
             _context.SafetyDocs.Add(safety);
+            _context.SaveChanges();
 
             foreach (int d in safetyDoc.Devices)
             {
@@ -69,6 +117,14 @@ namespace WebSERVER.Controllers
                     SafetyDoc = safety
                 };
                 _context.SafetyDocDevices.Add(sd);
+            }
+
+            foreach (DocImage i in _context.DocImages)
+            {
+                if (i.DocId == 0)
+                {
+                    i.DocId = safety.Id;
+                }
             }
 
 

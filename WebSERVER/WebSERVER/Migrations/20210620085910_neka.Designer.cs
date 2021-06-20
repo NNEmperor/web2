@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebSERVER.Models;
 
 namespace WebSERVER.Migrations
 {
     [DbContext(typeof(WebServerContext))]
-    partial class WebServerContextModelSnapshot : ModelSnapshot
+    [Migration("20210620085910_neka")]
+    partial class neka
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -263,22 +265,6 @@ namespace WebSERVER.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Devices");
-                });
-
-            modelBuilder.Entity("WebSERVER.Models.DocImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("DocId");
-
-                    b.Property<string>("Image");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DocImages");
                 });
 
             modelBuilder.Entity("WebSERVER.Models.HistoryWorkRequest", b =>

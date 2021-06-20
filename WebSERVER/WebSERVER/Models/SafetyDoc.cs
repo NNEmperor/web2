@@ -22,7 +22,8 @@ namespace WebSERVER.Models
         public string Phone { get; set; }
         public DateTime CreatedWhen { get; set; }
         public ICollection<ChangedByWhen> History { get; set; }
-
+        [NotMapped]
+        public List<string> Photos { get; set; }
         [NotMapped]
         public ICollection<Device> Devices { get; set; }
 

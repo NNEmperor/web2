@@ -26,7 +26,8 @@ namespace WebSERVER.Models
         public double VoltageLevel { get; set; }
         public DateTime EstimatedWorkStartTime { get; set; }
         public string Description { get; set; }
-
+        [NotMapped]
+        public List<string> Photos { get; set; }
         public string Cause { get; set; }
         public string SubCause { get; set; }
         public string ConstructionType { get; set; }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebSERVER.Models;
@@ -15,23 +16,71 @@ namespace WebSERVER.Controllers
     public class IncidentController : ControllerBase
     {
         private readonly WebServerContext _context;
+        static int IncidentId = 0;
 
         public IncidentController(WebServerContext context)
         {
             _context = context;
         }
 
+
+        [HttpPost]
+        [Route("CreateImage")]
+        public async Task<IActionResult> CreateImage()
+        {
+            var nesto = Request.Form.Files[0];
+            string base64string;
+            var myFile = nesto;
+            var filepath = Path.GetTempFileName();
+            using (var stream = System.IO.File.Create(filepath))
+            {
+                await myFile.CopyToAsync(stream);
+            }
+            byte[] imageByte = System.IO.File.ReadAllBytes(filepath);
+            base64string = Convert.ToBase64String(imageByte);
+
+            _context.IncidentImages.Add(new IncidentImage { Image = base64string, IncidentId = 0 });
+            _context.SaveChanges();
+
+            // return new EmptyResult();
+            return Ok("Successfully added photo to work request");
+        }
+
         [Route("GetAllIncidents")]
         public async Task<ActionResult<IEnumerable<Incident>>> GetIncidents()
         {
-            return await _context.Incidents.ToListAsync();
+            var listI = await _context.Incidents.ToListAsync();
+            var listS = await _context.IncidentImages.ToListAsync();
+
+            foreach(var i in listI)
+            {
+                i.Photos = new List<string>();
+                foreach(var s in listS)
+                {
+                    if (s.IncidentId == i.Id)
+                        i.Photos.Add(s.Image);
+                }
+            }
+            return listI;
         }
 
         [HttpPost]
         [Route("GetMineIncidents")]
         public async Task<ActionResult<IEnumerable<Incident>>> GetMyIncidents([FromForm]string userName)
         {
-            return await _context.Incidents.Where(x => x.UserNameCreator == userName).ToListAsync();
+            var listI = await _context.Incidents.Where(x => x.UserNameCreator == userName).ToListAsync();
+            var listS = await _context.IncidentImages.ToListAsync();
+
+            foreach (var i in listI)
+            {
+                i.Photos = new List<string>();
+                foreach (var s in listS)
+                {
+                    if (s.IncidentId == i.Id)
+                        i.Photos.Add(s.Image);
+                }
+            }
+            return listI;
         }
 
         [HttpPost]
@@ -159,17 +208,26 @@ namespace WebSERVER.Controllers
 
             };
 
-            _context.Incidents.Add(incident);
+            await _context.Incidents.AddAsync(incident);
+            _context.SaveChanges();
 
             foreach (int d in IncidentM.Devices)
             {
                 IncidentDevice id = new IncidentDevice()
                 {
-                    Device = _context.Devices.Where(dev => dev.Id == d).First(),
+                    Device = await _context.Devices.Where(dev => dev.Id == d).FirstAsync(),
                     Incident = incident
 
                 };
                 _context.IncidentDevices.Add(id);
+            }
+
+            foreach(IncidentImage i in _context.IncidentImages)
+            {
+                if(i.IncidentId == 0)
+                {
+                    i.IncidentId = incident.Id;
+                }
             }
 
 

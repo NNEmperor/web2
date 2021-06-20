@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace WebSERVER.Models
 {
-    public class WebServerContext: IdentityDbContext
+    public class WebServerContext : IdentityDbContext
     {
-        public WebServerContext(DbContextOptions options):base(options)
+        public WebServerContext(DbContextOptions options) : base(options)
         {
 
         }
@@ -25,6 +25,8 @@ namespace WebSERVER.Models
         public DbSet<MemberOfTeam> Members { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<MediaWorkRequest> MediaWorkRequests { get; set; }
+        public DbSet<IncidentImage> IncidentImages { get; set; }
+        public DbSet<DocImage> DocImages { get; set; }
         public DbSet<HistoryWorkRequest> HistoryWorkRequests { get; set; }
         public DbSet<SafetyDoc> SafetyDocs { get; set; }
         public DbSet<SafetyDocDevice> SafetyDocDevices { get; set; }
