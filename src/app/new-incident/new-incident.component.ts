@@ -20,7 +20,7 @@ export class NewIncidentComponent implements OnInit {
   callData: CallBack[] = [];
   finalData: IncidentFinal = new IncidentFinal();
   media: FormData = new FormData();
-
+  crew: any;
 
   constructor(private shared: MessagePassingService) {
    }
@@ -31,6 +31,8 @@ export class NewIncidentComponent implements OnInit {
     this.shared.incidentDevices$.subscribe ( message => { this.deviceData = message; })
     this.shared.incidentCalls$.subscribe ( message => { this.callData = message; })
     this.shared.incidentMedia$.subscribe ( message => {this.media = message; })
+    this.shared.incidentCrew$.subscribe ( message => {this.crew = message; })
+    
   }
 
   finished(){
@@ -43,7 +45,7 @@ export class NewIncidentComponent implements OnInit {
     })
   }
 
-
+    this.finalData.Crew = this.crew
     this.finalData.Cause = this.resolutionData.Cause;
     this.finalData.SubCause = this.resolutionData.SubCause;
     this.finalData.Material = this.resolutionData.Material;

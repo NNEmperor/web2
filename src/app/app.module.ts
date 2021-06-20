@@ -98,6 +98,7 @@ import { WrTabEquipmentComponent } from './wr-tab-equipment/wr-tab-equipment.com
 import { HistoryWrPoUpComponent } from './history-wr-po-up/history-wr-po-up.component';
 import { AuthGuardService } from './auth-guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
+import { SelectTeamPopUpComponent } from './select-team-pop-up/select-team-pop-up.component';
 
 
 export function tokenGetter() {
@@ -174,6 +175,7 @@ export function tokenGetter() {
     WrTabMediaComponent,
     WrTabEquipmentComponent,
     HistoryWrPoUpComponent,
+    SelectTeamPopUpComponent,
   ],
   imports: [
     JwtModule.forRoot({

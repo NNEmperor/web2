@@ -36,4 +36,15 @@ export class IncidentPassingService {
     return this.http.post(this.BaseURI + "/Devices/GetCoords", data)
   }
   
+  getAllTeams(){
+    return this.http.get(this.BaseURI + '/Team/GetAllTeams');
+
+  }
+
+  GetTeam(timId:string){
+    let params = new HttpParams();
+    params = params.set('timId', timId);
+    return this.http.post(this.BaseURI + '/Team/GetTeam',params);
+  }
+
 }

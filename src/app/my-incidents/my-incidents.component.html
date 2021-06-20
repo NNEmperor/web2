@@ -123,6 +123,12 @@
                   </ol>
               </td>
               </ng-container>
+
+              <ng-container matColumnDef="team">
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Team </th>
+                <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.team}} </td>
+            </ng-container>
+
             
             
             

@@ -28,6 +28,8 @@ export class MessagePassingService {
   newCall$ = this.newCall.asObservable();
   private incidentMedia = new Subject<any>();
   incidentMedia$ = this.incidentMedia.asObservable();
+  private incidentCrew = new Subject<any>();
+  incidentCrew$ = this.incidentCrew.asObservable();
 
   private docsBasic = new Subject<any>();
   docsBasic$ = this.docsBasic.asObservable();
@@ -50,6 +52,7 @@ export class MessagePassingService {
   sendIncidentCalls(message: any){ this.incidentCalls.next(message) }
   sendNewCall(message: any){ this.newCall.next(message) }
   sendIncidentMedia(message: any) { this.incidentMedia.next(message) }
+  sendIncidentCrew(message: any) { this.incidentMedia.next(message) }
 
   sendDocsBasic(message: any){ this.docsBasic.next(message) }
   sendDocsChecklist(message: any){ this.docsChecklsit.next(message) }

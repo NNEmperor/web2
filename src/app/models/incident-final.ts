@@ -21,4 +21,5 @@ export class IncidentFinal {
     Material!: string;
     Devices!: number[];
     Calls!: CallBack[]
+    Crew!: string
 }
