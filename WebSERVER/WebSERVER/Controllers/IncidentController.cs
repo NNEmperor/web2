@@ -215,8 +215,8 @@ namespace WebSERVER.Controllers
             {
                 IncidentDevice id = new IncidentDevice()
                 {
-                    Device = await _context.Devices.Where(dev => dev.Id == d).FirstAsync(),
-                    Incident = incident
+                    Device = d,
+                    Incident = incident.Id
 
                 };
                 _context.IncidentDevices.Add(id);

@@ -12,7 +12,7 @@ namespace WebSERVER.Models
         [Key]
         [Column(TypeName = "int")]
         public int IncidentDeviceId { get; set; }
-        public Incident Incident { get; set; }
-        public Device Device { get; set; }
+        public int Incident { get; set; }
+        public int Device { get; set; }
     }
 }

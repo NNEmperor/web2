@@ -178,6 +178,18 @@ namespace WebSERVER.Controllers
             return slike;
         }
 
+        [HttpPost]
+        [Route("GetIncidentMap")]
+        public async Task<ActionResult<IEnumerable<Incident>>> GetIncidentMap([FromForm] string id)
+        {
+            var IDnumDev = int.Parse(id);
+            var incidentDev = _context.IncidentDevices.FirstOrDefault(x => x.Device == IDnumDev);//.Incident.Id;
+
+            var incidentFound = _context.Incidents.Where(x => x.Id == incidentDev.Incident).ToList();
+
+            return incidentFound;
+        }
+
         [Route("UpdateWorkRequest")]
         public async Task<IActionResult> UpdateWorkRequest(WorkRequest workRequest)
         {
