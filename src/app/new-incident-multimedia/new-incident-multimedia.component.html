@@ -1,33 +1,35 @@
 <div class="bg"></div>
 <div class="bg bg2"></div>
 <div class="bg bg3"></div>
+
 <div class="container" appMediaUpload (fileDropped)="onFileDropped($event)">
-    <input type="file" #fileDropRef id="fileDropRef" accept="image/*" multiple (change)="fileBrowseHandler($event)" />
-    <img src="assets/images/drag-and-drop-icon.png" width="400px"
-    height="280px" alt="">
-    <h3>Drag and drop file here</h3>
-    <h3>or</h3>
-    <label for="fileDropRef">Browse for file</label>
-  </div>
-  <div class="form-group row"  style="display: flex;justify-content: flex-end; margin-right: 3cm; margin-top: 2cm;" >
-    <span>
-        <i class = "material-icons">save</i> 
-    </span>
-    
+  <input type="file" #fileDropRef id="fileDropRef" accept="image/jpeg" multiple (change)="fileBrowseHandler($event)" />
+  <img src="assets/images/drag-and-drop-icon.png" width="400px"
+  height="280px" alt="">
+  <h3>Drag and drop file here</h3>
+  <h3>or</h3>
+  <label for="fileDropRef">Browse for file</label>
 </div>
-  <div class="files-list" style="margin-left: 5%;" >
-    <div class="single-file" *ngFor="let file of files; let i = index">
-      <img src="assets/images/apple-icon-120x120.png" width="45px" alt="file">
-      <div class="info">
-        <h4 class="name">
-          {{ file?.name }}
-        </h4>
-        <p class="size">
-          {{ formatBytes(file?.size) }}
-        </p>
-        <app-progress [progress]="file?.progress"></app-progress>
-      </div>
-      <img src="assets/images/trash-removebg-preview.png" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
+<div class="files-list" >
+  <div class="single-file" *ngFor="let file of files; let i = index;">
+    
+      <a  [href]="fileUrls[i]" download='{{ file?.name }}'>
+      
+      <img [src]="fileUrls[i]" width="45px" alt="file">
+      </a>
+    
+    <div class="info">
+      <h4 class="name">
+        {{ file?.name }}
+      </h4>
+      <p class="size">
+        {{ formatBytes(file?.size) }}
+      </p>
+      <app-progress [progress]="file?.progress"></app-progress>
     </div>
-    <br>
+    <img src="assets/images/trash-removebg-preview.png" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
   </div>
+  <br>
+</div>
+<button style="margin-left: 2cm;" class="btn-primary" (click)='DiscardImages()'>Discard</button>
+<button style="margin-left: 2cm;" class="btn-primary" (click)='SaveImages()'>Save</button>

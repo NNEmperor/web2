@@ -15,6 +15,7 @@ export class NewSafetyDocsComponent implements OnInit {
   checklistData: DocChecklist = new DocChecklist();
   deviceData: any[] = [];
   historyData: any[] = [];
+  media: FormData = new FormData();
 
   constructor(private shared: MessagePassingService) { }
 
@@ -23,9 +24,15 @@ export class NewSafetyDocsComponent implements OnInit {
     this.shared.docsChecklsit$.subscribe (message => { this.checklistData = message; })
     this.shared.docsDevices$.subscribe ( message => { this.deviceData = message; })
     this.shared.docsHistory$.subscribe( message => {this.historyData = message; })
+    this.shared.docMedia$.subscribe( message => {this.media = message; })
+
   }
 
   finished(){
+
+    this.shared.uploadDocImages(this.media).subscribe(res=>{
+
+    })
     
     var send = {
       Type: this.basicInfoData.Type,

@@ -19,7 +19,7 @@ export class MySafetyDocsComponent implements OnInit {
 
   allMineEnable = new FormControl(); 
   mySentences!:Array<Object>
-  displayedColumns: string[] = ['id', 'type', 'status', 'notes', 'details', 'phone', 'createdWhen', 'createdBy', 'workOpCompleted', 'tagsRemoved', 'groundingRemoved', 'readyForService'];
+  displayedColumns: string[] = ['id', 'type', 'status', 'notes', 'details', 'phone', 'createdWhen', 'createdBy', 'workOpCompleted', 'tagsRemoved', 'groundingRemoved', 'readyForService', 'photos'];
   dataSource;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

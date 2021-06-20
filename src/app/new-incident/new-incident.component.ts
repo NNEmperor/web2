@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessagePassingService } from '../message-passing.service';
 import { CallBack } from '../models/call-back';
@@ -18,6 +19,7 @@ export class NewIncidentComponent implements OnInit {
   deviceData: number[] = [];
   callData: CallBack[] = [];
   finalData: IncidentFinal = new IncidentFinal();
+  media: FormData = new FormData();
 
 
   constructor(private shared: MessagePassingService) {
@@ -28,9 +30,20 @@ export class NewIncidentComponent implements OnInit {
     this.shared.incidentResolution$.subscribe ( message => { this.resolutionData = message; })
     this.shared.incidentDevices$.subscribe ( message => { this.deviceData = message; })
     this.shared.incidentCalls$.subscribe ( message => { this.callData = message; })
+    this.shared.incidentMedia$.subscribe ( message => {this.media = message; })
   }
 
   finished(){
+
+    if(this.media != null){
+    this.shared.uploadImages(this.media).subscribe(res =>{
+      console.log(res)
+    }, (err:HttpErrorResponse) => {
+      console.log(err)
+    })
+  }
+
+
     this.finalData.Cause = this.resolutionData.Cause;
     this.finalData.SubCause = this.resolutionData.SubCause;
     this.finalData.Material = this.resolutionData.Material;
@@ -57,10 +70,8 @@ export class NewIncidentComponent implements OnInit {
 
     this.shared.UploadIncident(this.finalData).subscribe( data =>
       {
-        alert("desilo se");
+        alert("Uspesno dodat novi incident");
     });
-
-
 
   }
 

@@ -26,12 +26,12 @@
     
             <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">  
 
-                <ng-container matColumnDef="id" sticky>
+                <ng-container matColumnDef="id" >
                 <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
                 <td style="text-align: left; background-color: white;"  mat-cell *matCellDef="let element"> {{element.id}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="userNameCreator" sticky>
+            <ng-container matColumnDef="userNameCreator">
                 <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Creator </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.userNameCreator}} </td>
             </ng-container>
@@ -111,6 +111,18 @@
                 <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Material </th>
                 <td style="text-align: left;"  mat-cell *matCellDef="let element"> {{element.material}} </td>
             </ng-container>
+
+            <ng-container matColumnDef="photos">
+                <th style="font-size: large;" mat-header-cell *matHeaderCellDef mat-sort-header> Photos </th>
+                <td mat-cell *matCellDef="let element; let j = index"> 
+                  <ol>
+                      <li *ngFor='let item of element.photos;let i =index'>
+                          <!--{{item}}--> 
+                          <img height="60" width="60" src= 'data:image/JPEG;base64,{{item}}' class="img-radius" alt="Work-Request-Image" onerror="this.onerror=null; this.src='assets/images/ssss.png'">
+                      </li>
+                  </ol>
+              </td>
+              </ng-container>
             
             
             

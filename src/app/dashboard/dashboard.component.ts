@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 import { MessagePassingService } from '../message-passing.service';
 
 
@@ -11,39 +11,43 @@ export class DashboardComponent implements OnInit {
 
   userName =  (localStorage.getItem("userName"))
 
-  @ViewChild("numOfDraftsIncidents") numOfDraftsIncidents;
-  @ViewChild("numOfCanceledIncidents") numOfCanceledIncidents;
-  @ViewChild("numOfExecutingIncidents") numOfExecutingIncidents;
-  @ViewChild("numOfCompletedIncidents") numOfCompletedIncidents;
-  @ViewChild("numOfIncidents") numOfIncidents;
+  numOfDraftsIncidents = '';
+  numOfCanceledIncidents = '';
+  numOfExecutingIncidents = '';
+  numOfCompletedIncidents = '';
+  numOfIncidents = '';
 
-  @ViewChild("numOfDraftsIncidents") numOfDraftsDoc;
-  @ViewChild("numOfCanceledIncidents") numOfCanceledDocs;
-  @ViewChild("numOfExecutingIncidents") numOfExecutingDocs;
-  @ViewChild("numOfCompletedIncidents") numOfCompletedDocs;
-  @ViewChild("numOfIncidents") numOfDocs;
+  numOfDraftsDoc = '';
+  numOfCanceledDocs = '';
+  numOfExecutingDocs = '';
+  numOfCompletedDocs = '';
+  numOfDocs = '';
 
   constructor(private service: MessagePassingService ) {
     this.service.changeData("DASHBOARD")
 
+  }
 
-    this.service.getMineStatuses(this.userName).subscribe(res =>{
-
-      this.numOfDraftsIncidents.nativeElement.value = res[0];
-      this.numOfCanceledIncidents.nativeElement.value = res[1];
-      this.numOfExecutingIncidents.nativeElement.value = res[2];
-      this.numOfCompletedIncidents.nativeElement.value = res[3];
-      this.numOfIncidents.nativeElement.value = res[4];
-
-      this.numOfDraftsDoc.nativeElement.value = res[5];
-      this.numOfCanceledDocs.nativeElement.value = res[6];
-      this.numOfExecutingDocs.nativeElement.value = res[7];
-      this.numOfCompletedDocs.nativeElement.value = res[8];
-      this.numOfDocs.nativeElement.value = res[9];
-    })
-   }
 
   ngOnInit(): void {
+    this.service.getMineStatuses(this.userName).subscribe(res =>{
+
+
+      
+      this.numOfDraftsIncidents = res[0] as string;
+      this.numOfCanceledIncidents = res[1] as string;
+      this.numOfExecutingIncidents = res[2] as string;
+      this.numOfCompletedIncidents = res[3] as string;
+      this.numOfIncidents = res[4] as string;
+
+      this.numOfDraftsDoc = res[5] as string;
+      this.numOfCanceledDocs = res[6] as string;
+      this.numOfExecutingDocs = res[7] as string;
+      this.numOfCompletedDocs = res[8] as string;
+      this.numOfDocs = res[9] as string;
+
+      console.log(res)
+    })
   }
 
 

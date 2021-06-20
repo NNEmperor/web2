@@ -6,22 +6,22 @@
         <a [routerLink]='["/home/incidents"]' style="box-shadow:0 0 .25em rgba(0, 0, 0, 0.55);" class="col-md-4">
             <div style="display:flex">
                 <p>MY INCIDENTS</p>
-                <input type="text" style="border: transparent; background: transparent; margin-left: 40%;" #numOfIncidents />
+                <p style="border: transparent; background: transparent; margin-left: 40%;" >{{numOfIncidents}}</p>
             </div>
             <div style="display: flex;">
-                <input style="border: transparent; background: transparent;" type="text" #numOfDraftsIncidents />
+                <p style="border: transparent; background: transparent;" >{{numOfDraftsIncidents}}</p>
                 <p style="margin-left: 10%;">Drafts</p>
             </div>
             <div style="display: flex;">
-                <input style="border: transparent; background: transparent;" type="text" #numOfCanceledIncidents />
+                <p style="border: transparent; background: transparent;">{{numOfCanceledIncidents}}</p>
                 <p style="margin-left: 10%;">Canceled</p>
             </div>
             <div style="display: flex;">
-                <input style="border: transparent; background: transparent;" type="text" #numOfExecutingIncidents />
+                <p style="border: transparent; background: transparent;" >{{numOfExecutingIncidents}}</p>
                 <p style="margin-left: 10%;">Executing</p>
             </div>
             <div style="display: flex;">
-                <input style="border: transparent; background: transparent;" type="text" #numOfCompletedIncidents/>
+                <p style="border: transparent; background: transparent;">{{numOfCompletedIncidents}}</p>
                 <p style="margin-left: 10%;">Completed</p>
             </div>
         </a>
@@ -50,22 +50,22 @@
         <a [routerLink]='["/home/safety-docs"]' style="box-shadow:0 0 .25em rgba(0, 0, 0, 0.55);" class="col-md-4">
             <div style="display:flex">
                 <p>MY SAFETY DOCS</p>
-                <input type="text" style="border: transparent; background: transparent; margin-left: 40%;" #numOfDocs />
+                <p style="border: transparent; background: transparent; margin-left: 40%;">{{numOfDocs}}</p>
             </div>
             <div style="display: flex;">
-                <input style="border: transparent; background: transparent;"  type="text" #numOfDraftsDoc />
+                <p style="border: transparent; background: transparent;" >{{numOfDraftsDoc}}</p>
                 <p style="margin-left: 10%;">Drafts</p>
             </div>
             <div style="display: flex;">
-                <input style="border: transparent; background: transparent;"  type="text" numOfCanceledDocs />
+                <p style="border: transparent; background: transparent;"  >{{numOfCanceledDocs}}</p>
                 <p style="margin-left: 10%;">Canceled</p>
             </div>
             <div style="display: flex;">
-                <input style="border: transparent; background: transparent;"  type="text" #numOfExecutingDocs />
+                <p style="border: transparent; background: transparent;">{{numOfExecutingDocs}}</p>
                 <p style="margin-left: 10%;">Executing</p>
             </div>
             <div style="display: flex;">
-                <input style="border: transparent; background: transparent;"  type="text" #numOfCompletedDocs />
+                <p style="border: transparent; background: transparent;" >{{numOfCompletedDocs}}</p>
                 <p style="margin-left: 10%;">Completed</p>
             </div>
         </a>

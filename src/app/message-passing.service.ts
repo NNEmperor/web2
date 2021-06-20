@@ -26,6 +26,8 @@ export class MessagePassingService {
   incidentCalls$ = this.incidentCalls.asObservable();
   private newCall = new Subject<any>();
   newCall$ = this.newCall.asObservable();
+  private incidentMedia = new Subject<any>();
+  incidentMedia$ = this.incidentMedia.asObservable();
 
   private docsBasic = new Subject<any>();
   docsBasic$ = this.docsBasic.asObservable();
@@ -35,6 +37,8 @@ export class MessagePassingService {
   docsDevices$ = this.docsDevices.asObservable();
   private docsHistory = new Subject<any>();
   docsHistory$ = this.docsHistory.asObservable();
+  private docMedia = new Subject<any>();
+  docMedia$ = this.docMedia.asObservable();
 
   changeData(data: string){
     this.data.next(data)
@@ -45,11 +49,13 @@ export class MessagePassingService {
   sendIncidentDevices(message: any){ this.incidentDevices.next(message) }
   sendIncidentCalls(message: any){ this.incidentCalls.next(message) }
   sendNewCall(message: any){ this.newCall.next(message) }
+  sendIncidentMedia(message: any) { this.incidentMedia.next(message) }
 
   sendDocsBasic(message: any){ this.docsBasic.next(message) }
   sendDocsChecklist(message: any){ this.docsChecklsit.next(message) }
   sendDocsDevices(message: any){ this.docsDevices.next(message) }
   sendDocsHistory(message: any){ this.docsHistory.next(message) }
+  sendDocMedia(message: any) { this.docMedia.next(message) }
 
 
 
@@ -112,6 +118,14 @@ export class MessagePassingService {
     let params = new HttpParams();
     params = params.set('userName', data)
     return this.http.post(this.BaseURI + "/Incident/GetMyStatuses", params)
+  }
+
+  uploadImages(data){
+    return this.http.post(this.BaseURI + "/Incident/CreateImage", data);
+  }
+
+  uploadDocImages(data){
+    return this.http.post(this.BaseURI + "/SafetyDoc/CreateImage", data)
   }
 
   constructor(private http: HttpClient) { }

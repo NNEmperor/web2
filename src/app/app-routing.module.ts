@@ -68,85 +68,85 @@ const routes: Routes = [
   { path: "home", component: NavBarComponent, children: [
     { path: "", component: DashboardComponent, canActivate: [AuthGuardService] },
     { path: "mapa", component: MapComponent, canActivate: [AuthGuardService] },
-    { path: "myprofile", component: MyProfileComponent },
-    { path: 'edit-profile', component: EditProfileComponent },
-    { path: "profiles", component: ProfilesViewComponent },
-    { path: "notifications", component: NotificationsComponent },
-    { path: "incidents", component: MyIncidentsComponent },
-    { path: "safety-docs", component:  MySafetyDocsComponent},
-    { path: "equipment", component: EquipmentComponent },
-    { path: "incidents", component: MyIncidentsComponent },
-    { path: "work-requests", component: WorkRequestsComponent },
-    { path: 'work-plans', component: MyWorkPlansComponent },
-    { path: 'edit-team', component:EditTeamComponent },
+    { path: "myprofile", component: MyProfileComponent, canActivate: [AuthGuardService] },
+    { path: 'edit-profile', component: EditProfileComponent, canActivate: [AuthGuardService] },
+    { path: "profiles", component: ProfilesViewComponent, canActivate: [AuthGuardService] },
+    { path: "notifications", component: NotificationsComponent, canActivate: [AuthGuardService] },
+    { path: "incidents", component: MyIncidentsComponent, canActivate: [AuthGuardService] },
+    { path: "safety-docs", component:  MySafetyDocsComponent, canActivate: [AuthGuardService]},
+    { path: "equipment", component: EquipmentComponent, canActivate: [AuthGuardService] },
+    { path: "incidents", component: MyIncidentsComponent, canActivate: [AuthGuardService] },
+    { path: "work-requests", component: WorkRequestsComponent, canActivate: [AuthGuardService] },
+    { path: 'work-plans', component: MyWorkPlansComponent, canActivate: [AuthGuardService] },
+    { path: 'edit-team', component:EditTeamComponent, canActivate: [AuthGuardService] },
     { path: 'workreq-new', component: WorkreqNewComponent,
         children: [
-          { path: "", component:  WorkreqBasicinfoComponent},
-          { path: "workreq-history", component: WorkreqHistoryComponent },
-          { path: "workreq-multimedia", component: WorkreqMultimediaComponent },
-          { path: "workreq-equipment", component: WorkreqEquipmentComponent },
+          { path: "", component:  WorkreqBasicinfoComponent, canActivate: [AuthGuardService]},
+          { path: "workreq-history", component: WorkreqHistoryComponent, canActivate: [AuthGuardService] },
+          { path: "workreq-multimedia", component: WorkreqMultimediaComponent, canActivate: [AuthGuardService] },
+          { path: "workreq-equipment", component: WorkreqEquipmentComponent, canActivate: [AuthGuardService] },
         ] 
     },
     { path: 'workreq-update', component: WrTabComponent,
         children: [
-          { path: "", component:  WrTabInfoComponent},
-          { path: "work-r-history", component: WrTabHistoryComponent },
-          { path: "work-r-multimedia", component: WrTabMediaComponent },
-          { path: "work-r-equipment", component: WrTabEquipmentComponent },
+          { path: "", component:  WrTabInfoComponent, canActivate: [AuthGuardService]},
+          { path: "work-r-history", component: WrTabHistoryComponent, canActivate: [AuthGuardService] },
+          { path: "work-r-multimedia", component: WrTabMediaComponent, canActivate: [AuthGuardService] },
+          { path: "work-r-equipment", component: WrTabEquipmentComponent, canActivate: [AuthGuardService] },
         ] 
     },
     { path: 'users', 
       children:
       [
-        { path: '', component: UsersComponent },
-        { path: 'new-user', component: NewUserComponent }
+        { path: '', component: UsersComponent, canActivate: [AuthGuardService] },
+        { path: 'new-user', component: NewUserComponent, canActivate: [AuthGuardService] }
       ]
     },
-    { path: 'teams', component: TeamComponent },
-    { path: 'new-team', component: NewTeamComponent },
-    { path: "equipment-new", component: NewEquipmentComponent },
+    { path: 'teams', component: TeamComponent, canActivate: [AuthGuardService] },
+    { path: 'new-team', component: NewTeamComponent, canActivate: [AuthGuardService] },
+    { path: "equipment-new", component: NewEquipmentComponent, canActivate: [AuthGuardService] },
     { path: "settings", component: SettingsComponent,
       children: [
-        { path: "", component: ChangePwdComponent },
-        { path: "street-priority", component: StreetPriorityComponent},
-        { path: "icons", component: IconsComponent },
-        { path: "notif", component: NotifSettingsComponent },
-        { path: "docs", component: DocSettingsComponent },
-        { path: "reset", component: ResetSettingsComponent }
+        { path: "", component: ChangePwdComponent, canActivate: [AuthGuardService] },
+        { path: "street-priority", component: StreetPriorityComponent, canActivate: [AuthGuardService]},
+        { path: "icons", component: IconsComponent, canActivate: [AuthGuardService] },
+        { path: "notif", component: NotifSettingsComponent, canActivate: [AuthGuardService] },
+        { path: "docs", component: DocSettingsComponent, canActivate: [AuthGuardService] },
+        { path: "reset", component: ResetSettingsComponent, canActivate: [AuthGuardService] }
       ]
     },
 
     {
       path: "safety-docs-new", component: NewSafetyDocsComponent, children: [
-        { path: "", component:  NewSafetyDocsBasicInfoComponent},
-        { path: "history", component: NewSafetyDocsHistoryComponent },
-        { path: "multimedia", component: NewSafetyDocsMultimediaComponent },
-        { path: "equipment", component: NewSafetyDocsEquipmentComponent },
-        { path: "checklist", component: NewSafetyDocsChecklistComponent }
+        { path: "", component:  NewSafetyDocsBasicInfoComponent, canActivate: [AuthGuardService]},
+        { path: "history", component: NewSafetyDocsHistoryComponent, canActivate: [AuthGuardService] },
+        { path: "multimedia", component: NewSafetyDocsMultimediaComponent, canActivate: [AuthGuardService] },
+        { path: "equipment", component: NewSafetyDocsEquipmentComponent, canActivate: [AuthGuardService] },
+        { path: "checklist", component: NewSafetyDocsChecklistComponent, canActivate: [AuthGuardService] }
       ]
     },
     {
       path: 'incident-new', component: NewIncidentComponent, children: [
-        { path: "", component: NewIncidentBasicInfoComponent },
-        { path: "devices", component: NewIncidentDevicesComponent },
-        { path: "resolution", component:  NewIncidentResolutionComponent },
+        { path: "", component: NewIncidentBasicInfoComponent, canActivate: [AuthGuardService] },
+        { path: "devices", component: NewIncidentDevicesComponent, canActivate: [AuthGuardService] },
+        { path: "resolution", component:  NewIncidentResolutionComponent, canActivate: [AuthGuardService] },
         { path: "calls", children: [
-          { path: "", component: NewIncidentCallsComponent },
-          { path: "add", component: NewIncidentNewCallsComponent }
+          { path: "", component: NewIncidentCallsComponent, canActivate: [AuthGuardService] },
+          { path: "add", component: NewIncidentNewCallsComponent, canActivate: [AuthGuardService] }
         ]
       },
-        { path: "crew", component: NewIncidentCrewComponent },
-        { path: "multimedia", component: NewIncidentMultimediaComponent },
+        { path: "crew", component: NewIncidentCrewComponent, canActivate: [AuthGuardService] },
+        { path: "multimedia", component: NewIncidentMultimediaComponent, canActivate: [AuthGuardService] },
       ]
     },
     {
       path: 'new-work-plan', component: NewWorkPlanComponent, children:
       [
-        { path: '', component: NewWorkPlanBasicInfoComponent},
-        { path: 'history', component: NewWorkPlanHistoryComponent},
-        { path: 'multimedia', component: NewWorkPlanMultimediaComponent},
-        { path: 'equipment', component: NewWorkPlanEquipmentComponent},
-        { path: 'instructions', component: NewWorkPlanInstructionsComponent}
+        { path: '', component: NewWorkPlanBasicInfoComponent, canActivate: [AuthGuardService]},
+        { path: 'history', component: NewWorkPlanHistoryComponent, canActivate: [AuthGuardService]},
+        { path: 'multimedia', component: NewWorkPlanMultimediaComponent, canActivate: [AuthGuardService]},
+        { path: 'equipment', component: NewWorkPlanEquipmentComponent, canActivate: [AuthGuardService]},
+        { path: 'instructions', component: NewWorkPlanInstructionsComponent, canActivate: [AuthGuardService]}
       ]
     }
 

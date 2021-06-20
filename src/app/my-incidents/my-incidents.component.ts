@@ -17,7 +17,7 @@ export class MyIncidentsComponent implements OnInit {
   data: any[] = [];
   allMineEnable = new FormControl(); 
 
-  displayedColumns: string[] = ['id', 'userNameCreator', 'type', 'priority', 'confirmed', 'status', 'description', 'eTA', 'aTA', 'outage', 'eTR', 'affectedUsers', 'numberOfCalls', 'voltageLevel', 'estimatedWorkStartTime'];
+  displayedColumns: string[] = ['id', 'userNameCreator', 'type', 'priority', 'confirmed', 'status', 'description', 'eTA', 'aTA', 'outage', 'eTR', 'affectedUsers', 'numberOfCalls', 'voltageLevel', 'estimatedWorkStartTime', 'photos'];
   dataSource;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
