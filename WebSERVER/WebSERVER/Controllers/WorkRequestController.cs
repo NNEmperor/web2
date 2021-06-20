@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -145,8 +146,9 @@ namespace WebSERVER.Controllers
             return Ok();
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<WorkRequest>> GetWorkRequest(int id)
+        [HttpPost]
+        [Route("GetOneWorkRequest")]
+        public async Task<ActionResult<WorkRequest>> GetOneWorkRequest([FromForm]string id)
         {
             var workRequests = await _context.WorkRequests.FindAsync(id);
 
@@ -156,6 +158,24 @@ namespace WebSERVER.Controllers
             }
 
             return workRequests;
+        }
+
+        [HttpPost]
+        [Route("GetHistoryWorkRequest")]
+        public async Task<ActionResult<IEnumerable<HistoryWorkRequest>>> GetHistoryWorkRequest([FromForm] string id)
+        {
+            var istorija =await _context.HistoryWorkRequests.Where(x=>x.WorkRequestId.Equals(id)).ToListAsync();
+
+            return istorija;
+        }
+
+        [HttpPost]
+        [Route("GetPhotosWorkRequest")]
+        public async Task<ActionResult<IEnumerable<MediaWorkRequest>>> GetPhotosWorkRequest([FromForm] string id)
+        {
+            var slike = await _context.MediaWorkRequests.Where(x => x.WorkRequestID.Equals(id)).ToListAsync();
+
+            return slike;
         }
 
         [Route("UpdateWorkRequest")]
@@ -196,6 +216,62 @@ namespace WebSERVER.Controllers
             
             return Ok("Succeesfully added work request");
            
+        }
+
+        [HttpPost]
+        [Route("UpdateHistoryWorkRequest")]
+        public async Task<ActionResult> UpdateHistoryWorkRequest([FromForm]string history, [FromForm]string id)
+        {
+            Console.WriteLine(history);
+            var result = JsonConvert.DeserializeObject<List<HistoryWorkRequest>>(history);
+            List<HistoryWorkRequest> finalna = new List<HistoryWorkRequest>();
+            var stanje = "";
+            foreach(var r in result.ToList())
+            {
+                Console.WriteLine(r.Id);
+                Console.WriteLine(r.HistoryState);//broj je stigao mora biti string //uzeti FINAL STATE I SETOVATI ZA WR
+                Console.WriteLine(r.UserName);
+                Console.WriteLine("----------");
+                
+            }
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                if (result[i].HistoryState.Equals("1"))
+                {
+                    stanje = "Approve";
+                }
+                else if (result[i].HistoryState.Equals("2"))
+                {
+                    stanje = "Deny";
+                }
+                else if (result[i].HistoryState.Equals("3"))
+                {
+                    stanje = "Cancle";
+                }
+                else
+                {
+                    stanje = "Draft";
+                }
+
+                if (result[i].Id == 0)
+                {
+                    finalna.Add(new HistoryWorkRequest { UserName = result[i].UserName, HistoryState = stanje, DateHistory = result[i].DateHistory, WorkRequestId=id });
+                }
+            }
+
+            foreach(var el in finalna)
+            {
+                _context.HistoryWorkRequests.Add(el);
+            }
+            //_context.WorkRequests.Add(workRequest);
+
+            await _context.SaveChangesAsync();
+
+            //var lista = _context.WorkRequests.ToList();
+
+            return Ok("Succeesfully updated history of work request");
+
         }
 
         [HttpPost]
