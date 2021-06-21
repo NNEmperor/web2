@@ -21,8 +21,12 @@ namespace WebSERVER.Models
         public string Address { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public string UserRole { get; set; }
+        [Column(TypeName = "nvarchar(250)")]
+        public string TimeAction { get; set; }
         [NotMapped]
         public string Token { get; set; }
+        [NotMapped]
+        public string TeamId { get; set; }
 
         public bool SendConfirmation { get; set; }
         [Column(TypeName = "nvarchar(50)")]

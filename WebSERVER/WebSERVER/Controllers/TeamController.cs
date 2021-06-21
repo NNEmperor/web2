@@ -219,7 +219,13 @@ namespace WebSERVER.Controllers
                     
                     if ((clan.MemberTeamId).Equals( timovi[i].TeamId))
                     {
-                        timovi[i].Members.Add(clan.MemberUserName);
+                        foreach (var user in _userManager.Users.Where(x => x.UserRole.Equals("clan ekipe")).ToList())
+                        {
+                            if (user.UserName.Equals(clan.MemberUserName) && user.Status.ToUpper().Equals("PRIHVACEN"))
+                            {
+                                timovi[i].Members.Add(clan.MemberUserName);
+                            }
+                        }
                     }
                 }
             }

@@ -16,7 +16,8 @@ namespace WebSERVER.Models
         public string Image { get; set; }
         public string Address { get; set; }
         public string UserRole { get; set; }
-
+        public string TeamId { get; set; }//novo
+        public string TimeAction { get; set; }
         public bool SendConfirmation { get; set; }
 
         public string Status { get; set; }      //procesira,aktivan,odbijen nalog

@@ -79,11 +79,19 @@ namespace WebSERVER.Controllers
                 Image = "",//model.Image,
                 UserRole = model.UserRole,
                 SendConfirmation = model.SendConfirmation,
-                Status = model.Status //inicijalno--procesira
+                Status = model.Status,//inicijalno--procesira
+                TeamId = model.TeamId,
+                TimeAction = DateTime.Now.ToString()
             };
 
             try
             {
+                //za tim
+                if (!appuser.TeamId.Equals(""))
+                {
+                    _context.Members.Add(new MemberOfTeam { MemberTeamId = appuser.TeamId, MemberUserName = appuser.UserName });    //AKO JE CLAN EKIPE
+                }
+
                 var result = await _userManager.CreateAsync(appuser, model.Password);
                 korime = appuser.UserName;
                 return Ok(result);
@@ -142,11 +150,38 @@ namespace WebSERVER.Controllers
             Console.WriteLine(userName);
             var taj = _userManager.Users.FirstOrDefault(x => x.UserName.Equals(userName));
             taj.Status = "prihvacen";
+            taj.TimeAction = DateTime.Now.ToString();
             await _userManager.UpdateAsync(taj);
             //_context.Users.Update(taj);
 
             return await _userManager.Users.Where(x => x.Status.ToUpper().Equals("PROCESIRA")).ToListAsync();
             
+        }
+
+        [HttpPost]
+        [Route("GetStatus")]
+        public async Task<ActionResult<Object>> GetStatus([FromForm] string userName)
+        {
+            var list = _userManager.Users.ToList();
+            Console.WriteLine(userName);
+            var taj = _userManager.Users.FirstOrDefault(x => x.UserName.Equals(userName));
+
+            var ss = "";
+                if (taj.Status.Equals("prihvacen"))
+            {
+                ss = "  Accepted";
+            }else if (taj.Status.Equals("odbijen"))
+            {
+                ss = "  Denyed";
+            }
+            else
+            {
+                ss = "  In process since ";
+            }
+            var poruka = ss + " " + taj.TimeAction;
+            //_context.Users.Update(taj);
+
+            return Ok(poruka);//await _userManager.Users.Where(x => x.Status.ToUpper().Equals("PROCESIRA")).ToListAsync();
         }
 
         [HttpPost]
@@ -157,6 +192,7 @@ namespace WebSERVER.Controllers
             Console.WriteLine(userName);
             var taj = _userManager.Users.FirstOrDefault(x => x.UserName.Equals(userName));
             taj.Status = "odbijen";
+            taj.TimeAction = DateTime.Now.ToString();
             await _userManager.UpdateAsync(taj);
             //_context.Users.Update(taj);
 
