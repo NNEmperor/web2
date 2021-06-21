@@ -102,23 +102,23 @@ export class RegistrationComponent implements OnInit {
                       this.progress = 0;
                       }, 1500);*///radilo mozda nemam pojma
                 }else if(event.type===HttpEventType.Response){
-                  alert("OKACENO");
+                  //alert("OKACENO");
                   console.log("Okaceno")
                   console.log("telo "+event.body);
                 }
               });
             }
-            alert("bravooo");
+            alert("Thank you for zour registratiion.");
             this.router.navigateByUrl('/start-screen');
           }else{
             res.errors.array.forEach(element => {
               switch(element.code){
                 case 'DuplicateUserName':{
-                  alert("postoji username");
+                  alert("Duplicate UserName");
                   break;
                 }
                 default:{
-                  alert("nece regi");
+                  //alert("nece regi");
                   break;
                 }
               }
@@ -126,7 +126,7 @@ export class RegistrationComponent implements OnInit {
           }
         },
         err=>{
-          alert("GRESKaa "+err);
+          //alert("GRESKaa "+err);
         }
       );
     }
@@ -227,7 +227,7 @@ Back(){
 
     }else{
       console.log('nije odabrana slika')
-      alert("sliiiika   "+this.regiForm.value.avatar)
+      //alert("sliiiika   "+this.regiForm.value.avatar)
       return;   //VIDETI SA OVIM DA LI TREBA
     }
 

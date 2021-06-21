@@ -28,15 +28,16 @@ export class NavBarComponent implements OnInit {
     //alert("status")
     let user;
     user=localStorage.getItem("userName")
+    alert(user)
     if(user!=null){
       this.servis.getStatus(user).subscribe(res=>{}, 
         (err:HttpErrorResponse) => {
         console.log(err)
-        
+        console.log(err.error.text)
         let message= err.error.text;
-          if(message==undefined){
-            message='You are log in with social media.'
-          }
+         // if(message==undefined){
+           // message='You are logged in with social media.'
+          //}
         this.notifier.notify('default', "Profile status:"+message);
       })
       
