@@ -64,13 +64,13 @@ export class WorkreqNewComponent implements OnInit {
      
         if(sTaJeUnEtO==="BINFOjeste")
         {
-          alert("uneeeeto nes DIJALOG SHOW");
+          //alert("uneeeeto nes DIJALOG SHOW");
           const dialogRef = this.dialog.open(WrBasicInfoPopUpComponent);
           
           dialogRef.afterClosed().subscribe(() => {
             // Do stuff after the dialog has closed
 
-              alert("zatvoren dijalog")
+             // alert("zatvoren dijalog")
               let DaLiSeCuva= localStorage.getItem("cuva")
 
               if(DaLiSeCuva=='da')
@@ -87,7 +87,7 @@ export class WorkreqNewComponent implements OnInit {
         }
         else
         {
-          alert("NEMA DIJALOGA")
+          //alert("NEMA DIJALOGA")
           console.log("neMA BI, IDI NA SL STR")
           this.router.navigateByUrl('/home/workreq-new/workreq-history');
         }
@@ -107,13 +107,13 @@ export class WorkreqNewComponent implements OnInit {
      
         if(sTaJeUnEtO==="BINFOjeste")
         {
-          alert("uneeeeto nes DIJALOG SHOW");
+         // alert("uneeeeto nes DIJALOG SHOW");
           const dialogRef = this.dialog.open(WrBasicInfoPopUpComponent);
           
           dialogRef.afterClosed().subscribe(() => {
             // Do stuff after the dialog has closed
 
-              alert("zatvoren dijalog")
+              //alert("zatvoren dijalog")
               let DaLiSeCuva= localStorage.getItem("cuva")
 
               if(DaLiSeCuva=='da')
@@ -130,7 +130,7 @@ export class WorkreqNewComponent implements OnInit {
         }
         else
         {
-          alert("NEMA DIJALOGA")
+          //alert("NEMA DIJALOGA")
           console.log("neMA BI, IDI NA SL STR")
           this.router.navigateByUrl('/home/workreq-new/workreq-multimedia');
         }
@@ -148,13 +148,13 @@ export class WorkreqNewComponent implements OnInit {
      
         if(sTaJeUnEtO==="BINFOjeste")
         {
-          alert("uneeeeto nes DIJALOG SHOW");
+         // alert("uneeeeto nes DIJALOG SHOW");
           const dialogRef = this.dialog.open(WrBasicInfoPopUpComponent);
           
           dialogRef.afterClosed().subscribe(() => {
             // Do stuff after the dialog has closed
 
-              alert("zatvoren dijalog")
+             // alert("zatvoren dijalog")
               let DaLiSeCuva= localStorage.getItem("cuva")
 
               if(DaLiSeCuva=='da')
@@ -171,7 +171,7 @@ export class WorkreqNewComponent implements OnInit {
         }
         else
         {
-          alert("NEMA DIJALOGA")
+          //alert("NEMA DIJALOGA")
           console.log("neMA BI, IDI NA SL STR")
           this.router.navigateByUrl('/home/workreq-new/workreq-equipment');
         }
@@ -179,7 +179,7 @@ export class WorkreqNewComponent implements OnInit {
   }
 
   AddWorkRequest(){
-    alert("KUTIJA")
+   // alert("KUTIJA")
       let obj;
       obj=localStorage.getItem("history-wr")
       if(obj==null){//ako nije ni usao u history da setuje,automatski
@@ -197,8 +197,8 @@ export class WorkreqNewComponent implements OnInit {
 
       var basicinfoJSON=localStorage.getItem("basic-info");
       let basininfoObj=JSON.parse(basicinfoJSON as string);
-      alert(basicinfoJSON);
-      alert(basininfoObj)
+     // alert(basicinfoJSON);
+      //alert(basininfoObj)
       //alert(basininfoObj['docType'])
       console.log(basininfoObj)
     this.servis.SetHistory(localStorage.getItem('history-wr')).subscribe(data=>{})

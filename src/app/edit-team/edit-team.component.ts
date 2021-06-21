@@ -106,7 +106,7 @@ this.adminOption.GetTeam(this.teamId).subscribe(data =>{
     this.adminOption.UpdateTeam(this.newTeamForm.value.inputID, this.newTeamForm.value.inputName,lista).subscribe((data:any) =>{
 
      if(data.succeeded){
-       alert("Uspesno dodat tim!  da li ovo prikaze");  //ne udje, ali sa servera ispise
+       //alert("Uspesno dodat tim!  da li ovo prikaze");  //ne udje, ali sa servera ispise
      }
      
     }, (err:HttpErrorResponse) => {
@@ -116,7 +116,7 @@ this.adminOption.GetTeam(this.teamId).subscribe(data =>{
       //alert(message);
      
       if(message==="Uspesno izmenjen tim"){
-        this.notifier.notify('default', message);
+        this.notifier.notify('default', "Successfully updated team");
         setTimeout(() => {
           //prebaci NA SVE TIMOVE
             this.notifier.hideAll();

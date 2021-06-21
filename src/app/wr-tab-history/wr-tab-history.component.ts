@@ -143,7 +143,7 @@ export class WrTabHistoryComponent implements OnInit {
             localStorage.setItem("history-wr-edited",serializedForm);
 
             var jjjISTORIJA=JSON.stringify(this.istorija)
-            alert(jjjISTORIJA)
+           // alert(jjjISTORIJA)
             localStorage.setItem("istorija",jjjISTORIJA)
     });    
 //-------------------------------- 

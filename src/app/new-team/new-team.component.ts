@@ -117,7 +117,7 @@ this.adminOption.GetTeamMemebers().subscribe(data =>{
     this.adminOption.AddTeam(this.newTeamForm.value.inputID, this.newTeamForm.value.inputName,lista).subscribe((data:any) =>{
 
      if(data.succeeded){
-       alert("Uspesno dodat tim!  da li ovo prikaze");  //ne udje, ali sa servera ispise
+      // alert("Uspesno dodat tim!  da li ovo prikaze");  //ne udje, ali sa servera ispise
      }
      
     }, (err:HttpErrorResponse) => {
@@ -127,7 +127,7 @@ this.adminOption.GetTeamMemebers().subscribe(data =>{
      // alert(message);
 
      if(message==="Uspesno kreiran tim"){
-      this.notifier.notify('default', message);
+      this.notifier.notify('default', "Successfully created team");
       setTimeout(() => {
         //prebaci NA SVE TIMOVE
           this.notifier.hideAll();

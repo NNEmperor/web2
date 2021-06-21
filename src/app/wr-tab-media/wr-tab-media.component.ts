@@ -137,7 +137,7 @@ export class WrTabMediaComponent implements OnInit {
 
   }
   brisiSliku(id, index){
-    alert(id)
+    //alert(id)
     //ZA BRISANJE
     this.slike.splice(index,1);
     this.probaUrls.splice(index,1);

@@ -46,7 +46,7 @@ export class WorkreqHistoryComponent implements OnInit {
     }else{
       //vec je odabrano
       //prikazati te podatke
-      alert("oovde")
+     // alert("oovde")
       let hhh=JSON.parse(obb)
       this.rememberForm.controls['state'].setValue(hhh.state)
       this.historyForm.controls['state'].setValue(hhh.state)

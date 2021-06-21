@@ -65,6 +65,7 @@ export class StartScreenComponent implements OnInit {
       console.log(res)
       console.log(res.jsonString)
       let obj = JSON.parse(res.jsonString)
+
       console.log(obj)
       //alert(obj.UserName)
       localStorage.setItem('jwt', obj.Token);

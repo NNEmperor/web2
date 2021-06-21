@@ -72,7 +72,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
    
    ngOnInit(): void {
     localStorage.removeItem("editovano");
-    alert(localStorage.getItem("editovano"))
+   // alert(localStorage.getItem("editovano"))
 
     let INFF;
     INFF=localStorage.getItem("basic-info-edit");
@@ -84,22 +84,22 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
     let oob;
     oob=localStorage.getItem("history-wr-edited")
       if(oob!=null){//ako JE  u history da setuje,automatski STATUS
-        alert("iiiiistorija")
+       // alert("iiiiistorija")
         let state=JSON.parse(oob)
         console.log("iis")
         console.log(state)
         let stanjee;
         if(state.state==2){
           stanjee='Deny'
-          alert("pp1")
+         // alert("pp1")
       }else if(state.state==3){
         stanjee='Cancle'
       }else if(state.state==4){
          stanjee="Draft"
-         alert("ovdje")
+        // alert("ovdje")
       }else{
        stanjee="Approve"
-       alert("yy1")
+       //alert("yy1")
       }
         this.workReqBasicForm.controls['status'].setValue(stanjee);
         console.log(this.workReqBasicForm.value.status)
@@ -108,7 +108,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
 
       
      }else{
-       alert('novo sacuvano setovati')
+      // alert('novo sacuvano setovati')
         //postoji nesto uneto
        //dodeliti vrednosti
        let savedObj=JSON.parse(INFF);
@@ -118,27 +118,27 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
        let oob;
        oob=localStorage.getItem("history-wr-edited")
          if(oob!=null){//ako JE  u history da setuje,automatski STATUS
-           alert(oob)
+         //  alert(oob)
            console.log("ovdje2---"+oob)
            let state=JSON.parse(oob)
            //alert(state.state)
            let stanjee;
            if(state.state==2){
                stanjee='Deny'
-               alert("pp2")
+               //alert("pp2")
            }else if(state.state==3){
              stanjee='Cancle'
            }else if(state.state==4){
               stanjee="Draft"
-              alert("ovdje2")
+             // alert("ovdje2")
            }else{
             stanjee="Approve"
-            alert("yy2")
+            //alert("yy2")
            }
            this.workReqBasicForm.controls['status'].setValue(stanjee);
            console.log(this.workReqBasicForm)
          }else{
-           alert('tuuu2'/*+savedObj.status*/)
+           //alert('tuuu2'/*+savedObj.status*/)
            console.log(savedObj)
            //alert(savedObj.status)
           // console.log(savedObj.status)
@@ -200,19 +200,19 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
            let stanjee;
            if(state.state==2){
                stanjee='Deny'
-               alert("pp3")
+               //alert("pp3")
            }else if(state.state==3){
              stanjee='Cancle'
            }else if(state.state==4){
               stanjee="Draft"
-              alert("ovdje3")
+              //alert("ovdje3")
            }else{
             stanjee="Approve"
-            alert("yy3")
+            //alert("yy3")
            }
            this.workReqBasicForm.controls['status'].setValue(stanjee)
           }else{
-            alert('tuuu')
+            //alert('tuuu')
             this.workReqBasicForm.controls['status'].setValue(res['status'])
           }
        //this.workReqBasicForm.controls['status'].setValue(res['historyState'])
@@ -299,7 +299,7 @@ unoss(){
   }
 
   SaveBasicInfo(){
-    alert("UPDATEEE")
+   // alert("UPDATEEE")
     localStorage.removeItem("editovano"); //ODMAH I OBRISI DA NE OSTANE
     if(this.uneseno){
      
@@ -330,32 +330,32 @@ unoss(){
     let oob;
     oob=localStorage.getItem("history-wr-edited")
       if(oob!=null){//ako JE  u history da setuje,automatski STATUS
-        alert('NN')
+        //alert('NN')
         let state=JSON.parse(oob)
         //alert(state.state)
         let stanjee;
         if(state.state==2){
           stanjee='Deny'
-          alert("pp4")
+          //alert("pp4")
       }else if(state.state==3){
         stanjee='Cancle'
       }else if(state.state==4){
          stanjee="Draft"
-         alert("ovdje4")
+         //alert("ovdje4")
       }else{
        stanjee="Approve"
-       alert("yy4")
+       //alert("yy4")
       }
         this.workReqBasicForm.controls['status'].setValue(stanjee);
         console.log(this.workReqBasicForm)
       }else{
-        alert("ovdje5")
+        //alert("ovdje5")
         this.workReqBasicForm.controls['status'].setValue('Draft');
       }
    //---------
     this.uneseno=false;
     localStorage.removeItem("editovano"); //TREBA OBRISATI
-    alert(localStorage.getItem("editovano"));
+    //alert(localStorage.getItem("editovano"));
 
     var formObj=this.workReqBasicForm.getRawValue()
       let serializedForm = JSON.stringify(formObj);
