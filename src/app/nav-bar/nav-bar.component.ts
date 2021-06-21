@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MessagePassingService } from '../message-passing.service';
 import { NotifierService } from 'angular-notifier';
+import { FormUploadService } from '../form-upload.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,7 +15,7 @@ export class NavBarComponent implements OnInit {
 
   private readonly notifier!: NotifierService;
 
-  constructor(private service: MessagePassingService, notifierService: NotifierService){
+  constructor(private service: MessagePassingService, notifierService: NotifierService, private servis:FormUploadService){
     this.notifier = notifierService;
   }
 
@@ -24,7 +26,20 @@ export class NavBarComponent implements OnInit {
 
   showStatus(){
     //alert("status")
-    this.notifier.notify('default', "Profile status:");
-  }
+    let user;
+    user=localStorage.getItem("userName")
+    if(user!=null){
+      this.servis.getStatus(user).subscribe(res=>{}, 
+        (err:HttpErrorResponse) => {
+        console.log(err)
+        
+        let message= err.error.text;
+       
+        this.notifier.notify('default', "Profile status:"+message);
+      })
+      
+    }
+}
+
 
 }

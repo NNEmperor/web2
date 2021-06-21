@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -34,7 +34,8 @@ export class FormUploadService {
       UserRole:role,
       Birthday:(forma.value.bday).toLocaleString(),
       SendConfirmation:forma.value.confirmation,
-      Status:"procesira"
+      Status:"procesira",
+      TeamId:forma.value.teamId
     };
 
    return  this.http.post(this.BaseURI+"/ApplicationUser/Register", body);  //vraca observable
@@ -43,5 +44,14 @@ export class FormUploadService {
   login(formData){
     alert('dskla')
     return this.http.post(this.BaseURI + '/ApplicationUser/Login', formData);
+  }
+
+  getStatus(id: string){
+    console.log("pozove remove w r")
+    console.log("MEDIA---"+id)
+    let apiUri=this.BaseURI+'/ApplicationUser/GetStatus';
+    let params = new HttpParams();
+        params = params.set('userName', id);
+    return this.http.post(apiUri,params);
   }
 }

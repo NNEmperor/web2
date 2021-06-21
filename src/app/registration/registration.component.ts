@@ -7,6 +7,8 @@ import { CustomValidationService } from '../custom-validation.service';
 import { Observable, throwError } from 'rxjs';
 import { FormUploadService } from '../form-upload.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpTeamComponent } from '../pop-up-team/pop-up-team.component';
 
 @Component({
   selector: 'app-registration',
@@ -15,6 +17,7 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
   
+  ekipa=false;
   progress: number = 0;
   path = "assets/images/ssss.png";
   parentMessage = "Registration"
@@ -28,7 +31,7 @@ export class RegistrationComponent implements OnInit {
   FileFormData=new FormData();//za slanje slike
   hasProfilePic=false;
 
-  constructor(private fb: FormBuilder, public fileUploadService: FileUploadService,public uploadForm: FormUploadService ,private customValidator: CustomValidationService, private http: HttpClient, private router: Router) { 
+  constructor(private fb: FormBuilder, public fileUploadService: FileUploadService,public uploadForm: FormUploadService ,private customValidator: CustomValidationService, private http: HttpClient, private router: Router,public dialog: MatDialog) { 
     
     this.regiForm=this.fb.group({
 
@@ -44,7 +47,8 @@ export class RegistrationComponent implements OnInit {
       avatar: [null],
       imagename: [''],
       bday:['',[Validators.required]],
-      confirmation:false
+      confirmation:false,
+      teamId:''
       //slika
       //autorizacija,autentifikcija na serveru
 
@@ -62,9 +66,9 @@ export class RegistrationComponent implements OnInit {
 
   getRoles(){
     return [
-      { id: '1', name: 'radnik' },
-      { id: '2', name: 'dispecer' },
-      { id: '3', name: 'clan ekipe' }
+      { id: '1', name: 'Worker (radnik)' },
+      { id: '2', name: 'Dispatch (dispecer)' },
+      { id: '3', name: 'Team member (clan ekipe)' }
     ];
   }
 
@@ -159,13 +163,29 @@ export class RegistrationComponent implements OnInit {
     //update the ui
     this.selectedRole = event.target.value;
     console.log(this.selectedRole);
+    //3 je ekipa
+    if(this.selectedRole=='3'){
+      this.ekipa=true;
+    }else{
+      this.ekipa=false;
+    }
     this.regiForm.controls['roles'].setValue(this.selectedRole);
   }
   onFileChanged(event:any) {
     this.selectedFile = event.target.files[0]
     console.log("promena slike");
   }
+  ChooseTeam(){
+    let dialogRef = this.dialog.open(PopUpTeamComponent);
 
+    dialogRef.afterClosed().subscribe(res =>{
+      console.log('-------')
+      console.log(res)
+      console.log('-------')
+        let ii=res as string
+      this.regiForm.controls['teamId'].setValue(ii as string)
+    })
+  }
 
   showPreview(event:any) {
     console.log("duzina je: "+event.target.files.length)

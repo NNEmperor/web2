@@ -48,7 +48,10 @@
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <p class="m-b-10 f-w-600">Role</p>
-                                        <h6 class="text-muted f-w-400">{{user.userRole}}</h6>
+                                    <!--<h6 class="text-muted f-w-400">{{user.userRole}}</h6>-->
+                                        <h6 *ngIf="user.userRole=='clan ekipe'" class="text-muted f-w-400">Team Member</h6>
+                                        <h6 *ngIf="user.userRole=='radnik'" class="text-muted f-w-400">Worker</h6>
+                                        <h6 *ngIf="user.userRole=='dispecer'" class="text-muted f-w-400">Dispatch</h6>
                                     </div>
                                 </div>
                                 
