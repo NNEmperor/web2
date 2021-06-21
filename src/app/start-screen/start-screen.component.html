@@ -35,13 +35,13 @@
                      
                       <div *ngIf="user" class="card text-center">
                         <div class="card-block"></div>
-                        <img class="card-img-top img-responsive photo" width="10" height="60" src="{{ user.photoUrl }}">
+                        <img class="card-img-top img-responsive photo" width="120" height="120" src="{{ user.photoUrl }}">
                         <div class="card-block">
                           <h4 class="card-title">{{ user.name }}</h4>
                           <p class="card-text">{{ user.email }}</p>
                         </div>
                         <div class="card-block">
-                          <button class="btn btn-danger" (click)="logout()">Sign out</button>
+                          <button class="btn btn-danger" (click)="logout()">Continue</button>
                         </div>
                       </div>
                 

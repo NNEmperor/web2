@@ -15,7 +15,7 @@ import { NotifierService } from 'angular-notifier';
   styleUrls: ['./new-team.component.css']
 })
 export class NewTeamComponent implements OnInit {
-
+  uloga;
   newTeamForm!: FormGroup;
 
   private readonly notifier!: NotifierService;
@@ -79,6 +79,12 @@ export class NewTeamComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    var oo=localStorage.getItem("user")
+    if(oo!=null){
+    var ss=JSON.parse(oo)
+    this.uloga=ss.UserRole
+    }
     
 this.adminOption.GetTeamMemebers().subscribe(data =>{
     console.log("useri na procesiranju: ");
