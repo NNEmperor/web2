@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebSERVER.Models;
 
 namespace WebSERVER.Migrations
 {
     [DbContext(typeof(WebServerContext))]
-    partial class WebServerContextModelSnapshot : ModelSnapshot
+    [Migration("20210621042144_soc")]
+    partial class soc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -496,31 +498,6 @@ namespace WebSERVER.Migrations
                     b.HasIndex("SafetyDocId");
 
                     b.ToTable("SafetyDocDevices");
-                });
-
-            modelBuilder.Entity("WebSERVER.Models.SocialUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("Lastname");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Social");
-
-                    b.Property<string>("Token");
-
-                    b.Property<string>("UserName");
-
-                    b.Property<string>("UserRole");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SocialUsers");
                 });
 
             modelBuilder.Entity("WebSERVER.Models.Team", b =>

@@ -38,7 +38,7 @@ namespace WebSERVER.Controllers
         // POST: api/<controller>/Login
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-            var user = await _userManager.FindByNameAsync(loginModel.UserName);
+            var user = await _userManager.FindByEmailAsync(loginModel.UserName);    //vrv je email u pitanju
             if (user != null && await _userManager.CheckPasswordAsync(user, loginModel.Password))
             {
                 var tokenDescriptor = new SecurityTokenDescriptor
@@ -60,6 +60,34 @@ namespace WebSERVER.Controllers
             }
             else
                 return BadRequest(new { message = "Username or password is incorrect." });
+        }
+
+        [HttpPost]
+        [Route("ExLogin")]
+        // POST: api/<controller>/Login
+        public async Task<IActionResult> ExLogin([FromBody] SocialUser loginModel)
+        {
+            var user = loginModel;//await _userManager.FindByEmailAsync(loginModel.UserName);    //vrv je email u pitanju
+            
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                        new Claim("UserID", user.UserName)//videcemo
+                    }),
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    //Key min: 16 characters
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1234567890123456")), SecurityAlgorithms.HmacSha256Signature)
+                };
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                var token = tokenHandler.WriteToken(securityToken);
+                user.Token = token;
+                var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+                return Ok(new { jsonString });
+           // }
+           // else
+              //  return BadRequest(new { message = "Username or password is incorrect." });
         }
 
 
@@ -91,7 +119,7 @@ namespace WebSERVER.Controllers
                 {
                     _context.Members.Add(new MemberOfTeam { MemberTeamId = appuser.TeamId, MemberUserName = appuser.UserName });    //AKO JE CLAN EKIPE
                 }
-
+                //provera pre da li postoji sa tim emailom i usernamom
                 var result = await _userManager.CreateAsync(appuser, model.Password);
                 korime = appuser.UserName;
                 return Ok(result);

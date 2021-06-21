@@ -11,7 +11,7 @@ namespace WebSERVER.Models
     {
         public WebServerContext(DbContextOptions options) : base(options)
         {
-
+            
         }
         public DbSet<ApplicationUser> AppUsers { get; set; }
         public DbSet<Call> Calls { get; set; }
@@ -31,6 +31,7 @@ namespace WebSERVER.Models
         public DbSet<SafetyDoc> SafetyDocs { get; set; }
         public DbSet<SafetyDocDevice> SafetyDocDevices { get; set; }
         public DbSet<ChangedByWhen> History { get; set; }
+        public DbSet<SocialUser> SocialUsers { get; set; }
 
     }
 }
