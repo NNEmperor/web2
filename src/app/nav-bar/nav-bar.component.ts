@@ -28,7 +28,7 @@ export class NavBarComponent implements OnInit {
     //alert("status")
     let user;
     user=localStorage.getItem("userName")
-    alert(user)
+   // alert(user)
     if(user!=null){
       this.servis.getStatus(user).subscribe(res=>{}, 
         (err:HttpErrorResponse) => {

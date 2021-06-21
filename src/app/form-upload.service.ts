@@ -42,7 +42,7 @@ export class FormUploadService {
   }
 
   login(formData){
-    alert('dskla')
+    //alert('dskla')
     return this.http.post(this.BaseURI + '/ApplicationUser/Login', formData);
   }
 
