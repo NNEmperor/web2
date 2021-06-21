@@ -16,7 +16,7 @@ export class SelectDevicesPopUpComponent implements OnInit {
   selectedId: any;
   data: any[] = [];
   allMineEnable = new FormControl(); 
-  displayedColumns: string[] = ['id', 'name', 'address', 'type', 'location'];
+  displayedColumns: string[] = ['id', 'name', 'address', 'type'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

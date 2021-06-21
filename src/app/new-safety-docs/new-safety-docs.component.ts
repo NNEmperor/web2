@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit } from '@angular/core';
 import { MessagePassingService } from '../message-passing.service';
@@ -30,9 +31,13 @@ export class NewSafetyDocsComponent implements OnInit {
 
   finished(){
 
-    this.shared.uploadDocImages(this.media).subscribe(res=>{
-
-    })
+    if(this.media != null){
+      this.shared.uploadDocImages(this.media).subscribe(res=>{
+        console.log(res)
+      }, (err:HttpErrorResponse) => {
+        console.log(err)
+      })
+    }
     
     var send = {
       Type: this.basicInfoData.Type,
@@ -53,10 +58,10 @@ export class NewSafetyDocsComponent implements OnInit {
     }
 
     this.shared.uploadDoc(send).subscribe(res => {
-      
+      alert("Uspesno dodat novi dokument");
+
     })
 
-    console.log(send)
   }
 
 }

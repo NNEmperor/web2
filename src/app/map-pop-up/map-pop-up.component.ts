@@ -71,20 +71,6 @@ export class MapPopUpComponent implements OnInit {
         target: 'ol-map'
       });
 
-      var iconFeature = new Feature({
-        geometry:  new Point(fromLonLat([19.795958256378125, 45.29052031509573])),//new Point([0, 0]),
-        name: 'EKIPA NUMERO UNO',
-        population: 4000,
-        rainfall: 500,
-        
-      });
-      var iconStyle = new Style({
-        image: new Icon({
-          
-          src: 'assets/images/ekipa-mapa.png',
-        }),
-      });
-
       this.marker = new Feature({
         geometry: new Point(fromLonLat([this.data.Coordinates[0], this.data.Coordinates[1]]))
       })
@@ -94,9 +80,7 @@ export class MapPopUpComponent implements OnInit {
 
         }),
       }))
-      
-      iconFeature.setStyle(iconStyle);
-      this.vectorSource.addFeature(iconFeature);//dodata JEDNA IKONICA
+
       this.vectorSource.addFeature(this.marker);
 
 
