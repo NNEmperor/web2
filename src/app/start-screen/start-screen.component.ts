@@ -36,6 +36,7 @@ export class StartScreenComponent implements OnInit {
   ngOnInit(): void {
     localStorage.removeItem('jwt');
     localStorage.removeItem("userName");
+    localStorage.removeItem("user");
 
     
     this.socialAuthService.authState.subscribe((user) => {

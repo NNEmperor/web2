@@ -36,7 +36,7 @@
                                     <tr *ngFor="let item of istorija">
                                         <td>{{item.userName}}</td>
                                         <td>{{item.dateHistory}}</td>
-                                        <td>{{item.historyState}}
+                                        <td>
                                             <div *ngIf='item.historyState==1'>Approve</div>
                                             <div *ngIf='item.historyState==2'>Deny</div>
                                             <div *ngIf='item.historyState==3'>Cancle</div>

@@ -44,7 +44,7 @@
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    background-color: rgb(155, 209, 209);
+    background-color: rgb(193, 235, 235,0.3);
   }
   select {
     width: 70%;

@@ -186,7 +186,9 @@ export class RegistrationComponent implements OnInit {
       this.regiForm.controls['teamId'].setValue(ii as string)
     })
   }
-
+Back(){
+  this.router.navigateByUrl('/start-screen');
+}
   showPreview(event:any) {
     console.log("duzina je: "+event.target.files.length)
     const file = event.target.files[0];
