@@ -94,9 +94,10 @@ export class WorkReqServiceService {
     let jsonObj;
     jsonObj =localStorage.getItem('user')
     let objObj = JSON.parse(jsonObj)
-
+    console.log('ooooooooooooooooooooooo')
     console.log(docType)
-
+    console.log('ooooooooooooooooooooooo')
+console.log(forma['incident'])
     var body={
       Id: forma['id'],
       Status: finalstate,

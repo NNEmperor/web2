@@ -9,6 +9,7 @@ import { WorkReqServiceService } from '../work-req-service.service';
 import { WrBasicInfoPopUpComponent } from '../wr-basic-info-pop-up/wr-basic-info-pop-up.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NotifierService } from 'angular-notifier';
+import { PopUpIncComponent } from '../pop-up-inc/pop-up-inc.component';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class WorkreqBasicinfoComponent implements OnInit {
    
     'docType': new FormControl('1'),
     'status': new FormControl('Draft'),   //setovati na osnovu vrednosti iz baze
-    'incident': new FormControl,
+    'incident': new FormControl(''),
     'street': new FormControl('',[Validators.required, Validators.minLength(3)]),
     'startdate': new FormControl('',Validators.required),
     'starttime': new FormControl('',Validators.required),
@@ -182,6 +183,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
        this.workReqBasicForm.controls['docType'].setValue(savedObj.docType)
        //this.workReqBasicForm.controls['status'].setValue(savedObj.status)
        this.workReqBasicForm.controls['incident'].setValue(savedObj.incident)
+       alert("oo1"+savedObj.incident)
        this.workReqBasicForm.controls['street'].setValue(savedObj.street)
        this.workReqBasicForm.controls['startdate'].setValue(savedObj.startdate)
        this.workReqBasicForm.controls['starttime'].setValue(savedObj.starttime)
@@ -243,7 +245,32 @@ unoss(){
   } 
 
   openIncidents(){
-    let dialogRef = this.dialog.open(WorkReqIncidentPopUpComponent);
+    let dialogRef = this.dialog.open(PopUpIncComponent);
+
+    dialogRef.afterClosed().subscribe(res =>{
+      console.log('-------')
+      console.log(res)
+      console.log('-------')
+        let ii=res as string
+      this.workReqBasicForm.controls['incident'].setValue(ii as string)
+      var formObj=this.workReqBasicForm.getRawValue()
+      let serializedForm = JSON.stringify(formObj);
+      console.log("JSOOON....")
+      console.log(serializedForm);
+
+      localStorage.setItem("basic-info",serializedForm);
+      /*this.data.push(res);
+
+      this.incidentService.getDevice(res).subscribe(device =>{
+        this.showingData.push(device);
+        this.dataSource = new MatTableDataSource(this.showingData);
+        setTimeout(() => {
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+        });
+      }); */
+      
+    })
   }
 
   SaveBasicInfo(){

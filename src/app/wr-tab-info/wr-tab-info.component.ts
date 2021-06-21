@@ -9,6 +9,7 @@ import { WorkReqServiceService } from '../work-req-service.service';
 import { WrBasicInfoPopUpComponent } from '../wr-basic-info-pop-up/wr-basic-info-pop-up.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NotifierService } from 'angular-notifier';
+import { PopUpIncComponent } from '../pop-up-inc/pop-up-inc.component';
 
 @Component({
   selector: 'app-wr-tab-info',
@@ -236,6 +237,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
        this.workReqBasicForm.controls['cratedate'].setValue(res['createdDate'])
        this.workReqBasicForm.controls['cratetime'].setValue(res['createdTime'])
        //incidentID faliiiii
+       this.workReqBasicForm.controls['incident'].setValue(res['incidentID'])
       })
   }
   getWorkTypes(){
@@ -277,7 +279,23 @@ unoss(){
 
 
   openIncidents(){
-    let dialogRef = this.dialog.open(WorkReqIncidentPopUpComponent);
+    let dialogRef = this.dialog.open(PopUpIncComponent);
+
+    dialogRef.afterClosed().subscribe(res =>{
+      console.log('-------')
+      console.log(res)
+      console.log('-------')
+        let ii=res as string
+      this.workReqBasicForm.controls['incident'].setValue(ii as string)
+      var formObj=this.workReqBasicForm.getRawValue()
+      let serializedForm = JSON.stringify(formObj);
+      console.log("JSOOON....")
+      console.log(serializedForm);
+
+      localStorage.setItem("basic-info-edit",serializedForm);  //mora sacuvati izmena
+      localStorage.setItem("editovano","BINFOjeste");
+      
+    })
   }
 
   SaveBasicInfo(){
