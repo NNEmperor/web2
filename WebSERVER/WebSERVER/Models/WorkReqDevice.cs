@@ -10,7 +10,7 @@ namespace WebSERVER.Models
     {
         [Key]
         public int WorkReqDeviceId { get; set; }
-        public WorkRequest WorkRequest { get; set; }
-        public Device Device { get; set; }
+        public string WorkRequest { get; set; }
+        public int Device { get; set; }
     }
 }

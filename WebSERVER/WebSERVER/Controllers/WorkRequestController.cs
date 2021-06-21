@@ -30,6 +30,7 @@ namespace WebSERVER.Controllers
         {
             var listawr = _context.WorkRequests.ToList();
             var slike = _context.MediaWorkRequests.ToList();
+            var dev = _context.Devices.ToList();
 
             foreach(var wr in listawr)
             {
@@ -40,6 +41,19 @@ namespace WebSERVER.Controllers
                     {
                         wr.Photos.Add(slika.Image);
                     }
+                }
+            }
+
+            foreach(var wr in listawr)
+            {
+                wr.Devices = new List<Device>();
+
+                var listaID = _context.WorkReqDevices.Where(x => x.WorkRequest.Equals(wr.Id)).ToList();
+
+                foreach(var el in listaID)
+                {
+                    var device = dev.Where(x => x.Id == el.Device).Single();
+                    wr.Devices.Add(device);
                 }
             }
             return listawr;
@@ -231,6 +245,104 @@ namespace WebSERVER.Controllers
         }
 
         [HttpPost]
+        [Route("UpdateBasicInfo")]
+        public async Task<ActionResult> UpdateBasicInfo(WorkRequest workRequest)
+        {
+            var wr = _context.WorkRequests.Where(x => x.Id.Equals(workRequest.Id)).Single();
+            wr.IncidentID = workRequest.IncidentID;
+            wr.Notes = workRequest.Notes;
+            wr.PhoneNumber = workRequest.PhoneNumber;
+            wr.Purpose = workRequest.Purpose;
+            wr.Company = workRequest.Company;
+            wr.Emergency = workRequest.Emergency;
+            wr.StartWorkDate = workRequest.StartWorkDate;
+            wr.StartWorkTime = workRequest.StartWorkTime;
+            wr.EndWorkDate = workRequest.EndWorkDate;
+            wr.EndWorkTime = workRequest.EndWorkTime;
+            wr.Street = workRequest.Street;
+            wr.Type = workRequest.Type;
+            //_context.WorkRequests.Add(workRequest);
+
+            await _context.SaveChangesAsync();
+
+            var lista = _context.WorkRequests.ToList();
+
+            return Ok("Succeesfully updated work request");
+
+        }
+
+        [HttpPost]
+        [Route("RemoveMedia")]
+        public async Task<ActionResult> RemoveMedia([FromForm] string listid)
+        {
+            var resultIDs = JsonConvert.DeserializeObject<List<int>>(listid);
+            var lista = _context.MediaWorkRequests.ToList();
+            for(int i=0;i< resultIDs.Count;i++) {
+                for(int j=0;j<lista.Count;j++)
+                {
+                    if (lista[j].IdMedia == resultIDs[i])
+                    {
+                        var media = _context.MediaWorkRequests.Where(x=>x.IdMedia==lista[j].IdMedia).Single();
+                        _context.MediaWorkRequests.Remove(media);
+                    }
+                }   
+            }
+
+           await _context.SaveChangesAsync();
+            return Ok("Media saved");
+        }
+
+
+        [HttpPost]
+        [Route("AddDevice")]
+        public async Task<ActionResult> AddDevice([FromForm] string listid,[FromForm]string idwr)
+        {
+            var resultIDs = JsonConvert.DeserializeObject<List<Device>>(listid);
+
+            var svi = _context.WorkReqDevices.ToList();
+            //brisemo sve za idwr
+            for(int i = 0; i < svi.Count; i++)
+            {
+                if (svi[i].WorkRequest.Equals(idwr))
+                {
+                    var dev = _context.WorkReqDevices.Where(x => x.WorkReqDeviceId == svi[i].WorkReqDeviceId).Single();
+                    _context.WorkReqDevices.Remove(dev);
+                }
+            }
+            //dodajemo
+            for(int i = 0; i < resultIDs.Count; i++)
+            {
+                _context.WorkReqDevices.Add(new WorkReqDevice { Device = resultIDs[i].Id, WorkRequest = idwr });
+            }
+
+            await _context.SaveChangesAsync();
+            return Ok("Devices saved");
+        }
+
+        [HttpPost]
+        [Route("GetDevices")]
+        public async Task<ActionResult<IEnumerable<Device>>> GetDevices([FromForm] string idwr)
+        {
+            var listaIdDev = _context.WorkReqDevices.Where(x => x.WorkRequest.Equals(idwr)).ToList();
+            var sviDev = _context.Devices.ToList();
+            var odabrani = new List<Device>();
+
+            foreach(var dev in sviDev)
+            {
+                foreach(var ii in listaIdDev)
+                {
+                    if (dev.Id == ii.Device)
+                    {
+                        odabrani.Add(dev);
+                    }
+                }
+            }
+
+            await _context.SaveChangesAsync();
+            return odabrani;
+        }
+
+        [HttpPost]
         [Route("UpdateHistoryWorkRequest")]
         public async Task<ActionResult> UpdateHistoryWorkRequest([FromForm]string history, [FromForm]string id)
         {
@@ -277,6 +389,10 @@ namespace WebSERVER.Controllers
                 _context.HistoryWorkRequests.Add(el);
             }
             //_context.WorkRequests.Add(workRequest);
+
+            //promeniti, dati poslednje stanje
+            var wr = _context.WorkRequests.Where(x => x.Id.Equals(id)).Single();
+            wr.HistoryState = finalna[finalna.Count - 1].HistoryState;
 
             await _context.SaveChangesAsync();
 
