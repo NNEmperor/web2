@@ -25,6 +25,7 @@ export class WrTabComponent implements OnInit {
     localStorage.removeItem("istorija")
     localStorage.removeItem("basic-info-edit")
     localStorage.removeItem("obrisati-slike")
+    localStorage.removeItem("device-wr-edit")
     //kad se nije dirao b info
     this.FirstValuesOfDoc()
     
@@ -102,6 +103,39 @@ export class WrTabComponent implements OnInit {
     }else{
       this.router.navigateByUrl('/home/work-requests');
     }
+
+    let dev;
+    dev=localStorage.getItem("device-wr-edit")
+    if(dev!=null){
+        let id;
+        id=localStorage.getItem("wr-id")
+          this.servis.AddDevice(dev,id).subscribe(res=>{
+            }, (err:HttpErrorResponse) => {
+              console.log(err)
+              
+              let message= err.error.text;
+             // alert(message);
+        
+             if(message==="Devices saved"){
+              this.notifier.notify('default', message);
+              localStorage.removeItem("uneseno");
+              //this.router.navigateByUrl('/home/work-requests');
+             
+              }
+          
+          })
+    } else{
+      this.router.navigateByUrl('/home/work-requests');
+    }
+
+
+    localStorage.removeItem('history-wr')
+    localStorage.removeItem('history-wr-edited')
+    localStorage.removeItem("istorija")
+    localStorage.removeItem("basic-info-edit")
+    localStorage.removeItem("obrisati-slike")
+    localStorage.removeItem("device-wr-edit")
+    localStorage.removeItem("wr-id");
   }
   Info(){
     var path=location.pathname;
@@ -199,7 +233,45 @@ export class WrTabComponent implements OnInit {
     }
   }
   Equ(){
-    
+    alert('kliiik')
+    var path=location.pathname;
+    //console.log("path:   "+path)
+    if(path=="/home/workreq-update/work-r-equipment"){
+      console.log("ista stranica EQ");
+    }else{
+      console.log("p-->EQ")
+      var sTaJeUnEtO=localStorage.getItem("uneseno");
+     
+        if(sTaJeUnEtO==="BINFOjeste")
+        {
+          alert("uneeeeto nes DIJALOG SHOW");
+          const dialogRef = this.dialog.open(WrBasicInfoPopUpComponent);
+          
+          dialogRef.afterClosed().subscribe(() => {
+            // Do stuff after the dialog has closed
+
+              alert("zatvoren dijalog")
+              let DaLiSeCuva= localStorage.getItem("cuva")
+
+              if(DaLiSeCuva=='da')
+              {
+                console.log("CUVA BI, OSTANI")
+
+              }else
+              {
+                console.log("ne cuva BI, IDI NA SL STR")
+                localStorage.removeItem("uneseno"); //ODMAH I OBRISI DA NE OSTANE
+                this.router.navigateByUrl('/home/workreq-update/work-r-equipment');
+              }
+          });
+        }
+        else
+        {
+          alert("NEMA DIJALOGA")
+          console.log("neMA BI, IDI NA SL STR")
+          this.router.navigateByUrl('/home/workreq-update/work-r-equipment');
+        }
+    }
   }
 
   FirstValuesOfDoc(){

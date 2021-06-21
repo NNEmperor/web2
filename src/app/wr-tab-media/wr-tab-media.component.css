@@ -54,6 +54,16 @@
     background-color: rgb(255, 255,255);
     
   }
+  .single-file2 {
+    display:flex;
+    padding: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    border: dashed 1px #979797;
+    margin-bottom: 1rem;
+    background-color: rgb(58, 67, 151);
+    
+  }
   img.delete {
     margin-left: 0.5rem;
     cursor: pointer;

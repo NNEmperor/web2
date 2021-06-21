@@ -328,4 +328,23 @@ export class WorkReqServiceService {
         params = params.set('listid', id);
     return this.http.post(apiUri,params);
   }
+
+  AddDevice(device:string,id: string){
+    console.log("pozove remove w r")
+    console.log("MEDIA---"+id)
+    let apiUri=this.BaseURI+'/WorkRequest/AddDevice';
+    let params = new HttpParams();
+        params = params.set('listid', device);
+        params = params.set('idwr', id);
+    return this.http.post(apiUri,params);
+  }
+  GetDevices(id: string){
+    console.log("pozove remove w r")
+    //console.log("MEDIA---"+id)
+    let apiUri=this.BaseURI+'/WorkRequest/GetDevices';
+    let params = new HttpParams();
+       // params = params.set('listid', device);
+        params = params.set('idwr', id);
+    return this.http.post(apiUri,params);
+  }
 }

@@ -21,7 +21,7 @@ export class WorkRequestsComponent implements OnInit {
     allMineEnable = new FormControl(); 
     mySentences!:Array<Object>
     fileUrls:SafeResourceUrl[]=[];
-    displayedColumns: string[] = ['id','edit', 'company', 'createdDate','createdTime','creator','emergency','endWorkDate','endWorkTime','incidentID','notes','phoneNumber','purpose','startWorkDate','startWorkTime','street','type','photos', 'historyState'];
+    displayedColumns: string[] = ['id','edit', 'company', 'createdDate','createdTime','creator','emergency','endWorkDate','endWorkTime','incidentID','notes','phoneNumber','purpose','startWorkDate','startWorkTime','street','type','photos', 'historyState','devices'];
     dataSource ;//= new MatTableDataSource(ELEMENT_DATA);
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;

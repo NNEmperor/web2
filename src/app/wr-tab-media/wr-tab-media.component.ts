@@ -60,7 +60,7 @@ export class WrTabMediaComponent implements OnInit {
       this.proba=nes//za prikazivanje
       //blobMedia;
       for(let i=0;i<this.slike.length;i++){
-        const blobMedia=base64StringToBlob(this.slike[i], contentType);
+        const blobMedia=base64StringToBlob(this.slike[i]['image'], contentType);
         let nesss=this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blobMedia));
         this.probaUrls.push(nesss)
       }

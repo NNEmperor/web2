@@ -35,6 +35,7 @@ export class WorkreqNewComponent implements OnInit {
       
     });
     localStorage.removeItem("basic-info")
+    localStorage.removeItem("device-wr")
     //localStorage.removeItem("history-wr")
   }
  
@@ -224,6 +225,28 @@ export class WorkreqNewComponent implements OnInit {
        
       
     })
+
+    let dev;
+    dev=localStorage.getItem("device-wr")
+    if(dev!=null){
+        let id;
+        id=localStorage.getItem("id-wr")
+          this.servis.AddDevice(dev,id).subscribe(res=>{
+            }, (err:HttpErrorResponse) => {
+              console.log(err)
+              
+              let message= err.error.text;
+             // alert(message);
+        
+             if(message==="Devices saved"){
+              this.notifier.notify('default', message);
+              localStorage.removeItem("uneseno");
+              //this.router.navigateByUrl('/home/work-requests');
+             
+              }
+          
+          })
+    }
     localStorage.removeItem("history-wr")
     localStorage.removeItem("id-wr")
     localStorage.removeItem("basic-info")

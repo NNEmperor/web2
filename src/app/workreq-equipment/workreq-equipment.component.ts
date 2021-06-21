@@ -80,7 +80,9 @@ export class WorkreqEquipmentComponent implements OnInit {
   saveDevices(){
     //this.service.sendIncidentDevices(this.data);//lista idjeva izabranih device-a 
     var json=JSON.stringify(this.showingData);
+    console.log('-----deeeevice---')
     console.log(json);
+    console.log('----------')
     localStorage.setItem("device-wr",json)
     var rez=JSON.parse(json);
     console.log('rez lista')

@@ -24,22 +24,25 @@
         </p>
         <app-progress [progress]="file?.progress"></app-progress>
       </div>
-      <img src="assets/images/kanta.png" class="delete" width="60px" alt="file" (click)="deleteFile(i)">
+      <img src="assets/images/trash-removebg-preview.png" class="delete" width="60px" alt="file" (click)="deleteFile(i)">
     </div>
     <br>
   </div>
   <button class="btn btn-primary" (click)='DiscardImages()' style="font-size: 18px;"><i><span style="vertical-align:bottom;" class="material-icons">clear</span></i>&nbsp;Discard</button>&nbsp;&nbsp;&nbsp;&nbsp;
   <button class="btn btn-primary" (click)='SaveImages()' style="font-size: 18px;"><i ><span style="vertical-align:bottom;" class="material-icons">save</span></i>&nbsp;Save</button>
-  <h1 style="color: white;"><b>Before added media</b></h1>
+  
   <div>
+    <div class="files-list" >
+      <h1 style="color: white;"><b>Before added media</b></h1>
   <ol>
-    <li *ngFor='let item of slike;let i =index'>
+    <li class="single-file2" *ngFor='let item of slike;let i =index'>
         <!--{{item}}--> 
         <a  [href]="probaUrls[i]" download='media{{item.idMedia}}'>
             <img height="160" width="160" src= 'data:image/JPEG;base64,{{item.image}}'  class="img-radius" alt="Work-Request-Image" onerror="this.onerror=null; this.src='assets/images/ssss.png'">
         </a>
-        <img src="assets/images/kanta.png" class="delete" width="60px" alt="file" (click)="brisiSliku(item.idMedia,i)">
+        <img src="assets/images/trash-removebg-preview.png" class="delete" width="60px" alt="file" (click)="brisiSliku(item.idMedia,i)">
     </li>
 </ol>
+</div>
 </div>
   
