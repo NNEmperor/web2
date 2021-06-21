@@ -42,6 +42,8 @@ export class StartScreenComponent implements OnInit {
       this.user = user;
       this.isSignedin = (user != null);
       console.log(this.user);
+
+
     });
 
     //if(localStorage.getItem('token') != null)
@@ -56,7 +58,24 @@ export class StartScreenComponent implements OnInit {
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
   logout(): void {
-    this.socialAuthService.signOut();
+    //this.socialAuthService.signOut();
+    //if(this.user!=null)
+    {
+    this.service.exLogin(this.user.lastName,this.user.firstName,this.user.provider as string,this.user.email as string).subscribe((res:any)=>{
+      console.log(res)
+      console.log(res.jsonString)
+      let obj = JSON.parse(res.jsonString)
+
+      console.log(obj)
+      //alert(obj.UserName)
+      localStorage.setItem('jwt', obj.Token);
+        localStorage.setItem("userName", this.user.email/*this.loginForm.get("username").value*/)
+        //localStorage.setItem('user', JSON.stringify(this.user))
+
+      this.router.navigateByUrl('/home')
+    })
+  }
+    //nastavi
   }
 /*
 //da li treba
@@ -74,17 +93,23 @@ export class StartScreenComponent implements OnInit {
         console.log(res.jsonString)
         let obj = JSON.parse(res.jsonString)
         console.log(obj)
+        //alert(obj.UserName)
         localStorage.setItem('jwt', obj.Token);
-        localStorage.setItem("userName", this.loginForm.get("username").value)
+        localStorage.setItem("userName", obj.UserName/*this.loginForm.get("username").value*/)
         localStorage.setItem('user', res.jsonString)
         console.log(localStorage.getItem("userName"))
         this.router.navigateByUrl('/home')
       },
       err => {
-        if(err.status == 400)
+        if(err.status == 400){
           console.log(err + "404")
-        else
+          console.log(err)
+          alert("Email or password is incorrect.")
+        }
+        else{
           console.log(err);
+          
+        }
       }
     )
   }

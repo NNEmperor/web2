@@ -34,7 +34,9 @@ export class NavBarComponent implements OnInit {
         console.log(err)
         
         let message= err.error.text;
-       
+          if(message==undefined){
+            message='You are log in with social media.'
+          }
         this.notifier.notify('default', "Profile status:"+message);
       })
       

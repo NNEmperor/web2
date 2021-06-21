@@ -88,7 +88,7 @@ export class WorkreqEquipmentComponent implements OnInit {
     console.log('rez lista')
     console.log(rez)
     console.log("prvi"+rez[0]['id'])
-    alert('sklj' + this.showingData[0])
+   // alert('sklj' + this.showingData[0])
   }
 
 

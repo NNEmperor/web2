@@ -1,6 +1,7 @@
 <div class="bg"></div>
 <div class="bg bg2"></div>
 <div class="bg bg3"></div>
+<div *ngIf="uloga=='admin'">
 <li *ngFor="let user of users">
 <div class="page-content page-container" id="page-content">
     <div class="padding"  >
@@ -65,5 +66,5 @@
     </div>
 </div>
 </li>
-
+</div>
 <notifier-container></notifier-container>

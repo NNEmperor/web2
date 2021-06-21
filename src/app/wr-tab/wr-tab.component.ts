@@ -48,8 +48,8 @@ export class WrTabComponent implements OnInit {
       console.log(basicinfoJSON)
       basininfoObj=JSON.parse(basicinfoJSON as string);
     }
-    alert(basicinfoJSON);
-    alert(basininfoObj)
+    //alert(basicinfoJSON);
+    //alert(basininfoObj)
     this.servis.UpdateBasicInfo(basininfoObj).subscribe((data:any) =>{
 
       if(data.succeeded){
@@ -74,10 +74,10 @@ export class WrTabComponent implements OnInit {
     if(yesHistory!=null)
     {
       this.servis.UpdateHistoryWorkRequest(istorija,idwr).subscribe(res=>{
-        alert(res)
+       // alert(res)
       })
     }else{
-      alert('NEMA ISTORIJE ZA MENJANJE')
+      //alert('NEMA ISTORIJE ZA MENJANJE')
     }
     //obrisati slike
     let obrisati;
@@ -161,13 +161,13 @@ export class WrTabComponent implements OnInit {
      // alert(sTaJeUnEtO)
         if(sTaJeUnEtO==="BINFOjeste")
         {
-          alert("uneeeeto nes DIJALOG SHOW");
+          //alert("uneeeeto nes DIJALOG SHOW");
           const dialogRef = this.dialog.open(WrBasicInfoPopUpComponent);
           
           dialogRef.afterClosed().subscribe(() => {
             // Do stuff after the dialog has closed
 
-              alert("zatvoren dijalog")
+              //alert("zatvoren dijalog")
               let DaLiSeCuva= localStorage.getItem("cuva")
 
               if(DaLiSeCuva=='da')
@@ -184,7 +184,7 @@ export class WrTabComponent implements OnInit {
         }
         else
         {
-          alert("NEMA DIJALOGA")
+          //alert("NEMA DIJALOGA")
           console.log("neMA BI, IDI NA SL STR")
           this.router.navigateByUrl('/home/workreq-update/work-r-history');
         }
@@ -203,13 +203,13 @@ export class WrTabComponent implements OnInit {
      
         if(sTaJeUnEtO==="BINFOjeste")
         {
-          alert("uneeeeto nes DIJALOG SHOW");
+          //alert("uneeeeto nes DIJALOG SHOW");
           const dialogRef = this.dialog.open(WrBasicInfoPopUpComponent);
           
           dialogRef.afterClosed().subscribe(() => {
             // Do stuff after the dialog has closed
 
-              alert("zatvoren dijalog")
+              //alert("zatvoren dijalog")
               let DaLiSeCuva= localStorage.getItem("cuva")
 
               if(DaLiSeCuva=='da')
@@ -226,14 +226,14 @@ export class WrTabComponent implements OnInit {
         }
         else
         {
-          alert("NEMA DIJALOGA")
+          //alert("NEMA DIJALOGA")
           console.log("neMA BI, IDI NA SL STR")
           this.router.navigateByUrl("/home/workreq-update/work-r-multimedia");
         }
     }
   }
   Equ(){
-    alert('kliiik')
+    //alert('kliiik')
     var path=location.pathname;
     //console.log("path:   "+path)
     if(path=="/home/workreq-update/work-r-equipment"){
@@ -244,13 +244,13 @@ export class WrTabComponent implements OnInit {
      
         if(sTaJeUnEtO==="BINFOjeste")
         {
-          alert("uneeeeto nes DIJALOG SHOW");
+          //alert("uneeeeto nes DIJALOG SHOW");
           const dialogRef = this.dialog.open(WrBasicInfoPopUpComponent);
           
           dialogRef.afterClosed().subscribe(() => {
             // Do stuff after the dialog has closed
 
-              alert("zatvoren dijalog")
+              //alert("zatvoren dijalog")
               let DaLiSeCuva= localStorage.getItem("cuva")
 
               if(DaLiSeCuva=='da')
@@ -267,7 +267,7 @@ export class WrTabComponent implements OnInit {
         }
         else
         {
-          alert("NEMA DIJALOGA")
+          //alert("NEMA DIJALOGA")
           console.log("neMA BI, IDI NA SL STR")
           this.router.navigateByUrl('/home/workreq-update/work-r-equipment');
         }

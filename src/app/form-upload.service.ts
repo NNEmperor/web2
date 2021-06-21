@@ -54,4 +54,22 @@ export class FormUploadService {
         params = params.set('userName', id);
     return this.http.post(apiUri,params);
   }
+
+  exLogin(prz,ime,mreza,email){
+   
+    var body={
+      UserName: email,
+      Email: email,
+      Name: ime,
+      Lastname: prz,
+     // Password: forma.value.password,
+      UserRole:'social',
+      Token:'',
+      Social:mreza
+    };
+
+    localStorage.setItem("user",JSON.stringify(body))
+
+   return  this.http.post(this.BaseURI+"/ApplicationUser/ExLogin", body);  //vraca observable
+  }
 }

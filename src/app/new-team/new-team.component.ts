@@ -15,7 +15,7 @@ import { NotifierService } from 'angular-notifier';
   styleUrls: ['./new-team.component.css']
 })
 export class NewTeamComponent implements OnInit {
-
+  uloga;
   newTeamForm!: FormGroup;
 
   private readonly notifier!: NotifierService;
@@ -79,6 +79,12 @@ export class NewTeamComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    var oo=localStorage.getItem("user")
+    if(oo!=null){
+    var ss=JSON.parse(oo)
+    this.uloga=ss.UserRole
+    }
     
 this.adminOption.GetTeamMemebers().subscribe(data =>{
     console.log("useri na procesiranju: ");
@@ -111,7 +117,7 @@ this.adminOption.GetTeamMemebers().subscribe(data =>{
     this.adminOption.AddTeam(this.newTeamForm.value.inputID, this.newTeamForm.value.inputName,lista).subscribe((data:any) =>{
 
      if(data.succeeded){
-       alert("Uspesno dodat tim!  da li ovo prikaze");  //ne udje, ali sa servera ispise
+      // alert("Uspesno dodat tim!  da li ovo prikaze");  //ne udje, ali sa servera ispise
      }
      
     }, (err:HttpErrorResponse) => {
@@ -121,7 +127,7 @@ this.adminOption.GetTeamMemebers().subscribe(data =>{
      // alert(message);
 
      if(message==="Uspesno kreiran tim"){
-      this.notifier.notify('default', message);
+      this.notifier.notify('default', "Successfully created team");
       setTimeout(() => {
         //prebaci NA SVE TIMOVE
           this.notifier.hideAll();

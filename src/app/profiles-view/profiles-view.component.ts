@@ -12,6 +12,7 @@ import { NotifierService } from 'angular-notifier';
 
 export class ProfilesViewComponent implements OnInit {
 
+  uloga='';
   private readonly notifier!: NotifierService;
   path="assets/images/user.png"
   users!: any;
@@ -21,6 +22,14 @@ export class ProfilesViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    var oo=localStorage.getItem("user")
+    if(oo!=null){
+    var ss=JSON.parse(oo)
+    this.uloga=ss.UserRole
+    //alert(this.uloga)
+    }
+
+
     //this.users=ELEMENT_DATA;  //lista usera za prikaz
     this.adminOption.GetRegisteredUsers().subscribe( data =>
       {

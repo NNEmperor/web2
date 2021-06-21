@@ -106,7 +106,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
         this.workReqBasicForm.controls['status'].setValue(stanjee);
         console.log(this.workReqBasicForm)
       }else{
-        alert('udjjee')
+        //alert('udjjee')
         //this.workReqBasicForm.controls['status'].setValue('Draft');
       }
     // */
@@ -127,7 +127,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
        var temp=localStorage.getItem("id-wr");
       // if(temp==null)
       {
-         alert("pppp")
+        // alert("pppp")
         localStorage.setItem("id-wr",message);    //ID WORK REQUESTA
         this.workReqBasicForm.controls['id'].setValue(message);
        }
@@ -175,7 +175,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
            this.workReqBasicForm.controls['status'].setValue(stanjee);
            console.log(this.workReqBasicForm)
          }else{
-           alert('bbbam')
+           //alert('bbbam')
           this.workReqBasicForm.controls['status'].setValue(savedObj.status)
          }
 
@@ -183,7 +183,7 @@ constructor(private service: MessagePassingService, public dialog: MatDialog ,pr
        this.workReqBasicForm.controls['docType'].setValue(savedObj.docType)
        //this.workReqBasicForm.controls['status'].setValue(savedObj.status)
        this.workReqBasicForm.controls['incident'].setValue(savedObj.incident)
-       alert("oo1"+savedObj.incident)
+      // alert("oo1"+savedObj.incident)
        this.workReqBasicForm.controls['street'].setValue(savedObj.street)
        this.workReqBasicForm.controls['startdate'].setValue(savedObj.startdate)
        this.workReqBasicForm.controls['starttime'].setValue(savedObj.starttime)
@@ -274,7 +274,7 @@ unoss(){
   }
 
   SaveBasicInfo(){
-    alert("aaaaaaaaa")
+    //alert("aaaaaaaaa")
     localStorage.removeItem("uneseno"); //ODMAH I OBRISI DA NE OSTANE
     if(this.uneseno){
      
@@ -358,7 +358,7 @@ unoss(){
 
     var forma=localStorage.getItem("basic-info")
     if(forma==null){
-      alert("nema inf")
+     // alert("nema inf")
     }
   
   }
