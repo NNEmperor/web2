@@ -16,10 +16,12 @@ namespace WebSERVER.Models
         public DbSet<ApplicationUser> AppUsers { get; set; }
         public DbSet<Call> Calls { get; set; }
         public DbSet<Device> Devices { get; set; }
+        public DbSet<Consumer> Consumers { get; set; }
         public DbSet<Incident> Incidents { get; set; }
         public DbSet<WorkRequest> WorkRequests { get; set; }
         public DbSet<IncidentDevice> IncidentDevices { get; set; }
         public DbSet<WorkReqDevice> WorkReqDevices { get; set; }
+        public DbSet<WorkPlanDevice> WorkPlanDevices { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<WorkPlan> WorkPlans { get; set; }
         public DbSet<MemberOfTeam> Members { get; set; }
@@ -27,6 +29,7 @@ namespace WebSERVER.Models
         public DbSet<MediaWorkRequest> MediaWorkRequests { get; set; }
         public DbSet<IncidentImage> IncidentImages { get; set; }
         public DbSet<DocImage> DocImages { get; set; }
+        public DbSet<WorkPlanImage> WorkPlanImages { get; set; }
         public DbSet<HistoryWorkRequest> HistoryWorkRequests { get; set; }
         public DbSet<SafetyDoc> SafetyDocs { get; set; }
         public DbSet<SafetyDocDevice> SafetyDocDevices { get; set; }

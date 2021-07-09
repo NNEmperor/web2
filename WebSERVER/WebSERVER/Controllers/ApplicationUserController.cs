@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WebSERVER.Models;
+using WebSERVER.Models.FrontModels;
 
 namespace WebSERVER.Controllers
 {
@@ -255,5 +256,65 @@ namespace WebSERVER.Controllers
 
             return user;
         }
+
+        [HttpPost]
+        [Route("GetUser/{id}")]
+        public async Task<ActionResult<ApplicationUser>> GetUser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
+        }
+
+        [Route("UpdateUser")]
+        public async Task<IActionResult> UpdateUser(ApplicationUser model)
+        {
+         //   _userManager.Entry(device).State = EntityState.Modified;
+            try
+            {
+                // await _context.SaveChangesAsync();
+                var user = await _userManager.FindByEmailAsync(model.Email);
+
+                user.Birthday = model.Birthday;
+                user.Address = model.Address;
+                if (!user.Email.Equals(model.Email))
+                    user.EmailConfirmed = false;
+                user.Email = model.Email;
+                if (!user.UserRole.Equals(model.UserRole))
+                    user.Status = "procesira";
+                user.UserRole = model.UserRole;
+                user.Name = model.Name;
+                user.Lastname = model.Lastname;
+                await _userManager.UpdateAsync(user);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                    return NotFound();
+                
+            }
+
+            return NoContent();
+        }
+
+        [HttpPost]
+        [Route("ChangePassword")]
+        public async Task<IActionResult> ChangePassword(ChangePwd data)
+        {
+            var user = await _userManager.FindByEmailAsync(data.Email);    //vrv je email u pitanju
+            if (user != null && await _userManager.CheckPasswordAsync(user, data.OldPwd))
+            {
+                await _userManager.ChangePasswordAsync(user, data.OldPwd, data.NewPwd);
+
+                return Ok();
+
+            }
+            else
+                return BadRequest(new { message = "Username or password is incorrect." });
+        }
+
     }
 }

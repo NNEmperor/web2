@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebSERVER.Models;
 
 namespace WebSERVER.Migrations
 {
     [DbContext(typeof(WebServerContext))]
-    partial class WebServerContextModelSnapshot : ModelSnapshot
+    [Migration("20210708105154_new1")]
+    partial class new1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -245,35 +247,6 @@ namespace WebSERVER.Migrations
                     b.HasIndex("WorkPlanId");
 
                     b.ToTable("History");
-                });
-
-            modelBuilder.Entity("WebSERVER.Models.Consumer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("City");
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<string>("Lastname");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Phone");
-
-                    b.Property<string>("Priority");
-
-                    b.Property<string>("Street");
-
-                    b.Property<string>("Type");
-
-                    b.Property<string>("Zipcode");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Consumers");
                 });
 
             modelBuilder.Entity("WebSERVER.Models.Device", b =>

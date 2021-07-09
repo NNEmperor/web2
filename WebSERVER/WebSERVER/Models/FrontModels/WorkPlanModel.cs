@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebSERVER.Models
+namespace WebSERVER.Models.FrontModels
 {
-    public class WorkPlan
+    public class WorkPlanModel
     {
         public string Type { get; set; }
-        [Key]
-        public int Id { get; set; }
         public string Company { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime DateTimeCreated { get; set; }
@@ -25,9 +22,8 @@ namespace WebSERVER.Models
         public string Purpose { get; set; }
         public string Details { get; set; }
         public string Notes { get; set; }
-        public ICollection<ChangedByWhen> History { get; set; }
-        [NotMapped]
-        public List<string> Photos { get; set; }
-
+        public List<ChangedByWhen> History { get; set; }
+        public List<int> Instructions { get; set; }
+        public List<int> Devices { get; set; }
     }
 }

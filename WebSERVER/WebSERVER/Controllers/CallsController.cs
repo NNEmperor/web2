@@ -88,18 +88,22 @@ namespace WebSERVER.Controllers
         [Route("AddCall")]
         public async Task<ActionResult<Call>> AddCall(Call call)
         {
-
             _context.Calls.Add(call);
 
-            await _context.SaveChangesAsync();
-
+            try
+            {
+                await _context.SaveChangesAsync();
+            }catch(Exception e)
+            {
+                
+            }
             return CreatedAtAction("GetCall", new { id = call.Id }, call);
         }
 
         // DELETE: api/Books/5
         [HttpDelete]
         [Route("DeleteCall/{id}")]
-        public async Task<ActionResult<Call>> DeleteBook(int id)
+        public async Task<ActionResult<Call>> DeleteCall(int id)
         {
             var calls = await _context.Calls.FindAsync(id);
             if (calls == null)
