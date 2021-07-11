@@ -21,6 +21,7 @@ namespace WebSERVER.Models
         public string UserName { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
+        public bool CreateInc { get; set; }
         public Incident incident { get; set; }
 
         //podaci svi ili samo instanca potrosaca

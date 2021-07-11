@@ -57,6 +57,8 @@ namespace WebSERVER.Controllers
                 var token = tokenHandler.WriteToken(securityToken);
                 user.Token = token;
                 var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+                korime = user.UserName;
+
                 return Ok(new { jsonString });
             }
             else
@@ -138,7 +140,7 @@ namespace WebSERVER.Controllers
         public async Task<IActionResult> UploadFile()
         {
             var userName = korime;
-            korime = "";
+          //  korime = "";
             string base64string;
             var myFile = Request.Form.Files[0];
             var filetype = myFile.ContentType;
@@ -309,11 +311,11 @@ namespace WebSERVER.Controllers
             {
                 await _userManager.ChangePasswordAsync(user, data.OldPwd, data.NewPwd);
 
-                return Ok();
+                return Ok(new { message = "Password successfully changed." });
 
             }
             else
-                return BadRequest(new { message = "Username or password is incorrect." });
+                return BadRequest(new { message = "Current password is incorrect." });
         }
 
     }

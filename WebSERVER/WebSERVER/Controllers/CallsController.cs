@@ -88,11 +88,26 @@ namespace WebSERVER.Controllers
         [Route("AddCall")]
         public async Task<ActionResult<Call>> AddCall(Call call)
         {
+            Incident inc;
+            if (call.CreateInc)
+            {
+                inc = new Incident()
+                {
+                    Status = "Draft",
+                    Confirmed = false
+                };
+                await _context.Incidents.AddAsync(inc);
+                _context.SaveChanges();
+                call.incident = inc;
+            }
+
             _context.Calls.Add(call);
 
             try
             {
                 await _context.SaveChangesAsync();
+
+                
             }catch(Exception e)
             {
                 

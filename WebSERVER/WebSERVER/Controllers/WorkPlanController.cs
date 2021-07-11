@@ -11,15 +11,17 @@ using WebSERVER.Models.FrontModels;
 
 namespace WebSERVER.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/WorkPlan")]
     [ApiController]
     public class WorkPlanController : ControllerBase
     {
 
         private readonly WebServerContext _context;
+        private int id;
 
         public WorkPlanController(WebServerContext context)
         {
+            id = 0;
             _context = context;
         }
 
@@ -100,15 +102,8 @@ namespace WebSERVER.Controllers
 
         [HttpPost]
         [Route("AddWorkPlan")]
-        public async Task<ActionResult<WorkPlan>> AddWorkPlan([FromBody] WorkPlanModel wp)
+        public async Task<ActionResult<WorkPlan>> AddWorkPlan(WorkPlanModel wp)
         {
-
-            //_context.WorkPlans.Add(workPlan);
-
-            //await _context.SaveChangesAsync();
-
-            //return CreatedAtAction("GetWorkPlans", new { id = workPlan.Id }, workPlan);
-
             WorkPlan plan = new WorkPlan()
             {
                 Type = wp.Type,
@@ -120,8 +115,8 @@ namespace WebSERVER.Controllers
                 PhoneNumber = wp.PhoneNumber,
                 Company = wp.Company,
                 DateTimeCreated = wp.DateTimeCreated,
-                StartDateTime = wp.StartDateTime,
-                EndDateTime = wp.EndDateTime,
+                StartDateTime = wp.StartDate,
+                EndDateTime = wp.EndDate,
                 FieldCrew = wp.FieldCrew,
                 IncidentId = wp.IncidentId,
                 WorkRequestId = wp.WorkRequestId,
@@ -131,7 +126,7 @@ namespace WebSERVER.Controllers
 
             _context.WorkPlans.Add(plan);
             _context.SaveChanges();
-
+            /*
             foreach (int d in wp.Devices)
             {
                 WorkPlanDevice sd = new WorkPlanDevice()
@@ -140,7 +135,7 @@ namespace WebSERVER.Controllers
                     WorkPlan = plan
                 };
                 _context.WorkPlanDevices.Add(sd);
-            }
+            }*/
 
             foreach (WorkPlanImage i in _context.WorkPlanImages)
             {
@@ -150,6 +145,7 @@ namespace WebSERVER.Controllers
                 }
             }
 
+            id = plan.Id;
 
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetAllPlans", new { id = plan.Id }, wp);
@@ -179,7 +175,7 @@ namespace WebSERVER.Controllers
 
         [HttpPost]
         [Route("CreateImage")]
-        public Task<IActionResult> CreateImage()
+        public async Task<IActionResult> CreateImage()
         {
             var nesto = Request.Form.Files[0];
             string base64string;
@@ -192,11 +188,17 @@ namespace WebSERVER.Controllers
             byte[] imageByte = System.IO.File.ReadAllBytes(filepath);
             base64string = Convert.ToBase64String(imageByte);
 
-            _context.WorkPlanImages.Add(new WorkPlanImage { Image = base64string, WorkPlanId = 0 });
+            if (id == 0)
+                _context.WorkPlanImages.Add(new WorkPlanImage { Image = base64string, WorkPlanId = 0 });
+            else
+            {
+                _context.WorkPlanImages.Add(new WorkPlanImage { Image = base64string, WorkPlanId = id });
+                id = 0;
+            }
             _context.SaveChanges();
 
             // return new EmptyResult();
-            return null;
+            return Ok("Successfully added photo to work plan");
         }
     }
 }

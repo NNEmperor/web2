@@ -21,7 +21,7 @@ namespace WebSERVER.Models
         public string CreatedBy { get; set; }
         public string Status { get; set; }
         public int IncidentId { get; set; }
-        public int WorkRequestId { get; set; }
+        public string WorkRequestId { get; set; }
         public string Purpose { get; set; }
         public string Details { get; set; }
         public string Notes { get; set; }
