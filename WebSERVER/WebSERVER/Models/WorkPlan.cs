@@ -28,6 +28,8 @@ namespace WebSERVER.Models
         public ICollection<ChangedByWhen> History { get; set; }
         [NotMapped]
         public List<string> Photos { get; set; }
+        [NotMapped]
+        public List<Device> Devices { get; set; }
 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,10 +30,11 @@ namespace WebSERVER.Controllers
         [Route("GetAllPlans")]
         public async Task<ActionResult<IEnumerable<WorkPlan>>> GetWorkPlans()
         {
-            var listI = await _context.WorkPlans.ToListAsync();
+            var listWP = await _context.WorkPlans.ToListAsync();
             var listS = await _context.WorkPlanImages.ToListAsync();
+            var dev = _context.Devices.ToList();
 
-            foreach (var i in listI)
+            foreach (var i in listWP)
             {
                 i.Photos = new List<string>();
                 foreach (var s in listS)
@@ -41,7 +43,20 @@ namespace WebSERVER.Controllers
                         i.Photos.Add(s.Image);
                 }
             }
-            return listI;
+
+            foreach (var wp in listWP)
+            {
+                wp.Devices = new List<Device>();
+
+                var listaID = _context.WorkPlanDevices.Where(x => x.WorkPlan.Equals(wp.Id)).ToList();
+
+                foreach (var el in listaID)
+                {
+                    var device = dev.Where(x => x.Id == el.Device).Single();
+                    wp.Devices.Add(device);
+                }
+            }
+            return listWP;
         }
 
         [HttpPost]
@@ -104,6 +119,8 @@ namespace WebSERVER.Controllers
         [Route("AddWorkPlan")]
         public async Task<ActionResult<WorkPlan>> AddWorkPlan(WorkPlanModel wp)
         {
+            wp.Devices = new List<int>() { 1, 2 };
+
             WorkPlan plan = new WorkPlan()
             {
                 Type = wp.Type,
@@ -126,16 +143,16 @@ namespace WebSERVER.Controllers
 
             _context.WorkPlans.Add(plan);
             _context.SaveChanges();
-            /*
+            
             foreach (int d in wp.Devices)
             {
                 WorkPlanDevice sd = new WorkPlanDevice()
                 {
-                    Device = _context.Devices.Where(dev => dev.Id == d).First(),
-                    WorkPlan = plan
+                    Device = _context.Devices.Where(dev => dev.Id == d).First().Id,
+                    WorkPlan = plan.Id
                 };
                 _context.WorkPlanDevices.Add(sd);
-            }*/
+            }
 
             foreach (WorkPlanImage i in _context.WorkPlanImages)
             {
@@ -146,6 +163,20 @@ namespace WebSERVER.Controllers
             }
 
             id = plan.Id;
+
+            Notification n = new Notification()
+            {
+                DocumentId = plan.Id,
+                Type = "4",
+                Read = false,
+                Content = "New work plan id = " + plan.Id + "has been added ",
+                DateTime = DateTime.Now,
+                UserName = plan.CreatedBy
+
+            };
+            _context.Notifications.Add(n);
+
+            await _context.SaveChangesAsync();
 
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetAllPlans", new { id = plan.Id }, wp);
@@ -199,6 +230,35 @@ namespace WebSERVER.Controllers
 
             // return new EmptyResult();
             return Ok("Successfully added photo to work plan");
+        }
+
+
+        [HttpPost]
+        [Route("AddDevice")]
+        public async Task<ActionResult> AddDevice(Devices listid)
+        {
+            string idwp = "aa";
+
+           var resultIDs = JsonConvert.DeserializeObject<List<Device>>(listid.ToString());
+
+            var svi = _context.WorkPlanDevices.ToList();
+            //brisemo sve za idwr
+            for (int i = 0; i < svi.Count; i++)
+            {
+                if (svi[i].WorkPlan.Equals(idwp))
+                {
+                    var dev = _context.WorkPlanDevices.Where(x => x.WorkPlanDeviceId == svi[i].WorkPlanDeviceId).Single();
+                    _context.WorkPlanDevices.Remove(dev);
+                }
+            }
+            //dodajemo
+            for (int i = 0; i < resultIDs.Count; i++)
+            {
+                _context.WorkPlanDevices.Add(new WorkPlanDevice { Device = resultIDs[i].Id, WorkPlan = 1 });
+            }
+
+            await _context.SaveChangesAsync();
+            return Ok("Devices saved");
         }
     }
 }

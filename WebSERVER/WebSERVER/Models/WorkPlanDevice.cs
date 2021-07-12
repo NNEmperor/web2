@@ -12,7 +12,7 @@ namespace WebSERVER.Models
         [Key]
         [Column(TypeName = "int")]
         public int WorkPlanDeviceId { get; set; }
-        public WorkPlan WorkPlan { get; set; }
-        public Device Device { get; set; }
+        public int WorkPlan { get; set; }
+        public int Device { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace WebSERVER.Models
         [Key]
         public int Id { get; set; }
         public int DocumentId { get; set; }
-        public int UserId { get; set; }
+        public string UserName { get; set; }
         public bool Read { get; set; }
         public string Content { get; set; }
         public DateTime DateTime { get; set; }

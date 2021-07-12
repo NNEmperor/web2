@@ -23,6 +23,7 @@ namespace WebSERVER.Controllers
 
         // GET: api/<NotificationController>
         [HttpGet]
+        [Route("GetAll")]
         public async Task<ActionResult<IEnumerable<Notification>>> GetNotifications()
         {
             return await _context.Notifications.ToListAsync();
@@ -45,6 +46,7 @@ namespace WebSERVER.Controllers
         [Route("UpdateNotification")]
         public async Task<IActionResult> UpdateNotification(Notification notification)
         {
+
             _context.Entry(notification).State = EntityState.Modified;
 
             try
